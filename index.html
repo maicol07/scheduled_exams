@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext" rel="stylesheet">
+</head>
+<body>
+<div class="materialContainer">
+
+
+    <div class="box">
+
+        <div class="title">ACCEDI</div>
+
+        <div class="input">
+            <label for="name"><i class="far fa-user"></i> Nome utente</label>
+            <input type="text" name="name" id="name">
+            <span class="spin"></span>
+        </div>
+
+        <div class="input">
+            <label for="pass"><i class="fas fa-key"></i> Password</label>
+            <input type="password" name="pass" id="pass">
+            <span class="spin"></span>
+        </div>
+
+        <div class="button login">
+            <button><span>VAI</span></button>
+        </div>
+
+        <a href="forgot-password.html" class="pass-forgot">Hai dimenticato la password?</a>
+
+    </div>
+
+    <div class="overbox">
+        <div class="material-button alt-2"><span class="shape"></span></div>
+
+        <div class="title">REGISTRATI</div>
+
+        <div class="input">
+            <label for="regname"><i class="far fa-user"></i> Nome Utente</label>
+            <input type="text" name="regname" id="regname">
+            <span class="spin"></span>
+        </div>
+
+        <div class="input">
+            <label for="regpass"><i class="fas fa-key"></i> Password</label>
+            <input type="password" name="regpass" id="regpass">
+            <span class="spin"></span>
+        </div>
+
+        <div class="input">
+            <label for="reregpass"><i class="fas fa-key"></i> Ripeti Password</label>
+            <input type="password" name="reregpass" id="reregpass">
+            <span class="spin"></span>
+        </div>
+
+        <div class="button">
+            <button onclick="open('reg_success.php')"><span>COMPLETA REGISTRAZIONE</span></button>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
