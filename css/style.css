@@ -254,6 +254,10 @@
    font-size: 18px;
 }
 
+.pass-f-hover:hover {
+    text-decoration: underline;
+}
+
 .click-efect {
    position: absolute;
    top: 0;
