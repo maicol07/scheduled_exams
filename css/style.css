@@ -176,7 +176,7 @@
 .button button {
    width: 100%;
    line-height: 64px;
-   left: 0%;
+    left: 0;
    background-color: transparent;
    border: 3px solid rgba(0, 0, 0, 0.1);
    font-weight: 900;
@@ -252,10 +252,29 @@
    text-align: center;
    color: rgba(0, 0, 0, 0.4);
    font-size: 18px;
+    position: relative;
+    text-decoration: none;
 }
 
-.pass-f-hover:hover {
-    text-decoration: underline;
+.pass-f-hover:before {
+    content: "";
+    position: absolute;
+    width: 65%;
+    height: 2px;
+    bottom: 0;
+    left: 64px;
+    background-color: rgba(0, 0, 0, 0.4);
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.pass-f-hover:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
 }
 
 .click-efect {
