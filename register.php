@@ -125,8 +125,9 @@
             <form class="login-form">
                 <div class="row">
                     <div class="input-field col s12 center">
-                        <p style="text-align:center;"><img src="img/logo.png" alt="Interrogazioni programmate"
-                                                           align="center"></p>
+                        <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
+                                                           align="center" width="128" height="128"
+                                                           onerror="this.src='img/logo.png'"></p>
                         <h3 align="center" style="font-variant: small-caps;">Interrogazioni Programmate</h3>
                         <h4 align="center"><i class="material-icons">forward</i> Registrazione</h4>
                     </div>

@@ -160,8 +160,9 @@
             <form class="login-form">
                 <div class="row">
                     <div class="input-field col s12 center">
-                        <p style="text-align:center;"><img src="img/logo.png" alt="Interrogazioni programmate"
-                                                           align="center"></p>
+                        <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
+                                                           align="center" width="128" height="128"
+                                                           onerror="this.src='img/logo.png'"></p>
                         <h3 align="center" style="font-variant: small-caps;">Interrogazioni Programmate</h3>
                         <h4 align="center"><i class="material-icons">forward</i> Accesso</h4>
                     </div>
@@ -190,7 +191,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="login.html" class="btn waves-effect waves-light col s12"><i
+                        <a href="index.php" class="btn waves-effect waves-light col s12"><i
                                     class="far fa-sign-in-alt"></i>
                             Accedi</a>
                     </div>
