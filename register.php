@@ -1,3 +1,106 @@
+<?php
+require('includes/config.php');
+// se l'utente ha già eseguito l'accesso reindirizzalo alla sua pagina
+if ($user->is_logged_in()) {
+    header('Location: app/index.php');
+}
+
+// se il form è stato inviato, processalo
+if (isset($_POST['submit'])) {
+
+    // Validazione aggiuntiva (in caso di alcuni bug o trucchetti)
+    if (strlen($_POST['username']) < 4) {
+        $error[] = 'Il nome utente inserito è troppo corto!';
+    } else {
+        $stmt = $db->prepare('SELECT username FROM users WHERE username = :username');
+        $stmt->execute(array(':username' => $_POST['username']));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!empty($row['username'])) {
+            $error[] = '<span style="color: red; ">Il nome utente inserito è già in uso. Sceglierne un altro.</span>';
+        }
+
+    }
+
+    if (strlen($_POST['password']) < 8) {
+        $error[] = '<span style="color: red; ">La password inserita è troppo corta.</span>';
+    }
+
+    if (strlen($_POST['passwordConfirm']) < 8) {
+        $error[] = '<span style="color: red; ">La conferma della password inserita è troppo corta.</span>';
+    }
+
+    if ($_POST['password'] != $_POST['passwordConfirm']) {
+        $error[] = '<span style="color: red; ">Le password inserite non corrispondono.</span>';
+    }
+
+    // VALIDAZIONE EMAIL
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $error[] = '<span style="color: red; ">L\'email inserita non è valida. Perfavore inserirne una corretta.</span>';
+    } else {
+        $stmt = $db->prepare('SELECT email FROM users WHERE email = :email');
+        $stmt->execute(array(':email' => $_POST['email']));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!empty($row['email'])) {
+            $error[] = '<script>alert("L\'email inserita è già utilizzata.")</script>';
+        }
+
+    }
+
+
+    // Se non è stato riscontrato nessun errore si procede
+    if (!isset($error)) {
+
+        // crea una stringa hash per la password
+        $hashedpassword = $user->password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+        // crea il codice di attivazione
+        $activasion = md5(uniqid(rand(), true));
+
+        try {
+            // Inserisci nel database con un comando preparato
+            $stmt = $db->prepare('INSERT INTO users (username,password,email,active) VALUES (:username, :password, :email, :active)');
+            $stmt->execute(array(
+                ':username' => $_POST['username'],
+                ':password' => $hashedpassword,
+                ':email' => $_POST['email'],
+                ':active' => $activasion
+            ));
+            $id = $db->lastInsertId('userID');
+
+            //send email
+            $to = $_POST['email'];
+            $subject = "Conferma della registrazione - Interrogazioni Programmate";
+            $body = "<p style=\"text-align:center;\"><img src=\"img/logo.svg\" alt=\"Interrogazioni programmate\"
+                                                           align=\"center\" width=\"128\" height=\"128\"
+                                                           onerror=\"this.src='img/logo.png'\"></p>
+                        <h3 align=\"center\" style=\"font-variant: small-caps;\">Interrogazioni Programmate</h3>
+            <p>Grazie per esserti registrato al portale Interrogazioni Programmate.</p>
+			<p>Per attivare il tuo account clicca su questo link: <a href='" . DIR . "activate.php?x=$id&y=$activasion'>" . DIR . "activate.php?x=$id&y=$activasion</a></p>
+			<p>Saluti, \n Il team di Interrogazioni Programmate</p>";
+
+            $mail = new Mail();
+            $mail->setFrom(SITEEMAIL);
+            $mail->addAddress($to);
+            $mail->subject($subject);
+            $mail->body($body);
+            $mail->send();
+
+            // Reindirizza alla pagina principale
+            header('Location: index.php?action=joined');
+            exit;
+
+            // Altrimenti mostra l'errore
+        } catch (PDOException $e) {
+            $error[] = $e->getMessage();
+            echo "<script>alert($error)</script>";
+        }
+
+    }
+
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -24,6 +127,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style type="text/css">
         html,
         body {
@@ -117,12 +221,12 @@
 
     <?php } ?>
 </head>
-
 <body>
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
-            <form class="login-form">
+            <form role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off"
+                  class="login-form">
                 <div class="row">
                     <div class="input-field col s12 center">
                         <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
@@ -132,44 +236,74 @@
                         <h4 align="center"><i class="material-icons">forward</i> Registrazione</h4>
                     </div>
                 </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
+                <div class="row">
+                    <div class="input-field col s6">
                         <i class="material-icons prefix">person_outline</i>
-                        <input id="username" type="text" class="validate">
+                        <input id="username" type="text" class="validate" required minlength="4" value="<?php
+                        if (isset($_POST['username'])) {
+                            echo $_POST['username'];
+                        } ?>">
                         <label for="username" class="center-align">Nome utente</label>
+                        <span class='helper-text' data-error='Nome utente troppo corto (almeno 4 caratteri)'
+                              data-success='✓'></span>
                     </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <i class="material-icons prefix">mail_outline</i>
-                        <input id="email" type="email" class="validate">
+                        <input id="email" type="email" class="validate" required value="<?php
+                        if (isset($_POST['email'])) {
+                            echo $_POST['email'];
+                        } ?>">
                         <label for="email" class="center-align">Email</label>
+                        <span class='helper-text' data-error='Email non valida' data-success="✓"></span>
                     </div>
                 </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
+                <div class="row">
+                    <div class="input-field col s6">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="password" type="password" class="validate">
+                        <input id="password" type="password" class="validate" required minlength="8">
                         <label for="password">Password</label>
+                        <span class='helper-text' data-error='Password non valida' data-success='✓'></span>
                     </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="password-again" type="password">
-                        <label for="password-again">Ripeti password</label>
+                        <input id="confirm-password" type="password" required minlength="8">
+                        <label for="confirm-password">Ripeti password</label>
+                        <span class='helper-text' data-error='Le password non corrispondono' data-success='✓'></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="register.php" class="btn waves-effect waves-light col s12"><i
-                                    class="far fa-plus-circle"></i> Registrati ora!</a>
+                        <button class="btn waves-effect waves-light col s12" type="submit" name="action" id="submit"
+                                disabled>
+                            <i class="fal fa-plus-circle"></i> Registrati!
+                        </button>
                     </div>
                     <div class="input-field col s12">
                         <p class="margin center medium-small sign-up">Hai già un account? <a
                                     href="index.php" class="loginlink">Accedi</a></p>
                     </div>
                 </div>
+                <script>
+                    $("#password").on("focusout", function (e) {
+                        if ($(this).val() !== $("#confirm-password").val()) {
+                            $("#confirm-password").removeClass("valid").addClass("invalid");
+                            $('#submit').prop('disabled', true);
+                        } else {
+                            $("#confirm-password").removeClass("invalid").addClass("valid");
+                            $('#submit').prop('disabled', false);
+                        }
+                    });
+
+                    $("#confirm-password").on("keyup", function (e) {
+                        if ($("#password").val() !== $(this).val()) {
+                            $(this).removeClass("valid").addClass("invalid");
+                            $('#submit').prop('disabled', true);
+                        } else {
+                            $(this).removeClass("invalid").addClass("valid");
+                            $('#submit').prop('disabled', false);
+                        }
+                    });
+                </script>
             </form>
             <div style="text-align: center;">
                 Copyright © 2017 Interrogazioni Programmate

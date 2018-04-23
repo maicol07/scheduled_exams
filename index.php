@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -157,7 +158,7 @@
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
-            <form class="login-form">
+            <form role="form" method="post" action="" autocomplete="off" class="login-form">
                 <div class="row">
                     <div class="input-field col s12 center">
                         <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"

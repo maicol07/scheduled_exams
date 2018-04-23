@@ -27,6 +27,11 @@ Nella pagina del repo di GitHub c'è un pulsante verde con scritto "**Download**
 Premendo sul pulsante fork è possibile creare una copia del repo nel proprio account GitHub. Da qui è possibile eseguire tutte le modifiche e poi è possibile effettuare una pull request per mandarle al repo originale. Per maggiori informazioni vedi la voce al glossario sotto.
 ### B3. Creare una nuova branch all'interno di un repository
 Tramite il menu a discesa branch nella pagina del repo su Github è possibile creare una nuova branch, su cui lavorare mantenendo le modifiche separate dal ramo originale. Per maggiori informazioni vedi le voci nel glossario sottostante.
+## B. Come installare l'interprete PHP
+Per installare l'interprete PHP, il modo più semplice è installare il local server XAMPP.
+### B1. Installazione di XAMPP
+Per installare XAMPP occorre scaricare il setup da [QUI](https://www.apachefriends.org/it/download.html) (scaricare la versione più recente).
+
 
 # Glossario
 Qui trovi tutte le parole più comuni di GitHub.
