@@ -4,7 +4,6 @@ require('includes/config.php');
 if ($user->is_logged_in()) {
     header('Location: app/index.php');
 }
-
 // se il form è stato inviato, processalo
 if (isset($_POST['submit'])) {
 
@@ -17,26 +16,26 @@ if (isset($_POST['submit'])) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!empty($row['username'])) {
-            $error[] = '<span style="color: red; ">Il nome utente inserito è già in uso. Sceglierne un altro.</span>';
+            $error[] = 'Il nome utente inserito è già in uso. Sceglierne un altro.';
         }
 
     }
 
     if (strlen($_POST['password']) < 8) {
-        $error[] = '<span style="color: red; ">La password inserita è troppo corta.</span>';
+        $error[] = 'La password inserita è troppo corta.';
     }
 
-    if (strlen($_POST['passwordConfirm']) < 8) {
-        $error[] = '<span style="color: red; ">La conferma della password inserita è troppo corta.</span>';
+    if (strlen($_POST['confirm-password']) < 8) {
+        $error[] = 'La conferma della password inserita è troppo corta.';
     }
 
-    if ($_POST['password'] != $_POST['passwordConfirm']) {
-        $error[] = '<span style="color: red; ">Le password inserite non corrispondono.</span>';
+    if ($_POST['password'] != $_POST['confirm-password']) {
+        $error[] = 'Le password inserite non corrispondono.';
     }
 
     // VALIDAZIONE EMAIL
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $error[] = '<span style="color: red; ">L\'email inserita non è valida. Perfavore inserirne una corretta.</span>';
+        $error[] = 'L\'email inserita non è valida. Perfavore inserirne una corretta.';
     } else {
         $stmt = $db->prepare('SELECT email FROM users WHERE email = :email');
         $stmt->execute(array(':email' => $_POST['email']));
@@ -127,7 +126,7 @@ if (isset($_POST['submit'])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style type="text/css">
         html,
         body {
@@ -225,6 +224,19 @@ if (isset($_POST['submit'])) {
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
+            <?php
+            // Controlla errori
+            if (isset($error)) {
+                foreach ($error as $er) {
+                    echo '<div class="card-panel deep-orange darken-1">' . $er . '</div>';
+                }
+            }
+
+            // se l'azione è "joined", allora mostra avviso di registrazione completata
+            if (isset($_GET['action']) && $_GET['action'] == 'joined') {
+                echo "<div class='card-panel light-green'>Registrazione completata, perfavore controlla la tua email (anche la cartella SPAM o di posta indesiderata) per attivare il tuo account.</div>";
+            }
+            ?>
             <form role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off"
                   class="login-form">
                 <div class="row">
@@ -239,7 +251,8 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">person_outline</i>
-                        <input id="username" type="text" class="validate" required minlength="4" value="<?php
+                        <input id="username" name="username" type="text" class="validate" required minlength="4"
+                               value="<?php
                         if (isset($_POST['username'])) {
                             echo $_POST['username'];
                         } ?>">
@@ -249,7 +262,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">mail_outline</i>
-                        <input id="email" type="email" class="validate" required value="<?php
+                        <input id="email" name="email" type="email" class="validate" required value="<?php
                         if (isset($_POST['email'])) {
                             echo $_POST['email'];
                         } ?>">
@@ -260,20 +273,21 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="password" type="password" class="validate" required minlength="8">
+                        <input id="password" name="password" type="password" class="validate" required minlength="8">
                         <label for="password">Password</label>
-                        <span class='helper-text' data-error='Password non valida' data-success='✓'></span>
+                        <span class='helper-text' data-error='Password troppo corta (almeno 8 caratteri)'
+                              data-success='✓'></span>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="confirm-password" type="password" required minlength="8">
+                        <input id="confirm-password" name="confirm-password" type="password" required minlength="8">
                         <label for="confirm-password">Ripeti password</label>
                         <span class='helper-text' data-error='Le password non corrispondono' data-success='✓'></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light col s12" type="submit" name="action" id="submit"
+                        <button class="btn waves-effect waves-light col s12" type="submit" name="submit" id="submit"
                                 disabled>
                             <i class="fal fa-plus-circle"></i> Registrati!
                         </button>
