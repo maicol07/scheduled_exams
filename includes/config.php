@@ -13,8 +13,8 @@ define('DBPASS', '');
 define('DBNAME', 'testintp');
 
 // Indirizzo applicazione
-define('DIR', '');
-define('SITEEMAIL', 'noreply@yoursite.com');
+define('DIR', 'https://interrogazioniprogrammate.tk');
+define('SITEEMAIL', 'noreply@interrogazioniprogrammate.tk');
 
 try {
 
