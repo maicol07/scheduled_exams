@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnhandledExceptionInspection */
 require('includes/config.php');
 // se l'utente ha già eseguito l'accesso reindirizzalo alla sua pagina
 if ($user->is_logged_in()) {
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!empty($row['email'])) {
-            $error[] = '<script>alert("L\'email inserita è già utilizzata.")</script>';
+            $error[] = "L'email inserita è già utilizzata.";
         }
 
     }
@@ -71,6 +71,7 @@ if (isset($_POST['submit'])) {
             //send email
             $to = $_POST['email'];
             $subject = "Conferma della registrazione - Interrogazioni Programmate";
+            /** @noinspection JSUnusedGlobalSymbols */
             $body = "<p style=\"text-align:center;\"><img src=\"img/logo.svg\" alt=\"Interrogazioni programmate\"
                                                            align=\"center\" width=\"128\" height=\"128\"
                                                            onerror=\"this.src='img/logo.png'\"></p>
@@ -87,15 +88,13 @@ if (isset($_POST['submit'])) {
             $mail->send();
 
             // Reindirizza alla pagina principale
-            header('Location: index.php?action=joined');
+            header('Location: register.php?action=joined');
             exit;
 
-            // Altrimenti mostra l'errore
+            // Altrimenti metti l'errore in una variabile (verrà mostrato successivamente)
         } catch (PDOException $e) {
             $error[] = $e->getMessage();
-            echo "<script>alert($error)</script>";
         }
-
     }
 
 }
@@ -108,24 +107,15 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script defer src="https://dl.dropboxusercontent.com/s/94ajynkqcf3xg28/fa-all.min.js?dl=0"></script>
 
-    <!-- START Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="img/favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
-    <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-    <!-- END Favicon -->
+    <?php
+    require("layout/header/favicon.php")
+    ?>
 
     <title>Registrazione - Interrogazioni Programmate</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style type="text/css">
         html,
@@ -146,81 +136,21 @@ if (isset($_POST['submit'])) {
         .margin {
             margin: 0 !important;
         }
-
-        .loginlink {
-            position: relative;
-            text-decoration: none;
-        }
-
-        .loginlink:before {
-            content: "";
-            position: absolute;
-            width: 102%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #039be5;
-            visibility: hidden;
-            -webkit-transform: scaleX(0);
-            transform: scaleX(0);
-            -webkit-transition: all 0.3s ease-in-out 0s;
-            transition: all 0.3s ease-in-out 0s;
-        }
-
-        .loginlink:hover:before {
-            visibility: visible;
-            -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-        }
     </style>
     <link rel="stylesheet" href="css/style.css">
     <?php
-    $alba = 6;
-    $giorno = 18;
-    $ora = date("H");
+    require("layout/header/background-change.php")
     ?>
-    <?php if ($ora >= 3 && $ora <= $alba) { ?>
-        <!-- Se l'ora attuale è maggiore di 3 e minore di $alba che è 6 -->
-        <style>
-            /* Mostra questo codice css per l'alba */
-            body {
-                background-image: url(https://dl.dropboxusercontent.com/s/mlsyprm4otlrz6m/1%20-%20nDix8XF.png?dl=0);
-                background-position: center;
-                background-size: auto;
-                background-repeat: repeat;
-            }
-        </style>
-
-    <?php } elseif ($ora > $alba && $ora <= $giorno) { ?>
-
-        <!-- Se l'ora attuale è maggiore di 6 ($alba) e minore di $giorno che è 18 -->
-        <style>
-            /* Mostra questo codice css per il giorno */
-            body {
-                background-image: url(https://dl.dropboxusercontent.com/s/1k68ull9ih9j547/2%20-%20nmGS0kk.png?dl=0);
-                background-position: center;
-                background-size: auto;
-                background-repeat: repeat;
-            }
-        </style>
-
-    <?php } else { ?>
-
-        <!-- Se nessuna delle precendenti condizioni è soddisfatta allora è notte -->
-
-        <style>
-            /* Mostra questo codice css per la notte */
-            body {
-                background-image: url(https://dl.dropboxusercontent.com/s/srfxau9184zsg7h/4%20-%20dNd6nJP.png?dl=0);
-                background-position: center;
-                background-size: auto;
-                background-repeat: repeat;
-            }
-        </style>
-
-    <?php } ?>
+    <!-- Import SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+<script>swal({
+        title: "Errore!",
+        text: "È stato riscontrato un errore durante al registrazione",
+        icon: "error",
+        button:
+    });</script>
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
@@ -228,13 +158,21 @@ if (isset($_POST['submit'])) {
             // Controlla errori
             if (isset($error)) {
                 foreach ($error as $er) {
-                    echo '<div class="card-panel deep-orange darken-1">' . $er . '</div>';
+                    echo '<script>swal({
+  title: "Errore!",
+  text: "È stato riscontrato un errore durante al registrazione:\n' . $er . '",
+  icon: "error",
+});</script>';
                 }
             }
 
             // se l'azione è "joined", allora mostra avviso di registrazione completata
-            if (isset($_GET['action']) && $_GET['action'] == 'joined') {
-                echo "<div class='card-panel light-green'>Registrazione completata, perfavore controlla la tua email (anche la cartella SPAM o di posta indesiderata) per attivare il tuo account.</div>";
+            elseif (isset($_GET['action']) && $_GET['action'] == 'joined') {
+                echo '<script>swal({
+  title: "Sei registrato!",
+  text: "Registrazione completata, perfavore controlla la tua email (anche la cartella SPAM o di posta indesiderata) per attivare il tuo account.",
+  icon: "success",
+});</script>';
             }
             ?>
             <form role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="off"
@@ -294,12 +232,12 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="input-field col s12">
                         <p class="margin center medium-small sign-up">Hai già un account? <a
-                                    href="index.php" class="loginlink">Accedi</a></p>
+                                    href="index.php" class="hover-underline-animation">Accedi</a></p>
                     </div>
                 </div>
                 <script>
                     $("#password").on("focusout", function (e) {
-                        if ($(this).val() !== $("#confirm-password").val()) {
+                        if ($(this).val() !== $("#confirm-password").val() || $(this).val() === '') {
                             $("#confirm-password").removeClass("valid").addClass("invalid");
                             $('#submit').prop('disabled', true);
                         } else {
@@ -309,7 +247,7 @@ if (isset($_POST['submit'])) {
                     });
 
                     $("#confirm-password").on("keyup", function (e) {
-                        if ($("#password").val() !== $(this).val()) {
+                        if ($("#password").val() !== $(this).val() || $(this).val() === '') {
                             $(this).removeClass("valid").addClass("invalid");
                             $('#submit').prop('disabled', true);
                         } else {
@@ -320,7 +258,7 @@ if (isset($_POST['submit'])) {
                 </script>
             </form>
             <div style="text-align: center;">
-                Copyright © 2017 Interrogazioni Programmate
+                Copyright © 2018 Interrogazioni Programmate
                 <p style="font-size:75%;">L'icona creata da <a href="http://www.freepik.com" title="Freepik">Freepik</a>
                     di
                     <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> ha licenza <a
@@ -331,6 +269,6 @@ if (isset($_POST['submit'])) {
     </div>
 </div>
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="js/materialize.min.js"></script>
 </body>
 </html>
