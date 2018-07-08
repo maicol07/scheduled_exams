@@ -3,7 +3,7 @@ require('includes/config.php');
 
 //if logged in redirect to members page
 if ($user->is_logged_in()) {
-    header('Location: memberpage.php');
+    header('Location: app');
 }
 
 //if form has been submitted process it
