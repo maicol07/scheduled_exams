@@ -87,7 +87,6 @@ if (isset($_POST['submit'])) {
         html,
         body {
             height: 100%;
-            font-family: 'Roboto', sans-serif;
         }
 
         html {
