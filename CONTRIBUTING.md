@@ -1,37 +1,84 @@
 # Come collaborare al progetto
 
- È necessario conoscere i linguaggi di programmazione HTML e PHP, mentre sono richieste le basi dei linguaggi JS (Javascript) e CSS
+ È necessario conoscere i linguaggi di programmazione `HTML`, `PHP` e `SQL` (per database `MySQL`), mentre sono richieste le basi dei linguaggi `JS` (Javascript) e `CSS`
  
  Si raccomanda di utilizzare una buona IDE di programmazione come Phpstorm di Jetbrains. Per ottenere quest'ultima in modo completamente legale e gratuito è possibile ottenere una licenza studente <a href="https://www.jetbrains.com/student/" alt="Ottieni una licenza studente gratuita per i prodotti Jetbrains!">QUI</a>.
  
+Prima di continuare, ti consiglio di leggere il [Glossario di GitHub](#Glossario).
+
 Dunque, come cloniamo il nostro progetto?
-## A. Clonare il repository da PHPStorm
-### 1. Installare Git
+## A. Clonare il repository
+### A1. Clonare il repository da PHPStorm
+#### 1. Installare Git
 Dopo aver installato PHPStorm, installare Git. Git è un software di controllo versione distribuito utilizzabile da interfaccia a riga di comando.
 Per poter installare Git prelevare la versione più recente da [QUI](https://git-scm.com/downloads) e seguire le istruzioni dell'installer (non spuntare nessuna opzione se non se ne conoscono gli effetti)
-### 2. Importare il repository da PHPStorm
-- Una volta aperto PHPStorm premere su `Configure` e, una volta aperte le impostazioni, premere su` Version Control`.
-- Cliccare su `GitHub`. Premere sul pulsante `Create API Token` e inserire le proprie credenziali.
-- Fatto ciò, chiudere le impostazioni e premere su `Checkout from Version Control`.
-- Inserire questo indirizzo nel campo URL: https://github.com/maicol07/school_life_diary_pc.git mentre nel campo directory inserire una cartella a piacimento dove deve essere clonato il repository
-- Attendere la fine della clonazione...
-- Una volta che si è aperta l'IDE vera e propria andare in `VCS` --> `Enable Version Control`. Scegliere `Git` dalla lista della finestra che appare e confermare.
-- Controllare che in `VCS` --> `Git` --> `Remotes`... ci sia l'URL immesso prima. Altrimenti inserirlo.
-- È ora possibile iniziare a lavorare sul progetto. Per mandare gli aggiornamenti al repo su GitHub premere su `VCS` --> `Commit`. Dopo aver controllato il tutto premere sulla freccia accanto al pulsante `Commit` e premere `Commit and push`.
-- Seguire le istruzioni finestra per finestra.
-## B. Clonare un repository da GitHub per lavorare con altri programmi
+#### 2. Importare il repository da PHPStorm
+1. Una volta aperto PHPStorm premere su `Configure` e, una volta aperte le impostazioni, premere su` Version Control`.
+2. Cliccare su `GitHub`. Premere sul pulsante `Create API Token` e inserire le proprie credenziali.
+3. Fatto ciò, chiudere le impostazioni e premere su `Checkout from Version Control`.
+4. Inserire questo indirizzo nel campo URL: https://github.com/maicol07/school_life_diary_pc.git mentre nel campo directory inserire una cartella a piacimento dove deve essere clonato il repository
+5. Attendere la fine della clonazione...
+6. Una volta che si è aperta l'IDE vera e propria andare in `VCS` --> `Enable Version Control`. Scegliere `Git` dalla lista della finestra che appare e confermare.
+7. Controllare che in `VCS` --> `Git` --> `Remotes`... ci sia l'URL immesso prima. Altrimenti inserirlo.
+8. È ora possibile iniziare a lavorare sul progetto. Per mandare gli aggiornamenti al repo su GitHub premere su `VCS` --> `Commit`. Dopo aver controllato il tutto premere sulla freccia accanto al pulsante `Commit` e premere `Commit and push`.
+9. Seguire le istruzioni finestra per finestra.
+10. Continuare con il capitolo B di questa guida
+### A2. Clonare un repository da GitHub per lavorare con altri programmi
+**Saltare questa parte se si è già fatto la precedente con PHPStorm!!**
+
 Si hanno due possibilità per chi intraprende questa strada:
-### B1. Scaricare il progetto
+#### 1. Scaricare il progetto
 Nella pagina del repo di GitHub c'è un pulsante verde con scritto "**Download**", da qui è possibile scaricare un archivio zip contenente tutti i file del repository.
-### B2. Effettuare il `fork` di un repository
+#### 2. Effettuare il `fork` di un repository
 Premendo sul pulsante fork è possibile creare una copia del repo nel proprio account GitHub. Da qui è possibile eseguire tutte le modifiche e poi è possibile effettuare una pull request per mandarle al repo originale. Per maggiori informazioni vedi la voce al glossario sotto.
-### B3. Creare una nuova branch all'interno di un repository
+#### 3. Creare una nuova branch all'interno di un repository
 Tramite il menu a discesa branch nella pagina del repo su Github è possibile creare una nuova branch, su cui lavorare mantenendo le modifiche separate dal ramo originale. Per maggiori informazioni vedi le voci nel glossario sottostante.
 ## B. Come installare l'interprete PHP
 Per installare l'interprete PHP, il modo più semplice è installare il local server XAMPP.
 ### B1. Installazione di XAMPP
-Per installare XAMPP occorre scaricare il setup da [QUI](https://www.apachefriends.org/it/download.html) (scaricare la versione più recente).
+Per installare XAMPP occorre scaricare il setup da [QUI](https://www.apachefriends.org/it/download.html) (scaricare la versione più recente) e seguire le istruzioni dell'installer.
+#### Provare ad aprire il panello di controllo di XAMPP
+Provare ad aprire il pannello di controllo di XAMPP dal menu start o dall'icona sul desktop. Provare ad avviare i servizi Apache e MySQL.
+In caso di errori fare riferimento alle [FAQ di XAMPP](https://www.apachefriends.org/faq_windows.html) o alla [Community di XAMPP (Apache Friends)](https://community.apachefriends.org/f/viewforum.php?f=34&sid=426fed9b82a2a9f63bcd31909036773d). 
+### B2. Configurare XAMPP in PHPStorm
+Se il passaggio precedente non ha dato errori o gli errori sono stati risolti, è possibile continuare con la configurazione di XAMPP in PHPStorm.
 
+1. Aprire le impostazioni di XAMPP (File → Settings o scorciatoia da tastiera `CTRL + ALT + S`)
+2. Navigare in `Build, Execution, Deployment` → Deployment  e aggiungere una nuova voce con nome `XAMPP` e tipo `Local or mounted folder`. Salvare.
+3. Impostare i seguenti parametri:
+
+    - Scheda `Connection`, parametro `Folder`: Immettere la cartella di installazione di XAMPP seguita da `\htdocs`. Esempio, se la cartella di installazione di XAMPP è quella predefinita (`C:\xampp`), allora il valore da immettere sarà: `C:\xampp\htdocs`
+    - Scheda `Mappings`, parametro `Deployment path`: Immettere la cartella, anche non esistente, dentro quella del parametro impostato prima dove verranno inseriti i file del progetto in automatico ad ogni aggiornamento effettuato. Per esempio: `interrogazioni_programmate_webapp`
+    - Scheda `Mappings`, parametro `Web path`: Ricopiare il valore del parametro precedente, subito dopo la `/`. Per esempio se il parametro precedente era `interrogazioni_programmate_webapp`, allora il parametro da inserire adesso sarà `/interrogazioni_programmate_webapp`
+4. Impostare come server predefinito questa voce, utilizzando il pulsante nella scheda `Mappings` o quello nella barra degli strumenti.
+5. Impostare l'upload dei file automatico, navigando nelle impostazioni in `Build, Execution, Deployment` → Deployment → Options e impostare il parametro `Upload changed files automatically to the default server` a `Always`.
+
+Per maggiori informazioni sui primi 4 punti fare riferimento [a questa guida](https://confluence.jetbrains.com/display/PhpStorm/Deploying+PHP+applications+with+PhpStorm) di Jetbrains.
+
+Invece, per l'ultimo punto fare riferimento [a questa guida](https://confluence.jetbrains.com/display/PhpStorm/Sync+changes+and+automatic+upload+to+a+deployment+server+in+PhpStorm) di Jetbrains.
+
+## C. Operazioni con il repository GitHub
+Il menu VCS (_Version Control System_) di PHPStorm permette di effettuare alcune operazioni con il repo di Github.
+Iniziamo da quelle principali.
+### C1. Effettuare il `commit` dei file
+Per effettuare il `commit` dei file, ovvero l'invio dei file al server Git locale si usa il comando Commit nel menu VCS. 
+Si aprirà questa finestra:
+<img src="https://image.ibb.co/mJguAJ/immagine.png" alt="Finestra commit">
+
+Consiglio di eseguire un singolo `commit` per ogni file, o per più file solo in caso di modifiche simili.
+
+È possibile selezionare i file da includere nel commit, il nome dell'autore e di ottimizzare e riformattare il codice (opzioni a sinistra).
+Nella prima sezione del menu laterale possiamo trovare due opzioni interessanti:
+#### Amend Commit
+L'opzione `Amend Commit` può sostituire il precedente commit con quello attuale (utile se si è eseguito un commit che causava malfunzionamenti o bug nel software).
+#### Sign-off Commit
+L'opzione `Sign-off Commit` aggiungerà alla fine del messaggio del commit la propria firma con la seguente dicitura:
+`Signed-off by [nome]`
+### C2. Inviare tutti i commit effettuati al repo GitHub
+Una volta effettuati tutti i commit al server Git locale, è possibile inviarli al repo di Github. Dal menu `VCS --> Git` selezionare l'opzione `Push`.
+<img src="https://image.ibb.co/bEtwj8/immagine.png" alt="Finestra Push">
+In alto a sinistra troviamo l'elenco di tutti i commit eseguiti dall'invio dell'ultimo `Push` (se eseguito). Sulla destra abbiamo invece l'elenco di tutti i file che verranno aggiunti/modificati/eliminati.
+Per confermare premere il pulsante `Push`.
 
 # Glossario
 Qui trovi tutte le parole più comuni di GitHub.
