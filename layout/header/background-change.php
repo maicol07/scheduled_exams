@@ -8,10 +8,8 @@ $ora = date("H");
     <style>
         /* Mostra questo codice css per l'alba */
         body {
-            background-image: url(https://dl.dropboxusercontent.com/s/6m36z4d8zyi8ily/3%20-%20vVsVx5p.png?dl=0);
-            background-position: center;
             background-size: auto;
-            background-repeat: repeat;
+            background: url(https://dl.dropboxusercontent.com/s/6m36z4d8zyi8ily/3%20-%20vVsVx5p.png?dl=0) repeat center;
         }
     </style>
 
@@ -21,24 +19,20 @@ $ora = date("H");
     <style>
         /* Mostra questo codice css per il giorno */
         body {
-            background-image: url(https://dl.dropboxusercontent.com/s/ka8x2wcs46y03kd/4%20-%20ZFabsbM.png?dl=0);
-            background-position: center;
             background-size: auto;
-            background-repeat: repeat;
+            background: url(https://dl.dropboxusercontent.com/s/ka8x2wcs46y03kd/4%20-%20ZFabsbM.png?dl=0) repeat center;
         }
     </style>
 
 <?php } else { ?>
 
-    <!-- Se nessuna delle precendenti condizioni è soddisfatta allora è notte -->
+    <!-- Se nessuna delle precedenti condizioni è soddisfatta allora è notte -->
 
     <style>
         /* Mostra questo codice css per la notte */
         body {
-            background-image: url(https://dl.dropboxusercontent.com/s/0qe4q8rl7pfspal/2%20-%20lGi5EO6.png?dl=0);
-            background-position: center;
             background-size: auto;
-            background-repeat: repeat;
+            background: url(https://dl.dropboxusercontent.com/s/0qe4q8rl7pfspal/2%20-%20lGi5EO6.png?dl=0) repeat center;
         }
     </style>
 
