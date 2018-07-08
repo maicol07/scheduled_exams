@@ -145,12 +145,6 @@ if (isset($_POST['submit'])) {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<script>swal({
-        title: "Errore!",
-        text: "È stato riscontrato un errore durante al registrazione",
-        icon: "error",
-        button:
-    });</script>
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
