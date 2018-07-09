@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 
         try {
 
-            $stmt = $db->prepare("UPDATE members SET resetToken = :token, resetComplete='No' WHERE email = :email");
+            $stmt = $db->prepare("UPDATE users SET resetToken = :token, resetComplete='No' WHERE email = :email");
             $stmt->execute(array(
                 ':email' => $row['email'],
                 ':token' => $token
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
             $mail->send();
 
             //redirect to index page
-            header('Location: login.php?action=reset');
+            header('Location: index.php?action=reset');
             exit;
 
             //else catch the exception and show the error.

@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 
         try {
 
-            $stmt = $db->prepare("UPDATE members SET password = :hashedpassword, resetComplete = 'Yes'  WHERE resetToken = :token");
+            $stmt = $db->prepare("UPDATE users SET password = :hashedpassword, resetComplete = 'Yes'  WHERE resetToken = :token");
             $stmt->execute(array(
                 ':hashedpassword' => $hashedpassword,
                 ':token' => $row['resetToken']
