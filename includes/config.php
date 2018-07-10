@@ -24,7 +24,7 @@ try {
 
 } catch (PDOException $e) {
     // mostra errore
-    echo '<p class="bg-danger">' . $e->getMessage() . '</p>';
+    echo '<p>' . $e->getMessage() . '</p>';
     exit;
 }
 
