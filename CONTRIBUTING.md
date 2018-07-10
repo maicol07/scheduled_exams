@@ -67,7 +67,7 @@ Si aprirà questa finestra:
 
 Consiglio di eseguire un singolo `commit` per ogni file, o per più file solo in caso di modifiche simili.
 
-È possibile selezionare i file da includere nel commit, il nome dell'autore e di ottimizzare e riformattare il codice (opzioni a sinistra).
+È possibile selezionare i file da includere nel commit, il nome dell'autore (non obbligatorio, se non viene inserito verrà utilizzato quello predefinito di Git) e di ottimizzare e riformattare il codice (opzioni a sinistra).
 Nella prima sezione del menu laterale possiamo trovare due opzioni interessanti:
 #### Amend Commit
 L'opzione `Amend Commit` può sostituire il precedente commit con quello attuale (utile se si è eseguito un commit che causava malfunzionamenti o bug nel software).
