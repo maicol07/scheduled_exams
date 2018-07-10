@@ -81,20 +81,23 @@ if (isset($_GET['action'])) {
     //check the action
     switch ($_GET['action']) {
         case 'active':
+            $successtitle = "Sei stato attivato!";
             $successmsg = "Il tuo account è ora attivo e puoi accedere.";
             break;
         case 'reset':
+            $successtitle = "Azione eseguita con successo!";
             $successmsg = "Perfavore controlla la tua posta in arrivo (anche SPAM o posta indesiderata) per il link di reset della password.";
             break;
         case 'resetAccount':
-            $successmsg = "Password cambiata, puoi ora accedere.";
+            $successtitle = "Password cambiata!";
+            $successmsg = "Hai cambiato la password, puoi ora accedere.";
             break;
     }
 }
 if (isset($successmsg)) {
     echo '<script>swal({
-  title: "Azione eseguita con successo!",
-  text: ' . $successmsg . ',
+  title: "' . $successtitle . '",
+  text: "' . $successmsg . '",
   icon: "success"
 });</script>';
 }
@@ -116,20 +119,20 @@ if (isset($successmsg)) {
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">person_outline</i>
-                        <input class="validate" id="email" type="email">
-                        <label for="email" class="center-align">Email o nome utente</label>
-                        <span class='helper-text' data-error='Email non valida' data-success="✓"></span>
+                        <input class="validate" id="username" name="username" type="text">
+                        <label for="username" class="center-align">Email o nome utente</label>
+                        <span class='helper-text' data-error='Nome utente non valido' data-success="✓"></span>
                     </div>
                 </div>
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="password" type="password">
+                        <input id="password" name="password" type="password">
                         <label for="password">Password</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m12 l12  login-text">
+                    <div class="input-field col s12">
                         <label>
                             <input id="remember-me" type="checkbox"/>
                             <span>Ricordami</span>
@@ -138,9 +141,9 @@ if (isset($successmsg)) {
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="index.php" class="btn waves-effect waves-light col s12"><i
-                                    class="far fa-sign-in-alt"></i>
-                            Accedi</a>
+                        <button class="btn waves-effect waves-light col s12" type="submit" name="submit" id="submit">
+                            <i class="far fa-sign-in-alt"></i> Accedi
+                        </button>
                     </div>
                 </div>
                 <div class="row">
@@ -164,21 +167,20 @@ if (isset($successmsg)) {
                             href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
                             target="_blank">Creative Commons BY 3.0</a></p>
                 <script language="Javascript" type="text/javascript">
-                    // Copyright: www.web-link.it
-                    function aprifinestra() {
+                    function changelog() {
                         window.open("versionpopup.php", "Cronologia versioni", "width=500,height=500,left=125,top=125");
                     }
                 </script>
-                <a href="javascript:aprifinestra();" align="center"
+                <a href="javascript:changelog();" align="center"
                    class="waves-effect btn-flat hover-underline-animation"><i
-                            class="tiny material-icons">new_releases</i>
+                            class="tiny material-icons left">new_releases</i>
                     Versione <?php
-                    $myfile = fopen("include/version.txt", "r") or die("Impossibile aprire il file!");
-                    echo fread($myfile, filesize("include/version.txt"));
+                    $myfile = fopen("includes/version.txt", "r") or die("Impossibile aprire il file!");
+                    echo fread($myfile, filesize("includes/version.txt"));
                     fclose($myfile);
                     ?> </a>
-                <br><br>
             </div>
+            <br>
         </div>
     </div>
 </div>
