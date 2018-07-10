@@ -1,7 +1,7 @@
 <?php /** @noinspection ALL */
 require('includes/config.php');
 
-//if logged in redirect to members page
+//if logged in redirect to application page
 if ($user->is_logged_in()) {
     header('Location: app');
 }
@@ -11,9 +11,9 @@ if (isset($_POST['submit'])) {
 
     //email validation
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $error[] = 'Indirizzo email corretto!';
+        $error[] = 'Indirizzo email non valido o non inserito!';
     } else {
-        $stmt = $db->prepare('SELECT email FROM members WHERE email = :email');
+        $stmt = $db->prepare('SELECT email FROM users WHERE email = :email');
         $stmt->execute(array(':email' => $_POST['email']));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -40,7 +40,11 @@ if (isset($_POST['submit'])) {
             //send email
             $to = $row['email'];
             $subject = "Reset della password - Interrograzioni Programmate";
-            $body = "<p>Qualcuno ha richiesto il reset della tua password.</p>
+            $body = "<p style=\"text-align:center;\"><img src=\"https://dev.interrogazioniprogrammate.tk/img/logo.svg\" alt=\"Interrogazioni programmate\"
+                                                           align=\"center\" width=\"128\" height=\"128\"
+                                                           onerror=\"this.src='img/logo.png'\"></p>
+                        <h3 align=\"center\" style=\"font-variant: small-caps;\">Interrogazioni Programmate</h3>
+                        <p>Qualcuno ha richiesto il reset della tua password.</p>
 			<p>Se non sei stato tu , ignora questa email e non succederà niente.</p>
 			<p>Per resettare la tua password, visita il seguente indirizzo: <a href='" . DIR . "resetPassword.php?key=$token'>Resetta la password</a></p>
 			<p>Se il collegamento sopra non dovesse funzionare, copia e incolla nel browser il seguente indirizzo:</p>
@@ -116,7 +120,7 @@ if (isset($error)) {
     foreach ($error as $er) {
         echo '<script>swal({
   title: "Errore!",
-  text: "È stato riscontrato un errore durante al registrazione:\n' . $er . '",
+  text: "È stato riscontrato un errore durante il recupero della password:\n' . $er . '",
   icon: "error",
 });</script>';
     }
@@ -125,41 +129,43 @@ if (isset($error)) {
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
-            <form class="login-form">
-                <div class="row">
-                    <div class="input-field col s12 center">
-                        <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
-                                                           align="center" width="128" height="128"
-                                                           onerror="this.src='img/logo.png'"></p>
-                        <h3 align="center" style="font-variant: small-caps;">Interrogazioni Programmate</h3>
-                        <h4 align="center"><i class="material-icons">forward</i> Recupera Password</h4>
-                    </div>
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
+                                                       align="center" width="128" height="128"
+                                                       onerror="this.src='img/logo.png'"></p>
+                    <h3 align="center" style="font-variant: small-caps;">Interrogazioni Programmate</h3>
+                    <h4 align="center"><i class="material-icons">forward</i> Recupera Password</h4>
                 </div>
+            </div>
+            <form class="col s12" method="post">
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mail_outline</i>
-                        <input class="validate" id="email" type="email">
-                        <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+                        <input class="validate" id="email" name="email" type="email">
+                        <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="forgot-password.php" class="btn waves-effect waves-light col s12"><i
-                                    class="far fa-arrow-alt-right"></i> Recupera la mia password</a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin medium-small"><a href="register.php" class="hover-underline-animation">Registrati!</a>
-                        </p>
-                    </div>
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin right-align medium-small"><a href="index.php"
-                                                                      class="hover-underline-animation">Accedi ora!</a>
-                        </p>
+                        <button class="btn waves-effect waves-light col s12" type="submit" name="submit" id="submit">
+                            <i class="far fa-arrow-alt-right"></i> Recupera password!
+                        </button>
                     </div>
                 </div>
             </form>
+            <div class="row">
+                <div class="input-field col s6 m6 l6">
+                    <p class="margin medium-small"><a href="register.php"
+                                                      class="hover-underline-animation">Registrati!</a>
+                    </p>
+                </div>
+                <div class="input-field col s6 m6 l6">
+                    <p class="margin right-align medium-small"><a href="index.php"
+                                                                  class="hover-underline-animation">Accedi ora!</a>
+                    </p>
+                </div>
+            </div>
             <div style="text-align: center;">
                 Copyright © 2017 Interrogazioni Programmate
                 <p style="font-size:75%;">L'icona creata da <a href="http://www.freepik.com" title="Freepik">Freepik</a>

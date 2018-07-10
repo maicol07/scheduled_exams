@@ -72,12 +72,12 @@ if (isset($_POST['submit'])) {
             $to = $_POST['email'];
             $subject = "Conferma della registrazione - Interrogazioni Programmate";
             /** @noinspection JSUnusedGlobalSymbols */
-            $body = "<p style=\"text-align:center;\"><img src=\"img/logo.svg\" alt=\"Interrogazioni programmate\"
+            $body = "<p style=\"text-align:center;\"><img src=\"https://dev.interrogazioniprogrammate.tk/img/logo.svg\" alt=\"Interrogazioni programmate\"
                                                            align=\"center\" width=\"128\" height=\"128\"
                                                            onerror=\"this.src='img/logo.png'\"></p>
                         <h3 align=\"center\" style=\"font-variant: small-caps;\">Interrogazioni Programmate</h3>
             <p>Grazie per esserti registrato al portale Interrogazioni Programmate.</p>
-			<p>Per attivare il tuo account clicca su questo link: <a href='" . DIR . "activate.php?x=$id&y=$activasion'>" . DIR . "activate.php?x=$id&y=$activasion</a></p>
+			<p>Per attivare il tuo account clicca su questo link: <a href='" . DIR . "activate.php?userID=$id&token=$activasion'>" . DIR . "activate.php?x=$id&y=$activasion</a></p>
 			<p>Saluti, \n Il team di Interrogazioni Programmate</p>";
 
             $mail = new Mail();

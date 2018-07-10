@@ -2,16 +2,16 @@
 require('includes/config.php');
 
 //collect values from the url
-$memberID = trim($_GET['x']);
-$active = trim($_GET['y']);
+$userID = trim($_GET['userID']);
+$active = trim($_GET['token']);
 
 //if id is number and the active token is not empty carry on
-if (is_numeric($memberID) && !empty($active)) {
+if (is_numeric($userID) && !empty($active)) {
 
-    //update users record set the active column to Yes where the memberID and active value match the ones provided in the array
-    $stmt = $db->prepare("UPDATE users SET active = 'Yes' WHERE memberID = :memberID AND active = :active");
+    //update users record set the active column to Yes where the userID and active value match the ones provided in the array
+    $stmt = $db->prepare("UPDATE users SET active = 'Yes' WHERE userID = :userID AND active = :active");
     $stmt->execute(array(
-        ':memberID' => $memberID,
+        ':userID' => $userID,
         ':active' => $active
     ));
 

@@ -1,6 +1,6 @@
 <?php require('includes/config.php');
 
-//if logged in redirect to members page
+//if logged in redirect to app page
 if ($user->is_logged_in()) {
     header('Location: app');
 }
@@ -12,8 +12,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 //if no token from db then kill the page
 if (empty($row['resetToken'])) {
     $stop = 'Token inserito non valido, usa il link all\'interno dell\'email.';
+    die;
 } elseif ($row['resetComplete'] == 'Yes') {
     $stop = 'La tua password è già stata cambiata!';
+    die;
 }
 
 //if form has been submitted process it
@@ -24,11 +26,11 @@ if (isset($_POST['submit'])) {
         $error[] = 'La password inserita è troppo corta.';
     }
 
-    if (strlen($_POST['passwordConfirm']) < 3) {
+    if (strlen($_POST['confirm-password']) < 3) {
         $error[] = 'La conferma della password è troppo corta.';
     }
 
-    if ($_POST['password'] != $_POST['passwordConfirm']) {
+    if ($_POST['password'] != $_POST['confirm-password']) {
         $error[] = 'Le password inserite non corrispondono.';
     }
 
@@ -103,7 +105,7 @@ if (isset($error)) {
     foreach ($error as $er) {
         echo '<script>swal({
   title: "Errore!",
-  text: "È stato riscontrato un errore durante l\'accesso:\n' . $er . '",
+  text: "È stato riscontrato un errore durante il reset della password:\n' . $er . '",
   icon: "error"
 });</script>';
     }
@@ -142,32 +144,32 @@ if (isset($stop)) {
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock_outline</i>
-                            <input id="passwordConfirm" name="passwordConfirm" type="password" required minlength="8">
-                            <label for="passwordConfirm">Ripeti password</label>
+                            <input id="confirm-password" name="confirm-password" type="password" required minlength="8">
+                            <label for="confirm-password">Ripeti password</label>
                             <span class='helper-text' data-error='Le password non corrispondono'
                                   data-success='✓'></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light col s12" type="submit" name="submit" id="submit"
-                                    disabled>
+                            <button class="btn waves-effect waves-light col s12" type="submit" name="submit"
+                                    id="submit">
                                 <i class="material-icons left">refresh</i> Cambia password!
                             </button>
                         </div>
                     </div>
                     <script>
                         $("#password").on("focusout", function (e) {
-                            if ($(this).val() !== $("#passwordConfirm").val() || $(this).val() === '') {
-                                $("#passwordConfirm").removeClass("valid").addClass("invalid");
+                            if ($(this).val() !== $("#confirm-password").val() || $(this).val() === '') {
+                                $("#confirm-password").removeClass("valid").addClass("invalid");
                                 $('#submit').prop('disabled', true);
                             } else {
-                                $("#passwordConfirm").removeClass("invalid").addClass("valid");
+                                $("#confirm-password").removeClass("invalid").addClass("valid");
                                 $('#submit').prop('disabled', false);
                             }
                         });
 
-                        $("#passwordConfirm").on("keyup", function (e) {
+                        $("#confirm-password").on("keyup", function (e) {
                             if ($("#password").val() !== $(this).val() || $(this).val() === '') {
                                 $(this).removeClass("valid").addClass("invalid");
                                 $('#submit').prop('disabled', true);
