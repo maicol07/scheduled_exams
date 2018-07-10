@@ -22,7 +22,7 @@ class User extends Password
 
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $row['username'];
-            $_SESSION['memberID'] = $row['memberID'];
+            $_SESSION['userID'] = $row['userID'];
             return true;
         }
     }
@@ -31,9 +31,13 @@ class User extends Password
     {
 
         try {
-            $stmt = $this->_db->prepare('SELECT password, username, memberID FROM members WHERE username = :username AND active="Yes" ');
-            $stmt->execute(array('username' => $username));
-
+            if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
+                $stmt = $this->_db->prepare('SELECT password, email, userID FROM users WHERE email = :email AND active="Yes" ');
+                $stmt->execute(array('email' => $username));
+            } else {
+                $stmt = $this->_db->prepare('SELECT password, username, userID FROM users WHERE username = :username AND active="Yes" ');
+                $stmt->execute(array('username' => $username));
+            }
             return $stmt->fetch();
 
         } catch (PDOException $e) {
