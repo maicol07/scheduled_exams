@@ -1,7 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
 body {
     font-family: 'Roboto', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+.logo-text {
+    font-family: 'Black Ops One', cursive !important;
+    font-variant: small-caps !important;
+    color: #003471;
+}
 .hover-underline-animation {
     display: inline-block;
     position: relative;
@@ -24,8 +35,4 @@ body {
 .hover-underline-animation:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
-}
-
-.a {
-    background-color: #4C86BB;
 }
