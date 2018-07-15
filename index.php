@@ -112,7 +112,7 @@ if (isset($successmsg)) {
                             <img src="img/logo.svg" alt="Interrogazioni programmate"
                                  align="center" width="128" height="128"
                                  onerror="this.src='img/logo.png'"></p>
-                        <h3 align="center" style="font-variant: small-caps;">Interrogazioni Programmate</h3>
+                        <h3 align="center" class="logo-text">Interrogazioni Programmate</h3>
                         <h4 align="center"><i class="material-icons">forward</i> Accesso</h4>
                     </div>
                 </div>
