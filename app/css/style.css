@@ -1,0 +1,8 @@
+.navimg {
+    display: inline-block;
+    height: 100%;
+}
+
+.navimg > img {
+    vertical-align: middle
+}
