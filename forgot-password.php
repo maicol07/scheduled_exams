@@ -40,10 +40,17 @@ if (isset($_POST['submit'])) {
             //send email
             $to = $row['email'];
             $subject = "Reset della password - Interrograzioni Programmate";
-            $body = "<p style=\"text-align:center;\"><img src=\"https://dev.interrogazioniprogrammate.tk/img/logo.svg\" alt=\"Interrogazioni programmate\"
+            $body = "<style>
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
+.logo-text {
+    font-family: 'Black Ops One', cursive !important;
+    font-variant: small-caps !important;
+    color: #003471;
+}
+</style><p style=\"text-align:center;\"><img src=\"https://dev.interrogazioniprogrammate.tk/img/logo.svg\" alt=\"Interrogazioni programmate\"
                                                            align=\"center\" width=\"128\" height=\"128\"
-                                                           onerror=\"this.src='img/logo.png'\"></p>
-                        <h3 align=\"center\" style=\"font-variant: small-caps;\">Interrogazioni Programmate</h3>
+                                                           onerror=\"this.src='https://dev.interrogazioniprogrammate.tk/img/logo.png'\"></p>
+                        <h3 align=\"center\" class='logo-text'>Interrogazioni Programmate</h3>
                         <p>Qualcuno ha richiesto il reset della tua password.</p>
 			<p>Se non sei stato tu , ignora questa email e non succederà niente.</p>
 			<p>Per resettare la tua password, visita il seguente indirizzo: <a href='" . DIR . "resetPassword.php?key=$token'>Resetta la password</a></p>
