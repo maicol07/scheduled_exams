@@ -4,7 +4,7 @@ require_once('includes/config.php');
 
 //check if already logged in move to home page
 if ($user->is_logged_in()) {
-    header('Location: index.php');
+    header('Location: app');
 }
 
 //process login form if submitted
