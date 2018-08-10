@@ -59,7 +59,7 @@ class User extends Password
 
     public function get_data()
     {
-        $query = $this->_db->prepare("SELECT email, nome, cognome, img, classi FROM users WHERE userID = :userID");
+        $query = $this->_db->prepare("SELECT * FROM users WHERE userID = :userID");
         $query->execute(array('userID' => $_SESSION["userID"]));
         return $query->fetch();
     }
