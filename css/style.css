@@ -1,11 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway&subset=latin-ext');
-@import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
+/************************************
+
+    Interrogazioni Programmate
+            by Maicol07
+
+            Stylesheet
+
+ ************************************/
+/* Import Header font (Raleway), Logo font (Black Ops One) and icons font (Material icons) */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400|Black+Ops+One|Material+Icons');
+
 body {
     font-family: 'Roboto', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Raleway', sans-serif;
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
 }
 
 .logo-text {

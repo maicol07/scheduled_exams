@@ -4,7 +4,11 @@ require_once('includes/config.php');
 
 //check if already logged in move to home page
 if ($user->is_logged_in()) {
-    header('Location: app');
+    if (isset($_GET["redir"]) and !$_GET["redir"] == "") {
+        header('Location: app/' . $_GET["redir"]);
+    } else {
+        header("Location: app");
+    }
 }
 
 //process login form if submitted
@@ -15,7 +19,11 @@ if (isset($_POST['submit'])) {
 
     if ($user->login($username, $password)) {
         $_SESSION['username'] = $username;
-        header('Location: app');
+        if (isset($_GET["redir"]) and !$_GET["redir"] == "") {
+            header('Location: app/' . $_GET["redir"]);
+        } else {
+            header("Location: app");
+        }
         exit;
 
     } else {
@@ -35,8 +43,6 @@ if (isset($_POST['submit'])) {
     require("layout/header/favicon.php")
     ?>
     <title>Accesso - Interrogazioni Programmate</title>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <style type="text/css">
@@ -105,7 +111,11 @@ if (isset($successmsg)) {
 <div class="container">
     <div id="login-page" class="row">
         <div class="col s12 z-depth-6 card-panel">
-            <form role="form" method="post" action="" autocomplete="off" class="login-form">
+            <form role="form" method="post" action="<?php
+            if (isset($_GET["redir"]) and $_GET["redir"] !== "") {
+                echo "?redir=" . $_GET["redir"];
+            }
+            ?>" autocomplete="off" class="login-form">
                 <div class="row">
                     <div class="input-field col s12 center">
                         <p style="text-align:center;"><!--suppress JSUnusedGlobalSymbols -->
