@@ -1,6 +1,13 @@
 # Interrogazioni Programmate: WEB APP
 # <img src="https://i.imgur.com/ji5wfIj.png" alt="ITA" weight=24 height=24></img>Italian
 Interrogazioni programmate è una applicazione web (installabile anche sul proprio server web, istruzioni prossimamente) con il quale è possibile gestire un calendario o una lista degli studenti interrogati in una determinata materia, così da risultare preparati all'interrogazione.
+
+## Requisiti
+Web server: PHP 4+
+
+Browser: Google Chrome, Mozilla Firefox, Microsoft Edge, Internet Explorer 11+, Browser Android
+
+WIP!
 ## Come contribuire
 Leggere il file [CONTRIBUTING.md](CONTRIBUTING.md)
 # <img src="http://www.myiconfinder.com/uploads/iconsets/24-24-5a4e6b31d441c44062c0fa1b34035a27.png" alt="ENG"></img>English
