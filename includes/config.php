@@ -29,12 +29,12 @@ try {
 }
 
 // Includi la classe utente, passala nella connessione al database
-if (file_exists('classes')) {
-    include('classes/user.php');
-    include('classes/phpmailer/mail.php');
-} elseif (file_exists('../classes')) {
-    include('../classes/user.php');
-    include('../classes/phpmailer/mail.php');
+$file = "classes";
+while (!file_exists($file)) {
+    $file = "../" . $file;
 }
+include($file . '/user.php');
+include($file . '/phpmailer/mail.php');
+
 $user = new User($db);
 ?>
