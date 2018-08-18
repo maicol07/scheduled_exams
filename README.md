@@ -5,7 +5,7 @@ Interrogazioni programmate è una applicazione web (installabile anche sul propr
 ## Requisiti
 Web server: PHP 4+
 
-Browser: Google Chrome, Mozilla Firefox, Microsoft Edge, Internet Explorer 11+, Browser Android
+Browser supportati: Google Chrome 46+, Mozilla Firefox 3+, Opera 33+, Opera Mobile 46, Firefox per Android 60+, UC Browser per Android 11.8+, Browser Android 5.x+, Google Chrome per Android, Samsung Internet 5+, Safari 11+
 
 WIP!
 ## Come contribuire
