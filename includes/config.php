@@ -15,6 +15,7 @@ define('DBNAME', 'testintp');
 // Indirizzo applicazione
 define('DIR', 'https://interrogazioniprogrammate.tk/');
 define('SITEEMAIL', 'noreply@interrogazioniprogrammate.tk');
+define("SITETITLE", "Interrogazioni Programmate");
 
 try {
 
