@@ -4,7 +4,7 @@ require_once('../includes/config.php');
 
 //if not logged in redirect to login page
 if (!$user->is_logged_in()) {
-    header('Location: ../index.php');
+    header('Location: ../index.php?redir=' . $filename . '');
 }
 
 if (isset($_GET["action"]) and $_GET["action"] == "logout") {
@@ -48,3 +48,9 @@ $userinfo = $user->get_data();
     <script src="js/init.js"></script>
     <script src="js/<?php echo $inc_script; ?>.js"></script>
 </head>
+<body>
+<!-- Start Page Loading -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<!-- End Page Loading -->
