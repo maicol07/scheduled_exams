@@ -16,6 +16,7 @@ function crea_classe() {
         cancelButtonText: "Annulla",
     }).then(name => {
         if (!name.value) throw null;
+        swal.showLoading();
 
         if (window.XMLHttpRequest) {
             // code for modern browsers
@@ -30,7 +31,7 @@ function crea_classe() {
                 column.className += "col s6 m2 l3";
                 var container = document.createElement("DIV"); // Create a <div> element
                 container.className += "card activator hoverable waves-effect waves-light divlink"; // Add card class
-                container.setAttribute("onlick", "window.location=\"classe.php?id=" + this.responseText + "\""); // Add link to div
+                container.setAttribute("onclick", "window.location=\"classe.php?id=" + this.responseText + "&nome=" + name.value + "\""); // Add link to div
                 var cardcontent = document.createElement("DIV");      // Create a <div> element
                 cardcontent.className += "card-action"; // Add CSS class
                 var cardtext = document.createTextNode(name.value); // Create a text node
@@ -46,7 +47,7 @@ function crea_classe() {
             }
         };
 
-        xmlhttp.open("GET", "includes/addclass.php?classe=" + name.value + "&userID=" + userID, true);
+        xmlhttp.open("GET", "includes/addclass.php?classe=" + name.value + "&username=" + username, true);
         xmlhttp.send();
 
     }).catch(err => {

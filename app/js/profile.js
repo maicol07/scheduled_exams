@@ -7,7 +7,6 @@ capitalize = function (str1) {
 };
 
 function saveInput(e) {
-    console.log(e);
     if (e === "genere") {
         var mcheck = document.getElementById("male-check");
     } else {
@@ -136,44 +135,26 @@ function edit_profile_mode() {
 
 async function change_profile_image(type) {
     if (type === "primary") {
-        // noinspection JSDuplicatedDeclaration
         var title = 'Cambia immagine di profilo';
-        // noinspection JSDuplicatedDeclaration
-        var txt = "Preferibilmente di dimensioni 256x256px. Attualmente accettiamo solo immagini PNG. " +
-            "Se la tua immagine è in un formato diverso (ad esempio JPG o GIF), usa un convertore online per trasformarla in PNG. Per esempio " +
-            "<a href='http://www.simpleimageresizer.com/online-image-converter'>questo</a> o <a href='https://convertimage.net/convert-a-picture/to-png/'>questo</a>";
-        // noinspection JSDuplicatedDeclaration
+        var txt = "Preferibilmente di dimensioni 256x256px.";
         var label = 'Carica la tua immagine di profilo';
         if (document.getElementById("profile-img").getAttribute("src") !== "img/ui/user/male/male.svg" ||
             document.getElementById("profile-img").getAttribute("src") !== "img/ui/user/female/male.svg") {
-            // noinspection JSDuplicatedDeclaration
             var cancel = true;
-            // noinspection JSDuplicatedDeclaration
             var confirm = "Cambia immagine";
         } else {
-            // noinspection JSDuplicatedDeclaration
             var cancel = false;
-            // noinspection JSDuplicatedDeclaration
             var confirm = "Carica immagine";
         }
     } else if (type === "background") {
-        // noinspection JSDuplicatedDeclaration
         var title = 'Cambia immagine di sfondo';
-        // noinspection JSDuplicatedDeclaration
-        var txt = "Preferibilmente alta 250px. Attualmente accettiamo solo immagini PNG. " +
-            "Se la tua immagine è in un formato diverso (ad esempio JPG o GIF), usa un convertore online per trasformarla in PNG. Per esempio " +
-            "<a href='http://www.simpleimageresizer.com/online-image-converter'>questo</a> o <a href='https://convertimage.net/convert-a-picture/to-png/'>questo</a>";
-        // noinspection JSDuplicatedDeclaration
+        var txt = "Preferibilmente alta 250px.";
         var label = 'Carica la tua immagine di sfondo';
         if (document.getElementById("profile-bg").getAttribute("src") !== "http://notgoaway.com/wp-content/uploads/2017/07/Background-75.png") {
-            // noinspection JSDuplicatedDeclaration
             var cancel = true;
-            // noinspection JSDuplicatedDeclaration
             var confirm = "Cambia immagine";
         } else {
-            // noinspection JSDuplicatedDeclaration
             var cancel = false;
-            // noinspection JSDuplicatedDeclaration
             var confirm = "Carica immagine";
         }
     }
@@ -246,7 +227,7 @@ async function change_profile_image(type) {
                 html: txt,
                 input: 'file',
                 inputAttributes: {
-                    'accept': 'image/png',
+                    'accept': 'image/*',
                     'aria-label': label
                 },
                 inputClass: "",
