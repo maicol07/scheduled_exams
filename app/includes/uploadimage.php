@@ -4,7 +4,8 @@ require_once("../../includes/config.php");
 function base64_to_file($base64_string)
 {
     $ext = explode("/", explode(";", $base64_string)[0])[1];
-    $data = str_replace('data:image/png;base64,', '', $base64_string);
+    $mime = explode(":", explode(";", $base64_string)[0])[1];
+    $data = str_replace('data:' . $mime . ';base64,', '', $base64_string);
     $data = str_replace(' ', '+', $data);
     $data = base64_decode($data);
     $path = '../uploads/' . $_POST["user"];
