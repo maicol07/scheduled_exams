@@ -1,9 +1,9 @@
 <?php /** @noinspection ALL */
 $title = "Profilo";
 $inc_script = "profile";
+$filename = "profile.php";
 require_once("layout/header.php");
 ?>
-<body>
 <!-- START NAVBAR -->
 <?php include("layout/navbar.php"); ?>
 <!-- END NAVBAR -->
