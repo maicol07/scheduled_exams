@@ -43,6 +43,8 @@ if (isset($_POST['submit'])) {
     require("layout/header/favicon.php")
     ?>
     <title>Accesso - Interrogazioni Programmate</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <style type="text/css">
