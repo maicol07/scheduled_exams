@@ -64,9 +64,16 @@ class User extends Password
         return $query->fetch();
     }
 
-    function get_class_data($id)
+    public function get_class_data($id)
     {
         $query = $this->_db->prepare("SELECT * FROM classi WHERE ID = :id");
+        $query->execute(array("id" => $id));
+        return $query->fetch();
+    }
+
+    public function get_list_data($id)
+    {
+        $query = $this->_db->prepare("SELECT * FROM liste WHERE ID = :id");
         $query->execute(array("id" => $id));
         return $query->fetch();
     }
