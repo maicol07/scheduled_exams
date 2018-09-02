@@ -34,7 +34,7 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="program" value="C:/node_modules/yuicompressor/build/yuicompressor-2.4.8.jar" />
+      <option name="program" value="D:/node_modules/yuicompressor/build/yuicompressor-2.4.8.jar" />
       <option name="runOnExternalChanges" value="true" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
