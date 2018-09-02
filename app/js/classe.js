@@ -1,6 +1,4 @@
-// noinspection JSUnresolvedFunction
 $(document).ready(function () {
-    // noinspection JSUnresolvedFunction
     $('.fixed-action-btn').floatingActionButton();
 });
 
@@ -29,11 +27,14 @@ function crea_lista() {
                 column.className += "col s6 m2 l3";
                 var container = document.createElement("DIV"); // Create a <div> element
                 container.className += "card activator hoverable waves-effect waves-light divlink"; // Add card class
-                container.setAttribute("onclick", "window.location=\"lista.php?id=" + this.responseText + "\""); // Add link to div
+                container.setAttribute("onclick", "window.location=\"lista.php?id=" + this.responseText + "&nome=" + name.value + "\""); // Add link to div
                 var cardcontent = document.createElement("DIV");      // Create a <div> element
                 cardcontent.className += "card-action"; // Add CSS class
-                var cardtext = document.createTextNode(name.value); // Create a text node
-                cardcontent.appendChild(cardtext); // Append the text node to <div>
+                var cardspan = document.createElement("SPAN"); //Create <span> element
+                cardspan.style.textTransform = "uppercase"; // Add CSS style
+                var cardtext = TextNode(name.value); // Create a text node
+                cardspan.appendChild(cardtext); // Append the text node to <span>
+                cardcontent.appendChild(cardspan); // Append the <span> element to <div>
                 container.appendChild(cardcontent); // Append the <div> element to <div>
                 column.appendChild(container); // Append <div> element to <div>
                 document.getElementById("rigalista").appendChild(column);           // Append <div> to <div> with id="rigaclassi"
@@ -277,7 +278,6 @@ function edit_class_mode() {
     var fab_link = document.getElementById("fab-link");
     fab_link.setAttribute("onclick", "window.location=''");
     $("#fab-link").removeClass("red");
-    fab_link.className += "green";
     $("#classname").replaceWith('<div class="input-field"><input id="nome-input" type="text" value="' + document.getElementById("classname").innerText + '" class="validate" onkeyup="saveInput(\'nome\')"><label for="nome-input">Classe</label><span id="nome-helper" class="helper-text" data-error="" data-success=""></span></div>');
     $("#description").replaceWith('<div class="input-field"><textarea id="description-input" class="materialize-textarea" onkeyup="saveInput(\'description\')">' + document.getElementById("description").innerText + '</textarea>\n' +
         '          <label for="description-input">Descrizione</label><span id="description-helper" class="helper-text" data-error="" data-success=""></span></div>');

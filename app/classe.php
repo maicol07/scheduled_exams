@@ -1,4 +1,7 @@
 <?php
+if (!isset($_GET["id"])) {
+    header("Location: index.php");
+}
 $title = $_GET["nome"];
 $inc_script = "classe";
 $filename = "classe.php";
@@ -29,10 +32,10 @@ if ($classinfo["img"] == null) {
             <h3>Liste</h3>
             <div class="row" id="rigalista">
                 <div class="col s6">
-                    <div class="card-panel activator hoverable waves-effect waves-light divlink" onclick='crea_lista()'>
+                    <div class="card activator hoverable waves-effect waves-light divlink" onclick='crea_lista()'>
                         <div class="card-action">
                             <span style="text-transform: uppercase;"><i
-                                        class="fal fa-plus-circle"></i> Crea lista</span>
+                                        class="material-icons left">add_circle_outline</i>Crea lista</span>
                         </div>
                     </div>
                 </div>
@@ -47,7 +50,7 @@ if ($classinfo["img"] == null) {
                 foreach ($liste as $lista) {
                     if (in_array($lista["ID"], $listeclasse)) {
                         echo '<div class="col s6">
-                    <div class="card-panel activator hoverable waves-effect waves-block waves-light" style="cursor: pointer;" onclick="window.location=\'lista.php?id=' . $lista["ID"] . '&nome=' . $lista["nome"] . '\'">
+                    <div class="card activator hoverable waves-effect waves-light" style="cursor: pointer;" onclick="window.location=\'lista.php?id=' . $lista["ID"] . '&nome=' . $lista["nome"] . '\'">
                         <div class="card-action">
                             <span style="text-transform: uppercase;">' . $lista["nome"] . '
                     </span></div></div></div>';
@@ -58,7 +61,7 @@ if ($classinfo["img"] == null) {
         </div>
         <div class="col s12 m6">
             <div class="card hoverable">
-                <?php if ($classinfo["img"] !== null) {
+                <?php if ($classinfo["img"] != null) {
                     echo '<div class="card-image">
                         <img src="' . $classinfo["img"] . '">
                         <span id="classname" class="card-title">' . $_GET["nome"] . '</span>
@@ -89,6 +92,6 @@ if ($classinfo["img"] == null) {
     </div>
 </div>
 <!-- END Body -->
-<!-- Compiled and minified JavaScript -->
-<script src="../js/materialize.min.js"></script>
-</body>
+<?php
+include("layout/footer.php")
+?>

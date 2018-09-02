@@ -26,8 +26,8 @@ if (isset($_REQUEST["lista"]) and $_REQUEST["lista"] != "") {
             $code = randString(5);
         }
     }
-    $query = $db->prepare("INSERT INTO liste(ID, nome, classe, admin) VALUES (:id, :nome, :classe, :admin);");
-    $query->execute(array('id' => $code, 'nome' => $nome, 'classe' => $_REQUEST["classid"], 'admin' => $_REQUEST["username"]));
+    $query = $db->prepare("INSERT INTO liste(ID, nome, classe) VALUES (:id, :nome, :classe);");
+    $query->execute(array('id' => $code, 'nome' => $nome, 'classe' => $_REQUEST["classid"]));
     $query = $db->prepare("UPDATE classi SET liste = CONCAT(liste, ', ', :idlista) WHERE ID = :classid; ");
     $query->execute(array('idlista' => $code, 'classid' => $_REQUEST["classid"]));
 
