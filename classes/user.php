@@ -19,7 +19,6 @@ class User extends Password
         $row = $this->get_user_hash($username);
 
         if ($this->password_verify($password, $row['password']) == 1) {
-
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $row['username'];
             $_SESSION['userID'] = $row['userID'];
@@ -61,6 +60,13 @@ class User extends Password
     {
         $query = $this->_db->prepare("SELECT * FROM users WHERE userID = :userID");
         $query->execute(array('userID' => $_SESSION["userID"]));
+        return $query->fetch();
+    }
+
+    public function get_user_data($username)
+    {
+        $query = $this->_db->prepare("SELECT * FROM users WHERE username = :username");
+        $query->execute(array('username' => $username));
         return $query->fetch();
     }
 
