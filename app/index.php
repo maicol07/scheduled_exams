@@ -1,15 +1,11 @@
 <?php /** @noinspection ALL */
-/** @noinspection ALL */
-/** @noinspection ALL */
 $title = "Dashboard";
 $inc_script = "dashboard";
 $filename = "";
 require_once("layout/header.php");
-?>
-<!-- START NAVBAR -->
-<?php include("layout/navbar.php") ?>
-<!-- END NAVBAR -->
-<?php
+// START NAVBAR
+include("layout/navbar.php");
+// END NAVBAR
 if (isset($_GET["deleteclass"]) and $_GET["deleteclass"] == "success") {
     echo '<script>swal({
 title: "Classe eliminata",
@@ -24,6 +20,13 @@ text: "Sei stato agginto alla classe ' . $_GET["nome"] . '",
 type: "success" 
 })</script>';
 }
+if (isset($_GET["deletelist"]) and $_GET["deletelist"] == "success") {
+    echo '<script>swal({
+title: "Lista eliminata",
+text: "La lista ' . $_GET["deletedlistname"] . ' è stata eliminata!",
+type: "success" 
+})</script>';
+}
 ?>
 <!-- START Body -->
 <p align="right" style="padding-right: 20px" class="hide-on-small-only">Benvenuto <?php
@@ -32,7 +35,7 @@ type: "success"
     } else {
         echo $_SESSION["username"];
     } ?><br>
-    <?php echo date('d/m/Y - H:i:s'); ?></p>
+    <?php echo "<span id='date_time'></span>" ?></p>
 <div class="container">
     <section id="dashboard">
         <h2>Dashboard</h2>
@@ -45,7 +48,7 @@ type: "success"
                 <div class="card activator hoverable waves-effect waves-light divlink" onclick='crea_classe()'>
                         <div class="card-action">
                             <span style="text-transform: uppercase;" class="center-block"><i
-                                        class="fal fa-plus-circle"></i> Crea classe</span>
+                                        class="material-icons left">add_circle_outline</i>Crea classe</span>
                         </div>
                     </div>
             </div>
@@ -65,5 +68,6 @@ type: "success"
     </section>
 </div>
 <!-- END Body -->
-<!-- Compiled and minified JavaScript -->
-<script src="../js/materialize.min.js"></script>
+<?php
+include("layout/footer.php")
+?>

@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    $('.sidenav').sidenav();
     $("#dd-trigger-profile").dropdown({
         inDuration: 300,
         outDuration: 225,
@@ -17,6 +16,7 @@ $(document).ready(function () {
         alignment: 'right' // Displays dropdown with edge aligned to the right of button);
     });
     $('.collapsible').collapsible();
+    $('.sidenav').sidenav();
 });
 
 //<![CDATA[
@@ -24,7 +24,7 @@ $(window).on('load', function () { // makes sure the whole site is loaded
     $('#status').fadeOut(); // will first fade out the loading animation
     $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
     $('body').delay(350).css({'overflow': 'visible'});
-})
+});
 
 //]]>
 
