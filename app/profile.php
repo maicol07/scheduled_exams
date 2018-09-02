@@ -140,6 +140,7 @@ require_once("layout/header.php");
         <!-- Profile About  -->
     </div>
 </div>
-<script src="../js/materialize.min.js"></script>
-</body>
-</html>
+    <!-- END Body -->
+<?php
+include("layout/footer.php")
+?>
