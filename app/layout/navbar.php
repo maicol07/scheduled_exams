@@ -3,9 +3,8 @@
         <a data-target="nav-mobile" class="sidenav-trigger" style="cursor:pointer;"><i
                     class="material-icons">menu</i></a>
         <a href="index.php" class="brand-logo navimg" style="font-family: Raleway, sans-serif;"><img
-                    src="../img/logo.svg" alt="Interrogazioni programmate"
-                    width="50" height="50"
-                    onerror="this.src='img/logo.png'"><span class="logo-text" style="color: white;">Interrogazioni Programmate</span></a>
+                    src="../img/logo.svg" alt="Interrogazioni programmate" height="50" id="logo-image"
+                    onerror="this.src='img/logo.png'"><span class="logo-text" style="color: white; font-size: 3vw;">Interrogazioni Programmate</span></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="index.php#dashboard" class="waves-effect waves-light"><i
                             class="material-icons left">dashboard</i>Dashboard</a>
@@ -32,9 +31,9 @@
 
 <!-- Profile Dropdown Structure -->
 <ul id="dropdownprofile" class="dropdown-content">
-    <li><a href="profile.php" class="waves-effect waves-light"><i class="material-icons">account_circle</i>Profilo</a>
+    <li><a href="profile.php" class="waves-effect waves-light"><i class="material-icons left">account_circle</i>Profilo</a>
     </li>
-    <li><a href="#" class="waves-effect waves-light"><i class="material-icons">settings</i>Impostazioni</a></li>
+    <li><a href="#" class="waves-effect waves-light"><i class="material-icons left">settings</i>Impostazioni</a></li>
     <li><a onclick="info()" class="waves-effect waves-light"><i class="material-icons">info</i>Informazioni</a></li>
     <li class="divider"></li>
     <li><a href="index.php?action=logout" class="waves-effect waves-light"><i
@@ -63,14 +62,7 @@
 <ul id="nav-mobile" class="sidenav">
     <li>
         <div class="user-view">
-            <div class="background">
-                <img src="
-                <?php
-                if ($userinfo["backimg"] == "") {
-                    echo "img/user/background-default.jpg";
-                } else {
-                    echo $userinfo["backimg"];
-                } ?>" style="object-fit: cover;">
+            <div class="background" style="background-color: #1a237e">
             </div>
             <a href="profile.php"><img class="circle waves-effect waves-circle waves-light" src="<?php
                 if ($userinfo["img"] == "") {
@@ -104,7 +96,7 @@
                         <?php
                         foreach ($listaclassi as $classe) {
                             if (in_array($classe["ID"], $classiutente)) {
-                                echo '<li><a href="classe.php?id=' . $classe["ID"] . '" class="waves-effect waves-light">' . $classe["nome"] . '</a></li>';
+                                echo '<li><a href="classe.php?id=' . $classe["ID"] . '&nome=' . $classe["nome"] . '" class="waves-effect waves-light">' . $classe["nome"] . '</a></li>';
                             }
                         }
                         ?>
@@ -125,3 +117,4 @@
     <li><a href="index.php?action=logout" class="waves-effect"><i class="material-icons">power_settings_new</i>Disconnettiti</a>
     </li>
 </ul>
+<main>
