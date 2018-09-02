@@ -29,8 +29,6 @@ $userinfo = $user->get_data();
     require("layout/favicon.php")
     ?>
     <title><?php echo $title; ?> - Interrogazioni Programmate</title>
-    <!--Import Google Icon Font
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="../css/materialize.min.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -38,7 +36,7 @@ $userinfo = $user->get_data();
     <!-- Import SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--suppress JSUnusedLocalSymbols -->
     <script>
