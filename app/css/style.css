@@ -1,15 +1,37 @@
 body {
     background-color: #f9f9f9;
     overflow: hidden;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-.navimg {
+.navimg, .footer-img {
     display: inline-block;
     height: 100%;
 }
 
-.navimg > img {
+.navimg > img, .footer-img > img {
     vertical-align: middle
+}
+
+@media only screen and (min-width: 600px) {
+
+    .navimg > span {
+        font-size: 2vw !important;
+    }
+
+    .footer-logo-text {
+        font-size: 1.9vw !important;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .navimg > img, .footer-img > img {
+        width: 7vw;
+        height: 7vw;
+    }
 }
 
 /*----------------------------------------
@@ -63,4 +85,14 @@ body {
     top: 50%; /* centers the loading animation vertically one the screen */
     background: url(../img/loading.gif) no-repeat center; /* path to your loading animation */
     margin: -100px 0 0 -100px; /* is width and height divided by two */
+}
+
+/*----------------------------------------
+    Sticky Footer
+------------------------------------------*/
+/*
+Note: Last three lines of body rule at the top of the stylesheet are in this section
+*/
+main {
+    flex: 1 0 auto;
 }
