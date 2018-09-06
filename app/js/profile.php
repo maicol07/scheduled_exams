@@ -112,7 +112,7 @@ function edit_profile_mode() {
             monthsShort: monthslist,
             weekdays: ['<?php echo _("Domenica") ?>', '<?php echo _("Lunedì") ?>', '<?php echo _("Martedì") ?>', '<?php echo _("Mercoledì") ?>', '<?php echo _("Giovedì") ?>',
                 '<?php echo _("Venerdì") ?>', '<?php echo _("Sabato") ?>'],
-            weekdaysShort: ['<?php echo _("Dom") ?>', '<?php echo _("Lun") ?>', '<?php echo _("Mar") ?>', '<?php echo _("Mer") ?>', '<?php echo _("Gio") ?>', '<?php echo _("Ven") ?>',
+            weekdaysShort: ['<?php echo _("Dom") ?>', '<?php echo _("Lun") ?>', '<?php echo _("Mart") ?>', '<?php echo _("Mer") ?>', '<?php echo _("Gio") ?>', '<?php echo _("Ven") ?>',
                 '<?php echo _("Sab") ?>'],
             weekdaysAbbrev: ['<?php echo _("D") ?>', '<?php echo _("L") ?>', '<?php echo _("M") ?>', '<?php echo _("Me") ?>', '<?php echo _("G") ?>', '<?php echo _("V") ?>',
                 '<?php echo _("S") ?>'],

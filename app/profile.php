@@ -1,5 +1,9 @@
 <?php /** @noinspection ALL */
-$title = "Profilo";
+if (isset($_GET["user"]) and $_GET["user"] != "") {
+    $title = $_GET["user"];
+} else {
+    $title = "Profilo";
+}
 $inc_script = "profile";
 $filename = "profile.php";
 require_once("layout/header.php");
@@ -8,12 +12,31 @@ require_once("layout/header.php");
 <?php include("layout/navbar.php"); ?>
 <!-- END NAVBAR -->
 <!-- START BODY -->
-<div class="fixed-action-btn">
-    <a id="fab-link" class="btn-floating btn-large waves-effect waves-light red tooltipped"
-       onclick="edit_profile_mode()" data-position="left" data-tooltip="<?php echo _("Modifica") ?>">
-        <i id="fab-icon" class="large material-icons">mode_edit</i>
-    </a>
-</div>
+<?php
+if (isset($_GET["user"]) and $_GET["user"] != "") {
+    $userinfo = $user->get_user_data($_GET["user"]);
+    if ($userinfo == FALSE) {
+        echo '<script>swal({
+    title: "' . _("Utente non trovato") . '",
+    text: "' . _("Non abbiamo trovato l'utente {$_GET["user"]} nei nostri database. Controlla di aver digitato correttamente il nome utente di chi stai cercando. Ritornerai alla pagina precedente dopo aver premuto su OK") . '",
+    type: "error"
+    }).then((result) => {
+        history.go(-1);
+    })</script>';
+        exit;
+    }
+}
+if (isset($_GET["user"]) and $_GET["user"] != $_SESSION["username"]) {
+    echo '';
+} else {
+    echo '<div class="fixed-action-btn">
+        <a id="fab-link" class="btn-floating btn-large waves-effect waves-light red tooltipped"
+           onclick="edit_profile_mode()" data-position="left" data-tooltip="' . _("Modifica") . '">
+            <i id="fab-icon" class="large material-icons">mode_edit</i>
+        </a>
+    </div>';
+}
+?>
 <div class="container">
     <h2><?php echo _("Profilo") ?></h2>
     <div id="profile-page" class="section">
@@ -123,7 +146,7 @@ require_once("layout/header.php");
                     </li>
                     <li id="genere-li" class="collection-item" ' . $gen . '>
                     <div class="row">
-                        <div class="col s5"><i class="fal fa-transgender"></i>' . _("Genere") . '</div>
+                        <div class="col s5"><i class="fal fa-transgender"></i> ' . _("Genere") . '</div>
                         <div class="col s7 right-align"><span id="genere-content">' . $genere . '</span></div>
                     </div>
                 </li>

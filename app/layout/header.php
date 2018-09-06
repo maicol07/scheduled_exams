@@ -47,7 +47,7 @@ $userinfo = $user->get_data();
     </script>
     <?php
     require_once("js/init.php");
-    require_once("js/" . $inc_script);
+    require_once("js/" . $inc_script . ".php");
     ?>
 </head>
 <body>
