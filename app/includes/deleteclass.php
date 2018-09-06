@@ -1,5 +1,6 @@
 <?php
 require_once("../../includes/config.php");
+language("app");
 if (isset($_POST['classid']) and $_POST["classid"] !== "") {
     $errors = [];
     $query = $db->prepare("SELECT img FROM classi WHERE ID = :id; ");
@@ -9,12 +10,12 @@ if (isset($_POST['classid']) and $_POST["classid"] !== "") {
         $file = "../" . $query->fetch()[0];
         if (file_exists($file)) {
             if (!is_writeable($file)) {
-                $errors[] = "L'immagine della classe è protetta da scrittura. Impossibile eliminare la classe.";
+                $errors[] = _("L'immagine della classe è protetta da scrittura. Impossibile eliminare la classe.");
             }
             if (empty($errors)) {
                 $result = unlink($file);
                 if ($result == false) {
-                    $errors[] = "Impossibile eliminare l'immagine della classe. Impossibile eliminare la classe.";
+                    $errors[] = _("Impossibile eliminare l'immagine della classe. Impossibile eliminare la classe.");
                 }
             }
         }

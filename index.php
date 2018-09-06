@@ -2,6 +2,8 @@
 //include config
 require_once('includes/config.php');
 
+language("login");
+
 //check if already logged in move to home page
 if ($user->is_logged_in()) {
     if (isset($_GET["redir"]) and !$_GET["redir"] == "") {
@@ -27,7 +29,7 @@ if (isset($_POST['submit'])) {
         exit;
 
     } else {
-        $error[] = 'Il nome utente e la password inseriti non corrispondono oppure il tuo account non è ancora attivo.';
+        $error[] = _('Il nome utente e la password inseriti non corrispondono oppure il tuo account non è ancora attivo.');
     }
 
 }//end if submit
@@ -42,7 +44,7 @@ if (isset($_POST['submit'])) {
     <?php
     require("layout/header/favicon.php")
     ?>
-    <title>Accesso - Interrogazioni Programmate</title>
+    <title><?php echo _("Accesso") . " - " . _("Interrogazioni Programmate") ?></title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
@@ -71,34 +73,36 @@ if (isset($_POST['submit'])) {
     require("layout/header/background-change.php")
     ?>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Import SweetAlert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Import SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 </head>
 <body>
 <?php
 if (isset($error)) {
     foreach ($error as $er) {
         echo '<script>swal({
-  title: "Errore!",
-  text: "È stato riscontrato un errore durante l\'accesso:\n' . $er . '",
-  icon: "error"
-});</script>';
+  title: "' . _("Errore!") . '",
+  html: "' . _("È stato riscontrato un errore durante l'accesso:<br>") . $er . '",
+  type: "error"
+})</script>';
     }
 }
 if (isset($_GET['action'])) {
     //check the action
     switch ($_GET['action']) {
         case 'active':
-            $successtitle = "Sei stato attivato!";
-            $successmsg = "Il tuo account è ora attivo e puoi accedere.";
+            $successtitle = _("Sei stato attivato!");
+            $successmsg = _("Il tuo account è ora attivo e puoi accedere.");
             break;
         case 'reset':
-            $successtitle = "Azione eseguita con successo!";
-            $successmsg = "Perfavore controlla la tua posta in arrivo (anche SPAM o posta indesiderata) per il link di reset della password.";
+            $successtitle = _("Azione eseguita con successo!");
+            $successmsg = _("Perfavore controlla la tua posta in arrivo (anche SPAM o posta indesiderata) per il link di reset della password.");
             break;
         case 'resetAccount':
-            $successtitle = "Password cambiata!";
-            $successmsg = "Hai cambiato la password, puoi ora accedere.";
+            $successtitle = _("Password cambiata!");
+            $successmsg = _("Hai cambiato la password, puoi ora accedere.");
             break;
     }
 }
@@ -106,7 +110,7 @@ if (isset($successmsg)) {
     echo '<script>swal({
   title: "' . $successtitle . '",
   text: "' . $successmsg . '",
-  icon: "success"
+  type: "success"
 });</script>';
 }
 ?>
@@ -121,73 +125,72 @@ if (isset($successmsg)) {
                 <div class="row">
                     <div class="input-field col s12 center">
                         <p style="text-align:center;"><!--suppress JSUnusedGlobalSymbols -->
-                            <img src="img/logo.svg" alt="Interrogazioni programmate"
+                            <img src="img/logo.svg" alt="<?php echo _("Interrogazioni programmate"); ?>"
                                  align="center" width="128" height="128"
                                  onerror="this.src='img/logo.png'"></p>
-                        <h3 align="center" class="logo-text">Interrogazioni Programmate</h3>
-                        <h4 align="center"><i class="material-icons">forward</i> Accesso</h4>
+                        <h3 align="center" class="logo-text"><?php echo _("Interrogazioni Programmate"); ?></h3>
+                        <h4 align="center"><i class="material-icons">forward</i> <?php echo _("Accesso"); ?></h4>
                     </div>
                 </div>
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">person_outline</i>
                         <input class="validate" id="username" name="username" type="text">
-                        <label for="username" class="center-align">Email o nome utente</label>
-                        <span class='helper-text' data-error='Nome utente non valido' data-success="✓"></span>
+                        <label for="username" class="center-align"><?php echo _("Email o nome utente") ?></label>
+                        <span class='helper-text' data-error='<?php echo _("Nome utente non valido") ?>'
+                              data-success="✓"></span>
                     </div>
                 </div>
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock_outline</i>
                         <input id="password" name="password" type="password">
-                        <label for="password">Password</label>
+                        <label for="password"><?php echo _("Password") ?></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <label>
                             <input id="remember-me" type="checkbox"/>
-                            <span>Ricordami</span>
+                            <span><?php echo _("Ricordami") ?></span>
                         </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <button class="btn waves-effect waves-light col s12" type="submit" name="submit" id="submit">
-                            <i class="far fa-sign-in-alt"></i> Accedi
+                            <i class="far fa-sign-in-alt"></i> <?php echo _("Accedi") ?>
                         </button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6 m6 l6">
                         <p class="margin medium-small hover-underline-animation blue-text text-darken-3"><a
-                                    href="register.php">Registrati ora!</a></p>
+                                    href="register.php"><?php echo _("Registrati ora!") ?></a></p>
                     </div>
                     <div class="input-field col s6 m6 l6" align="right">
                         <p class="margin right-align medium-small hover-underline-animation"><a
-                                    href="forgot-password.php">Password
-                                dimenticata?</a></p>
+                                    href="forgot-password.php"><?php echo _("Password dimenticata?") ?></a></p>
                     </div>
                 </div>
-
             </form>
             <div style="text-align: center;">
-                Copyright © 2018 Interrogazioni Programmate
-                <p style="font-size:75%;">L'icona creata da <a href="http://www.freepik.com" title="Freepik">Freepik</a>
+                Copyright © 2018 <?php echo _("Interrogazioni Programmate") ?>
+                <p style="font-size:75%;"><?php echo _('L\'icona creata da <a href="http://www.freepik.com" title="Freepik">Freepik</a>
                     di
                     <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> ha licenza <a
                             href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
-                            target="_blank">Creative Commons BY 3.0</a></p>
+                            target="_blank">Creative Commons BY 3.0</a>') ?></p>
                 <script language="Javascript" type="text/javascript">
                     function changelog() {
-                        window.open("versionpopup.php", "Cronologia versioni", "width=500,height=500,left=125,top=125");
+                        window.open("versionpopup.php", "<?php echo _("Cronologia versioni") ?>", "width=500,height=500,left=125,top=125");
                     }
                 </script>
                 <a href="javascript:changelog();" align="center"
                    class="waves-effect btn-flat hover-underline-animation"><i
                             class="tiny material-icons left">new_releases</i>
                     Versione <?php
-                    $myfile = fopen("includes/version.txt", "r") or die("Impossibile aprire il file!");
+                    $myfile = fopen("includes/version.txt", "r") or die(_("Impossibile aprire il file!"));
                     echo fread($myfile, filesize("includes/version.txt"));
                     fclose($myfile);
                     ?> </a>

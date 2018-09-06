@@ -1,6 +1,8 @@
 <?php
 require('includes/config.php');
 
+language("login");
+
 //collect values from the url
 $userID = trim($_GET['userID']);
 $active = trim($_GET['token']);
@@ -23,11 +25,14 @@ if (is_numeric($userID) && !empty($active)) {
         exit;
 
     } else {
-        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo '<!-- Import SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>';
         echo '<script>swal({
-  title: "Errore!",
-  text: "Il tuo account non può essere attivato. Contattare il supporto nella <a href=\'community.interrogazioniprogrammate.tk\'>Community</a>.",
-  icon: "error",
+  title: "' . _("Errore!") . '",
+  html: ""' . _("Il tuo account non può essere attivato. Contattare il supporto nella <a href=\'community.interrogazioniprogrammate.tk\'>Community</a>.") . '",
+  type: "error",
 });</script>';
     }
 }

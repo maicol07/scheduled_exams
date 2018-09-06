@@ -1,6 +1,8 @@
 <?php /** @noinspection ALL */
 require('includes/config.php');
 
+language("login");
+
 //if logged in redirect to application page
 if ($user->is_logged_in()) {
     header('Location: app');
@@ -11,14 +13,14 @@ if (isset($_POST['submit'])) {
 
     //email validation
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $error[] = 'Indirizzo email non valido o non inserito!';
+        $error[] = _('Indirizzo email non valido o non inserito!');
     } else {
         $stmt = $db->prepare('SELECT email FROM users WHERE email = :email');
         $stmt->execute(array(':email' => $_POST['email']));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (empty($row['email'])) {
-            $error[] = 'L\' email inserita non ha una corrispondenza nei nostri database. Sei sicuro di esserti registrato correttamente o di aver inserito l\'email corretta?';
+            $error[] = _("L' email inserita non ha una corrispondenza nei nostri database. Sei sicuro di esserti registrato correttamente o di aver inserito l'email corretta?");
         }
 
     }
@@ -39,7 +41,7 @@ if (isset($_POST['submit'])) {
 
             //send email
             $to = $row['email'];
-            $subject = "Reset della password - Interrograzioni Programmate";
+            $subject = _("Reset della password") . " - " . _("Interrograzioni Programmate");
             $body = "<style>
 @import url('https://fonts.googleapis.com/css?family=Black+Ops+One');
 .logo-text {
@@ -50,11 +52,11 @@ if (isset($_POST['submit'])) {
 </style><p style=\"text-align:center;\"><img src=\"https://dev.interrogazioniprogrammate.tk/img/logo.svg\" alt=\"Interrogazioni programmate\"
                                                            align=\"center\" width=\"128\" height=\"128\"
                                                            onerror=\"this.src='https://dev.interrogazioniprogrammate.tk/img/logo.png'\"></p>
-                        <h3 align=\"center\" class='logo-text'>Interrogazioni Programmate</h3>
-                        <p>Qualcuno ha richiesto il reset della tua password.</p>
+                        <h3 align=\"center\" class='logo-text'>" . _("Interrogazioni Programmate") . "</h3>
+                        " . _("<p>Qualcuno ha richiesto il reset della tua password.</p>
 			<p>Se non sei stato tu , ignora questa email e non succederà niente.</p>
-			<p>Per resettare la tua password, visita il seguente indirizzo: <a href='" . DIR . "resetPassword.php?key=$token'>Resetta la password</a></p>
-			<p>Se il collegamento sopra non dovesse funzionare, copia e incolla nel browser il seguente indirizzo:</p>
+			<p>Per resettare la tua password, visita il seguente indirizzo:") . " <a href='" . DIR . "resetPassword.php?key=$token'>" . _("Resetta la password") . "</a></p>
+			<p>" . _("Se il collegamento sopra non dovesse funzionare, copia e incolla nel browser il seguente indirizzo:") . "</p>
 			<p align='center'>" . DIR . "resetPassword.php?key=$token</p>";
 
             $mail = new Mail();
@@ -89,7 +91,7 @@ if (isset($_POST['submit'])) {
     require("layout/header/favicon.php")
     ?>
 
-    <title>Password dimenticata - Interrogazioni Programmate</title>
+    <title><?php echo _("Password dimenticata") . " - " . _("Interrogazioni Programmate") ?></title>
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <style type="text/css">
@@ -117,16 +119,19 @@ if (isset($_POST['submit'])) {
     <?php
     require("layout/header/background-change.php")
     ?>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Import SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 </head>
 <body>
 <?php
 if (isset($error)) {
     foreach ($error as $er) {
         echo '<script>swal({
-  title: "Errore!",
-  text: "È stato riscontrato un errore durante il recupero della password:\n' . $er . '",
-  icon: "error",
+  title: "' . _("Errore!") . '",
+  html: "' . _("È stato riscontrato un errore durante il recupero della password:") . '<br>' . $er . '",
+  type: "error",
 });</script>';
     }
 }
@@ -139,8 +144,8 @@ if (isset($error)) {
                     <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
                                                        align="center" width="128" height="128"
                                                        onerror="this.src='img/logo.png'"></p>
-                    <h3 align="center" class="logo-text">Interrogazioni Programmate</h3>
-                    <h4 align="center"><i class="material-icons">forward</i> Recupera Password</h4>
+                    <h3 align="center" class="logo-text"><?php echo _("Interrogazioni Programmate") ?></h3>
+                    <h4 align="center"><i class="material-icons">forward</i> <?php echo _("Recupera Password") ?></h4>
                 </div>
             </div>
             <form class="col s12" method="post">
@@ -148,13 +153,13 @@ if (isset($error)) {
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mail_outline</i>
                         <input class="validate" id="email" name="email" type="email">
-                        <label for="email">Email</label>
+                        <label for="email"><?php echo _("Email") ?></label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <button class="btn waves-effect waves-light col s12" type="submit" name="submit" id="submit">
-                            <i class="far fa-arrow-alt-right"></i> Recupera password!
+                            <i class="far fa-arrow-alt-right"></i> <?php echo _("Recupera password!") ?>
                         </button>
                     </div>
                 </div>
@@ -162,22 +167,22 @@ if (isset($error)) {
             <div class="row">
                 <div class="input-field col s6 m6 l6">
                     <p class="margin medium-small"><a href="register.php"
-                                                      class="hover-underline-animation">Registrati!</a>
+                                                      class="hover-underline-animation"><?php echo _("Registrati!") ?></a>
                     </p>
                 </div>
                 <div class="input-field col s6 m6 l6">
                     <p class="margin right-align medium-small"><a href="index.php"
-                                                                  class="hover-underline-animation">Accedi ora!</a>
+                                                                  class="hover-underline-animation"><?php echo _("Accedi ora!") ?></a>
                     </p>
                 </div>
             </div>
             <div style="text-align: center;">
-                Copyright © 2017 Interrogazioni Programmate
-                <p style="font-size:75%;">L'icona creata da <a href="http://www.freepik.com" title="Freepik">Freepik</a>
+                Copyright © 2018 <?php echo _("Interrogazioni Programmate") ?>
+                <p style="font-size:75%;"><?php echo _('L\'icona creata da <a href="http://www.freepik.com" title="Freepik">Freepik</a>
                     di
                     <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> ha licenza <a
                             href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
-                            target="_blank">Creative Commons BY 3.0</a></p>
+                            target="_blank">Creative Commons BY 3.0</a>') ?></p>
             </div>
         </div>
     </div>

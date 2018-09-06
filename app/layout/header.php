@@ -1,6 +1,8 @@
-<?php
+<?php /** @noinspection ALL */
 
 require_once('../includes/config.php');
+
+language("app");
 
 //if not logged in redirect to login page
 if (!$user->is_logged_in()) {
@@ -28,12 +30,12 @@ $userinfo = $user->get_data();
     <?php
     require("layout/favicon.php")
     ?>
-    <title><?php echo $title; ?> - Interrogazioni Programmate</title>
+    <title><?php echo _($title) . " - " . _("Interrogazioni Programmate") ?></title>
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="../css/materialize.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Import SweetAlert -->
+    <!-- Import SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
@@ -43,8 +45,10 @@ $userinfo = $user->get_data();
         var userID = <?php echo $_SESSION["userID"]; ?>;
         var username = "<?php echo $_SESSION["username"]; ?>";
     </script>
-    <script src="js/init.js"></script>
-    <script src="js/<?php echo $inc_script; ?>.js"></script>
+    <?php
+    require_once("js/init.php");
+    require_once("js/" . $inc_script);
+    ?>
 </head>
 <body>
 <!-- Start Page Loading -->

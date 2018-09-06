@@ -1,3 +1,4 @@
+<script>
 $(document).ready(function () {
     $('.fixed-action-btn').floatingActionButton();
 });
@@ -33,7 +34,7 @@ function saveInput(e) {
                 }
             } else {
                 if (e !== "genere") {
-                    helper.setAttribute("data-wrong", "✗ Non riusciamo a salvare quello che stai digitando :(");
+                    helper.setAttribute("data-wrong", "✗ <?php echo _("Non riusciamo a salvare quello che stai digitando :(") ?>");
                     i.removeClass("valid");
                     i.addClass("invalid");
                 }
@@ -94,22 +95,27 @@ function edit_profile_mode() {
     var data = document.getElementById("compleanno-content").innerText;
     $("#compleanno-content").replaceWith('<input value="' + data + '" id="compleanno-input" type="text" class="datepicker"><span id="compleanno-helper" class="helper-text" data-error="" data-success=""></span>');
     var datal = data.split(" ");
-    var monthslist = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
+    var monthslist = ['<?php echo _("Gen") ?>', '<?php echo _("Feb") ?>', '<?php echo _("Mar") ?>', '<?php echo _("Apr") ?>', '<?php echo _("Mag") ?>', '<?php echo _("Giu") ?>',
+        '<?php echo _("Lug") ?>', '<?php echo _("Ago") ?>', '<?php echo _("Set") ?>', '<?php echo _("Ott") ?>', '<?php echo _("Nov") ?>', '<?php echo _("Dic") ?>'];
     $('.datepicker').datepicker({
         format: "dd mmm yyyy",
         yearRange: 50,
         i18n: {
-            cancel: 'Annulla',
-            clear: 'Pulisci',
-            done: 'OK',
+            cancel: '<?php echo _("Annulla") ?>',
+            clear: '<?php echo _("Pulisci") ?>',
+            done: '<?php echo _("OK") ?>',
             previousMonth: '‹',
             nextMonth: '›',
-            months: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre',
-                'Ottobre', 'Novembre', 'Dicembre'],
+            months: ['<?php echo _("Gennaio") ?>', '<?php echo _("Febbraio") ?>', '<?php echo _("Marzo") ?>', '<?php echo _("Aprile") ?>',
+                '<?php echo _("Maggio") ?>', '<?php echo _("Giugno") ?>', '<?php echo _("Luglio") ?>', '<?php echo _("Agosto") ?>', '<?php echo _("Settembre") ?>',
+                '<?php echo _("Ottobre") ?>', '<?php echo _("Novembre") ?>', '<?php echo _("Dicembre") ?>'],
             monthsShort: monthslist,
-            weekdays: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
-            weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-            weekdaysAbbrev: ['D', 'L', 'M', 'M', 'G', 'V', 'S'],
+            weekdays: ['<?php echo _("Domenica") ?>', '<?php echo _("Lunedì") ?>', '<?php echo _("Martedì") ?>', '<?php echo _("Mercoledì") ?>', '<?php echo _("Giovedì") ?>',
+                '<?php echo _("Venerdì") ?>', '<?php echo _("Sabato") ?>'],
+            weekdaysShort: ['<?php echo _("Dom") ?>', '<?php echo _("Lun") ?>', '<?php echo _("Mar") ?>', '<?php echo _("Mer") ?>', '<?php echo _("Gio") ?>', '<?php echo _("Ven") ?>',
+                '<?php echo _("Sab") ?>'],
+            weekdaysAbbrev: ['<?php echo _("D") ?>', '<?php echo _("L") ?>', '<?php echo _("M") ?>', '<?php echo _("Me") ?>', '<?php echo _("G") ?>', '<?php echo _("V") ?>',
+                '<?php echo _("S") ?>'],
         },
         defaultDate: new Date(datal[2], monthslist.indexOf(datal[1]), datal[0]),
         onClose: function () {
@@ -129,52 +135,49 @@ function edit_profile_mode() {
         var f = "checked"
     }
     $("#genere-content").replaceWith('<p><label>' +
-        '<input name="genere" id="male-check" class="with-gap" type="radio" onchange="saveInput(\'genere\')" ' + m + '/><span>Maschio</span></label></p><p><label>' +
-        '        \'<input name="genere" id="female-check" class="with-gap" type="radio" onchange="saveInput(\'genere\')" ' + f + '/><span>Femmina</span></label></p>')
+        '<input name="genere" id="male-check" class="with-gap" type="radio" onchange="saveInput(\'genere\')" ' + m + '/><span><?php echo _("Maschio") ?></span></label></p><p><label>' +
+        '        \'<input name="genere" id="female-check" class="with-gap" type="radio" onchange="saveInput(\'genere\')" ' + f + '/><span><?php echo _("Femmina") ?></span></label></p>')
 }
 
 async function change_profile_image(type) {
     if (type === "primary") {
-        var title = 'Cambia immagine di profilo';
-        var txt = "Preferibilmente di dimensioni 256x256px.";
-        var label = 'Carica la tua immagine di profilo';
+        var title = '<?php echo _("Cambia immagine di profilo") ?>';
+        var txt = "<?php echo _("Preferibilmente di dimensioni 256x256px.") ?>";
+        var label = '<?php echo _("Carica la tua immagine di profilo") ?>';
         if (document.getElementById("profile-img").getAttribute("src") !== "img/ui/user/male/male.svg" ||
             document.getElementById("profile-img").getAttribute("src") !== "img/ui/user/female/male.svg") {
             var cancel = true;
-            var confirm = "Cambia immagine";
         } else {
             var cancel = false;
-            var confirm = "Carica immagine";
         }
     } else if (type === "background") {
-        var title = 'Cambia immagine di sfondo';
-        var txt = "Preferibilmente alta 250px.";
-        var label = 'Carica la tua immagine di sfondo';
+        var title = '<?php echo _("Cambia immagine di sfondo") ?>';
+        var txt = "<?php echo _("Preferibilmente alta 250px") ?>.";
+        var label = '<?php echo _("Carica la tua immagine di sfondo") ?>';
         if (document.getElementById("profile-bg").getAttribute("src") !== "http://notgoaway.com/wp-content/uploads/2017/07/Background-75.png") {
             var cancel = true;
-            var confirm = "Cambia immagine";
         } else {
             var cancel = false;
-            var confirm = "Carica immagine";
         }
     }
+    var confirm = "<?php echo _("Cambia immagine") ?>";
     swal({
-        title: "Quale azione vuoi eseguire?",
+        title: "<?php echo _("Quale azione vuoi eseguire?") ?>",
         confirmButtonText: confirm,
         showCancelButton: cancel,
-        cancelButtonText: "Elimina immagine",
+        cancelButtonText: "<?php echo _("Elimina immagine") ?>",
         cancelButtonColor: "red",
         type: "question"
     }).then(async (result) => {
         if (result.dismiss === swal.DismissReason.cancel) {
             swal({
-                title: "Conferma eliminazione",
-                text: "Si vuole davvero eliminare l'immagine?",
+                title: "<?php echo _("Conferma eliminazione") ?>",
+                text: "<?php echo _("Si vuole davvero eliminare l'immagine?") ?>",
                 type: "warning",
                 showCancelButton: true,
                 showCloseButton: true,
-                cancelButtonText: "No",
-                confirmButtonText: "Sì",
+                cancelButtonText: "<?php echo _("No") ?>",
+                confirmButtonText: "<?php echo _("Sì") ?>",
                 confirmButtonColor: "red"
             }).then((result) => {
                 if (result.value) {
@@ -195,22 +198,22 @@ async function change_profile_image(type) {
                                 if (type === "primary") {
                                     document.getElementById("profile-img").setAttribute("src", "img/ui/user/male/male.svg");
                                     swal({
-                                        title: "Immagine di profilo eliminata!",
-                                        text: "L'immagine di profilo è stata eliminata! È stata reimpostata quella originale.",
+                                        title: "<?php echo _("Immagine di profilo eliminata!") ?>",
+                                        text: "<?php echo _("L'immagine di profilo è stata eliminata! È stata reimpostata quella originale.") ?>",
                                         type: "success",
                                     });
                                 } else if (type === "background") {
                                     document.getElementById("profile-bg").setAttribute("src", "http://notgoaway.com/wp-content/uploads/2017/07/Background-75.png");
                                     swal({
-                                        title: "Immagine di sfondo eliminata!",
-                                        text: "L'immagine di sfondo è stata eliminata! È stata reimpostata quella originale.",
+                                        title: "<?php echo _("Immagine di sfondo eliminata!") ?>",
+                                        text: "<?php echo _("L'immagine di sfondo è stata eliminata! È stata reimpostata quella originale.") ?>",
                                         type: "success",
                                     });
                                 }
                             } else {
                                 swal({
-                                    title: "Ops! Qualcosa è andato storto!",
-                                    html: "C'è stato un errore imprevisto durante l'eliminazione dell'immagine:<br><br>" + this.responseText,
+                                    title: "<?php echo _("Ops! Qualcosa è andato storto!") ?>",
+                                    html: "<?php echo _("C'è stato un errore imprevisto durante l'eliminazione dell'immagine:<br><br>") ?>" + this.responseText,
                                     type: "error"
                                 })
                             }
@@ -233,7 +236,7 @@ async function change_profile_image(type) {
                 inputClass: "",
                 showCloseButton: true,
                 showCancelButton: true,
-                cancelButtonText: "Annulla"
+                cancelButtonText: "<?php echo _("Annulla") ?>"
             });
             if (file) {
                 if (!file) throw null;
@@ -259,22 +262,22 @@ async function change_profile_image(type) {
                                 if (type === "primary") {
                                     document.getElementById("profile-img").setAttribute("src", this.responseText);
                                     swal({
-                                        title: "Immagine di profilo cambiata!",
-                                        text: "L'immagine di profilo è stata cambiata!",
+                                        title: "<?php echo _("Immagine di profilo cambiata!") ?>",
+                                        text: "<?php echo _("L'immagine di profilo è stata cambiata!") ?>",
                                         type: "success",
                                     });
                                 } else if (type === "background") {
                                     document.getElementById("profile-bg").setAttribute("src", this.responseText);
                                     swal({
-                                        title: "Immagine di sfondo cambiata!",
-                                        text: "L'immagine di sfondo è stata cambiata!",
+                                        title: "<?php echo _("Immagine di sfondo cambiata!") ?>",
+                                        text: "<?php echo _("L'immagine di sfondo è stata cambiata!") ?>",
                                         type: "success",
                                     });
                                 }
                             } else {
                                 swal({
-                                    title: "Errore!",
-                                    html: "Si è verificato un errore imprevisto durante il caricamento dell'immagine. Riprova più tardi o contatta lo sviluppatore.<br><br>" + this.responseText,
+                                    title: "<?php echo _("Errore!") ?>",
+                                    html: "<?php echo _("Si è verificato un errore imprevisto durante il caricamento dell'immagine. Riprova più tardi o contatta lo sviluppatore.<br><br>") ?>" + this.responseText,
                                     type: "error"
                                 })
                             }
@@ -290,3 +293,4 @@ async function change_profile_image(type) {
         }
     })
 }
+</script>

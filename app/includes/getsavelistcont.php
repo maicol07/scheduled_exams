@@ -1,5 +1,6 @@
 <?php
 require_once("../../includes/config.php");
+language("app");
 if (isset($_POST["idlista"])) {
     $errors = false;
     $username = $_POST["user"];
@@ -14,7 +15,7 @@ if (isset($_POST["idlista"])) {
                     $contenuto[$username]["giornata"] = $data;
                 } else {
                     $errors = true;
-                    echo "La data inserita è precedente rispetto a quella della persona successiva.";
+                    echo _("La data inserita è precedente rispetto a quella della persona successiva.");
                 }
                 break;
             case count($contenuto) - 1:
@@ -22,7 +23,7 @@ if (isset($_POST["idlista"])) {
                     $contenuto[$username]["giornata"] = $data;
                 } else {
                     $errors = true;
-                    echo "La data inserita è precedente rispetto a quella della persona successiva.";
+                    echo _("La data inserita è precedente rispetto a quella della persona successiva.");
                 }
                 break;
             default:
@@ -30,7 +31,7 @@ if (isset($_POST["idlista"])) {
                     $contenuto[$username]["giornata"] = $data;
                 } else {
                     $errors = true;
-                    echo "La data inserita è precedente rispetto a quella della persona successiva.";
+                    echo _("La data inserita è precedente rispetto a quella della persona successiva.");
                 }
                 break;
         }

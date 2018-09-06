@@ -1,3 +1,22 @@
+<?php
+$domain = "login";
+if (isset($_GET["lang"]) and $_GET["lang"] != "") {
+    $locale = $_GET["lang"];
+} else {
+    $languages = array_filter(scandir("locale"), function ($dir) {
+        return strpos($dir, '.') === false;
+    });
+    $locale = locale_lookup($languages, locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']), true, 'en_US');
+}
+if (defined('LC_MESSAGES')) {
+    setlocale(LC_MESSAGES, $locale); // Linux
+    bindtextdomain($domain, "./locale");
+} else {
+    putenv("LC_ALL={$locale}"); // windows
+    bindtextdomain($domain, ".\locale");
+}
+textdomain($domain);
+?>
 <!DOCTYPE HTML>
 <!-- Copyright 2018 maicol07. Original template by Makeroid (makeroid.io)-->
 <html lang="it">
@@ -8,7 +27,7 @@
     <?php
     require("layout/header/favicon.php")
     ?>
-    <title>Accesso - Interrogazioni Programmate</title>
+    <title><?php echo _("Cronologia versioni") . " - " . _("Interrogazioni Programmate") ?></title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified Materialize CSS -->
@@ -345,13 +364,14 @@
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-picture"></div>
             <div class="cd-timeline-content">
-                <span class="cd-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> Settembre 2018 </span>
-                <h2>Versione 0.1a</h2>
+                <span class="cd-date"><i class="fa fa-calendar-o"
+                                         aria-hidden="true"></i> <?php echo _("Settembre 2018") ?></span>
+                <h2><?php echo _("Versione") ?> 0.1a</h2>
                 <div class="feature">
-                    <p class="new">NUOVO</p>
-                    <p>Versione iniziale</p>
+                    <p class="new"><?php echo _("NUOVO") ?></p>
+                    <?php echo _('<p>Versione iniziale</p>
                     <p></p>
-                    <br>
+                    <br>') ?>
                 </div>
             </div>
         </div>

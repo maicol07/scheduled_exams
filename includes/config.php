@@ -38,4 +38,28 @@ include($file . '/user.php');
 include($file . '/phpmailer/mail.php');
 
 $user = new User($db);
-?>
+
+// Installazione lingua
+function language($domain)
+{
+    $dir = "locale";
+    while (!file_exists($dir)) {
+        $dir = "../" . $dir;
+    }
+    if (isset($_GET["lang"]) and $_GET["lang"] != "") {
+        $locale = $_GET["lang"];
+    } else {
+        $languages = array_filter(scandir($dir), function ($dir) {
+            return strpos($dir, '.') === false;
+        });
+        $locale = locale_lookup($languages, locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']), true, 'en_US');
+    }
+    if (defined('LC_MESSAGES')) {
+        setlocale(LC_MESSAGES, $locale); // Linux
+        bindtextdomain($domain, "./" . $dir);
+    } else {
+        putenv("LC_ALL={$locale}"); // windows
+        bindtextdomain($domain, ".\{$dir}");
+    }
+    textdomain($domain);
+}

@@ -21,7 +21,7 @@ if (isset($_POST["email_list"]) and $_POST["email_list"] !== "") {
         $query = $db->prepare("UPDATE classi SET invitationtokens = CONCAT(invitationtokens, ', ', :newtoken) WHERE ID = :id");
         $query->execute(array("newtoken" => $token, "id" => $_POST["classid"]));
         $to = $email;
-        $subject = "Invito alla classe " . $_POST['classname'] . " - Interrogazioni Programmate";
+        $subject = _("Invito alla classe ") . $_POST['classname'] . " - " . _("Interrogazioni Programmate");
         $body = '<style>
     @import url("https://fonts.googleapis.com/css?family=Black+Ops+One");
     .logo-text {
@@ -32,10 +32,10 @@ if (isset($_POST["email_list"]) and $_POST["email_list"] !== "") {
     </style><p style="text-align:center;"><img src="https://dev.interrogazioniprogrammate.tk/img/logo.svg" alt="Interrogazioni programmate"
                                                        align="center" width="128" height="128"
                                                        onerror="this.src=\'https://dev.interrogazioniprogrammate.tk/img/logo.png\'"></p>
-                    <h3 align="center" class="logo-text">Interrogazioni Programmate</h3>
-        <p>L\'utente ' . $_POST["user"] . ' ti ha invitato a partecipare alla classe ' . $_POST["classname"] . '.</p>
-        <p>Per partecipare alla classe clicca su questo link ed effettua l\'accesso (registrazione se non registrato) se non sei già autenticato: <a href="' . DIR . 'app/includes/add-user-class.php?token=$token&classid=' . $_POST["classid"] . '&classname=' . $_POST["classname"] . '">Accetta l\'invito</a></p>
-        <p>Saluti, \n Il team di Interrogazioni Programmate</p>';
+                    <h3 align="center" class="logo-text">' . _("Interrogazioni Programmate") . '</h3>
+        <p>' . _("L'utente") . $_POST["user"] . ' ' . _("ti ha invitato a partecipare alla classe") . $_POST["classname"] . '.</p>
+        <p>' . _("Per partecipare alla classe clicca su questo link ed effettua l'accesso (registrazione se non sei registrato) se non sei già autenticato:") . ' <a href="' . DIR . 'app/includes/add-user-class.php?token=$token&classid=' . $_POST["classid"] . '&classname=' . $_POST["classname"] . '">' . _("Accetta l'invito") . '</a></p>
+        <p>' . _("Saluti,<br>Il team di Interrogazioni Programmate") . '</p>';
 
         try {
             $mail = new Mail();
@@ -45,7 +45,7 @@ if (isset($_POST["email_list"]) and $_POST["email_list"] !== "") {
             $mail->body($body);
             $mail->send();
         } catch (PhpMailerException $e) {
-            throw new Exception("Impossibile inviare l'email. " . $e);
+            throw new Exception(_("Impossibile inviare l'email. ") . $e);
         }
     }
     echo "OK";

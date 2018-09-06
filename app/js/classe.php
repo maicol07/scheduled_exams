@@ -1,14 +1,15 @@
+<script>
 $(document).ready(function () {
     $('.fixed-action-btn').floatingActionButton();
 });
 
 function crea_lista() {
     swal({
-        title: "Crea lista",
-        text: "Inserisci il nome della lista",
+        title: "<?php echo _("Crea lista") ?>",
+        text: "<?php echo _("Inserisci il nome della lista") ?>",
         input: "text",
-        confirmButtonText: "CREA!",
-        cancelButtonText: "Annulla",
+        confirmButtonText: "<?php echo _("CREA!") ?>",
+        cancelButtonText: "<?php echo _("Annulla") ?>",
     }).then(name => {
         if (!name.value) throw null;
 
@@ -39,8 +40,8 @@ function crea_lista() {
                 column.appendChild(container); // Append <div> element to <div>
                 document.getElementById("rigalista").appendChild(column);           // Append <div> to <div> with id="rigaclassi"
                 swal({
-                    title: "Lista creata!",
-                    text: "La lista " + name.value + " è stata creata!",
+                    title: "<?php echo _("Lista creata!") ?>",
+                    text: "<?php echo _("La lista ") ?>" + name.value + "<?php echo _(" è stata creata!") ?>",
                     type: "success",
                 });
             }
@@ -51,7 +52,7 @@ function crea_lista() {
 
     }).catch(err => {
         if (err) {
-            swal("Oh no!", "Si è verificato un errore!", "error");
+            swal("<?php echo _("Oh no!") ?>", "<?php echo _("Si è verificato un errore!") ?>", "error");
         } else {
             swal.disableLoading();
             swal.close();
@@ -90,7 +91,7 @@ function show_class(users) {
                 }
                 usertext += '<div class="chip hoverable"><img src="' + img + '" alt="' + name + '">' + name + '</div>';
                 swal({
-                    title: "Partecipanti",
+                    title: "<?php echo _("Partecipanti") ?>",
                     html: usertext
                 })
             }
@@ -120,7 +121,7 @@ function saveInput(e) {
                 i.removeClass("invalid");
                 i.addClass("valid");
             } else {
-                helper.setAttribute("data-wrong", "✗ Non riusciamo a salvare quello che stai digitando :(");
+                helper.setAttribute("data-wrong", "✗ <?php echo _("Non riusciamo a salvare quello che stai digitando :(") ?>");
                 i.removeClass("valid");
                 i.addClass("invalid");
             }
@@ -160,11 +161,11 @@ async function invite_users() {
         var errortext = "";
         if (typeof wrongemail !== "undefined" && wrongemail.length) {
             wrongemail = wrongemail.toString();
-            errortext = "<br><br><b style='color: red'>Una o più email sono sbagliate!<br>" + wrongemail + "</b>"
+            errortext = "<br><br><b style='color: red'><?php echo _("Una o più email sono sbagliate!<br>") ?>" + wrongemail + "</b>"
         }
         const {value: email} = await swal({
-            title: "Invita utenti",
-            html: "Inserisci qui le email degli utenti che vuoi invitare. <b>Separa ciascuna email una dall'altra con una virgola (,).</b> Se un utente non è registrato, gli invieremo un invito per registrarsi." + errortext,
+            title: "<?php echo _("Invita utenti") ?>",
+            html: "<?php echo _("Inserisci qui le email degli utenti che vuoi invitare. <b>Separa ciascuna email una dall'altra con una virgola (,).</b> Se un utente non è registrato, gli invieremo un invito per registrarsi.") ?>" + errortext,
             input: "textarea",
             inputClass: "materialize-textarea",
             inputValue: emailstr,
@@ -201,14 +202,14 @@ async function invite_users() {
         if (this.readyState === 4 && this.status === 200) {
             if (this.responseText === "OK") {
                 swal({
-                    title: "Utenti invitati",
-                    text: "Abbiamo invitato gli utenti ad entrare nella classe :)",
+                    title: "<?php echo _("Utenti invitati") ?>",
+                    text: "<?php echo _("Abbiamo invitato gli utenti ad entrare nella classe :)") ?>",
                     type: "success"
                 })
             } else {
                 swal({
-                    title: "Errore",
-                    html: "Non è stato possibile invitare la classe. Riprova in seguito!<br><br>" + this.responseText,
+                    title: "<?php echo _("Errore") ?>",
+                    html: "<?php echo _("Non è stato possibile invitare la classe. Riprova in seguito!<br><br>") ?>" + this.responseText,
                     type: "error"
                 })
             }
@@ -225,15 +226,15 @@ async function invite_users() {
 
 async function delete_class() {
     await swal({
-        title: "Conferma eliminazione",
-        html: "Sei sicuro di voler eliminare la classe " + classname + "?<br>Tutti i dati e le liste della classe " +
-            "verranno eliminati. <b>Questa opzione è irreversibile!</b>",
+        title: "<?php echo _("Conferma eliminazione") ?>",
+        html: "<?php echo _("Sei sicuro di voler eliminare la classe ") ?>" + classname + "<?php echo _("?<br>Tutti i dati e le liste della classe ") ?>" +
+            "<?php echo _("verranno eliminati. <b>Questa opzione è irreversibile!</b>") ?>",
         type: "warning",
         showConfirmButton: true,
         showCancelButton: true,
         confirmButtonColor: "red",
-        confirmButtonText: "Sì",
-        cancelButtonText: "Annulla",
+        confirmButtonText: "<?php echo _("Sì") ?>",
+        cancelButtonText: "<?php echo _("Annulla") ?>",
         allowOutsideClick: false,
         allowEscapeKey: false,
         focusCancel: true,
@@ -258,8 +259,8 @@ async function delete_class() {
                         window.location.href = "index.php?deleteclass=success&nome=" + classname;
                     } else {
                         swal({
-                            title: "Errore",
-                            html: "Non è stato possibile eliminare la classe. Riprova in seguito!<br><br>" + this.responseText,
+                            title: "<?php echo _("Errore") ?>",
+                            html: "<?php echo _("Non è stato possibile eliminare la classe. Riprova in seguito!") ?><br><br>" + this.responseText,
                             type: "error"
                         })
                     }
@@ -278,14 +279,14 @@ function edit_class_mode() {
     var fab_link = document.getElementById("fab-link");
     fab_link.setAttribute("onclick", "window.location=''");
     $("#fab-link").removeClass("red");
-    $("#classname").replaceWith('<div class="input-field"><input id="nome-input" type="text" value="' + document.getElementById("classname").innerText + '" class="validate" onkeyup="saveInput(\'nome\')"><label for="nome-input">Classe</label><span id="nome-helper" class="helper-text" data-error="" data-success=""></span></div>');
+    $("#classname").replaceWith('<div class="input-field"><input id="nome-input" type="text" value="' + document.getElementById("classname").innerText + '" class="validate" onkeyup="saveInput(\'nome\')"><label for="nome-input"><?php echo _("Classe") ?></label><span id="nome-helper" class="helper-text" data-error="" data-success=""></span></div>');
     $("#description").replaceWith('<div class="input-field"><textarea id="description-input" class="materialize-textarea" onkeyup="saveInput(\'description\')">' + document.getElementById("description").innerText + '</textarea>\n' +
-        '          <label for="description-input">Descrizione</label><span id="description-helper" class="helper-text" data-error="" data-success=""></span></div>');
+        '          <label for="description-input"><?php echo _("Descrizione") ?></label><span id="description-helper" class="helper-text" data-error="" data-success=""></span></div>');
     M.textareaAutoResize($('#description-input'));
     M.updateTextFields();
     $("#dettagli-classe").append('<div class="row"><p>Immagine: </p><div class="file-field input-field">\n' +
         '      <div class="btn waves-effect waves-light">\n' +
-        '        <span>Carica</span>\n' +
+        '        <span><?php echo _("Carica") ?></span>\n' +
         '        <input type="file" id="img-input" accept="image/*">\n' +
         '      </div>\n' +
         '      <div class="file-path-wrapper">\n' +
@@ -293,3 +294,4 @@ function edit_class_mode() {
         '      <span id="img-helper" class="helper-text" data-error="" data-success=""></span></div>\n' +
         '    </div></div>')
 }
+</script>

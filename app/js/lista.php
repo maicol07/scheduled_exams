@@ -1,19 +1,21 @@
+<script>
 $(document).ready(function () {
     $('.fixed-action-btn').floatingActionButton();
-    var monthslist = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
+    var monthslist = ['<?php echo _("Gen") ?>', '<?php echo _("Feb") ?>', '<?php echo _("Mar") ?>', '<?php echo _("Apr") ?>', '<?php echo _("Mag") ?>', '<?php echo _("Giu") ?>',
+        '<?php echo _("Lug") ?>', '<?php echo _("Ago") ?>', '<?php echo _("Set") ?>', '<?php echo _("Ott") ?>', '<?php echo _("Nov") ?>', '<?php echo _("Dic") ?>'];
     $('.tooltipped').tooltip();
 });
 
 async function scelta_tipo() {
     await swal({
-        title: "Scegli il tipo di generazione",
-        html: "Con quali dati vuoi generare la lista " + listname + "?",
+        title: "<?php echo _("Scegli il tipo di generazione") ?>",
+        html: "<?php echo _("Con quali dati vuoi generare la lista") ?> " + listname + "?",
         type: "question",
         showConfirmButton: true,
         showCancelButton: true,
         confirmButtonColor: "blue",
-        confirmButtonText: "Studenti della classe",
-        cancelButtonText: "Materie della classe",
+        confirmButtonText: "<?php echo _("Studenti della classe") ?>",
+        cancelButtonText: "<?php echo _("Materie della classe") ?>",
         cancelButtonColor: "green",
         allowOutsideClick: false,
         allowEscapeKey: false,
@@ -45,20 +47,20 @@ function giustificazione(user) {
             var date = new Date(datainput.val());
             var diff = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(oggi.getFullYear(), oggi.getMonth(), oggi.getDate())) / (1000 * 60 * 60 * 24));
             if (diff < 3) {
-                errors.push("Non è possibile cambiare lo stato della giustificazione nei 2 giorni precedenti all'interrogazione.")
+                errors.push("<?php echo _("Non è possibile cambiare lo stato della giustificazione nei 2 giorni precedenti all'interrogazione.") ?>")
             }
         }
     } else if (data.length) {
         var date = new Date(data);
         var diff = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(oggi.getFullYear(), oggi.getMonth(), oggi.getDate())) / (1000 * 60 * 60 * 24));
         if (diff < 3) {
-            errors.push("Non è possibile cambiare lo stato della giustificazione nei 2 giorni precedenti all'interrogazione.")
+            errors.push("<?php echo _("Non è possibile cambiare lo stato della giustificazione nei 2 giorni precedenti all'interrogazione.") ?>")
         }
     }
     if (errors.length) {
         swal({
-            title: "Errore!",
-            html: "Si sono verificati degli errori:<br><br>" + errors.join(", "),
+            title: "<?php echo _("Errore!") ?>",
+            html: "<?php echo _("Si sono verificati degli errori:<br><br>") ?>" + errors.join(", "),
             type: "error"
         });
         return
@@ -76,14 +78,14 @@ function giustificazione(user) {
             var text = this.responseText.split("\n");
             if (text[0] === "OK") {
                 if (checkbox.is(":checked")) {
-                    checkbox_span.attr("data-tooltip", "Sei giustificato. Vuoi revocare la giustificazione?");
+                    checkbox_span.attr("data-tooltip", "<?php echo _("Sei giustificato. Vuoi revocare la giustificazione?") ?>");
                 } else {
-                    checkbox_span.attr("data-tooltip", "Non sei giustificato. Vuoi giustificarti? Giustificazioni rimanenti: " + text[2]);
+                    checkbox_span.attr("data-tooltip", "<?php echo _("Non sei giustificato. Vuoi giustificarti? Giustificazioni rimanenti: ") ?>" + text[2]);
                 }
             } else {
                 swal({
-                    title: "Errore!",
-                    html: "Si è verificato un errore durante il salvataggio della data:<br><br>" + this.responseText,
+                    title: "<?php echo _("Errore!") ?>",
+                    html: "<?php echo _("Si è verificato un errore durante il salvataggio della data:<br><br>") ?>" + this.responseText,
                     type: "error"
                 });
                 return
@@ -121,7 +123,7 @@ function saveInput(e) {
                 i.removeClass("invalid");
                 i.addClass("valid");
             } else {
-                helper.setAttribute("data-wrong", "✗ Non riusciamo a salvare quello che stai digitando :(");
+                helper.setAttribute("data-wrong", "✗ <?php echo _("Non riusciamo a salvare quello che stai digitando :(") ?>");
                 i.removeClass("valid");
                 i.addClass("invalid");
             }
@@ -161,11 +163,11 @@ async function inserimento_manuale() {
         var errortext = "";
         if (typeof wrongemail !== "undefined" && wrongemail.length) {
             wrongemail = wrongemail.toString();
-            errortext = "<br><br><b style='color: red'>Una o più email sono sbagliate!<br>" + wrongemail + "</b>"
+            errortext = "<br><br><b style='color: red'><?php echo _("Una o più email sono sbagliate!") ?><br>" + wrongemail + "</b>"
         }
         const {value: email} = await swal({
-            title: "Inserisci utenti",
-            html: "Inserisci qui le email degli utenti che vuoi aggiungere. <b>Separa ciascuna email una dall'altra con una virgola (,). L'utente DEVE essere registrato e iscritto alla classe per poter essere inserito. In caso contrario NON verrà inserito.</b>" + errortext,
+            title: "<?php echo _("Inserisci utenti") ?>",
+            html: "<?php echo _("Inserisci qui le email degli utenti che vuoi aggiungere. <b>Separa ciascuna email una dall'altra con una virgola (,). L'utente DEVE essere registrato e iscritto alla classe per poter essere inserito. In caso contrario NON verrà inserito.</b>") ?>" + errortext,
             input: "textarea",
             inputClass: "materialize-textarea",
             inputValue: emailstr,
@@ -209,8 +211,8 @@ async function inserimento_manuale() {
                 window.location.href = "";
             } else {
                 swal({
-                    title: "Errore!",
-                    html: "Si è verificato un errore, riprovare più tardi o contattare il supporto nella <a href='https://community.interrogazioniprogrammate.tk'>Community</a>.<br><br>" + this.responseText,
+                    title: "<?php echo _("Errore!") ?>",
+                    html: "<?php echo _("Si è verificato un errore, riprovare più tardi o contattare il supporto nella <a href='https://community.interrogazioniprogrammate.tk'>Community</a>.<br><br>") ?>" + this.responseText,
                     type: "error"
                 })
             }
@@ -246,8 +248,8 @@ function generazione_casuale() {
                 window.location.href = "";
             } else {
                 swal({
-                    title: "Errore!",
-                    html: "Si è verificato un errore, riprovare più tardi o contattare il supporto nella <a href='https://community.interrogazioniprogrammate.tk'>Community</a>.<br><br>" + this.responseText,
+                    title: "<?php echo _("Errore!") ?>",
+                    html: "<?php echo _("Si è verificato un errore, riprovare più tardi o contattare il supporto nella <a href='https://community.interrogazioniprogrammate.tk'>Community</a>.<br><br>") ?>" + this.responseText,
                     type: "error"
                 })
             }
@@ -281,11 +283,11 @@ function saveDate(user) {
                 i.addClass("valid");
             } else {
                 swal({
-                    title: "Errore!",
-                    html: "Si è verificato un errore durante il salvataggio della data:<br><br>" + this.responseText,
+                    title: "<?php echo _("Errore!") ?>",
+                    html: "<?php echo _("Si è verificato un errore durante il salvataggio della data:<br><br>") ?>" + this.responseText,
                     type: "error"
                 });
-                helper.setAttribute("data-wrong", "✗ Non riusciamo a salvare quello che stai digitando :(");
+                helper.setAttribute("data-wrong", "✗ <?php echo _("Non riusciamo a salvare quello che stai digitando :(") ?>");
                 i.removeClass("valid");
                 i.addClass("invalid");
                 return
@@ -303,15 +305,15 @@ function saveDate(user) {
 
 async function delete_list() {
     await swal({
-        title: "Conferma eliminazione",
-        html: "Sei sicuro di voler eliminare la lista " + listname + "?<br>Tutti i dati della lista " +
-            "verranno eliminati. <b>Questa opzione è irreversibile!</b>",
+        title: "<?php echo _("Conferma eliminazione") ?>",
+        html: "<?php echo _("Sei sicuro di voler eliminare la lista") ?>" + listname + "<?php echo _("?<br>Tutti i dati della lista") ?>" +
+            "<?php echo _("verranno eliminati. <b>Questa opzione è irreversibile!</b>") ?>",
         type: "warning",
         showConfirmButton: true,
         showCancelButton: true,
         confirmButtonColor: "red",
-        confirmButtonText: "Sì",
-        cancelButtonText: "Annulla",
+        confirmButtonText: "<?php echo _("Sì") ?>",
+        cancelButtonText: "<?php echo _("Annulla") ?>",
         allowOutsideClick: false,
         allowEscapeKey: false,
         focusCancel: true,
@@ -336,8 +338,8 @@ async function delete_list() {
                         window.location.href = "index.php?deletelist=success&deletedlistname=" + listname;
                     } else {
                         swal({
-                            title: "Errore",
-                            html: "Non è stato possibile eliminare la lista. Riprova in seguito!<br><br>" + this.responseText,
+                            title: "<?php echo _("Errore") ?>",
+                            html: "<?php echo _("Non è stato possibile eliminare la lista. Riprova in seguito!<br><br>") ?>" + this.responseText,
                             type: "error"
                         })
                     }
@@ -356,14 +358,14 @@ function edit_list_mode() {
     var fab_link = document.getElementById("fab-link");
     fab_link.setAttribute("onclick", "window.location.href = ''");
     $("#fab-link").removeClass("red");
-    $("#listname").replaceWith('<div class="input-field"><input id="nome-input" type="text" value="' + document.getElementById("listname").innerText + '" class="validate" onkeyup="saveInput(\'nome\')"><label for="nome-input">Lista</label><span id="nome-helper" class="helper-text" data-error="" data-success=""></span></div>');
+    $("#listname").replaceWith('<div class="input-field"><input id="nome-input" type="text" value="' + document.getElementById("listname").innerText + '" class="validate" onkeyup="saveInput(\'nome\')"><label for="nome-input"><?php echo _("Lista") ?></label><span id="nome-helper" class="helper-text" data-error="" data-success=""></span></div>');
     $("#description").replaceWith('<div class="input-field"><textarea id="description-input" class="materialize-textarea" onkeyup="saveInput(\'description\')">' + document.getElementById("description").innerText + '</textarea>\n' +
-        '          <label for="description-input">Descrizione</label><span id="description-helper" class="helper-text" data-error="" data-success=""></span></div>');
+        '          <label for="description-input"><?php echo _("Descrizione") ?></label><span id="description-helper" class="helper-text" data-error="" data-success=""></span></div>');
     M.textareaAutoResize($('#description-input'));
     M.updateTextFields();
-    $("#dettagli-lista").append('<div class="row"><p>Immagine: </p><div class="file-field input-field">\n' +
+    $("#dettagli-lista").append('<div class="row"><p><?php echo _("Immagine:") ?> </p><div class="file-field input-field">\n' +
         '      <div class="btn waves-effect waves-light">\n' +
-        '        <span>Carica</span>\n' +
+        '        <span><?php echo _("Carica") ?></span>\n' +
         '        <input type="file" id="img-input" accept="image/*">\n' +
         '      </div>\n' +
         '      <div class="file-path-wrapper">\n' +
@@ -374,24 +376,29 @@ function edit_list_mode() {
     users.forEach(function (user, index) {
         var span = document.getElementById("span-" + user);
         var data = span.innerText;
-        $("#span-" + user).replaceWith('<input value="' + data + '" id="data-input-' + user + '" type="text" class="datepicker"><span id="data-helper-' + user + '" class="helper-text" data-error="" data-success=""></span>')
+        $("#span-" + user).replaceWith('<input value="' + data + '" id="data-input-' + user + '" type="text" class="datepicker"><span id="data-helper-' + user + '" class="helper-text" data-error="" data-success=""></span>');
         var datal = data.split(" ");
-        var monthslist = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
+        var monthslist = ['<?php echo _("Gen") ?>', '<?php echo _("Feb") ?>', '<?php echo _("Mar") ?>', '<?php echo _("Apr") ?>', '<?php echo _("Mag") ?>', '<?php echo _("Giu") ?>',
+            '<?php echo _("Lug") ?>', '<?php echo _("Ago") ?>', '<?php echo _("Set") ?>', '<?php echo _("Ott") ?>', '<?php echo _("Nov") ?>', '<?php echo _("Dic") ?>'];
         $('#data-input-' + user).datepicker({
             format: "yyyy/m/d",
             yearRange: 50,
             i18n: {
-                cancel: 'Annulla',
-                clear: 'Pulisci',
-                done: 'OK',
+                cancel: '<?php echo _("Annulla") ?>',
+                clear: '<?php echo _("Pulisci") ?>',
+                done: '<?php echo _("OK") ?>',
                 previousMonth: '‹',
                 nextMonth: '›',
-                months: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre',
-                    'Ottobre', 'Novembre', 'Dicembre'],
+                months: ['<?php echo _("Gennaio") ?>', '<?php echo _("Febbraio") ?>', '<?php echo _("Marzo") ?>', '<?php echo _("Aprile") ?>',
+                    '<?php echo _("Maggio") ?>', '<?php echo _("Giugno") ?>', '<?php echo _("Luglio") ?>', '<?php echo _("Agosto") ?>', '<?php echo _("Settembre") ?>',
+                    '<?php echo _("Ottobre") ?>', '<?php echo _("Novembre") ?>', '<?php echo _("Dicembre") ?>'],
                 monthsShort: monthslist,
-                weekdays: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
-                weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
-                weekdaysAbbrev: ['D', 'L', 'M', 'M', 'G', 'V', 'S'],
+                weekdays: ['<?php echo _("Domenica") ?>', '<?php echo _("Lunedì") ?>', '<?php echo _("Martedì") ?>', '<?php echo _("Mercoledì") ?>', '<?php echo _("Giovedì") ?>',
+                    '<?php echo _("Venerdì") ?>', '<?php echo _("Sabato") ?>'],
+                weekdaysShort: ['<?php echo _("Dom") ?>', '<?php echo _("Lun") ?>', '<?php echo _("Mar") ?>', '<?php echo _("Mer") ?>', '<?php echo _("Gio") ?>', '<?php echo _("Ven") ?>',
+                    '<?php echo _("Sab") ?>'],
+                weekdaysAbbrev: ['<?php echo _("D") ?>', '<?php echo _("L") ?>', '<?php echo _("M") ?>', '<?php echo _("Me") ?>', '<?php echo _("G") ?>', '<?php echo _("V") ?>',
+                    '<?php echo _("S") ?>'],
             },
             defaultDate: new Date(datal[2], monthslist.indexOf(datal[1]), datal[0]),
             onClose: function () {
@@ -424,3 +431,4 @@ function edit_list_mode() {
          }
          */
 }
+</script>

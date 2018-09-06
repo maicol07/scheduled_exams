@@ -1,5 +1,6 @@
 <?php
 require_once("../../includes/config.php");
+language("app");
 if (isset($_POST['listid']) and $_POST["listid"] !== "") {
     $errors = [];
     $query = $db->prepare("SELECT img FROM liste WHERE ID = :id; ");
@@ -9,12 +10,12 @@ if (isset($_POST['listid']) and $_POST["listid"] !== "") {
         $file = "../" . $query->fetch()[0];
         if (file_exists($file)) {
             if (!is_writeable($file)) {
-                $errors[] = "L'immagine della lista è protetta da scrittura. Impossibile eliminare la lista.";
+                $errors[] = _("L'immagine della lista è protetta da scrittura. Impossibile eliminare la lista.");
             }
             if (empty($errors)) {
                 $result = unlink($file);
                 if ($result == false) {
-                    $errors[] = "Impossibile eliminare l'immagine della lista. Impossibile eliminare la lista.";
+                    $errors[] = _("Impossibile eliminare l'immagine della lista. Impossibile eliminare la lista.");
                 }
             }
         }

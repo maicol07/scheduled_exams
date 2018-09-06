@@ -9,12 +9,13 @@ require_once("layout/header.php");
 <!-- END NAVBAR -->
 <!-- START BODY -->
 <div class="fixed-action-btn">
-    <a id="fab-link" class="btn-floating btn-large waves-effect waves-light red" onclick="edit_profile_mode()">
+    <a id="fab-link" class="btn-floating btn-large waves-effect waves-light red tooltipped"
+       onclick="edit_profile_mode()" data-position="left" data-tooltip="<?php echo _("Modifica") ?>">
         <i id="fab-icon" class="large material-icons">mode_edit</i>
     </a>
 </div>
 <div class="container">
-    <h2>Profilo</h2>
+    <h2><?php echo _("Profilo") ?></h2>
     <div id="profile-page" class="section">
         <!-- profile-page-header -->
         <div id="profile-page-header" class="card hoverable">
@@ -55,13 +56,13 @@ require_once("layout/header.php");
                         }
                         if ($item !== "") {
                             if ($item == "username") {
-                                $txt = "Nome utente";
+                                $txt = _("Nome utente");
                             } else {
                                 $txt = ucfirst($item);
                             }
                             echo '<p class="grey-text small" style="text-align: center">' . $txt . '</p></div>';
                         } else {
-                            echo '<p class="grey-text small" style="text-align: center" hidden>' . ucfirst($item) . '</p></div>';
+                            echo '<p class="grey-text small" style="text-align: center" hidden>' . _(ucfirst($item)) . '</p></div>';
                         }
                     }
                     ?>
@@ -78,14 +79,14 @@ require_once("layout/header.php");
         if ($userinfo["descrizione"] !== "") {
             echo '<div id="aboutme" class="card light-blue hoverable col s12 m5">
                 <div class="card-content white-text">
-                    <span class="card-title">Su di me!</span>
+                    <span class="card-title">' . _("Su di me!") . '</span>
                     <p id="aboutme-content">' . $userinfo["descrizione"] . '</p>
                 </div>
                 </div>';
         } else {
             echo '<div id="aboutme" class="card light-blue hoverable col s12 m5" hidden>
 <div class="card-content white-text">
-                    <span class="card-title">Su di me!</span><p id="aboutme-content"></p>
+                    <span class="card-title">' . _("Su di me!") . '</span><p id="aboutme-content"></p>
                 </div></div>';
         }
         ?>
@@ -108,21 +109,21 @@ require_once("layout/header.php");
         } else {
             $gen = "";
             if ($userinfo["genere"] == "M") {
-                $genere = "Maschio";
+                $genere = _("Maschio");
             } else {
-                $genere = "Femmina";
+                $genere = _("Femmina");
             }
         }
         echo '<div class="col s12 m5 offset-m1"><ul id="profile-page-about-details" class="collection z-depth-1 hoverable" ' . $hid . '>
                 <li id="compleanno-li" class="collection-item" ' . $compl . '>
                     <div class="row">
-                        <div class="col s6"><i class="material-icons left">cake</i> Compleanno</div>
+                        <div class="col s6"><i class="material-icons left">cake</i>' . _("Compleanno") . '</div>
                         <div class="col s6 right-align"><span id="compleanno-content">' . $userinfo["compleanno"] . '</span></div>
                     </div>
                     </li>
                     <li id="genere-li" class="collection-item" ' . $gen . '>
                     <div class="row">
-                        <div class="col s5"><i class="fal fa-transgender"></i> Genere</div>
+                        <div class="col s5"><i class="fal fa-transgender"></i>' . _("Genere") . '</div>
                         <div class="col s7 right-align"><span id="genere-content">' . $genere . '</span></div>
                     </div>
                 </li>
@@ -134,7 +135,7 @@ require_once("layout/header.php");
         <div class="card amber darken-2 hoverable col s12">
             <div class="card-content white-text center-align">
                 <p class="card-title"><?php echo $userinfo["seguaci"]; ?> <i class="material-icons">group</i></p>
-                <p>Seguaci</p>
+                <p><?php echo _("Seguaci") ?></p>
             </div>
         </div>
         <!-- Profile About  -->

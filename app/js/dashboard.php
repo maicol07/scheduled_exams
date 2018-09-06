@@ -1,3 +1,4 @@
+<script>
 var $root = $('html, body');
 $(document).on('click', 'a[href^="#"]', function (event) {
     event.preventDefault();
@@ -14,10 +15,13 @@ function date_time(id) {
     date = new Date;
     year = date.getFullYear();
     month = date.getMonth();
-    months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+    months = ['<?php echo _("Gennaio") ?>', '<?php echo _("Febbraio") ?>', '<?php echo _("Marzo") ?>', '<?php echo _("Aprile") ?>',
+        '<?php echo _("Maggio") ?>', '<?php echo _("Giugno") ?>', '<?php echo _("Luglio") ?>', '<?php echo _("Agosto") ?>', '<?php echo _("Settembre") ?>',
+        '<?php echo _("Ottobre") ?>', '<?php echo _("Novembre") ?>', '<?php echo _("Dicembre") ?>'];
     d = date.getDate();
     day = date.getDay();
-    days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+    days = ['<?php echo _("Domenica") ?>', '<?php echo _("Lunedì") ?>', '<?php echo _("Martedì") ?>', '<?php echo _("Mercoledì") ?>', '<?php echo _("Giovedì") ?>',
+        '<?php echo _("Venerdì") ?>', '<?php echo _("Sabato") ?>'];
     h = date.getHours();
     if (h < 10) {
         h = "0" + h;
@@ -38,11 +42,11 @@ function date_time(id) {
 
 function crea_classe() {
     swal({
-        title: "Crea classe",
-        text: "Inserisci il nome della classe",
+        title: "<?php echo _("Crea classe") ?>",
+        text: "<?php echo _("Inserisci il nome della classe") ?>",
         input: "text",
-        confirmButtonText: "CREA!",
-        cancelButtonText: "Annulla",
+        confirmButtonText: "<?php echo _("CREA!") ?>",
+        cancelButtonText: "<?php echo _("Annulla") ?>",
     }).then(name => {
         if (!name.value) throw null;
         swal.showLoading();
@@ -69,8 +73,8 @@ function crea_classe() {
                 column.appendChild(container); // Append <div> element to <div>
                 document.getElementById("rigaclassi").appendChild(column);           // Append <div> to <div> with id="rigaclassi"
                 swal({
-                    title: "Classe creata!",
-                    text: "La classe " + name.value + " è stata creata!",
+                    title: "<?php echo _("Classe creata!") ?>",
+                    text: "<?php echo _("La classe") ?> " + name.value + " <?php echo _("è stata creata!") ?>",
                     type: "success",
                 });
             }
@@ -81,10 +85,11 @@ function crea_classe() {
 
     }).catch(err => {
         if (err) {
-            swal("Oh no!", "Si è verificato un errore!", "error");
+            swal("<?php echo _("Oh no!") ?>", "<?php echo _("Si è verificato un errore!") ?>", "error");
         } else {
             swal.disableLoading();
             swal.close();
         }
     });
 }
+</script>

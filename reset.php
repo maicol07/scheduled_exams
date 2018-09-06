@@ -1,5 +1,7 @@
 <?php require('includes/config.php');
 
+language("login");
+
 //if logged in redirect to app page
 if ($user->is_logged_in()) {
     header('Location: app');
@@ -11,10 +13,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //if no token from db then kill the page
 if (empty($row['resetToken'])) {
-    $stop = 'Token inserito non valido, usa il link all\'interno dell\'email.';
+    $stop = _("Token fornito non valido, usa il link all'interno dell'email.");
     die;
 } elseif ($row['resetComplete'] == 'Yes') {
-    $stop = 'La tua password è già stata cambiata!';
+    $stop = _('La tua password è già stata cambiata!');
     die;
 }
 
@@ -23,15 +25,15 @@ if (isset($_POST['submit'])) {
 
     //basic validation
     if (strlen($_POST['password']) < 3) {
-        $error[] = 'La password inserita è troppo corta.';
+        $error[] = _('La password inserita è troppo corta.');
     }
 
     if (strlen($_POST['confirm-password']) < 3) {
-        $error[] = 'La conferma della password è troppo corta.';
+        $error[] = _('La conferma della password è troppo corta.');
     }
 
     if ($_POST['password'] != $_POST['confirm-password']) {
-        $error[] = 'Le password inserite non corrispondono.';
+        $error[] = _('Le password inserite non corrispondono.');
     }
 
     //if no errors have been created carry on
@@ -71,7 +73,7 @@ if (isset($_POST['submit'])) {
     <?php
     require("layout/header/favicon.php")
     ?>
-    <title>Reset Password - Interrogazioni Programmate</title>
+    <title><?php echo _("Reset Password") . " - " . _("Interrogazioni Programmate") ?></title>
     <!-- Compiled and minified Materialize CSS -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <style type="text/css">
@@ -94,18 +96,20 @@ if (isset($_POST['submit'])) {
     require("layout/header/background-change.php")
     ?>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Import SweetAlert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Import SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
 </head>
 <body>
 <?php
 if (isset($error)) {
     foreach ($error as $er) {
         echo '<script>swal({
-  title: "Errore!",
-  text: "È stato riscontrato un errore durante il reset della password:\n' . $er . '",
-  icon: "error"
-});</script>';
+  title: "' . _("Errore!") . '",
+  html: "' . _('È stato riscontrato un errore durante il reset della password:<br>') . $er . '",
+  type: "error",
+})</script>';
     }
 }
 
@@ -127,8 +131,9 @@ if (isset($stop)) {
                             <p style="text-align:center;"><img src="img/logo.svg" alt="Interrogazioni programmate"
                                                                align="center" width="128" height="128"
                                                                onerror="this.src='img/logo.png'"></p>
-                            <h3 align="center" class="logo-text">Interrogazioni Programmate</h3>
-                            <h4 align="center"><i class="material-icons">forward</i> Resetta Password</h4>
+                            <h3 align="center" class="logo-text"><?php echo _("Interrogazioni Programmate") ?></h3>
+                            <h4 align="center"><i class="material-icons">forward</i> <?php echo _("Resetta Password") ?>
+                            </h4>
                         </div>
                     </div>
                     <div class="row">
@@ -136,15 +141,16 @@ if (isset($stop)) {
                             <i class="material-icons prefix">lock_outline</i>
                             <input id="password" name="password" type="password" class="validate" required
                                    minlength="8">
-                            <label for="password">Password</label>
-                            <span class='helper-text' data-error='Password troppo corta (almeno 8 caratteri)'
+                            <label for="password"><?php echo _("Password") ?></label>
+                            <span class='helper-text'
+                                  data-error='<?php echo _("Password troppo corta (almeno 8 caratteri)") ?>'
                                   data-success='✓'></span>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">lock_outline</i>
                             <input id="confirm-password" name="confirm-password" type="password" required minlength="8">
-                            <label for="confirm-password">Ripeti password</label>
-                            <span class='helper-text' data-error='Le password non corrispondono'
+                            <label for="confirm-password"><?php _("Ripeti password") ?></label>
+                            <span class='helper-text' data-error="<?php echo _('Le password non corrispondono') ?>"
                                   data-success='✓'></span>
                         </div>
                     </div>
@@ -152,10 +158,11 @@ if (isset($stop)) {
                         <div class="input-field col s12">
                             <button class="btn waves-effect waves-light col s12" type="submit" name="submit"
                                     id="submit">
-                                <i class="material-icons left">refresh</i> Cambia password!
+                                <i class="material-icons left">refresh</i> <?php echo _("Cambia password!") ?>
                             </button>
                         </div>
                     </div>
+                    <!--suppress JSJQueryEfficiency -->
                     <script>
                         $("#password").on("focusout", function (e) {
                             if ($(this).val() !== $("#confirm-password").val() || $(this).val() === '') {
@@ -179,13 +186,13 @@ if (isset($stop)) {
                     </script>
                 </form>
                 <div style="text-align: center;">
-                    Copyright © 2018 Interrogazioni Programmate
-                    <p style="font-size:75%;">L'icona creata da <a href="http://www.freepik.com"
+                    Copyright © 2018 <?php echo _("Interrogazioni Programmate") ?>
+                    <p style="font-size:75%;"><?php echo _('L\'icona creata da <a href="http://www.freepik.com"
                                                                    title="Freepik">Freepik</a>
                         di
                         <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> ha licenza <a
                                 href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
-                                target="_blank">Creative Commons BY 3.0</a></p>
+                                target="_blank">Creative Commons BY 3.0</a>') ?></p>
                 </div>
             </div>
         </div>

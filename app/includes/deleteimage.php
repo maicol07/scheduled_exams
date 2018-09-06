@@ -1,5 +1,6 @@
 <?php
 require_once("../../includes/config.php");
+language("app");
 if (isset($_REQUEST['type']) and $_REQUEST["type"] !== "") {
     $errors = [];
     if ($_REQUEST["type"] == "primary") {
@@ -10,15 +11,15 @@ if (isset($_REQUEST['type']) and $_REQUEST["type"] !== "") {
     $query->execute(array('username' => $_REQUEST["user"]));
     $file = "../" . $query->fetch()[0];
     if (!file_exists($file)) {
-        $errors[] = "Non esiste una immagine associata al tuo account!";
+        $errors[] = _("Non esiste una immagine associata al tuo account!");
     }
     if (!is_writeable($file)) {
-        $errors[] = "File protetto da scrittura. Impossibile eliminare l'immagine.";
+        $errors[] = _("File protetto da scrittura. Impossibile eliminare l'immagine.");
     }
     if (empty($errors)) {
         $result = unlink($file);
         if ($result == false) {
-            $errors[] = "Impossibile eliminare il file.";
+            $errors[] = _("Impossibile eliminare il file.");
         }
     }
     if ($errors) {
