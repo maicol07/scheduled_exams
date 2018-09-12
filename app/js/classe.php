@@ -286,7 +286,8 @@ function edit_class_mode() {
     M.updateTextFields();
     $("#dettagli-classe").append('<div class="row"><p>Immagine: </p><div class="file-field input-field">\n' +
         '      <div class="btn waves-effect waves-light">\n' +
-        '        <span><?php echo _("Carica") ?></span>\n' +
+        '        <i class="material-icons left">cloud_upload</i>' +
+        '<span><?php echo _("Carica") ?></span>\n' +
         '        <input type="file" id="img-input" accept="image/*">\n' +
         '      </div>\n' +
         '      <div class="file-path-wrapper">\n' +
