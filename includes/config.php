@@ -13,7 +13,7 @@ define('DBPASS', '');
 define('DBNAME', 'testintp');
 
 // Indirizzo applicazione
-define('DIR', 'https://interrogazioniprogrammate.tk/');
+define('DIR', 'https://app.interrogazioniprogrammate.tk/');
 define('SITEEMAIL', 'noreply@interrogazioniprogrammate.tk');
 define("SITETITLE", "Interrogazioni Programmate");
 
@@ -38,6 +38,7 @@ include($file . '/user.php');
 include($file . '/phpmailer/mail.php');
 
 $user = new User($db);
+global $db;
 
 // Installazione lingua
 function language($domain)
@@ -49,10 +50,19 @@ function language($domain)
     if (isset($_GET["lang"]) and $_GET["lang"] != "") {
         $locale = $_GET["lang"];
     } else {
-        $languages = array_filter(scandir($dir), function ($dir) {
-            return strpos($dir, '.') === false;
-        });
-        $locale = locale_lookup($languages, locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']), true, 'en_US');
+        if (isset($_SESSION["username"])) {
+            $langdb = $GLOBALS["db"]->prepare("SELECT lang FROM users WHERE username = :usr");
+            $langdb->execute(array("usr" => $_SESSION["username"]));
+            $langdb = $langdb->fetch()[0];
+        }
+        if (isset($langdb) and ($langdb != null or $langdb != "")) {
+            $locale = $langdb;
+        } else {
+            $languages = array_filter(scandir($dir), function ($dir) {
+                return strpos($dir, '.') === false;
+            });
+            $locale = locale_lookup($languages, locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']), true, 'en_US');
+        }
     }
     if (defined('LC_MESSAGES')) {
         setlocale(LC_MESSAGES, $locale); // Linux
@@ -62,4 +72,5 @@ function language($domain)
         bindtextdomain($domain, ".\{$dir}");
     }
     textdomain($domain);
+    return $locale;
 }
