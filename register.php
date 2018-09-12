@@ -59,12 +59,13 @@ if (isset($_POST['submit'])) {
 
         try {
             // Inserisci nel database con un comando preparato
-            $stmt = $db->prepare('INSERT INTO users (username,password,email,active) VALUES (:username, :password, :email, :active)');
+            $stmt = $db->prepare('INSERT INTO users (username,password,email,active,registerIP) VALUES (:username, :password, :email, :active, :ip)');
             $stmt->execute(array(
                 ':username' => $_POST['username'],
                 ':password' => $hashedpassword,
                 ':email' => $_POST['email'],
-                ':active' => $activasion
+                ':active' => $activasion,
+                ':ip' => get_user_ip()
             ));
             $id = $db->lastInsertId('userID');
 
@@ -79,10 +80,10 @@ if (isset($_POST['submit'])) {
     font-variant: small-caps !important;
     color: #003471;
 }
-</style><p style=\"text-align:center;\"><img src=\"https://dev.interrogazioniprogrammate.tk/img/logo.svg\" alt=\"Interrogazioni programmate\"
-                                                           align=\"center\" width=\"128\" height=\"128\"
-                                                           onerror=\"this.src='https://dev.interrogazioniprogrammate.tk/img/logo.png'\"></p>
-                        <h3 align=\"center\" class='logo-text'>" . _("Interrogazioni Programmate") . "</h3>
+</style><p style='text-align:center;'><img src='https://dev.interrogazioniprogrammate.tk/img/logo.svg' alt='" . _("Interrogazioni programmate") . "'
+                                                           align='center' width='128' height='128'
+                                                           onerror='this.src=\"https://dev.interrogazioniprogrammate.tk/img/logo.png\"'></p>
+                        <h3 align='center' class='logo-text'>" . _("Interrogazioni Programmate") . "</h3>
             " . _("<p>Grazie per esserti registrato al portale Interrogazioni Programmate.</p>
 			<p>Per attivare il tuo account clicca su questo link:") . " <a href='" . DIR . "activate.php?userID=$id&token=$activasion'>" . DIR . "activate.php?x=$id&y=$activasion</a></p>
 			<p>" . _("Saluti, \n Il team di Interrogazioni Programmate") . "</p>";

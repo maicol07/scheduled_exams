@@ -55,9 +55,9 @@ if (isset($_POST['submit'])) {
                         <h3 align=\"center\" class='logo-text'>" . _("Interrogazioni Programmate") . "</h3>
                         " . _("<p>Qualcuno ha richiesto il reset della tua password.</p>
 			<p>Se non sei stato tu , ignora questa email e non succederà niente.</p>
-			<p>Per resettare la tua password, visita il seguente indirizzo:") . " <a href='" . DIR . "resetPassword.php?key=$token'>" . _("Resetta la password") . "</a></p>
+			<p>Per resettare la tua password, visita il seguente indirizzo:") . " <a href='" . DIR . "reset.php?key=$token'>" . _("Resetta la password") . "</a></p>
 			<p>" . _("Se il collegamento sopra non dovesse funzionare, copia e incolla nel browser il seguente indirizzo:") . "</p>
-			<p align='center'>" . DIR . "resetPassword.php?key=$token</p>";
+			<p align='center'>" . DIR . "reset.php?key=$token</p>";
 
             $mail = new Mail();
             $mail->setFrom(SITEEMAIL);
