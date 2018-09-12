@@ -13,6 +13,28 @@ class User extends Password
         $this->_db = $db;
     }
 
+    public function get_user_ip()
+    {
+        // Function to get the client ip address
+        $ipaddress = '';
+        if (getenv('HTTP_CLIENT_IP'))
+            $ipaddress = getenv('HTTP_CLIENT_IP');
+        else if (getenv('HTTP_X_FORWARDED_FOR'))
+            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+        else if (getenv('HTTP_X_FORWARDED'))
+            $ipaddress = getenv('HTTP_X_FORWARDED');
+        else if (getenv('HTTP_FORWARDED_FOR'))
+            $ipaddress = getenv('HTTP_FORWARDED_FOR');
+        else if (getenv('HTTP_FORWARDED'))
+            $ipaddress = getenv('HTTP_FORWARDED');
+        else if (getenv('REMOTE_ADDR'))
+            $ipaddress = getenv('REMOTE_ADDR');
+        else
+            $ipaddress = 'UNKNOWN';
+
+        return $ipaddress;
+    }
+
     public function login($username, $password)
     {
 
@@ -22,6 +44,8 @@ class User extends Password
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $row['username'];
             $_SESSION['userID'] = $row['userID'];
+            $query = $this->_db->prepare('UPDATE users SET lastloginIP = :ip WHERE username = :username');
+            $query->execute(array('ip' => $this->get_user_ip(), 'username' => $row["username"]));
             return true;
         }
     }
