@@ -16,6 +16,14 @@ $(document).ready(function () {
         coverTrigger: false, // Displays dropdown below the button
         alignment: 'right' // Displays dropdown with edge aligned to the right of button);
     });
+    $("#dd-trigger-lang").dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: false, // Activate on hover
+        coverTrigger: false, // Displays dropdown below the button
+        alignment: 'right' // Displays dropdown with edge aligned to the right of button);
+    });
     $('.collapsible').collapsible();
     $('.sidenav').sidenav();
 });
@@ -40,6 +48,9 @@ function info() {
             '</ul>' +
             '<h5><?php echo _("Riconoscimenti") ?></h5><?php echo _("Icona creata da ") ?>' +
             '<a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> <?php echo _("di") ?> ' +
+            '<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <?php echo _("con licenza") ?> ' +
+            '<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>' +
+            '<?php echo _("Le immagini delle bandiere sono state create da") ?> <a href="http://www.freepik.com" title="Freepik">Freepik</a> <?php echo _("di") ?>' +
             '<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <?php echo _("con licenza") ?> ' +
             '<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>' +
             '<h5><?php echo _("Script e librerie di terze parti") ?></h5><ul>' +
