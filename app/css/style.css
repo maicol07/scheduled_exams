@@ -67,6 +67,52 @@ body {
     Pre-loader
 ------------------------------------------*/
 
+@keyframes lds-dual-ring {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes lds-dual-ring {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.lds-dual-ring {
+    position: relative;
+}
+
+.lds-dual-ring div {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50px;
+    left: 50px;
+    border-radius: 50%;
+    border: 6px solid #000;
+    border-color: #1a237e transparent #1a237e transparent;
+    -webkit-animation: lds-dual-ring 1.5s linear infinite;
+    animation: lds-dual-ring 1.5s linear infinite;
+}
+
+.lds-dual-ring {
+    width: 200px !important;
+    height: 200px !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
 #preloader {
     position: fixed;
     top: 0;
@@ -86,6 +132,91 @@ body {
     background: url(../img/loading.gif) no-repeat center; /* path to your loading animation */
     margin: -100px 0 0 -100px; /* is width and height divided by two */
 }
+
+/*----------------------------------------
+    Stats cards
+------------------------------------------*/
+
+.stats-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-card > i {
+    position: absolute;
+    font-size: 6rem;
+    right: 0;
+    bottom: -1rem;
+}
+
+.stats-card > i[class*=material-icons], .stats-card > i[class*=ion-] {
+    bottom: -2.4rem;
+}
+
+.stats-card .count {
+    position: relative;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+.stats-card .name {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.stats-card .graph {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.stats-card .progress {
+    position: absolute;
+    border-radius: 0;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: none;
+}
+
+.stats-card .progress.top {
+    bottom: auto;
+    top: 0;
+}
+
+.stats-card .progress.background {
+    top: 0;
+    height: 100%;
+}
+
+.stats-card .progress.background > div {
+    height: 100%;
+}
+
+.stats-card.large {
+    padding: 1.6rem;
+}
+
+.stats-card.large > i {
+    font-size: 8rem;
+    bottom: -1.3rem;
+}
+
+.stats-card.large .count {
+    font-size: 3rem;
+    line-height: 3rem;
+}
+
+.stats-card.large .name {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+}
+
 
 /*----------------------------------------
     Sticky Footer
