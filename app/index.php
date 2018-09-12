@@ -6,6 +6,15 @@ require_once("layout/header.php");
 // START NAVBAR
 include("layout/navbar.php");
 // END NAVBAR
+if (isset($_GET["newEmail"]) and $_GET["newEmail"] == "success") {
+    echo '<script>swal({
+title: "' . _('Email cambiata con successo') . '",
+text: "' . _('La tua email è stata cambiata! Verrai ora disconnesso, in modo da effettuare l\'accesso con la nuova email.') . '",
+type: "success" 
+}).then((result) => {
+    window.location.href = "?action=logout";
+})</script>';
+}
 if (isset($_GET["deleteclass"]) and $_GET["deleteclass"] == "success") {
     echo '<script>swal({
 title: "' . _('Classe eliminata') . '",
@@ -39,7 +48,19 @@ type: "success"
 <div class="container">
     <section id="dashboard">
         <h2><?php echo _("Dashboard") ?></h2>
-        <p><?php echo _("Pagina non ancora disponibile!") ?></p>
+        <div class="row">
+            <div class="col l4 s12">
+                <div class="card-panel stats-card blue lighten-2 indigo-text text-lighten-5">
+                    <i class="material-icons">class</i>
+                    <span class="count"><?php echo count($listaclassi) ?></span>
+                    <div class="name"><?php if (count($listaclassi) == 1) {
+                            echo _("Classe");
+                        } else {
+                            echo _("Classi");
+                        } ?></div>
+                    </a>
+                </div>
+            </div>
     </section>
     <section id="classi">
         <h2><?php echo _("Classi"); ?></h2>
