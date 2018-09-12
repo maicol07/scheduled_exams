@@ -52,10 +52,8 @@ function saveInput(e) {
         var isChecked = $('#male-id');
         if (isChecked) {
             fd.append("text", "M");
-            console.log("YES")
         } else {
             fd.append("text", "F");
-            console.log("NO")
         }
     } else {
         fd.append("text", input.value);
