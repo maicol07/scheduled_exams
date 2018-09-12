@@ -2,7 +2,7 @@
 
 require_once('../includes/config.php');
 
-language("app");
+$locale = language("app");
 
 //if not logged in redirect to login page
 if (!$user->is_logged_in()) {
@@ -26,7 +26,6 @@ $userinfo = $user->get_data();
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script defer src="https://dl.dropboxusercontent.com/s/94ajynkqcf3xg28/fa-all.min.js?dl=0"></script>
     <?php
     require("layout/favicon.php")
     ?>
@@ -52,7 +51,11 @@ $userinfo = $user->get_data();
 </head>
 <body>
 <!-- Start Page Loading -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
+<div id="preloader" class="lds-css ng-scope">
+    <div style="width:100%;height:100%" class="lds-dual-ring">
+        <div>
+
+        </div>
+    </div>
 </div>
 <!-- End Page Loading -->
