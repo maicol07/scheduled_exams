@@ -1,3 +1,16 @@
+<style>
+    .lang-flag {
+        height: 30px;
+        vertical-align: middle;
+        padding-right: 10px;
+    }
+
+    .collapsible li.active i {
+        -ms-transform: rotate(180deg); /* IE 9 */
+        -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+        transform: rotate(180deg);
+    }
+</style>
 <nav>
     <div class="nav-wrapper">
         <a data-target="nav-mobile" class="sidenav-trigger" style="cursor:pointer;"><i
@@ -7,6 +20,8 @@
                     onerror="this.src='img/logo.png'"><span class="logo-text"
                                                             style="color: white; font-size: 3vw;"><?php echo _("Interrogazioni Programmate") ?></span></a>
         <ul class="right hide-on-med-and-down">
+            <li><a id="dd-trigger-lang" class="dropdown-trigger waves-effect waves-light" data-target="lang-dropdown">
+                    <img src="../img/flags/<?php echo $locale ?>.svg" class="lang-flag"></a></li>
             <li><a href="index.php#dashboard" class="waves-effect waves-light"><i
                             class="material-icons left">dashboard</i><?php echo _("Dashboard") ?></a>
             </li>
@@ -36,7 +51,7 @@
     <li><a href="profile.php" class="waves-effect waves-light"><i
                     class="material-icons left">account_circle</i><?php echo _("Profilo") ?></a>
     </li>
-    <li><a href="#" class="waves-effect waves-light"><i
+    <li><a href="settings.php" class="waves-effect waves-light"><i
                     class="material-icons left">settings</i><?php echo _("Impostazioni") ?></a></li>
     <li><a onclick="info()" class="waves-effect waves-light"><i
                     class="material-icons">info</i><?php echo _("Informazioni") ?></a></li>
@@ -63,6 +78,24 @@
     ?>
 </ul>
 
+<!-- Thanks to Gustavo Costa for the language picker (https://codepen.io/gusbemacbe/pen/ZaOGjy) -->
+<ul id="lang-dropdown" class="dropdown-content">
+    <?php
+    $languages = ["it_IT" => _("Italiano"), "en_US" => _("Inglese (Stati Uniti)"), "fr_FR" => _("Francese")];
+    echo '<li><a href="?lang=' . $locale . '" style="font-weight: bolder"><img src="../img/flags/' . $locale . '.svg" class="lang-flag">' . $languages[$locale] . '</a></li>';
+    $langs = scandir("../locale");
+    foreach ($langs as $lang) {
+        if ($lang == $locale or strpos($lang, ".")) {
+            continue;
+        }
+        if (in_array($lang, array_keys($languages))) {
+            echo '<li><a href="?lang=' . $lang . '" style="font-weight: bolder"><img src="../img/flags/' . $lang . '.svg" class="lang-flag">' . $languages[$lang] . '</a></li>';
+        } else {
+            echo '<li><a href="?lang=' . $lang . '" style="font-weight: bolder"><img src="../img/flags/' . $lang . '.svg" class="lang-flag">' . $lang . '</a></li>';
+        }
+    }
+    ?>
+</ul>
 
 <ul id="nav-mobile" class="sidenav">
     <li>
@@ -96,9 +129,9 @@
             <li>
                 <a class="collapsible-header waves-effect"><i
                             class="material-icons left">class</i><?php echo _("Classi") ?><i
-                            class="material-icons right">arrow_drop_down</i></a>
+                            class="material-icons right">keyboard_arrow_down</i></a>
                 <!-- Menu a tendina Classi -->
-                <div class="collapsible-body" style="display: block;">
+                <div class="collapsible-body">
                     <ul>
                         <?php
                         foreach ($listaclassi as $classe) {
@@ -117,8 +150,38 @@
     </li>
     <li><a href="profile.php" class="waves-effect"><i
                     class="material-icons">account_circle</i><?php echo _("Profilo") ?></a></li>
-    <li><a href="#" class="waves-effect"><i class="material-icons">settings</i><?php echo _("Impostazioni") ?></a></li>
+    <li><a href="settings.php" class="waves-effect"><i
+                    class="material-icons">settings</i><?php echo _("Impostazioni") ?></a></li>
     <li><a onclick="info()" class="waves-effect"><i class="material-icons">info</i><?php echo _("Informazioni") ?></a>
+    </li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <div class="collapsible-header waves-effect">
+                    <img src="../img/flags/<?php echo $locale ?>.svg"
+                         class="lang-flag"> <?php echo $languages[$locale] ?>
+                    <i class="material-icons right">keyboard_arrow_down</i>
+                </div>
+                <div class="collapsible-body">
+                    <ul>
+                        <?php
+                        echo '<li><a href="?lang=' . $locale . '" style="font-weight: bolder"><img src="../img/flags/' . $locale . '.svg" class="lang-flag">' . $languages[$locale] . '</a></li>';
+                        $langs = scandir("../locale");
+                        foreach ($langs as $lang) {
+                            if ($lang == $locale or strpos($lang, ".")) {
+                                continue;
+                            }
+                            if (in_array($lang, array_keys($languages))) {
+                                echo '<li><a href="?lang=' . $lang . '" style="font-weight: bolder"><img src="../img/flags/' . $lang . '.svg" class="lang-flag">' . $languages[$lang] . '</a></li>';
+                            } else {
+                                echo '<li><a href="?lang=' . $lang . '" style="font-weight: bolder"><img src="../img/flags/' . $lang . '.svg" class="lang-flag">' . $lang . '</a></li>';
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </li>
     <li>
         <div class="divider"></div>
