@@ -77,6 +77,11 @@ if (isset($_POST['submit'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+    <?php
+    // Before </head> tag
+    $l = explode("_", $locale)[0];
+    echo '<link rel="manifest" href="manifest_' . $l . '.webmanifest">';
+    ?>
 </head>
 <body>
 <?php
@@ -201,5 +206,46 @@ if (isset($successmsg)) {
 </div>
 <!-- Compiled and minified JavaScript -->
 <script src="js/materialize.min.js"></script>
+<script>
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI notify the user they can add to home screen
+        btnAdd.style.display = 'block';
+    });
+    btnAdd.addEventListener('click', (e) => {
+        // hide our user interface that shows our A2HS button
+        btnAdd.style.display = 'none';
+        // Show the prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice
+            .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+    });
+
+</script>
 </body>
+<script>
+    if ('serviceWorker' in navigator) {
+        console.log("Will the service worker register?");
+        navigator.serviceWorker.register('service-worker.js')
+            .then(function (reg) {
+                console.log("Yes, it did.");
+            }).catch(function (err) {
+            console.log("No it didn't. This happened:", err)
+        });
+    }
+
+</script>
 </html>
