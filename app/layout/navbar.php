@@ -83,9 +83,11 @@
     <?php
     $languages = ["it_IT" => _("Italiano"), "en_US" => _("Inglese (Stati Uniti)"), "fr_FR" => _("Francese")];
     echo '<li><a href="?lang=' . $locale . '" style="font-weight: bolder"><img src="../img/flags/' . $locale . '.svg" class="lang-flag">' . $languages[$locale] . '</a></li>';
-    $langs = scandir("../locale");
+    $langs = array_filter(scandir("../locale"), function ($lang) {
+        return boolval(strpos($lang, "_"));
+    });
     foreach ($langs as $lang) {
-        if ($lang == $locale or strpos($lang, ".")) {
+        if ($lang == $locale) {
             continue;
         }
         if (in_array($lang, array_keys($languages))) {
@@ -166,9 +168,8 @@
                     <ul>
                         <?php
                         echo '<li><a href="?lang=' . $locale . '" style="font-weight: bolder"><img src="../img/flags/' . $locale . '.svg" class="lang-flag">' . $languages[$locale] . '</a></li>';
-                        $langs = scandir("../locale");
                         foreach ($langs as $lang) {
-                            if ($lang == $locale or strpos($lang, ".")) {
+                            if ($lang == $locale) {
                                 continue;
                             }
                             if (in_array($lang, array_keys($languages))) {

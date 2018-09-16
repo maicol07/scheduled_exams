@@ -50,7 +50,7 @@ function info() {
             '<a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> <?php echo _("di") ?> ' +
             '<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <?php echo _("con licenza") ?> ' +
             '<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>' +
-            '<?php echo _("Le immagini delle bandiere sono state create da") ?> <a href="http://www.freepik.com" title="Freepik">Freepik</a> <?php echo _("di") ?>' +
+            '<?php echo _("Le immagini delle bandiere sono state create da") ?> <a href="http://www.freepik.com" title="Freepik">Freepik</a> <?php echo _("di") ?> ' +
             '<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <?php echo _("con licenza") ?> ' +
             '<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>' +
             '<h5><?php echo _("Script e librerie di terze parti") ?></h5><ul>' +

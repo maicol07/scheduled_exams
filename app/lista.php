@@ -32,7 +32,7 @@ if ($listinfo["img"] == null) {
 }
 ?>
     <div class="container">
-        <h2><?php echo $_GET["nome"] . " - " . _("Classe") . $classinfo["nome"]; ?></h2>
+        <h2><?php echo $_GET["nome"] . " - " . _("Classe") . " " . $classinfo["nome"]; ?></h2>
         <div class="row">
             <div class="col s12 m7" id="maincontainer">
                 <?php

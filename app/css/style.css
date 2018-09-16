@@ -90,15 +90,15 @@ body {
 }
 
 .lds-dual-ring {
-    position: relative;
+    position: absolute;
 }
 
 .lds-dual-ring div {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    top: 50px;
-    left: 50px;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
     border-radius: 50%;
     border: 6px solid #000;
     border-color: #1a237e transparent #1a237e transparent;
@@ -129,7 +129,6 @@ body {
     position: absolute;
     left: 50%; /* centers the loading animation horizontally one the screen */
     top: 50%; /* centers the loading animation vertically one the screen */
-    background: url(../img/loading.gif) no-repeat center; /* path to your loading animation */
     margin: -100px 0 0 -100px; /* is width and height divided by two */
 }
 
