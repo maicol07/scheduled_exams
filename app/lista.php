@@ -60,7 +60,7 @@ if ($listinfo["img"] == null) {
                             $userimg = $userinfo["img"];
                         }
                         $user_name = $userinfo["nome"] . " " . $userinfo["cognome"];
-                        echo '<td><div class="chip hoverable"><img src="' . $userimg . '" alt="' . $user_name . '">' . $user_name . '</div></td>';
+                        echo '<td><div class="chip hoverable" style="cursor: pointer;" onclick=\'window.open("profile.php?user=' . $name . '", "_blank");\'><img src="' . $userimg . '" alt="' . $user_name . '">' . $user_name . '</div></td>';
                         $a = $value;
                         if ($a["giustificato"] == "S") {
                             if ($_SESSION["username"] == $name) {

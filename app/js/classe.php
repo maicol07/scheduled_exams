@@ -89,7 +89,7 @@ function show_class(users) {
                 } else {
                     var img = info[3]
                 }
-                usertext += '<div class="chip hoverable"><img src="' + img + '" alt="' + name + '">' + name + '</div>';
+                usertext += '<div class="chip hoverable" style="cursor: pointer;" onclick="window.open(\'profile.php?user=' + user + '\', \'_blank\');"><img src="' + img + '" alt="' + name + '">' + name + '</div>';
                 swal({
                     title: "<?php echo _("Partecipanti") ?>",
                     html: usertext
