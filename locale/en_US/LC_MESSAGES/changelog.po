@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Interrogazioni_Programmate package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Interrogazioni_Programmate 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-08 12:32+0200\n"
+"PO-Revision-Date: 2018-09-21 17:10+0200\n"
+"Last-Translator: Maicol <maicolbattistini@live.it>, 2018\n"
+"Language-Team: English (United States) (https://www.transifex.com/maicol07/teams/91157/en_US/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#: versionpopup.php:30
+msgid "Cronologia versioni"
+msgstr "Version history"
+
+#: versionpopup.php:30
+msgid "Interrogazioni Programmate"
+msgstr "Scheduled Oral Exams"
+
+#: versionpopup.php:368
+msgid "Settembre 2018"
+msgstr "September 2018"
+
+#: versionpopup.php:369
+msgid "Versione"
+msgstr "Version"
+
+#: versionpopup.php:371
+msgid "NUOVO"
+msgstr "NEW"
+
+#: versionpopup.php:372
+msgid ""
+"<p>Versione iniziale</p>\n"
+"                    <p></p>\n"
+"                    <br>"
+msgstr ""
+"<p>Initial release</p>\n"
+"                    <p></p>\n"
+"                    <br>"

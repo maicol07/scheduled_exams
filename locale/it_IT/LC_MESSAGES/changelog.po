@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Interrogazioni_Programmate package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Interrogazioni_Programmate 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-08 12:32+0200\n"
+"PO-Revision-Date: 2018-09-21 17:11+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it_IT\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.4\n"
+
+#: versionpopup.php:30
+msgid "Cronologia versioni"
+msgstr "Cronologia versioni"
+
+#: versionpopup.php:30
+msgid "Interrogazioni Programmate"
+msgstr "Interrogazioni Programmate"
+
+#: versionpopup.php:368
+msgid "Settembre 2018"
+msgstr "Settembre 2018"
+
+#: versionpopup.php:369
+msgid "Versione"
+msgstr "Versione"
+
+#: versionpopup.php:371
+msgid "NUOVO"
+msgstr "NUOVO"
+
+#: versionpopup.php:372
+msgid ""
+"<p>Versione iniziale</p>\n"
+"                    <p></p>\n"
+"                    <br>"
+msgstr ""
+"<p>Versione iniziale</p>\n"
+"                    <p></p>\n"
+"                    <br>"

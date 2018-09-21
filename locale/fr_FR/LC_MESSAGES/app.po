@@ -1,0 +1,1000 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Interrogazioni_Programmate package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Maicol <maicolbattistini@live.it>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Interrogazioni_Programmate 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-13 17:17+0200\n"
+"PO-Revision-Date: 2018-09-13 17:24+0200\n"
+"Last-Translator: Maicol <maicolbattistini@live.it>, 2018\n"
+"Language-Team: French (France) (https://www.transifex.com/maicol07/teams/91157/fr_FR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#: index.php:11
+msgid "Email cambiata con successo"
+msgstr ""
+
+#: index.php:12
+msgid ""
+"La tua email è stata cambiata! Verrai ora disconnesso, in modo da effettuare"
+" l'accesso con la nuova email."
+msgstr ""
+
+#: index.php:20
+msgid "Classe eliminata"
+msgstr ""
+
+#: index.php:21
+msgid "La classe "
+msgstr ""
+
+#: index.php:21 index.php:35
+msgid " è stata eliminata!"
+msgstr ""
+
+#: index.php:27
+msgid "Aggiunto alla classe"
+msgstr ""
+
+#: index.php:28
+msgid "Sei stato agginto alla classe "
+msgstr ""
+
+#: index.php:34
+msgid "Lista eliminata"
+msgstr ""
+
+#: index.php:35 classe.php:44
+msgid "La lista "
+msgstr ""
+
+#: index.php:41
+msgid "Benvenuto "
+msgstr ""
+
+#: index.php:50 footer.php:19 navbar.php:26 navbar.php:125
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: index.php:57 classe.php:29 lista.php:35 classe.php:282
+msgid "Classe"
+msgstr ""
+
+#: index.php:59 index.php:66 footer.php:23 navbar.php:29 navbar.php:131
+msgid "Classi"
+msgstr ""
+
+#: index.php:72 dashboard.php:45
+msgid "Crea classe"
+msgstr ""
+
+#: classe.php:22 classe.php:68 lista.php:28 lista.php:101 profile.php:34
+#: settings.php:49 settings.php:65 settings.php:111 settings.php:129
+msgid "Modifica"
+msgstr ""
+
+#: classe.php:32
+msgid "Liste"
+msgstr ""
+
+#: classe.php:38 classe.php:8
+msgid "Crea lista"
+msgstr ""
+
+#: classe.php:80
+msgid "Numero partecipanti:"
+msgstr ""
+
+#: classe.php:88 classe.php:167
+msgid "Invita utenti"
+msgstr ""
+
+#: classe.php:91
+msgid "Elimina classe"
+msgstr ""
+
+#: lista.php:44
+msgid "N°"
+msgstr ""
+
+#: lista.php:45
+msgid "Studente"
+msgstr ""
+
+#: lista.php:46
+msgid "Giornata"
+msgstr ""
+
+#: lista.php:47
+msgid "Giustificazione"
+msgstr ""
+
+#: lista.php:67 lista.php:81
+msgid "Sei giustificato. Vuoi revocare la giustificazione?"
+msgstr ""
+
+#: lista.php:69
+msgid "Giustificato"
+msgstr ""
+
+#: lista.php:73 lista.php:83
+msgid "Non sei giustificato. Vuoi giustificarti? Giustificazioni rimanenti: "
+msgstr ""
+
+#: lista.php:84
+msgid "Sembra che questa lista sia stata appena creata. Seleziona un' azione:"
+msgstr ""
+
+#: lista.php:87
+msgid "Generazione casuale"
+msgstr ""
+
+#: lista.php:90
+msgid ""
+"Sembra che questa lista sia stata appena creata. Chiedi ad un amministratore"
+" di generare la lista."
+msgstr ""
+
+#: lista.php:114
+msgid "Elimina lista"
+msgstr ""
+
+#: profile.php:20
+msgid "Utente non trovato"
+msgstr ""
+
+#: profile.php:21
+msgid ""
+"]} nei nostri database. Controlla di aver digitato correttamente il nome "
+"utente di chi stai cercando. Ritornerai alla pagina precedente dopo aver "
+"premuto su OK"
+msgstr ""
+
+#: profile.php:41 footer.php:24 navbar.php:52 navbar.php:152
+msgid "Profilo"
+msgstr ""
+
+#: profile.php:82 settings.php:43
+msgid "Nome utente"
+msgstr ""
+
+#: profile.php:105 profile.php:112
+msgid "Su di me!"
+msgstr ""
+
+#: profile.php:135 profile.php:136
+msgid "Maschio"
+msgstr ""
+
+#: profile.php:137
+msgid "Femmina"
+msgstr ""
+
+#: profile.php:143
+msgid "Compleanno"
+msgstr ""
+
+#: profile.php:151
+msgid "Genere"
+msgstr ""
+
+#: profile.php:163
+msgid "Seguaci"
+msgstr ""
+
+#: settings.php:26 footer.php:28 navbar.php:55 navbar.php:154
+msgid "Impostazioni"
+msgstr ""
+
+#: settings.php:31
+msgid "Parametro"
+msgstr ""
+
+#: settings.php:32
+msgid "Azioni"
+msgstr ""
+
+#: settings.php:59
+msgid "Email"
+msgstr ""
+
+#: settings.php:74
+msgid "Password attuale"
+msgstr ""
+
+#: settings.php:78
+msgid "Password"
+msgstr ""
+
+#: settings.php:82
+msgid "Conferma password"
+msgstr ""
+
+#: settings.php:89
+msgid "Cambia"
+msgstr ""
+
+#: settings.php:95
+msgid "Altre impostazioni"
+msgstr ""
+
+#: settings.php:101
+msgid "Indirizzo IP registrazione"
+msgstr ""
+
+#: settings.php:105
+msgid "Indirizzo IP ultimo accesso"
+msgstr ""
+
+#: settings.php:111 navbar.php:84
+msgid "Francese"
+msgstr ""
+
+#: settings.php:113
+msgid "Inglese"
+msgstr ""
+
+#: settings.php:115 navbar.php:84
+msgid "Italiano"
+msgstr ""
+
+#: settings.php:117
+msgid "Lingua predefinita"
+msgstr ""
+
+#: settings.php:122
+msgid "Elimina account"
+msgstr ""
+
+#: footer.php:13 footer.php:40 header.php:32 navbar.php:21 invite-users.php:24
+#: invite-users.php:35 save-input.php:37 save-input.php:49
+msgid "Interrogazioni Programmate"
+msgstr ""
+
+#: footer.php:14
+msgid "Gestisci le tue interrogazioni online insieme alla tua classe."
+msgstr ""
+
+#: footer.php:30
+msgid "Documentazione"
+msgstr ""
+
+#: footer.php:33 navbar.php:57 navbar.php:155 init.php:42
+msgid "Informazioni"
+msgstr ""
+
+#: footer.php:42
+msgid "Sito web"
+msgstr ""
+
+#: navbar.php:60 navbar.php:190
+msgid "Disconnettiti"
+msgstr ""
+
+#: navbar.php:84
+msgid "Inglese (Stati Uniti)"
+msgstr ""
+
+#: init.php:43
+msgid "Interrogazioni Programmate è un software closed-source sviluppato da "
+msgstr ""
+
+#: init.php:44
+msgid "Link utili"
+msgstr ""
+
+#: init.php:46
+msgid "Community"
+msgstr ""
+
+#: init.php:47
+msgid "Roadmap"
+msgstr ""
+
+#: init.php:49
+msgid "Riconoscimenti"
+msgstr ""
+
+#: init.php:49
+msgid "Icona creata da "
+msgstr ""
+
+#: init.php:50 init.php:53
+msgid "di"
+msgstr ""
+
+#: init.php:51 init.php:54
+msgid "con licenza"
+msgstr ""
+
+#: init.php:53
+msgid "Le immagini delle bandiere sono state create da"
+msgstr ""
+
+#: init.php:56
+msgid "Script e librerie di terze parti"
+msgstr ""
+
+#: dashboard.php:18 profile.php:107 lista.php:392
+msgid "Gennaio"
+msgstr ""
+
+#: dashboard.php:18 profile.php:107 lista.php:392
+msgid "Febbraio"
+msgstr ""
+
+#: dashboard.php:18 profile.php:107 lista.php:392
+msgid "Marzo"
+msgstr ""
+
+#: dashboard.php:18 profile.php:107 lista.php:392
+msgid "Aprile"
+msgstr ""
+
+#: dashboard.php:19 profile.php:108 lista.php:393
+msgid "Maggio"
+msgstr ""
+
+#: dashboard.php:19 profile.php:108 lista.php:393
+msgid "Giugno"
+msgstr ""
+
+#: dashboard.php:19 profile.php:108 lista.php:393
+msgid "Luglio"
+msgstr ""
+
+#: dashboard.php:19 profile.php:108 lista.php:393
+msgid "Agosto"
+msgstr ""
+
+#: dashboard.php:19 profile.php:108 lista.php:393
+msgid "Settembre"
+msgstr ""
+
+#: dashboard.php:20 profile.php:109 lista.php:394
+msgid "Ottobre"
+msgstr ""
+
+#: dashboard.php:20 profile.php:109 lista.php:394
+msgid "Novembre"
+msgstr ""
+
+#: dashboard.php:20 profile.php:109 lista.php:394
+msgid "Dicembre"
+msgstr ""
+
+#: dashboard.php:23 profile.php:111 lista.php:396
+msgid "Domenica"
+msgstr ""
+
+#: dashboard.php:23 profile.php:111 lista.php:396
+msgid "Lunedì"
+msgstr ""
+
+#: dashboard.php:23 profile.php:111 lista.php:396
+msgid "Martedì"
+msgstr ""
+
+#: dashboard.php:23 profile.php:111 lista.php:396
+msgid "Mercoledì"
+msgstr ""
+
+#: dashboard.php:23 profile.php:111 lista.php:396
+msgid "Giovedì"
+msgstr ""
+
+#: dashboard.php:24 profile.php:112 lista.php:397
+msgid "Venerdì"
+msgstr ""
+
+#: dashboard.php:24 profile.php:112 lista.php:397
+msgid "Sabato"
+msgstr ""
+
+#: dashboard.php:46
+msgid "Inserisci il nome della classe"
+msgstr ""
+
+#: dashboard.php:48 classe.php:11
+msgid "CREA!"
+msgstr ""
+
+#: dashboard.php:49 profile.php:102 profile.php:237 settings.php:34
+#: classe.php:12 classe.php:237 lista.php:316 lista.php:387
+msgid "Annulla"
+msgstr ""
+
+#: dashboard.php:76
+msgid "Classe creata!"
+msgstr ""
+
+#: dashboard.php:77
+msgid "La classe"
+msgstr "La classe"
+
+#: dashboard.php:77
+msgid "è stata creata!"
+msgstr ""
+
+#: dashboard.php:88 classe.php:55
+msgid "Oh no!"
+msgstr ""
+
+#: dashboard.php:88 classe.php:55
+msgid "Si è verificato un errore!"
+msgstr ""
+
+#: profile.php:37 classe.php:124 lista.php:126 lista.php:290
+msgid "Non riusciamo a salvare quello che stai digitando :("
+msgstr ""
+
+#: profile.php:96 lista.php:4 lista.php:381
+msgid "Gen"
+msgstr ""
+
+#: profile.php:96 lista.php:4 lista.php:381
+msgid "Feb"
+msgstr ""
+
+#: profile.php:96 lista.php:4 lista.php:381
+msgid "Mar"
+msgstr ""
+
+#: profile.php:96 lista.php:4 lista.php:381
+msgid "Apr"
+msgstr ""
+
+#: profile.php:96 lista.php:4 lista.php:381
+msgid "Mag"
+msgstr ""
+
+#: profile.php:96 lista.php:4 lista.php:381
+msgid "Giu"
+msgstr ""
+
+#: profile.php:97 lista.php:5 lista.php:382
+msgid "Lug"
+msgstr ""
+
+#: profile.php:97 lista.php:5 lista.php:382
+msgid "Ago"
+msgstr ""
+
+#: profile.php:97 lista.php:5 lista.php:382
+msgid "Set"
+msgstr ""
+
+#: profile.php:97 lista.php:5 lista.php:382
+msgid "Ott"
+msgstr ""
+
+#: profile.php:97 lista.php:5 lista.php:382
+msgid "Nov"
+msgstr ""
+
+#: profile.php:97 lista.php:5 lista.php:382
+msgid "Dic"
+msgstr ""
+
+#: profile.php:103 lista.php:388
+msgid "Pulisci"
+msgstr ""
+
+#: profile.php:104 lista.php:389
+msgid "OK"
+msgstr ""
+
+#: profile.php:113 lista.php:398
+msgid "Dom"
+msgstr ""
+
+#: profile.php:113 lista.php:398
+msgid "Lun"
+msgstr ""
+
+#: profile.php:113 lista.php:398
+msgid "Mart"
+msgstr ""
+
+#: profile.php:113 lista.php:398
+msgid "Mer"
+msgstr ""
+
+#: profile.php:113 lista.php:398
+msgid "Gio"
+msgstr ""
+
+#: profile.php:113 lista.php:398
+msgid "Ven"
+msgstr ""
+
+#: profile.php:114 lista.php:399
+msgid "Sab"
+msgstr ""
+
+#: profile.php:115 lista.php:400
+msgid "D"
+msgstr ""
+
+#: profile.php:115 lista.php:400
+msgid "L"
+msgstr ""
+
+#: profile.php:115 lista.php:400
+msgid "M"
+msgstr ""
+
+#: profile.php:115 lista.php:400
+msgid "Me"
+msgstr ""
+
+#: profile.php:115 lista.php:400
+msgid "G"
+msgstr ""
+
+#: profile.php:115 lista.php:400
+msgid "V"
+msgstr ""
+
+#: profile.php:116 lista.php:401
+msgid "S"
+msgstr ""
+
+#: profile.php:142
+msgid "Cambia immagine di profilo"
+msgstr ""
+
+#: profile.php:143
+msgid "Preferibilmente di dimensioni 256x256px."
+msgstr ""
+
+#: profile.php:144
+msgid "Carica la tua immagine di profilo"
+msgstr ""
+
+#: profile.php:152
+msgid "Cambia immagine di sfondo"
+msgstr ""
+
+#: profile.php:153
+msgid "Preferibilmente alta 250px"
+msgstr ""
+
+#: profile.php:154
+msgid "Carica la tua immagine di sfondo"
+msgstr ""
+
+#: profile.php:161
+msgid "Cambia immagine"
+msgstr ""
+
+#: profile.php:163
+msgid "Quale azione vuoi eseguire?"
+msgstr ""
+
+#: profile.php:166
+msgid "Elimina immagine"
+msgstr ""
+
+#: profile.php:172 classe.php:229 lista.php:308
+msgid "Conferma eliminazione"
+msgstr ""
+
+#: profile.php:173
+msgid "Si vuole davvero eliminare l'immagine?"
+msgstr ""
+
+#: profile.php:177
+msgid "No"
+msgstr ""
+
+#: profile.php:178 classe.php:236 lista.php:315
+msgid "Sì"
+msgstr ""
+
+#: profile.php:199
+msgid "Immagine di profilo eliminata!"
+msgstr ""
+
+#: profile.php:200
+msgid ""
+"L'immagine di profilo è stata eliminata! È stata reimpostata quella "
+"originale."
+msgstr ""
+
+#: profile.php:206
+msgid "Immagine di sfondo eliminata!"
+msgstr ""
+
+#: profile.php:207
+msgid ""
+"L'immagine di sfondo è stata eliminata! È stata reimpostata quella "
+"originale."
+msgstr ""
+
+#: profile.php:213
+msgid "Ops! Qualcosa è andato storto!"
+msgstr ""
+
+#: profile.php:214
+msgid ""
+"C'è stato un errore imprevisto durante l'eliminazione dell'immagine:<br><br>"
+msgstr ""
+
+#: profile.php:263
+msgid "Immagine di profilo cambiata!"
+msgstr ""
+
+#: profile.php:264
+msgid "L'immagine di profilo è stata cambiata!"
+msgstr ""
+
+#: profile.php:270
+msgid "Immagine di sfondo cambiata!"
+msgstr ""
+
+#: profile.php:271
+msgid "L'immagine di sfondo è stata cambiata!"
+msgstr ""
+
+#: profile.php:277 settings.php:63 settings.php:139 lista.php:62 lista.php:87
+#: lista.php:214 lista.php:251 lista.php:286 add-user-class.php:49
+msgid "Errore!"
+msgstr ""
+
+#: profile.php:278
+msgid ""
+"Si è verificato un errore imprevisto durante il caricamento dell'immagine. "
+"Riprova più tardi o contatta lo sviluppatore.<br><br>"
+msgstr ""
+
+#: settings.php:22
+msgid "Confema eliminazione"
+msgstr ""
+
+#: settings.php:23
+msgid ""
+"Si è davvero sicuri di voler eliminare il proprio account? Per confermare "
+"inserire la propria password."
+msgstr ""
+
+#: settings.php:25
+msgid "Inserisci la tua password"
+msgstr ""
+
+#: settings.php:49
+msgid "Account eliminato!"
+msgstr ""
+
+#: settings.php:50
+msgid ""
+"Il tuo account è stato eliminato. Premendo OK o rimuovendo questa notifica, "
+"tornerai alla schermata di accesso. Ci dispiace che te ne vada :("
+msgstr ""
+
+#: settings.php:57 settings.php:133 settings.php:157
+msgid "Password errata!"
+msgstr ""
+
+#: settings.php:58
+msgid "Il tuo account non è stato eliminato. La password inserita è errata."
+msgstr ""
+
+#: settings.php:64
+msgid "Il tuo account non è stato eliminato a causa di un errore."
+msgstr ""
+
+#: settings.php:98
+msgid "Lingua cambiata!"
+msgstr ""
+
+#: settings.php:99
+msgid ""
+"La lingua è stata modificata, aggiorna la pagina per utilizzare la lingua "
+"selezionata."
+msgstr ""
+
+#: settings.php:104
+msgid "Dati cambiati!"
+msgstr ""
+
+#: settings.php:105
+msgid "I tuoi dati sono stati modificati con successo"
+msgstr ""
+
+#: settings.php:122
+msgid "Email cambiata!"
+msgstr ""
+
+#: settings.php:123
+msgid ""
+"Manca solo un ultimo passaggio per cambiare la tua email. Ti abbiamo inviato"
+" una email (controlla anche nella cartella SPAM o Posta indesiderata) "
+"contenente un link per attivare la tua email. Finchè non confermi l'email la"
+" tua email attuale non verrà alterata."
+msgstr ""
+
+#: settings.php:134
+msgid ""
+"La tua password non può essere cambiata. La password attuale inserita è "
+"errata."
+msgstr ""
+
+#: settings.php:140
+msgid "Si è verificato un errore durante il salvataggio dei dati.<br><br>"
+msgstr ""
+
+#: settings.php:158
+msgid "I campi Nuova Password e Conferma Password non sono uguali."
+msgstr ""
+
+#: settings.php:198
+msgid "Conferma"
+msgstr ""
+
+#: classe.php:9
+msgid "Inserisci il nome della lista"
+msgstr ""
+
+#: classe.php:43
+msgid "Lista creata!"
+msgstr ""
+
+#: classe.php:44
+msgid " è stata creata!"
+msgstr ""
+
+#: classe.php:94
+msgid "Partecipanti"
+msgstr ""
+
+#: classe.php:164
+msgid "Una o più email sono sbagliate!<br>"
+msgstr ""
+
+#: classe.php:168
+msgid ""
+"Inserisci qui le email degli utenti che vuoi invitare. <b>Separa ciascuna "
+"email una dall'altra con una virgola (,).</b> Se un utente non è registrato,"
+" gli invieremo un invito per registrarsi."
+msgstr ""
+
+#: classe.php:205
+msgid "Utenti invitati"
+msgstr ""
+
+#: classe.php:206
+msgid "Abbiamo invitato gli utenti ad entrare nella classe :)"
+msgstr ""
+
+#: classe.php:211 classe.php:262 lista.php:341
+msgid "Errore"
+msgstr ""
+
+#: classe.php:212
+msgid "Non è stato possibile invitare la classe. Riprova in seguito!<br><br>"
+msgstr ""
+
+#: classe.php:230
+msgid "Sei sicuro di voler eliminare la classe "
+msgstr ""
+
+#: classe.php:230
+msgid "?<br>Tutti i dati e le liste della classe "
+msgstr ""
+
+#: classe.php:231 lista.php:310
+msgid "verranno eliminati. <b>Questa opzione è irreversibile!</b>"
+msgstr ""
+
+#: classe.php:263
+msgid "Non è stato possibile eliminare la classe. Riprova in seguito!"
+msgstr ""
+
+#: classe.php:284 lista.php:363
+msgid "Descrizione"
+msgstr ""
+
+#: classe.php:290 lista.php:368
+msgid "Carica"
+msgstr ""
+
+#: lista.php:11
+msgid "Scegli il tipo di generazione"
+msgstr ""
+
+#: lista.php:12
+msgid "Con quali dati vuoi generare la lista"
+msgstr ""
+
+#: lista.php:17
+msgid "Studenti della classe"
+msgstr ""
+
+#: lista.php:18
+msgid "Materie della classe"
+msgstr ""
+
+#: lista.php:50 lista.php:57
+msgid ""
+"Non è possibile cambiare lo stato della giustificazione nei 2 giorni "
+"precedenti all'interrogazione."
+msgstr ""
+
+#: lista.php:63
+msgid "Si sono verificati degli errori:<br><br>"
+msgstr ""
+
+#: lista.php:88 lista.php:287
+msgid "Si è verificato un errore durante il salvataggio della data:<br><br>"
+msgstr ""
+
+#: lista.php:166
+msgid "Una o più email sono sbagliate!"
+msgstr ""
+
+#: lista.php:169
+msgid "Inserisci utenti"
+msgstr ""
+
+#: lista.php:170
+msgid ""
+"Inserisci qui le email degli utenti che vuoi aggiungere. <b>Separa ciascuna "
+"email una dall'altra con una virgola (,). L'utente DEVE essere registrato e "
+"iscritto alla classe per poter essere inserito. In caso contrario NON verrà "
+"inserito.</b>"
+msgstr ""
+
+#: lista.php:215 lista.php:252
+msgid ""
+"Si è verificato un errore, riprovare più tardi o contattare il supporto "
+"nella <a "
+"href='https://community.interrogazioniprogrammate.tk'>Community</a>.<br><br>"
+msgstr ""
+
+#: lista.php:309
+msgid "Sei sicuro di voler eliminare la lista"
+msgstr ""
+
+#: lista.php:309
+msgid "?<br>Tutti i dati della lista"
+msgstr ""
+
+#: lista.php:342
+msgid "Non è stato possibile eliminare la lista. Riprova in seguito!<br><br>"
+msgstr ""
+
+#: lista.php:361
+msgid "Lista"
+msgstr ""
+
+#: lista.php:366
+msgid "Immagine:"
+msgstr ""
+
+#: add-user-class.php:50
+msgid ""
+"Non puoi essere aggiunto alla classe. Contattare il supporto nella <a "
+"href='https://community.interrogazioniprogrammate.tk'>Community</a>."
+msgstr ""
+
+#: deleteclass.php:13
+msgid ""
+"L'immagine della classe è protetta da scrittura. Impossibile eliminare la "
+"classe."
+msgstr ""
+
+#: deleteclass.php:18
+msgid ""
+"Impossibile eliminare l'immagine della classe. Impossibile eliminare la "
+"classe."
+msgstr ""
+
+#: deleteimage.php:14
+msgid "Non esiste una immagine associata al tuo account!"
+msgstr ""
+
+#: deleteimage.php:17
+msgid "File protetto da scrittura. Impossibile eliminare l'immagine."
+msgstr ""
+
+#: deleteimage.php:22
+msgid "Impossibile eliminare il file."
+msgstr ""
+
+#: deletelist.php:13
+msgid ""
+"L'immagine della lista è protetta da scrittura. Impossibile eliminare la "
+"lista."
+msgstr ""
+
+#: deletelist.php:18
+msgid ""
+"Impossibile eliminare l'immagine della lista. Impossibile eliminare la "
+"lista."
+msgstr ""
+
+#: getsavelistcont.php:18 getsavelistcont.php:26 getsavelistcont.php:34
+msgid ""
+"La data inserita è precedente rispetto a quella della persona successiva."
+msgstr ""
+
+#: invite-users.php:24
+msgid "Invito alla classe "
+msgstr ""
+
+#: invite-users.php:36
+msgid "L'utente"
+msgstr ""
+
+#: invite-users.php:36
+msgid "ti ha invitato a partecipare alla classe"
+msgstr ""
+
+#: invite-users.php:37
+msgid ""
+"Per partecipare alla classe clicca su questo link ed effettua l'accesso "
+"(registrazione se non sei registrato) se non sei già autenticato:"
+msgstr ""
+
+#: invite-users.php:37
+msgid "Accetta l'invito"
+msgstr ""
+
+#: invite-users.php:38
+msgid "Saluti,<br>Il team di Interrogazioni Programmate"
+msgstr ""
+
+#: invite-users.php:48
+msgid "Impossibile inviare l'email. "
+msgstr ""
+
+#: save-input.php:18
+msgid "Nome utente già utilizzato. Scegline un altro."
+msgstr ""
+
+#: save-input.php:20
+msgid "Email già utilizzata. Scegline un'altra."
+msgstr ""
+
+#: save-input.php:37
+msgid "Cambio email"
+msgstr ""
+
+#: save-input.php:50
+msgid ""
+"<p>Qualcuno ha richiesto il reset della tua password.</p><p>Se non sei stato tu , ignora questa email e non succederà niente.</p>\n"
+"\t\t\t<p>Per resettare la tua password, visita il seguente indirizzo:"
+msgstr ""
+
+#: save-input.php:51
+msgid "Resetta la password"
+msgstr ""
+
+#: save-input.php:52
+msgid ""
+"Se il collegamento sopra non dovesse funzionare, copia e incolla nel browser"
+" il seguente indirizzo:"
+msgstr ""
+
+#: save-input.php:74
+msgid "La password inserita è troppo corta."
+msgstr ""
+
+#: validateNewEmail.php:17
+msgid "Token fornito non valido, usa il link all'interno dell'email."
+msgstr ""
+
+#: validateNewEmail.php:20
+msgid "La tua email è già stata cambiata con questo token!"
+msgstr ""

@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Interrogazioni_Programmate package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Maicol <maicolbattistini@live.it>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Interrogazioni_Programmate 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-13 17:17+0200\n"
+"PO-Revision-Date: 2018-09-21 17:10+0200\n"
+"Last-Translator: Maicol <maicolbattistini@live.it>, 2018\n"
+"Language-Team: English (United States) (https://www.transifex.com/maicol07/teams/91157/"
+"en_US/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#: index.php:32
+msgid ""
+"Il nome utente e la password inseriti non corrispondono oppure il tuo account non è "
+"ancora attivo."
+msgstr ""
+"The username and password you entered do not match or your account is not active yet."
+
+#: index.php:47 index.php:132
+msgid "Accesso"
+msgstr "Admission"
+
+#: index.php:47 index.php:131 index.php:178 forgot-password.php:55 forgot-password.php:94
+#: forgot-password.php:147 forgot-password.php:180 register.php:74 register.php:86
+#: register.php:122 register.php:187 register.php:267 reset.php:76 reset.php:134
+#: reset.php:189
+msgid "Interrogazioni Programmate"
+msgstr "Scheduled Oral Exams"
+
+#: index.php:86 activate.php:33 forgot-password.php:132 register.php:164 reset.php:109
+msgid "Errore!"
+msgstr "Error!"
+
+#: index.php:87
+msgid "È stato riscontrato un errore durante l'accesso:<br>"
+msgstr "An error was occured during the login:<br>"
+
+#: index.php:96
+msgid "Sei stato attivato!"
+msgstr "You have been activated!"
+
+#: index.php:97
+msgid "Il tuo account è ora attivo e puoi accedere."
+msgstr "Your account is now active and you can login."
+
+#: index.php:100
+msgid "Azione eseguita con successo!"
+msgstr "Action performed successfully!"
+
+#: index.php:101
+msgid ""
+"Perfavore controlla la tua posta in arrivo (anche SPAM o posta indesiderata) per il link "
+"di reset della password."
+msgstr ""
+"Please check your Inbox (even SPAM or junk mail) for the link to reset your password."
+
+#: index.php:104
+msgid "Password cambiata!"
+msgstr "Password changed!"
+
+#: index.php:105
+msgid "Hai cambiato la password, puoi ora accedere."
+msgstr "You have successfully changed your password, you may now login."
+
+#: index.php:128 register.php:83
+msgid "Interrogazioni programmate"
+msgstr "Scheduled Oral Exams"
+
+#: index.php:139
+msgid "Email o nome utente"
+msgstr "Email or username"
+
+#: index.php:140
+msgid "Nome utente non valido"
+msgstr "Invalid username"
+
+#: index.php:148 register.php:219 reset.php:144
+msgid "Password"
+msgstr "Password"
+
+#: index.php:155
+msgid "Ricordami"
+msgstr "Remember me"
+
+#: index.php:162 register.php:241
+msgid "Accedi"
+msgstr "Log In"
+
+#: index.php:169
+msgid "Registrati ora!"
+msgstr "Sign up!"
+
+#: index.php:173
+msgid "Password dimenticata?"
+msgstr "Forgotten your password?"
+
+#: index.php:179 forgot-password.php:181 register.php:268
+msgid ""
+"L'icona creata da <a href=\"http://www.freepik.com\" title=\"Freepik\">Freepik</a>\n"
+"                    di\n"
+"                    <a href=\"https://www.flaticon.com/\" title=\"Flaticon\">www.flaticon."
+"com</a> ha licenza <a\n"
+"                            href=\"http://creativecommons.org/licenses/by/3.0/\" title="
+"\"Creative Commons BY 3.0\"\n"
+"                            target=\"_blank\">Creative Commons BY 3.0</a>"
+msgstr ""
+"The icon created by <a href=\"http://www.freepik.com\" title=\"Freepik\">Freepik</a> from "
+"<a href=\"https://www.flaticon.com/\" title=\"Flaticon\">www.flaticon.com</a> is licensed "
+"<a href=\"http://creativecommons.org/licenses/by/3.0/\" title=\"Creative Commons BY 3.0\" "
+"target=\"_blank\">under a Creative Commons BY 3.0</a>"
+
+#: index.php:186
+msgid "Cronologia versioni"
+msgstr "Version history"
+
+#: index.php:193
+msgid "Impossibile aprire il file!"
+msgstr "Cannot open file!"
+
+#: activate.php:34
+msgid ""
+"Il tuo account non può essere attivato. Contattare il supporto nella <a href=\\'community."
+"interrogazioniprogrammate.tk\\'>Community</a>."
+msgstr ""
+"Your account cannot be activated. Get support in the <a href=\"\\'community."
+"interrogazioniprogrammate.tk\\'\">Community</a>."
+
+#: forgot-password.php:16
+msgid "Indirizzo email non valido o non inserito!"
+msgstr "Invalid or blank email address!"
+
+#: forgot-password.php:23
+msgid ""
+"L' email inserita non ha una corrispondenza nei nostri database. Sei sicuro di esserti "
+"registrato correttamente o di aver inserito l'email corretta?"
+msgstr ""
+"The email address you entered does not have a match in our database. Are you sure you "
+"have registered properly or that you have entered the correct email?"
+
+#: forgot-password.php:44
+msgid "Reset della password"
+msgstr "Password reset"
+
+#: forgot-password.php:44
+msgid "Interrograzioni Programmate"
+msgstr "Scheduled Oral Exams"
+
+#: forgot-password.php:56
+msgid ""
+"<p>Qualcuno ha richiesto il reset della tua password.</p>\n"
+"\t\t\t<p>Se non sei stato tu , ignora questa email e non succederà niente.</p>\n"
+"\t\t\t<p>Per resettare la tua password, visita il seguente indirizzo:"
+msgstr ""
+"<p>Someone requested to reset your password.</p><p>If it was not you, ignore this email "
+"and nothing will happen.</p><p>To reset your password, visit the following address:"
+
+#: forgot-password.php:58
+msgid "Resetta la password"
+msgstr "Reset password"
+
+#: forgot-password.php:59
+msgid ""
+"Se il collegamento sopra non dovesse funzionare, copia e incolla nel browser il seguente "
+"indirizzo:"
+msgstr ""
+"If the above link doesn't work, copy and paste into your browser the following address:"
+
+#: forgot-password.php:94
+msgid "Password dimenticata"
+msgstr "I forgot my password"
+
+#: forgot-password.php:133
+msgid "È stato riscontrato un errore durante il recupero della password:"
+msgstr "An error was encountered while retrieving the password:"
+
+#: forgot-password.php:148
+msgid "Recupera Password"
+msgstr "Recover Password"
+
+#: forgot-password.php:156 register.php:210
+msgid "Email"
+msgstr "Email"
+
+#: forgot-password.php:162
+msgid "Recupera password!"
+msgstr "Recover password!"
+
+#: forgot-password.php:170 register.php:236
+msgid "Registrati!"
+msgstr "Sign up!"
+
+#: forgot-password.php:175
+msgid "Accedi ora!"
+msgstr "Login now!"
+
+#: register.php:12
+msgid "Il nome utente inserito è troppo corto!"
+msgstr "The username you entered is too short!"
+
+#: register.php:19
+msgid "Il nome utente inserito è già in uso. Sceglierne un altro."
+msgstr "This username is already taken. Please choose another."
+
+#: register.php:25 reset.php:28
+msgid "La password inserita è troppo corta."
+msgstr "The password you entered is too short."
+
+#: register.php:29
+msgid "La conferma della password inserita è troppo corta."
+msgstr "The password confirm you entered is too short."
+
+#: register.php:33 reset.php:36
+msgid "Le password inserite non corrispondono."
+msgstr "The passwords you've entered don't match."
+
+#: register.php:38
+msgid "L'email inserita non è valida. Perfavore inserirne una corretta."
+msgstr "The email address you entered is not valid. Please insert a correct one."
+
+#: register.php:45
+msgid "L'email inserita è già utilizzata."
+msgstr "The email address you entered is already in use."
+
+#: register.php:74
+msgid "Conferma della registrazione"
+msgstr "Confirm Signup"
+
+#: register.php:87
+msgid ""
+"<p>Grazie per esserti registrato al portale Interrogazioni Programmate.</p>\n"
+"\t\t\t<p>Per attivare il tuo account clicca su questo link:"
+msgstr ""
+"<p>Thank you for registering to the portal Scheduled Oral Exams.</p>\n"
+"\t\t\t<p>To activate your account please click on this link:"
+
+#: register.php:89
+msgid ""
+"Saluti, \n"
+" Il team di Interrogazioni Programmate"
+msgstr "Greetings, The Scheduled Oral Exams team"
+
+#: register.php:122 register.php:188
+msgid "Registrazione"
+msgstr "Sign Up"
+
+#: register.php:165
+msgid "È stato riscontrato un errore durante la registrazione:<br>"
+msgstr "An error was encountered while signing up:<br>"
+
+#: register.php:174
+msgid "Sei registrato!"
+msgstr "You have signed up!"
+
+#: register.php:175
+msgid ""
+"Registrazione completata, perfavore controlla la tua email (anche la cartella SPAM o di "
+"posta indesiderata) per attivare il tuo account."
+msgstr ""
+"Sign up is complete, please check your email (also SPAM or junk mail folder) in order to "
+"activate your account."
+
+#: register.php:199
+msgid "Nome utente"
+msgstr "Username"
+
+#: register.php:201
+msgid "Nome utente troppo corto (almeno 4 caratteri)"
+msgstr "Username too short (at least 4 characters)"
+
+#: register.php:221 reset.php:146
+msgid "Password troppo corta (almeno 8 caratteri)"
+msgstr "Password too short (at least 8 characters)"
+
+#: register.php:227 reset.php:152
+msgid "Ripeti password"
+msgstr "Repeat your password"
+
+#: register.php:228 reset.php:153
+msgid "Le password non corrispondono"
+msgstr "The passwords do not match"
+
+#: register.php:240
+msgid "Hai già un account?"
+msgstr "Do you already have an account?"
+
+#: reset.php:16
+msgid "Token fornito non valido, usa il link all'interno dell'email."
+msgstr "The provided token invalid, use the link within the email."
+
+#: reset.php:19
+msgid "La tua password è già stata cambiata!"
+msgstr "Your password has been changed"
+
+#: reset.php:32
+msgid "La conferma della password è troppo corta."
+msgstr "Confirmation of the password is too short."
+
+#: reset.php:76
+msgid "Reset Password"
+msgstr "Password reset"
+
+#: reset.php:110
+msgid "È stato riscontrato un errore durante il reset della password:<br>"
+msgstr "Was encountered an error while resetting password:<br>"
+
+#: reset.php:135
+msgid "Resetta Password"
+msgstr "Reset Password"
+
+#: reset.php:161
+msgid "Cambia password!"
+msgstr "Change password!"
+
+#: reset.php:190
+msgid ""
+"L'icona creata da <a href=\"http://www.freepik.com\"\n"
+"                                                                   title=\"Freepik"
+"\">Freepik</a>\n"
+"                        di\n"
+"                        <a href=\"https://www.flaticon.com/\" title=\"Flaticon\">www."
+"flaticon.com</a> ha licenza <a\n"
+"                                href=\"http://creativecommons.org/licenses/by/3.0/\" "
+"title=\"Creative Commons BY 3.0\"\n"
+"                                target=\"_blank\">Creative Commons BY 3.0</a>"
+msgstr ""
+"The icon created by <a href=\"http://www.freepik.com\" title=\"Freepik\">Freepik</a> by "
+"<a href=\"https://www.flaticon.com/\" title=\"Flaticon\">www.flaticon.com</a> is licensed "
+"<a href=\"http://creativecommons.org/licenses/by/3.0/\" title=\"Creative Commons BY 3.0\" "
+"target=\"_blank\">under a Creative Commons BY 3.0</a>"
