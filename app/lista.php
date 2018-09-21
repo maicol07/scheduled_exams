@@ -85,7 +85,7 @@ if ($listinfo["img"] == null) {
 <br>
 <div class="row center-align">
     <a onclick="generazione_casuale()" class="btn light-green waves-effect waves-light">' . _("Generazione casuale") . '</a>
-s</div>';
+</div>';
                     } else {
                         echo '<h6 class="center-align">' . _("Sembra che questa lista sia stata appena creata. Chiedi ad un amministratore di generare la lista.") . '</h6>';
                     }

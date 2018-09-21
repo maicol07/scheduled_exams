@@ -33,7 +33,7 @@ function crea_lista() {
                 cardcontent.className += "card-action"; // Add CSS class
                 var cardspan = document.createElement("SPAN"); //Create <span> element
                 cardspan.style.textTransform = "uppercase"; // Add CSS style
-                var cardtext = TextNode(name.value); // Create a text node
+                var cardtext = document.createTextNode(name.value); // Create a text node
                 cardspan.appendChild(cardtext); // Append the text node to <span>
                 cardcontent.appendChild(cardspan); // Append the <span> element to <div>
                 container.appendChild(cardcontent); // Append the <div> element to <div>

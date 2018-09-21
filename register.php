@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
                 ':password' => $hashedpassword,
                 ':email' => $_POST['email'],
                 ':active' => $activasion,
-                ':ip' => get_user_ip()
+                ':ip' => $user->get_user_ip()
             ));
             $id = $db->lastInsertId('userID');
 

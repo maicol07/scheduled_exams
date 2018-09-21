@@ -306,7 +306,7 @@ function saveDate(user) {
 async function delete_list() {
     await swal({
         title: "<?php echo _("Conferma eliminazione") ?>",
-        html: "<?php echo _("Sei sicuro di voler eliminare la lista") ?>" + listname + "<?php echo _("?<br>Tutti i dati della lista") ?>" +
+        html: "<?php echo _("Sei sicuro di voler eliminare la lista") ?> " + listname + "<?php echo _("?<br>Tutti i dati della lista") ?> " +
             "<?php echo _("verranno eliminati. <b>Questa opzione è irreversibile!</b>") ?>",
         type: "warning",
         showConfirmButton: true,
