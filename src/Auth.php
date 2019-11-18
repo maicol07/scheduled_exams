@@ -2,9 +2,6 @@
 
 namespace src;
 
-require_once "dir.php";
-require_once DOCROOT . "/vendor/autoload.php";
-
 use Delight\Cookie\Session;
 use Medoo\Medoo;
 

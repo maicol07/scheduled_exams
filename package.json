@@ -7,6 +7,9 @@
     "license": "proprietary",
     "private": true,
     "dependencies": {
+        "cookieconsent": "^3.1.1",
+        "gettext-translator": "^3.0.0",
+        "jquery": "^3.4.1",
         "material-components-web": "^4.0.0",
         "materialize-css": "latest"
     }

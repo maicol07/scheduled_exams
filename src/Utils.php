@@ -194,7 +194,15 @@ class Utils
     public static function buildAssetsImport($assets)
     {
         // Search for glob patterns
-        $patterns = preg_grep("/\*/", $assets);
+        $assets_list = [];
+        foreach ($assets as $asset => $options) {
+            if (is_array($options)) {
+                array_push($assets_list, $asset);
+            } else {
+                array_push($assets_list, $options);
+            }
+        }
+        $patterns = preg_grep("/\*/", $assets_list);
         if (count($patterns)) {
             foreach ($patterns as $pattern) {
                 $files = glob(Utils::buildAssetsURI($pattern, true));
@@ -209,21 +217,35 @@ class Utils
                     array_unshift($files, $init);
                 }
                 $key = array_search($pattern, $assets);
-                array_splice($assets, $key, 1, array_map(function ($path) {
+                if (!$key and array_key_exists($pattern, $assets)) {
+                    $key = $pattern;
+                }
+                $list = array_map(function ($path) {
                     return str_replace(DOCROOT, '', $path);
-                }, $files));
+                }, $files);
+                foreach ($list as $asset) {
+                    array_push($assets, $asset);
+                }
+                unset($assets[$key]);
             }
         }
 
         $html = '';
-        foreach ($assets as $asset) {
+        foreach ($assets as $asset => $options) {
+            if (is_array($options) and !empty($options)) {
+                $type = $options['type'];
+            } else {
+                $type = "text/javascript";
+                $asset = $options;
+            }
             if (!static::is_url($asset)) {
                 $asset = Utils::buildAssetsURI($asset);
             }
             if (preg_match("/.js/", $asset)) {
-                $html .= '<script src="' . $asset . '"></script>';
+
+                $html .= '<script type="' . $type . '" src="' . $asset . '"></script>';
             } elseif (preg_match("/.css/", $asset)) {
-                $html .= '<link rel="stylesheet" type="text/css" href="' . $asset . '">';
+                $html .= '<link rel="stylesheet" href="' . $asset . '">';
             }
         }
         return $html;
@@ -247,11 +269,11 @@ class Utils
         if (strpos($dir, ".css") or strpos($dir, ".js")) {
             $pieces = explode(".", $dir);
             $minified = array_search("min", $pieces);
-            if ($minified and !PRODUCTION) {
-                if (file_exists(implode(".", array_diff($pieces, ['min'])))) {
+            if ($minified and empty(PRODUCTION)) {
+                if (file_exists(DOCROOT . implode(".", array_diff($pieces, ['min'])))) {
                     unset($pieces[$minified]);
                 }
-            } elseif (!$minified and PRODUCTION) {
+            } elseif (!$minified and !empty(PRODUCTION)) {
                 array_splice($pieces, -2, 0, ["min"]);
             }
             $dir = implode(".", $pieces);

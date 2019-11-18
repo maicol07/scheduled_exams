@@ -50,7 +50,7 @@
                             text: "<?php echo _("Il tuo account è stato eliminato. Premendo OK o rimuovendo questa notifica, tornerai alla schermata di accesso. Ci dispiace che te ne vada :(") ?>",
                             type: "success"
                         }).then((result) => {
-                            window.location.href = "../index.php";
+                            window.location.href = "../../index.php";
                         })
                     } else if (this.responseText === "PSW_ERR") {
                         swal({
