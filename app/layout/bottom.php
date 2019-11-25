@@ -35,17 +35,17 @@ $scripts = [
     // Materialize
     "vendor/web-assets/material-components-web/dist/material-components-web.min.js",
     // SweetAlert2
-    //"vendor/npm-asset/sweetalert2/dist/sweetalert2.all.js",
+    "vendor/web-assets/sweetalert2/dist/sweetalert2.all.js",
     // Polyfill (ES6 Promises for IE11 and Android Browsers)
-    //"vendor/npm-asset/promise-polyfill/dist/polyfill.js",
+    "vendor/web-assets/promise-polyfill/dist/polyfill.js",
     // GetText Translator
-    'vendor/web-assets/gettext-translator/src/translator.js' => ['type' => "module"],
+    'vendor/web-assets/gettext-translator/dist/translator.js',
     // Perfect Scrollbar
     //'vendor/npm-asset/perfect-scrollbar/dist/perfect-scrollbar.js',
     // Cookie consent
     "vendor/web-assets/cookieconsent/build/cookieconsent.min.js",
     // Scripts
-    "app/assets/js/*.js"
+    "app/assets/js/*.js" => []
 ];
 if (!empty($include_scripts)) {
     $scripts = array_merge($scripts, $include_scripts);

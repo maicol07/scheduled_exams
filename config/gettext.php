@@ -155,18 +155,21 @@ if (get("lang")) {
 } elseif (isset($user) and $user->isAuthenticated()) {
     $lang = $user->getLanguage(); // User preferred language
 } else {
-    $lang = (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : "en"; // Browser detection
+    $lang = (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : "en_US"; // Browser detection
 }
 $accepted_langs = array_map('basename', glob(DOCROOT . "/locale/*", GLOB_ONLYDIR));
-$lang = in_array($lang, $accepted_langs) ? $lang : 'en';
+$lang = (in_array($lang, $accepted_langs) and strlen($lang) == 4) ? $lang : 'en_US';
 // Set language and domain
 //$t->loadTranslations(Translations::fromPoFile(DOCROOT . "/locale/$lang/messages.po"));
 $t->loadDomain("messages", DOCROOT . "/locale");
 Gettext\TranslatorFunctions::register($t);
 $langs = [
-    'it_IT' => __("Italiano"),
+    'it_IT' => [
+        'text' => __("Italiano"),
+        'flag' => 'it'
+    ],
     'en_US' => [
-        'text' => __("Inglese"),
+        'text' => __("Inglese (Stati Uniti)"),
         'flag' => 'us'
     ]
 ];

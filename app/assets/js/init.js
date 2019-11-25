@@ -1,3 +1,16 @@
+/*
+ * Translation initialization
+ */
+/*$.getJSON(ROOTDIR + '/locale/' + USER_LANG + '/messages.json', function (data) {
+    window.tr = new Translator(data);
+});
+var tr;
+if (window.tr == null) {
+    tr = new Translator()
+} else {
+    tr = window.tr;
+}*/
+
 // MDC
 const mdc = window.mdc;
 
@@ -5,11 +18,9 @@ const mdc = window.mdc;
 mdc.autoInit();
 
 /*
- *
  * Drawer
- *
- *
  */
+
 // Select DOM elements
 
 const topAppBarElement = $('.mdc-top-app-bar')[0];
@@ -59,4 +70,56 @@ const resizeHandler = () => {
         drawer = initPermanentDrawer();
     }
 };
-window.addEventListener('resize', resizeHandler);
+$(window).resize(resizeHandler);
+
+// MDC Menu initialization
+$('.mdc-menu').each((index, element) => {
+    var menu = new mdc.menu.MDCMenu.attachTo($(element)[0]);
+    $(element).prev('.menu-button').click(() => {
+        menu.open = !menu.open;
+    });
+});
+
+// MDC Ripples initialization
+function initRipple(elements) {
+    $(elements).each((index, element) => {
+        var ripple = new mdc.ripple.MDCRipple.attachTo($(element)[0]);
+        if ($(element).hasClass('mdc-icon-button')) {
+            ripple.unbounded = true;
+        }
+    });
+}
+
+initRipple($('.mdc-button, .mdc-list-item ,.mdc-icon-button'));
+
+// Swal2
+function initSwalBtn() {
+    var buttons = $('.swal2-actions .mdc-button');
+    buttons.each((index, btn) => {
+        $(btn).html('<div class="mdc-button__ripple"></div><span class="mdc-button__label">' + $(btn).text() + '</span>');
+    });
+    initRipple(buttons)
+}
+
+const Swal_md = Swal.mixin({
+    customClass: {
+        confirmButton: 'mdc-button mdc-button--raised mdc-typography--button',
+        cancelButton: 'mdc-button mdc-typography--button',
+        header: 'mdc-typography',
+        content: 'mdc-typography',
+        footer: 'mdc-typography'
+    },
+    buttonsStyling: false
+});
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+});

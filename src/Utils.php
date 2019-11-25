@@ -223,8 +223,13 @@ class Utils
                 $list = array_map(function ($path) {
                     return str_replace(DOCROOT, '', $path);
                 }, $files);
+                $options = $assets[$key];
                 foreach ($list as $asset) {
-                    array_push($assets, $asset);
+                    if (!empty($options)) {
+                        $assets[$asset] = $options;
+                    } else {
+                        array_push($assets, $asset);
+                    }
                 }
                 unset($assets[$key]);
             }

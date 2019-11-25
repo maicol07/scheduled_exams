@@ -39,23 +39,26 @@ use src\Utils;
     <title><?php echo sprintf("%s - " . __("Interrogazioni Programmate"), $title) ?></title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:400,700&display=swap"
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
           rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180"
-          href="<?php echo Utils::buildAssetsURI("/assets/img/favicon/apple-touch-icon.png") ?>">
+          href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/apple-touch-icon.png") ?>">
     <link rel="icon" type="image/png" sizes="32x32"
-          href="<?php echo Utils::buildAssetsURI("/assets/img/favicon/favicon-32x32.png"); ?>">
+          href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon-32x32.png"); ?>">
     <link rel="icon" type="image/png" sizes="16x16"
-          href="<?php echo Utils::buildAssetsURI("/assets/img/favicon/favicon-16x16.png"); ?>">
-    <link rel="manifest" href="<?php echo Utils::buildAssetsURI("/assets/img/favicon/site.webmanifest"); ?>">
-    <link rel="mask-icon" href="<?php echo Utils::buildAssetsURI("/assets/img/favicon/safari-pinned-tab.svg"); ?>"
+          href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon-16x16.png"); ?>">
+    <link rel="manifest" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/site.webmanifest"); ?>">
+    <link rel="mask-icon" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/safari-pinned-tab.svg"); ?>"
           color="#5bbad5">
-    <link rel="shortcut icon" href="<?php echo Utils::buildAssetsURI("/assets/img/favicon/favicon.ico"); ?>">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <link rel="shortcut icon" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon.ico"); ?>">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-TileImage"
+          content="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/mstile-144x144.png") ?>">
     <meta name="msapplication-config"
-          content="<?php echo Utils::buildAssetsURI("/assets/img/favicon/browserconfig.xml"); ?>">
+          content="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/browserconfig.xml"); ?>">
     <meta name="theme-color" content="#ffffff">
 
     <?php
@@ -82,9 +85,9 @@ if (isset($body) and !$body) {
     return;
 }
 ?>
-<body>
-<!-- Preloader
-<script src="<?php echo Utils::buildAssetsURI("a/assets/js/custom/preloader.min.js") ?>"></script>-->
+<body class="mdc-typography">
+<!-- Preloader -->
+<script src="<?php echo Utils::buildAssetsURI("app/assets/preloader.min.js") ?>"></script>
 <?php
 if (!isset($navbar) or $navbar) {
     require_once DOCROOT . "/app/layout/navbar.php";
