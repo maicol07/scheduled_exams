@@ -2,7 +2,6 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/gettext/php-scanner" />
       <path value="$PROJECT_DIR$/vendor/gettext/languages" />
       <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
       <path value="$PROJECT_DIR$/vendor/gettext/translator" />
@@ -33,7 +32,6 @@
       <path value="$PROJECT_DIR$/vendor/lindelius/php-jwt" />
       <path value="$PROJECT_DIR$/vendor/php-http/promise" />
       <path value="$PROJECT_DIR$/vendor/php-http/curl-client" />
-      <path value="$PROJECT_DIR$/vendor/php-http/client-common" />
       <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
       <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
@@ -41,18 +39,26 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/sentry/sentry" />
       <path value="$PROJECT_DIR$/vendor/jean85/pretty-package-versions" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/materialize-css" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/material-components-web" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/@material" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/focus-trap" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/xtend" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/tslib" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/tabbable" />
       <path value="$PROJECT_DIR$/vendor/delight-im/http" />
       <path value="$PROJECT_DIR$/vendor/delight-im/cookie" />
+      <path value="$PROJECT_DIR$/vendor/gettext/php-scanner" />
+      <path value="$PROJECT_DIR$/vendor/php-http/client-common" />
+      <path value="$PROJECT_DIR$/vendor/gravatarphp/gravatar" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/sweetalert2" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/promise-polyfill" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/tslib" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/tabbable" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/material-components-web" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/jquery" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/opencollective-postinstall" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/materialize-css" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/flag-icon-css" />
       <path value="$PROJECT_DIR$/vendor/web-assets/cookieconsent" />
       <path value="$PROJECT_DIR$/vendor/web-assets/gettext-translator" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/jquery" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/focus-trap" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/@material" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/.bin" />
+      <path value="$PROJECT_DIR$/vendor/web-assets/xtend" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

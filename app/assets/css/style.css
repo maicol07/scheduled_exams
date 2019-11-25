@@ -1,5 +1,66 @@
+/*
+ =========
+    MDC
+ =========
+*/
+
+/* MDC variables */
+:root {
+    --mdc-theme-primary: #1884f3;
+    --mdc-theme-secondary: #018786;
+    --mdc-theme-background: #fff;
+    --mdc-theme-surface: #fff;
+    --mdc-theme-error: #b00020;
+    --mdc-theme-on-primary: #fff;
+    /*--mdc-theme-on-primary: rgba(60, 64, 67, 0.3);*/
+    --mdc-theme-on-secondary: #fff;
+    --mdc-theme-on-surface: #000;
+    --mdc-theme-on-error: #fff;
+    --mdc-theme-text-primary-on-background: rgba(0, 0, 0, 0.87);
+    --mdc-theme-text-secondary-on-background: rgba(0, 0, 0, 0.54);
+    --mdc-theme-text-hint-on-background: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-disabled-on-background: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-icon-on-background: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-primary-on-light: #5f6368; /*rgba(0, 0, 0, 0.87);*/
+    --mdc-theme-text-secondary-on-light: rgba(0, 0, 0, 0.54);
+    --mdc-theme-text-hint-on-light: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-disabled-on-light: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-icon-on-light: rgba(0, 0, 0, 0.38);
+    --mdc-theme-text-primary-on-dark: white;
+    --mdc-theme-text-secondary-on-dark: rgba(255, 255, 255, 0.7);
+    --mdc-theme-text-hint-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-disabled-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
+    --mdc-theme-text-activated: #1a237e;
+    --mdc-theme-outline-border: #dadce0;
+    --mdc-theme-outline-border-dark: #95979b
+}
+
+.mdc-button--outlined:not(:disabled) {
+    border-color: var(--mdc-theme-outline-border,
+    #dadce0);
+}
+
+.mdc-button.mdc-button--outlined .mdc-button__ripple::before, .mdc-button.mdc-button--outlined .mdc-button__ripple::after {
+    background-color: var(--mdc-theme-outline-border-dark);
+}
+
+.mdc-typography, .mdc-typography--body1, .mdc-typography--body2, .mdc-typography--caption, .mdc-typography--overline {
+    font-family: Raleway, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, .mdc-typography--headline3,
+.mdc-typography--headline4, .mdc-typography--headline5, .mdc-typography--headline6, .mdc-typography--subtitle1,
+.mdc-typography--subtitle2, .mdc-typography--button {
+    font-family: Montserrat, sans-serif;
+}
+
+.mdc-drawer .mdc-list-item--activated, .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
+    color: var(--mdc-theme-text-activated)
+}
+
 body {
-    display: flex;
+    /*display: flex;*/
 }
 
 .mdc-drawer-app-content {
@@ -11,11 +72,19 @@ body {
 .mdc-top-app-bar {
     top: 0;
     left: 0;
+    background-color: white;
+    box-shadow: inset 0 -1px 0 0 #dadce0;
     z-index: 7; /* Drawer below app bar */
+    position: absolute;
+}
+
+.mdc-top-app-bar * {
+    color: var(--mdc-theme-text-primary-on-light, #5f6368) !important;
 }
 
 .mdc-top-app-bar__title {
     font-family: Montserrat, sans-serif;
+    font-weight: bold;
 }
 
 .mdc-drawer:not(.mdc-drawer--open) + .mdc-drawer-app-content .mdc-top-app-bar {
@@ -32,9 +101,8 @@ body {
     margin-left: 248px;
 }
 
-
-.mdc-app-bar {
-    position: absolute;
+.mdc-drawer.mdc-drawer--open.mdc-drawer--dismissible {
+    top: 63px;
 }
 
 .mdc-list-item__graphic {

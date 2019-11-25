@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{MDC for Web, SweetAlert2, adsbygoogle, jquery}" />
+    <file url="PROJECT" libraries="{Flag Icon CSS, Generated files, MDC for Web, SweetAlert2 8, SweetAlert2 v9, adsbygoogle, jQuery, polyfill}" />
   </component>
 </project>
