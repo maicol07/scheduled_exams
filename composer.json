@@ -30,7 +30,8 @@
         "gettext/php-scanner": "^1.0",
         "gettext/js-scanner": "^1.0",
         "ext-json": "*",
-        "delight-im/cookie": "^3.1"
+        "delight-im/cookie": "^3.1",
+        "gravatarphp/gravatar": "^2.0"
     },
     "config": {
         "foxy": {
