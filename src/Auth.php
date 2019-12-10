@@ -14,6 +14,10 @@ class Auth
 
     /** @var Medoo */
     private $db;
+    /**
+     * @var int
+     */
+    private $id;
 
     /**
      * Auth constructor
@@ -22,8 +26,8 @@ class Auth
      */
     public function __construct($db = null)
     {
+        $broker = new Broker("4", "https://account.maicol07.it/sso/auth", "gDbeu6oYB6U0bx9k");
         if (!Session::has("user_jwt")) {
-            $broker = new Broker("4", "https://account.maicol07.it/sso/auth", "gDbeu6oYB6U0bx9k");
             $this->user = $broker->login();
             Session::set("user_jwt", serialize($this->user));
             $this->logged = true;
@@ -31,12 +35,26 @@ class Auth
             $this->user = unserialize(Session::get("user_jwt"));
             $this->logged = true;
         }
-        if (!empty($renew = $broker->needsRefresh($this->user))) {
-            $this->user = $renew;
-            Session::set("user_jwt", serialize($this->user));
-        }
-        var_dump($this->user);
+
         $this->db = $db;
+        if (!Session::has('user_id')) {
+            if (!empty($renew = $broker->needsRefresh($this->user))) {
+                $this->user = $renew;
+                Session::set("user_jwt", serialize($this->user));
+            }
+            if (!$this->db->has("users", ['username' => $this->getUsername()])) {
+                $this->db->insert("users", [
+                    'username' => $this->getUsername(),
+                    'locale' => $this->getLanguage()
+                ]);
+                $this->id = $this->db->id();
+            } else {
+                $this->id = (int)$this->db->get("users", "id", ['username' => $this->getUsername()]);
+            }
+            Session::set('user_id', $this->id);
+        } else {
+            $this->id = Session::get('user_id');
+        }
     }
 
     public function isAuthenticated()
@@ -71,11 +89,16 @@ class Auth
 
     public function getLanguage()
     {
-        return !empty($this->user->lang) ? $this->user->lang : $this->db->get("users", [
-            "lang"
+        if ($this->db->has("users", [
+            'locale[!]' => ''
         ], [
-            "username" => $this->user->user_name
-        ]);
+            'id' => $this->id
+        ])) {
+            return $this->db->get("users", "locale", [
+                "id" => $this->id
+            ]);
+        }
+        return $this->user->lang;
     }
 
     /**

@@ -26,9 +26,9 @@ require_once DOCROOT . '/vendor/gravatarphp/gravatar/src/Gravatar.php';
                         <?php
                         foreach ($langs as $code => $details) {
                             echo '
-                            <li class="mdc-list-item" role="menuitem">
+                            <li class="mdc-list-item" role="menuitem" ' . (($code != $lang) ? 'onclick="langNotice(\'' . $code . '\')' : '') . '">
                                 <svg class="mdc-list-item__graphic flag-icon-' . $details['flag'] . '" style="height: 17.5px;"></svg><span class="mdc-list-item__text">' . $details['text'] .
-                                ($code == $lang ? ' <i class="mdi-outline-check" style="text-align: right; color: limegreen; vertical-align: middle; margin-left: 10px"></i>' : '') . '</span>
+                                ($code == $lang ? ' <i class="mdi-outline-check" style="vertical-align: middle; margin-left: 10px"></i>' : '') . '</span>
                             </li>
                             ';
                         }

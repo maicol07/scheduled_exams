@@ -158,9 +158,8 @@ if (get("lang")) {
     $lang = (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : "en_US"; // Browser detection
 }
 $accepted_langs = array_map('basename', glob(DOCROOT . "/locale/*", GLOB_ONLYDIR));
-$lang = (in_array($lang, $accepted_langs) and strlen($lang) == 4) ? $lang : 'en_US';
+$lang = (in_array($lang, $accepted_langs) and strlen($lang) == 5) ? $lang : 'en_US';
 // Set language and domain
-//$t->loadTranslations(Translations::fromPoFile(DOCROOT . "/locale/$lang/messages.po"));
 $t->loadDomain("messages", DOCROOT . "/locale");
 Gettext\TranslatorFunctions::register($t);
 $langs = [

@@ -1,7 +1,8 @@
 /*
  * Translation initialization
  */
-/*$.getJSON(ROOTDIR + '/locale/' + USER_LANG + '/messages.json', function (data) {
+const Translator = window.translator.default;
+$.getJSON(ROOTDIR + '/locale/' + USER_LANG + '/messages.json', function (data) {
     window.tr = new Translator(data);
 });
 var tr;
@@ -9,7 +10,7 @@ if (window.tr == null) {
     tr = new Translator()
 } else {
     tr = window.tr;
-}*/
+}
 
 // MDC
 const mdc = window.mdc;
@@ -90,7 +91,7 @@ function initRipple(elements) {
     });
 }
 
-initRipple($('.mdc-button, .mdc-list-item ,.mdc-icon-button'));
+initRipple($('.mdc-button, .mdc-list-item ,.mdc-icon-button, .mdc-fab'));
 
 // Swal2
 function initSwalBtn() {
@@ -123,3 +124,23 @@ const Toast = Swal.mixin({
         toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
 });
+
+// GET function
+/**
+ * Get the value of the parameter specified from a GET request
+ *
+ * @param parameterName {string} Name of the parameter
+ * @returns {string}
+ */
+function get(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}

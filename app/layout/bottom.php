@@ -27,7 +27,7 @@ echo "<script>
 PRODUCTION = Boolean('" . PRODUCTION . "');
 ROOTDIR = '" . ROOTDIR . "';
 BASEURL = '" . BASEURL . "';
-USER_LANG = '" . $user->getLanguage() . "';
+USER_LANG = '" . $lang . "';
 </script>";
 $scripts = [
     // jQuery
