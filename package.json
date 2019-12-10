@@ -1,6 +1,6 @@
 {
     "name": "scheduled_exams",
-    "version": "2.0",
+    "version": "1.0",
     "description": "Scheduled Exams: manage online your exams",
     "repository": "https://github.com/maicol07/interrogazioni_programmate_web.git",
     "author": "Maicol <maicolbattistini@live.it>",

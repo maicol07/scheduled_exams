@@ -81,12 +81,20 @@ class Broker
         try {
             $result = StandardJWT::decode($curl->response);
         } catch (InvalidJwtException $e) {
-            $result = $curl->response;
+            $result = json_decode($curl->response);
+            if ($result == null) {
+                $result = $curl->response;
+            }
         }
         $curl->close();
         return $result;
     }
 
+    /**
+     * Get the User JWT from Maicol07 Account
+     *
+     * @return mixed
+     */
     public function login()
     {
         $jwt = get("code");
@@ -101,5 +109,26 @@ class Broker
             die($e);
         }
         return $user->user_info;
+    }
+
+
+    public function needsRefresh($jwt)
+    {
+        try {
+            $renew = $this->request("needsRenew", ['jwt' => serialize($jwt)]);
+        } catch (Exception $e) {
+            Sentry\captureException($e);
+            return false;
+        }
+        if (!empty($renew)) {
+            try {
+                $user = StandardJWT::decode($renew['jwt']);
+            } catch (InvalidJwtException $e) {
+                Sentry\captureException($e);
+                die($e);
+            }
+            return $user->user_info;
+        }
+        return false;
     }
 }

@@ -15,6 +15,11 @@ class Auth
     /** @var Medoo */
     private $db;
 
+    /**
+     * Auth constructor
+     * .
+     * @param null|Medoo $db
+     */
     public function __construct($db = null)
     {
         if (!Session::has("user_jwt")) {
@@ -26,6 +31,11 @@ class Auth
             $this->user = unserialize(Session::get("user_jwt"));
             $this->logged = true;
         }
+        if (!empty($renew = $broker->needsRefresh($this->user))) {
+            $this->user = $renew;
+            Session::set("user_jwt", serialize($this->user));
+        }
+        var_dump($this->user);
         $this->db = $db;
     }
 
@@ -66,5 +76,30 @@ class Auth
         ], [
             "username" => $this->user->user_name
         ]);
+    }
+
+    /**
+     * Sets a new language/locale for the current user
+     *
+     * @param string $lang
+     * @return array
+     */
+    public function setLanguage($lang)
+    {
+        $update = $this->db->update("users", [
+            "locale" => $lang
+        ], [
+            "id" => $this->id
+        ]);
+        if ($update->rowCount()) {
+            return [
+                'success' => true
+            ];
+        } else {
+            return [
+                'success' => false,
+                'error' => $this->db->error()
+            ];
+        }
     }
 }
