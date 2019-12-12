@@ -59,6 +59,7 @@
       <path value="$PROJECT_DIR$/vendor/web-assets/@material" />
       <path value="$PROJECT_DIR$/vendor/web-assets/.bin" />
       <path value="$PROJECT_DIR$/vendor/web-assets/xtend" />
+      <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

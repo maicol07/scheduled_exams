@@ -106,7 +106,7 @@ class Utils
      */
     public static function getLocaleDate($date, $locale)
     {
-        $formatter = new IntlDateFormatter($locale, IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
+        $formatter = new IntlDateFormatter($locale, IntlDateFormatter::LONG, IntlDateFormatter::NONE);
         if ($formatter === null)
             throw new \Exception(intl_get_error_message());
 
