@@ -51,7 +51,7 @@ const initPermanentDrawer = () => {
     drawer.open = true;
 
     const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(topAppBarElement);
-    topAppBar.setScrollTarget($('#main-content')[0]);
+    topAppBar.setScrollTarget(mainContentEl);
     topAppBar.listen('MDCTopAppBar:nav', () => {
         drawer.open = !drawer.open;
     });
@@ -75,7 +75,7 @@ $(window).resize(resizeHandler);
 
 // MDC Menu initialization
 $('.mdc-menu').each((index, element) => {
-    var menu = new mdc.menu.MDCMenu.attachTo($(element)[0]);
+    const menu = mdc.menu.MDCMenu.attachTo(element);
     $(element).prev('.menu-button').click(() => {
         menu.open = !menu.open;
     });
@@ -84,14 +84,32 @@ $('.mdc-menu').each((index, element) => {
 // MDC Ripples initialization
 function initRipple(elements) {
     $(elements).each((index, element) => {
-        var ripple = new mdc.ripple.MDCRipple.attachTo($(element)[0]);
+        const ripple = mdc.ripple.MDCRipple.attachTo(element);
         if ($(element).hasClass('mdc-icon-button')) {
             ripple.unbounded = true;
         }
     });
 }
 
+// MDC Text Input initialization
+function initInput(elements = $('.mdc-text-field')) {
+    $(elements).each((index, element) => {
+        mdc.textField.MDCTextField.attachTo(element);
+        if ($(element).hasClass("mdc-text-field--outlined")) {
+            mdc.notchedOutline.MDCNotchedOutline.attachTo($(element).find('.mdc-notched-outline')[0])
+        }
+        if ($(element).hasClass("mdc-text-field--with-leading-icon") || $(element).hasClass("mdc-text-field--with-trailing-icon")) {
+            mdc.textField.MDCTextFieldIcon.attachTo($(element).find('.mdc-text-field__icon')[0])
+        }
+    });
+}
+
+// BUTTONS RIPPLES
 initRipple($('.mdc-button, .mdc-list-item ,.mdc-icon-button, .mdc-fab'));
+// CARDS RIPPLES
+initRipple($('.mdc-card__primary-action'));
+// INPUTS
+initInput();
 
 // Swal2
 function initSwalBtn() {
@@ -102,17 +120,32 @@ function initSwalBtn() {
     initRipple(buttons)
 }
 
+function renderSwalInput(id, label) {
+    return '<br><div class="mdc-text-field mdc-text-field--outlined" style="margin: 1em auto">' +
+        '<input type="text" id="' + id + '" class="mdc-text-field__input">' +
+        '<div class="mdc-notched-outline">' +
+        '<div class="mdc-notched-outline__leading"></div>' +
+        '<div class="mdc-notched-outline__notch">' +
+        '<label class="mdc-floating-label" for="' + id + '">' + label + '</label>' +
+        '</div>' +
+        '<div class="mdc-notched-outline__trailing"></div>' +
+        '</div>' +
+        '</div>';
+}
+
 const Swal_md = Swal.mixin({
     customClass: {
         confirmButton: 'mdc-button mdc-button--raised mdc-typography--button',
-        cancelButton: 'mdc-button mdc-typography--button',
+        cancelButton: 'mdc-button mdc-button--raised mdc-typography--button error-button',
         header: 'mdc-typography',
         content: 'mdc-typography',
         footer: 'mdc-typography'
     },
-    buttonsStyling: false
+    buttonsStyling: false,
+    showCloseButton: true
 });
 
+// noinspection JSUnusedGlobalSymbols
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -144,3 +177,52 @@ function get(parameterName) {
         });
     return result;
 }
+
+/* REQUEST CLASS */
+class Request {
+    url = ROOTDIR + '/app/actions';
+
+    error = function (jqxhr, status, error) {
+        Swal_md.fire({
+            title: tr.__("Ooops... qualcosa è andato storto!"),
+            html: `${tr.__("Si è verificato un errore!")}<br><br>${status} - <b>${error}</b>`,
+            icon: "error"
+        })
+    };
+
+    /**
+     * Sends an XHR Post Request
+     *
+     * @param data
+     * @param success
+     * @param error
+     * @param url
+     */
+    post(data, success, error = this.error, url = this.url) {
+        $.post({
+            url: url,
+            data: data,
+            success: success,
+            error: error
+        })
+    }
+
+    /**
+     * Sends an XHR Get Request
+     *
+     * @param data
+     * @param success
+     * @param error
+     * @param url
+     */
+    get(data, success, error = this.error, url = this.url) {
+        $.get({
+            url: url,
+            data: data,
+            success: success,
+            error: error
+        })
+    }
+}
+
+const request = new Request();

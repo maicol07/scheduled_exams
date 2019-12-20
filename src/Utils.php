@@ -3,6 +3,7 @@
 namespace src;
 
 use IntlDateFormatter;
+use Medoo\Medoo;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -35,6 +36,38 @@ class Utils
         } else {
             return $haystack;
         }
+    }
+
+    /**
+     * Generates a random string (used with classrooms and lists codes)
+     * Credits to Baba (https://stackoverflow.com/a/15198493/7520280)
+     *
+     * @param int $length
+     * @return string
+     */
+    public static function randomString($length)
+    {
+        $char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $char = str_shuffle($char);
+        for ($i = 0, $rand = '', $l = strlen($char) - 1; $i < $length; $i++) {
+            $rand .= $char{mt_rand(0, $l)};
+        }
+        return $rand;
+    }
+
+    /**
+     * Generates a random, UNIQUE code for lists and classrooms
+     *
+     * @param Medoo $db
+     * @param int $length
+     * @return string
+     */
+    public static function generateCode($db, $length = 5)
+    {
+        do {
+            $code = static::randomString($length);
+        } while ($db->has("classrooms", ["code" => $code]) or $db->has("lists", ["code" => $code]));
+        return $code;
     }
 
     /**
@@ -190,6 +223,7 @@ class Utils
      *
      * @param array $assets
      * @return string
+     * @deprecated
      */
     public static function buildAssetsImport($assets)
     {
@@ -247,7 +281,6 @@ class Utils
                 $asset = Utils::buildAssetsURI($asset);
             }
             if (preg_match("/.js/", $asset)) {
-
                 $html .= '<script type="' . $type . '" src="' . $asset . '"></script>';
             } elseif (preg_match("/.css/", $asset)) {
                 $html .= '<link rel="stylesheet" href="' . $asset . '">';
@@ -260,6 +293,7 @@ class Utils
      * Build an Assets URI using the ROOTDIR constant. If a minified version exists and current environment is PRODUCTION,
      * then it uses that version
      *
+     * @deprecated
      * @param string $dir
      * @param bool $usedocroot If this variable is set to TRUE then it will be used the DOCROOT constant instead of the ROOTDIR one
      * @return string
@@ -295,6 +329,9 @@ class Utils
      */
     public static function is_url($str)
     {
+        if (!is_string($str)) {
+            return false;
+        }
         $regex = "((https?|ftp)\:\/\/)?"; // SCHEME
         $regex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?"; // User and Pass
         $regex .= "([a-z0-9-.]*)\.([a-z]{2,3})"; // Host or IP
@@ -303,8 +340,7 @@ class Utils
         $regex .= "(\?[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*)?"; // GET Query
         $regex .= "(#[a-z_.-][a-z0-9+\$_.-]*)?"; // Anchor
 
-        if (preg_match("/^$regex$/i", $str)) // `i` flag for case-insensitive
-        {
+        if (preg_match("/^$regex$/i", $str)) { // `i` flag for case-insensitive
             return true;
         } else {
             return false;

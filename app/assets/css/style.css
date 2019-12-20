@@ -7,10 +7,10 @@
 /* MDC variables */
 :root {
     --mdc-theme-primary: #1884f3;
-    --mdc-theme-secondary: #018786;
+    --mdc-theme-secondary: #0d47a1;
     --mdc-theme-background: #fff;
     --mdc-theme-surface: #fff;
-    --mdc-theme-error: #b00020;
+    --mdc-theme-error: #d33;
     --mdc-theme-on-primary: #fff;
     /*--mdc-theme-on-primary: rgba(60, 64, 67, 0.3);*/
     --mdc-theme-on-secondary: #fff;
@@ -36,6 +36,7 @@
     --mdc-theme-outline-border-dark: #95979b
 }
 
+/* MDC BUTTONS */
 .mdc-button--outlined:not(:disabled) {
     border-color: var(--mdc-theme-outline-border,
     #dadce0);
@@ -45,6 +46,7 @@
     background-color: var(--mdc-theme-outline-border-dark);
 }
 
+/* MDC TYPOGRAPHY */
 .mdc-typography, .mdc-typography--body1, .mdc-typography--body2, .mdc-typography--caption, .mdc-typography--overline {
     font-family: Raleway, sans-serif;
 }
@@ -55,12 +57,9 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     font-family: Montserrat, sans-serif;
 }
 
+/* MDC TOP APP BAR + DRAWER */
 .mdc-drawer .mdc-list-item--activated, .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
     color: var(--mdc-theme-text-activated)
-}
-
-body {
-    /*display: flex;*/
 }
 
 .mdc-drawer-app-content {
@@ -102,12 +101,53 @@ body {
 }
 
 .mdc-drawer.mdc-drawer--open.mdc-drawer--dismissible {
-    top: 63px;
+    top: 4em;
 }
 
 .mdc-list-item__graphic {
     font-size: 24px;
 }
+
+/* MDC CARDS */
+.mdc-card__primary {
+    padding: 1rem
+}
+
+.mdc-card__secondary {
+    padding: 0 1rem 8px;
+}
+
+/* MDC FAB */
+.mdc-fab--bottom {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .mdc-fab--bottom {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+/* MDC Inputs */
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: var(--mdc-theme-primary)
+}
+
+.error-button {
+    background-color: var(--mdc-theme-error) !important;
+}
+
+.swal2-cancel.mdc-button {
+    margin-left: 15px;
+}
+
+/*.swal2-loading .swal2-actions .swal2-confirm.mdc-button {
+    color: transparent;
+}*/
+
 
 /*body {
     background-color: #f9f9f9;
@@ -144,7 +184,7 @@ body {
     }
 
     .mdc-drawer.mdc-drawer--open {
-        top: 0;
+        top: 3.5em;
     }
 
     .mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing) + .mdc-drawer-app-content {

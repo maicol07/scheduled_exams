@@ -10,7 +10,6 @@ function langNotice(lang) {
         showCancelButton: true,
         confirmButtonText: tr.__("Sì"),
         cancelButtonText: tr.__("No"),
-        showCloseButton: true,
         icon: "question"
     }).then((result) => {
         if (result.value) {
@@ -38,7 +37,6 @@ function langNotice(lang) {
                     })
                 }
             });
-            initSwalBtn()
         } else if (
             result.dismiss === Swal.DismissReason.backdrop ||
             result.dismiss === Swal.DismissReason.close ||
@@ -52,21 +50,20 @@ function langNotice(lang) {
             }
         }
     });
-    initSwalBtn()
 }
 
 $('#user_btn').click((e) => {
     var btn = e.currentTarget;
     Swal_md.fire({
-        html: '<div id="user_info" style="align-content: center">' +
-            '<img src="' + $(btn).attr('data-user-img') + '" alt="' + $(btn).attr('data-user-name') + '" style="border-radius: 50%"><br><br>' +
-            '<b>' + $(btn).attr('data-user-name') + '</b><br>' +
-            '<span>' + $(btn).attr('data-user-email') + '</span><br><br>' +
-            '<a href="https://account.maicol07.it/a/" target="_blank" class="mdc-button mdc-button--outlined" style="border-radius: 100px" id="account_btn">' +
-            '    <div class="mdc-button__ripple" style="border-radius: 100px"></div>' +
-            '         <span class="mdc-button__label mdc-typography--button">' + tr.__("Gestisci il tuo account") + '</span>' +
-            '    </a>' +
-            '</div>',
+        html: `<div id="user_info" style="align-content: center">
+        <img src="${$(btn).attr('data-user-img')}" alt="${$(btn).attr('data-user-name')}" style="border-radius: 50%"><br><br>
+            <b>${$(btn).attr('data-user-name')}</b><br>
+            <span>${$(btn).attr('data-user-email')}</span><br><br>
+            <a href="https://account.maicol07.it/a/" target="_blank" class="mdc-button mdc-button--outlined" style="border-radius: 100px" id="account_btn">
+                <div class="mdc-button__ripple" style="border-radius: 100px"></div>
+                     <span class="mdc-button__label mdc-typography--button">${tr.__("Gestisci il tuo account")}</span>
+                </a>
+            </div>`,
         confirmButtonText: tr.__("Chiudi"),
         footer: "<button class='mdc-button' onclick='info()' style='vertical-align: middle'>" +
             "<div class='mdc-button__ripple'></div>" +
@@ -74,8 +71,6 @@ $('#user_btn').click((e) => {
             "<span class='mdc-button__label'>" + tr.__("Informazioni su Interrogazioni Programmate") + "</span>" +
             "</button>"
     });
-    initRipple($('#account_btn, .swal2-footer .mdc-button'));
-    initSwalBtn()
 });
 
 function info() {
@@ -145,7 +140,6 @@ function info() {
                     footer: '<a href="' + ROOTDIR + '/changelog">' + tr.__("Leggi le note di rilascio") + '</a> - <a href="https://community.maicol07.it">' + tr.__("Community") + '</a>',
                     icon: "info",
                 });
-                initSwalBtn()
             }
         }
 
