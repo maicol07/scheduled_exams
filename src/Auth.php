@@ -49,7 +49,7 @@ class Auth
                 ]);
                 $this->id = $this->db->id();
             } else {
-                $this->id = (int)$this->db->get("users", "id", ['username' => $this->getUsername()]);
+                $this->id = $this->db->get("users", "id [Int]", ['username' => $this->getUsername()]);
             }
             Session::set('user_id', $this->id);
         } else {
@@ -60,6 +60,11 @@ class Auth
     public function isAuthenticated()
     {
         return $this->logged;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getUsername()
@@ -105,7 +110,7 @@ class Auth
      * Sets a new language/locale for the current user
      *
      * @param string $lang
-     * @return array
+     * @return Result
      */
     public function setLanguage($lang)
     {
@@ -115,14 +120,9 @@ class Auth
             "id" => $this->id
         ]);
         if ($update->rowCount()) {
-            return [
-                'success' => true
-            ];
+            return new Result();
         } else {
-            return [
-                'success' => false,
-                'error' => $this->db->error()
-            ];
+            return new Result(null, $update->errorCode(), $update->errorInfo());
         }
     }
 }

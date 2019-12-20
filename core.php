@@ -1,4 +1,5 @@
 <?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -17,8 +18,6 @@ require_once DOCROOT . "/config/config.php";
  */
 require DOCROOT . "/config/gettext.php";
 
-//use Naucon\Breadcrumbs\Breadcrumbs;
-
 $url = explode("/", $_SERVER['REQUEST_URI']);
 $inside = in_array("app", $url);
 if ($inside) {
@@ -26,8 +25,6 @@ if ($inside) {
         header("Location: " . BASEURL);
         exit;
     }
-    /*$breadcrumbs = new Breadcrumbs();
-    $breadcrumbs->add(__("Dashboard"), ROOTDIR . "/a/index.php");*/
 } else {
     // Exceptions
     $exceptions = [
@@ -46,3 +43,26 @@ if ($inside) {
         exit;
     }
 }
+
+require_once DOCROOT . "/vendor/stolz/assets/src/Manager.php";
+
+/*
+ * Assets
+ */
+
+use Stolz\Assets\Manager;
+
+// Set config options
+$config = [
+    'pipeline' => PRODUCTION,
+    'pipeline_dir' => 'min',
+    'public_dir' => ROOTDIR,
+    'css_dir' => ROOTDIR . "/app/assets/css",
+    'js_dir' => ROOTDIR . "/app/assets/js",
+    'packages_dir' => "/vendor/web-assets",
+    'npm_dir' => 'vendor/web-assets',
+    'docroot' => DOCROOT
+];
+
+// Instantiate the library
+$assets = new Manager($config);

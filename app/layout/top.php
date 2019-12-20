@@ -62,22 +62,23 @@ use src\Utils;
     <meta name="theme-color" content="#ffffff">
 
     <?php
+    // MDC web
     $styles = [
-        // MDC for web
-        "vendor/web-assets/material-components-web/dist/material-components-web.min.css",
+        // MDC
+        'material-components-web',
         // Flag icon CSS
-        "vendor/web-assets/flag-icon-css/css/flag-icon.min.css",
+        "flag-icon-css",
         // Cookie consent
-        "vendor/web-assets/cookieconsent/build/cookieconsent.min.css",
+        "cookieconsent",
         // Styles
-        "app/assets/css/style.min.css",
+        "style.css",
         // Material Design Outline Icons
-        "app/assets/icons/mdi-outline/mdi-outline.min.css",
+        "mdi-outline/mdi-outline.css",
     ];
     if (!empty($include_styles)) {
         $styles = array_merge($styles, $include_styles);
     }
-    echo Utils::buildAssetsImport($styles);
+    echo $assets->add($styles)->css()
     ?>
 </head>
 <?php
@@ -97,10 +98,6 @@ if (!isset($left_sidebar) or $left_sidebar) {
 }
 ?>
 <div class="mdc-drawer-app-content">
-    <?php
-
-
-    ?>
     <!-- BEGIN: Page Main-->
     <main id="main-content">
         <div class="mdc-top-app-bar--fixed-adjust">

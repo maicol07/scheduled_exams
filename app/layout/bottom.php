@@ -31,26 +31,28 @@ USER_LANG = '" . $lang . "';
 </script>";
 $scripts = [
     // jQuery
-    "vendor/web-assets/jquery/dist/jquery.js",
+    "jquery",
     // Materialize
-    "vendor/web-assets/material-components-web/dist/material-components-web.min.js",
+    "material-components-web",
     // SweetAlert2
-    "vendor/web-assets/sweetalert2/dist/sweetalert2.all.js",
+    "sweetalert2",
     // Polyfill (ES6 Promises for IE11 and Android Browsers)
-    "vendor/web-assets/promise-polyfill/dist/polyfill.js",
+    //"promise-polyfill",
     // GetText Translator
-    'vendor/web-assets/gettext-translator/dist/translator.js',
+    'gettext-translator',
     // Perfect Scrollbar
     //'vendor/npm-asset/perfect-scrollbar/dist/perfect-scrollbar.js',
     // Cookie consent
-    "vendor/web-assets/cookieconsent/build/cookieconsent.min.js",
+    "cookieconsent",
     // Scripts
-    "app/assets/js/*.js" => []
+    "init.js",
+    "navbar.js"
 ];
 if (!empty($include_scripts)) {
     $scripts = array_merge($scripts, $include_scripts);
 }
-echo Utils::buildAssetsImport($scripts);
+echo $assets->add($scripts)->js()
+//echo Utils::buildAssetsImport($scripts);
 ?>
 </body>
 </html>

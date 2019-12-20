@@ -60,6 +60,8 @@
       <path value="$PROJECT_DIR$/vendor/web-assets/.bin" />
       <path value="$PROJECT_DIR$/vendor/web-assets/xtend" />
       <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
+      <path value="$PROJECT_DIR$/vendor/stolz/assets" />
+      <path value="$PROJECT_DIR$/vendor/mrclay/minify" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
