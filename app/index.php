@@ -1,6 +1,5 @@
 <?php
 
-use src\Classroom;
 use src\Utils;
 
 require_once "../core.php";
@@ -15,8 +14,6 @@ require_once DOCROOT . "/app/layout/top.php";
     <span class="mdc-fab__label"><?php echo __("Crea classe") ?></span>
 </button>
 <?php
-$classroom_obj = new Classroom($db, $user);
-$classrooms = $classroom_obj->getClassrooms();
 if (!empty($classrooms)) {
     echo '<h3>' . __("Classi") . '</h3>
 <div class="mdc-layout-grid">

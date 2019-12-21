@@ -60,27 +60,16 @@ async function createClassroom() {
         }
     });
     if (classroom_name) {
-        $.post({
-            url: ROOTDIR + '/app/actions',
-            data: {
-                action: "create_classroom",
-                name: classroom_name
-            },
-            success: function (data) {
-                data = JSON.parse(data);
-                Swal.fire({
-                    title: tr.__("Classe creata!"),
-                    text: tr.__("La classe è stata creata! Puoi ora chiudere questo messaggio"),
-                    icon: "success"
-                });
-            },
-            error: function (jqxhr, status, error) {
-                Swal_md.fire({
-                    title: tr.__("Ooops... qualcosa è andato storto!"),
-                    html: tr.__("Si è verificato un errore!<br><br>") + status + " - " + error,
-                    icon: "error"
-                })
-            }
+        request.post({
+            action: "create_classroom",
+            name: classroom_name
+        }, (data) => {
+            addClassroomToList(data);
+            Swal.fire({
+                title: tr.__("Classe creata!"),
+                text: tr.__("La classe è stata creata! Puoi ora chiudere questo messaggio"),
+                icon: "success"
+            });
         })
     }
 }
@@ -94,36 +83,21 @@ function deleteClassroom(id, name) {
         showCancelButton: true,
         confirmButtonText: tr.__("Sì, eliminala!"),
         cancelButtonText: tr.__("No, non eliminarla!"),
-        /*onRender: () => {
-            initSwalBtn()
-        }*/
     }).then((result) => {
         if (result.value) {
-            $.post({
-                url: ROOTDIR + '/app/actions',
-                data: {
-                    action: "delete_classroom",
-                    id: id
-                },
-                success: function (data) {
-                    data = JSON.parse(data);
-                    var div = $(`#classroom_${data.code}`);
-                    div.fadeOut(1000, () => {
-                        div.remove()
-                    });
-                    Swal_md.fire({
-                        title: tr.__("Classe eliminata!"),
-                        text: tr.__("La classe è stata eliminata con successo!"),
-                        icon: "success"
-                    });
-                },
-                error: function (jqxhr, status, error) {
-                    Swal_md.fire({
-                        title: tr.__("Ooops... qualcosa è andato storto!"),
-                        html: tr.__("Si è verificato un errore!<br><br>") + status + " - " + error,
-                        icon: "error"
-                    })
-                }
+            request.post({
+                action: "delete_classroom",
+                id: id
+            }, (data) => {
+                var div = $(`#classroom_${data.code}`);
+                div.fadeOut(1000, () => {
+                    div.remove()
+                });
+                Swal_md.fire({
+                    title: tr.__("Classe eliminata!"),
+                    text: tr.__("La classe è stata eliminata con successo!"),
+                    icon: "success"
+                });
             })
         }
     });
@@ -142,7 +116,6 @@ function joinClassroom() {
         action: "join_classroom",
         code: $("#classroom_join_code").val()
     }, (data) => {
-        data = JSON.parse(data);
         addClassroomToList(data);
         Swal_md.fire({
             title: tr.__("Ti sei unito alla classe %s", data.name),

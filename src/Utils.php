@@ -293,7 +293,6 @@ class Utils
      * Build an Assets URI using the ROOTDIR constant. If a minified version exists and current environment is PRODUCTION,
      * then it uses that version
      *
-     * @deprecated
      * @param string $dir
      * @param bool $usedocroot If this variable is set to TRUE then it will be used the DOCROOT constant instead of the ROOTDIR one
      * @return string

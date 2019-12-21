@@ -5,10 +5,24 @@
                 <i class="mdi-outline-dashboard mdc-list-item__graphic" aria-hidden="true"></i>
                 <span class="mdc-list-item__text"><?php echo __("Dashboard") ?></span>
             </a>
-            <a class="mdc-list-item">
-                <i class="mdi-outline-class mdc-list-item__graphic" aria-hidden="true"></i>
-                <span class="mdc-list-item__text"><?php echo __("Classi") ?></span>
-            </a>
+            <?php
+
+            use src\Classroom;
+
+            $classroom_obj = new Classroom($db, $user);
+            $classrooms = $classroom_obj->getClassrooms();
+            if (!empty($classrooms)) {
+                echo '<hr class="mdc-list-divider">
+            <h6 class="mdc-list-group__subheader">' . __("Classi") . '</h6>';
+                foreach ($classrooms as $classroom) {
+                    $classroom = (object)$classroom;
+                    if (!in_array($user->getId(), unserialize($classroom->users))) {
+                        continue;
+                    }
+                    echo '<a href="app/classroom?view=' . $classroom->code . '" class="mdc-list-item"><span class="mdc-list-item__text">' . $classroom->name . '</span></a>';
+                }
+            }
+            ?>
         </div>
     </div>
 </aside>

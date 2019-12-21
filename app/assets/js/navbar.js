@@ -14,28 +14,17 @@ function langNotice(lang) {
     }).then((result) => {
         if (result.value) {
             Swal.showLoading();
-            $.post({
-                url: ROOTDIR + '/app/actions',
-                data: {
-                    action: "change_language",
-                    lang: lang
-                },
-                success: function (data) {
-                    Swal.fire({
-                        title: tr.__("Lingua cambiata!"),
-                        text: tr.__("La pagina ora si aggiornerà per rendere visibili le modifiche..."),
-                        icon: "success"
-                    });
-                    Swal.showLoading();
-                    window.location.reload();
-                },
-                error: function (jqxhr, status, error) {
-                    Swal_md.fire({
-                        title: tr.__("Ooops... qualcosa è andato storto!"),
-                        html: tr.__("Si è verificato un errore!<br><br>") + status + " - " + error,
-                        icon: "error"
-                    })
-                }
+            request.post({
+                action: "change_language",
+                lang: lang
+            }, (data) => {
+                Swal.fire({
+                    title: tr.__("Lingua cambiata!"),
+                    text: tr.__("La pagina ora si aggiornerà per rendere visibili le modifiche..."),
+                    icon: "success"
+                });
+                Swal.showLoading();
+                window.location.reload();
             });
         } else if (
             result.dismiss === Swal.DismissReason.backdrop ||
@@ -65,11 +54,11 @@ $('#user_btn').click((e) => {
                 </a>
             </div>`,
         confirmButtonText: tr.__("Chiudi"),
-        footer: "<button class='mdc-button' onclick='info()' style='vertical-align: middle'>" +
-            "<div class='mdc-button__ripple'></div>" +
-            "<i class='mdi-outline-info mdc-button__icon'></i>" +
-            "<span class='mdc-button__label'>" + tr.__("Informazioni su Interrogazioni Programmate") + "</span>" +
-            "</button>"
+        footer: `<button class="mdc-button" onclick="info()" style="vertical-align: middle">
+                <div class='mdc-button__ripple'></div>
+                <i class='mdi-outline-info mdc-button__icon'></i>
+                <span class="mdc-button__label">${tr.__("Informazioni su Interrogazioni Programmate")}</span>
+            </button>`
     });
 });
 
@@ -133,16 +122,15 @@ function info() {
                 Swal_md.fire({
                     title: ("Info su Interrogazioni Programmate"),
                     // Advice for translators: for the part like <a href="XYZ" ...>ABAB</a> translate only ABAB as the other parts are HTML code to create the link! HTML tags (such as <br>) MUST stay unmodified as in source.
-                    html: tr.__("Versione") + ' ' + version + '<br><br>' + tr.__("Interrogazioni Programmate è un software closed-source sviluppato da ") +
-                        "<a href='https://maicol07.it'>Maicol Battistini (maicol07)</a>" + "<br><br>"
-                        + tr.__("Librerie più utilizzate: ") + "<br>" + dependencies[0].outerHTML + "<br>" +
-                        tr.__("Icone create da: ") + "<br>" + icons_ul[0].outerHTML,
-                    footer: '<a href="' + ROOTDIR + '/changelog">' + tr.__("Leggi le note di rilascio") + '</a> - <a href="https://community.maicol07.it">' + tr.__("Community") + '</a>',
+                    html: `${tr.__("Versione")} ${version}<br><br>${tr.__("Interrogazioni Programmate è un software closed-source sviluppato da %s",
+                        "<a href='https://maicol07.it'>Maicol Battistini (maicol07)</a>")}<br><br>
+                        ${tr.__("Librerie più utilizzate: ")}<br>${dependencies[0].outerHTML}<br>
+                        ${tr.__("Icone create da: %s", icons_ul[0].outerHTML)}`,
+                    footer: `<a href="${ROOTDIR}/changelog">${tr.__("Leggi le note di rilascio")}</a> - <a href="https://community.maicol07.it">${tr.__("Community")}</a>`,
                     icon: "info",
                 });
             }
         }
-
         setTimeout(infoAlert, 500)
     });
 }
