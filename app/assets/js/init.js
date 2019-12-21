@@ -180,15 +180,19 @@ function get(parameterName) {
 
 /* REQUEST CLASS */
 class Request {
-    url = ROOTDIR + '/app/actions';
 
-    error = function (jqxhr, status, error) {
-        Swal_md.fire({
-            title: tr.__("Ooops... qualcosa è andato storto!"),
-            html: `${tr.__("Si è verificato un errore!")}<br><br>${status} - <b>${error}</b>`,
-            icon: "error"
-        })
-    };
+    constructor(
+        url = ROOTDIR + '/app/actions',
+        error = function (jqxhr, status, error) {
+            Swal_md.fire({
+                title: tr.__("Ooops... qualcosa è andato storto!"),
+                html: `${tr.__("Si è verificato un errore!")}<br><br>${status} - <b>${error}</b>`,
+                icon: "error"
+            })
+        }) {
+        this.url = url;
+        this.error = error;
+    }
 
     /**
      * Sends an XHR Post Request
