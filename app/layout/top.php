@@ -36,12 +36,13 @@ use src\Utils;
     <meta name="keywords" content="maicol07, scheduled, exams, interrogazioni, programmate">
     <meta name="author" content="maicol07">
 
-    <title><?php echo sprintf("%s - " . __("Interrogazioni Programmate"), $title) ?></title>
+    <title><?php echo __("%s - Interrogazioni Programmate", $title) ?></title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180"
@@ -85,6 +86,9 @@ use src\Utils;
 if (isset($body) and !$body) {
     return;
 }
+if (!PRODUCTION) {
+    echo $debugbarRenderer->renderHead();
+}
 ?>
 <body class="mdc-typography">
 <!-- Preloader -->
@@ -101,31 +105,3 @@ if (!isset($left_sidebar) or $left_sidebar) {
     <!-- BEGIN: Page Main-->
     <main id="main-content">
         <div class="mdc-top-app-bar--fixed-adjust">
-            <?php
-            /*if (!isset($bc) or $bc == true) {
-                $breadcrumbs->add($title);
-                echo '
-            <!-- START BREADCRUMBS -->
-            <div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 m6 l6">
-                            <h5 class="breadcrumbs-title mt-0 mb-0">' . $title . '</h5>
-                            <ol class="breadcrumbs mb-0">';
-                foreach($breadcrumbs as $breadcrumb){
-                    if ($breadcrumb->hasUrl()) {
-                        $internal = '"><a href="' . $breadcrumb->getUrl() . '">';
-                    } else {
-                        $internal = ' active">';
-                    }
-                    echo '<li class="breadcrumb-item' . $internal . $breadcrumb->getTitle() . '</a></li>';
-                }
-                echo '
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <!-- END BREADCRUMBS -->';
-            }*/
-            ?>

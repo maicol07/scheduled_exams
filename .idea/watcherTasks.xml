@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectTasksOptions">
     <enabled-global>
-      <option value="Closure Compiler" />
       <option value="CSSO CSS Optimizer" />
+      <option value="Closure Compiler" />
     </enabled-global>
   </component>
 </project>

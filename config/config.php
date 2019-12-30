@@ -74,6 +74,8 @@ $db = new Medoo([
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_general_ci'
 ]);
+$pdo = new DebugBar\DataCollector\PDO\TraceablePDO($db->pdo);
+$debugbar->addCollector(new DebugBar\DataCollector\PDO\PDOCollector($pdo));
 
 /*
  *
@@ -91,3 +93,18 @@ if ($logged) {
         ]);
     });
 }
+
+/*
+ * Cloudinary config
+ */
+if (defined("DOCROOT")) {
+    require_once DOCROOT . "/config/cloudinary.php";
+} else {
+    require_once "cloudinary.php";
+}
+Cloudinary::config([
+    "cloud_name" => $cloud_name,
+    "api_key" => $api_key,
+    "api_secret" => $api_secret,
+    "secure" => true
+]);

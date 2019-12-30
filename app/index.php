@@ -5,7 +5,6 @@ use src\Utils;
 require_once "../core.php";
 
 $title = __("Dashboard");
-$bc = false;
 require_once DOCROOT . "/app/layout/top.php";
 ?>
 <button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createClassroom()">
@@ -26,9 +25,9 @@ if (!empty($classrooms)) {
         echo '
         <div class="mdc-layout-grid__cell" id="classroom_' . $classroom->code . '">
             <div class="mdc-card">
-                <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + \'app/classroom?view=' . $classroom->code . '\'">
+                <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + \'/app/classroom?view=' . $classroom->code . '\'">
                     ' . (!empty($classroom->image) ?
-                '<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(&quot;' . $classroom->img . '&quot;);"></div>'
+                '<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(&quot;' . $classroom->image . '&quot;);"></div>'
                 : '') . '
                     <div class="mdc-card__primary">
                         <h2 class="mdc-typography--headline6">' . $classroom->name . '</h2>
@@ -39,7 +38,7 @@ if (!empty($classrooms)) {
                 </div>
                 <div class="mdc-card__actions">
                     <div class="mdc-card__action-buttons">
-                        <a href="class?view=' . $classroom->code . ' . " class="mdc-button mdc-card__action mdc-card__action--button">
+                        <a href="classroom?view=' . $classroom->code . '" class="mdc-button mdc-card__action mdc-card__action--button">
                             <div class="mdc-button__ripple"></div>
                             <i class="mdi-outline-open_in_new mdc-button__icon"></i>
                             <span class="mdc-button__label">' . __("Apri") . '</span>
@@ -75,18 +74,20 @@ if (!empty($classrooms)) {
 <h3><?php echo __("Unisciti ad una classe") ?></h3>
 <?php echo __("Inserisci il codice della tua classe e premi il pulsante: ") ?>
 <br><br>
-<div class="mdc-text-field mdc-text-field--with-leading-icon">
-    <i class="mdi-outline-confirmation_number mdc-text-field__icon"></i>
-    <input type="text" id="classroom_join_code" class="mdc-text-field__input">
-    <label class="mdc-floating-label" for="classroom_join_code"><?php echo __("Codice classe") ?></label>
-    <div class="mdc-line-ripple"></div>
-</div>
+<form id="join_classroom">
+    <div class="mdc-text-field mdc-text-field--with-leading-icon">
+        <i class="mdi-outline-confirmation_number mdc-text-field__icon"></i>
+        <input type="text" id="classroom_join_code" class="mdc-text-field__input">
+        <label class="mdc-floating-label" for="classroom_join_code"><?php echo __("Codice classe") ?></label>
+        <div class="mdc-line-ripple"></div>
+    </div>
 
-<button class="mdc-button mdc-button--outlined" onclick="joinClassroom()" style="margin-left: 15px;">
-    <div class="mdc-button__ripple"></div>
-    <i class="mdi-outline-send mdc-button__icon"></i>
-    <span class="mdc-button__label"><?php echo __("Unisciti") ?></span>
-</button>
+    <button class="mdc-button mdc-button--outlined" type="submit" style="margin-left: 15px;">
+        <div class="mdc-button__ripple"></div>
+        <i class="mdi-outline-send mdc-button__icon"></i>
+        <span class="mdc-button__label"><?php echo __("Unisciti") ?></span>
+    </button>
+</form>
 
 <?php
 $include_scripts = ['classroom.js'];

@@ -54,7 +54,7 @@
 h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, .mdc-typography--headline3,
 .mdc-typography--headline4, .mdc-typography--headline5, .mdc-typography--headline6, .mdc-typography--subtitle1,
 .mdc-typography--subtitle2, .mdc-typography--button {
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat, sans-serif !important;
 }
 
 /* MDC TOP APP BAR + DRAWER */
@@ -144,40 +144,6 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     margin-left: 15px;
 }
 
-/*.swal2-loading .swal2-actions .swal2-confirm.mdc-button {
-    color: transparent;
-}*/
-
-
-/*body {
-    background-color: #f9f9f9;
-    overflow: hidden;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.navimg, .footer-img {
-    display: inline-block;
-    height: 100%;
-}
-
-.brand-logo > img, .footer-img > img {
-    vertical-align: middle
-}
-
-@media only screen and (min-width: 600px) {
-
-    .navimg > span {
-        font-size: 2vw !important;
-    }
-
-    .footer-logo-text {
-        font-size: 1.9vw !important;
-    }
-
-}
-*/
 @media only screen and (max-width: 900px) {
     .mdc-drawer:not(.mdc-drawer--open) + .mdc-drawer-scrim + .mdc-drawer-app-content .mdc-top-app-bar {
         left: 0;
@@ -191,6 +157,79 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
         margin-left: unset;
         margin-right: unset;
     }
+}
+
+/* Image upload */
+
+.mdc-card__media:hover input.upload {
+    display: block;
+}
+
+.mdc-card__media:hover .hvr-img {
+    display: inline-block;
+}
+
+.mdc-card__media i {
+    margin: auto;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    text-align: center;
+    right: 0;
+    padding: 6px;
+    opacity: 1;
+    transition: opacity 1s linear;
+    -webkit-transform: scale(.75);
+
+
+}
+
+.mdc-card__media:hover i {
+    font-size: 16px;
+    opacity: 1;
+    -webkit-transform: scale(1);
+}
+
+.mdc-card__media input.upload {
+    z-index: 1;
+    left: 0;
+    margin: 0;
+    bottom: 0;
+    top: 0;
+    padding: 0;
+    opacity: 0;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    background: #ccc;
+    width: 100%;
+    display: none;
+}
+
+.mdc-card__media .hvr-img {
+    width: 100%;
+    height: 100%;
+    display: none;
+    /*position:absolute;*/
+    vertical-align: middle;
+    position: relative;
+    background: transparent;
+}
+
+.mdc-card__media i:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    transition: height 0.3s;
+}
+
+.mdc-card__media:hover i:after {
+    height: 100%;
 }
 
 /*----------------------------------------

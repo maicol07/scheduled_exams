@@ -23,3 +23,14 @@ if (!PRODUCTION) {
     }
     $whoops->register();
 }
+
+
+/*
+ * PHP Debug Bar
+ */
+
+use DebugBar\StandardDebugBar;
+
+$debugbar = new StandardDebugBar();
+$debugbarRenderer = $debugbar->getJavascriptRenderer();
+$debugbarRenderer->setBaseUrl(ROOTDIR . '/vendor/maximebf/debugbar/src/DebugBar/Resources');

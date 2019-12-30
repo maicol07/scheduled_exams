@@ -113,24 +113,29 @@ initInput();
 
 // Swal2
 function initSwalBtn() {
-    var buttons = $('.swal2-actions .mdc-button');
+    var buttons = $('.swal2-popup .mdc-button');
     buttons.each((index, btn) => {
         $(btn).html('<div class="mdc-button__ripple"></div><span class="mdc-button__label">' + $(btn).text() + '</span>');
     });
     initRipple(buttons)
 }
 
-function renderSwalInput(id, label) {
-    return '<br><div class="mdc-text-field mdc-text-field--outlined" style="margin: 1em auto">' +
-        '<input type="text" id="' + id + '" class="mdc-text-field__input">' +
-        '<div class="mdc-notched-outline">' +
-        '<div class="mdc-notched-outline__leading"></div>' +
-        '<div class="mdc-notched-outline__notch">' +
-        '<label class="mdc-floating-label" for="' + id + '">' + label + '</label>' +
-        '</div>' +
-        '<div class="mdc-notched-outline__trailing"></div>' +
-        '</div>' +
-        '</div>';
+function renderOutlinedInput(id, label, value = "", textarea = false) {
+    var type = "input";
+    if (textarea) {
+        type = "textarea"
+    }
+    return `<br>
+        <div class="mdc-text-field ${textarea ? "mdc-text-field--textarea" : "mdc-text-field--outlined"}" style="margin: 1em auto">
+        <${type} type="text" id="${id}" name="${id}" value="${value}" class="mdc-text-field__input">${textarea ? value + "</textarea>" : ""}
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                    <label class="mdc-floating-label" for="${id}">${label}</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
+        </div>`;
 }
 
 const Swal_md = Swal.mixin({
@@ -142,7 +147,10 @@ const Swal_md = Swal.mixin({
         footer: 'mdc-typography'
     },
     buttonsStyling: false,
-    showCloseButton: true
+    showCloseButton: true,
+    onRender: () => {
+        initSwalBtn()
+    }
 });
 
 // noinspection JSUnusedGlobalSymbols
@@ -178,15 +186,15 @@ function get(parameterName) {
     return result;
 }
 
-/* REQUEST CLASS */
-class Request {
+/* XHR CLASS */
+class XHR {
 
     constructor(
         url = ROOTDIR + '/app/actions',
         error = function (jqxhr, status, error) {
             Swal_md.fire({
                 title: tr.__("Ooops... qualcosa è andato storto!"),
-                html: `${tr.__("Si è verificato un errore!")}<br><br>${status} - <b>${error}</b>`,
+                html: `${tr.__("Si è verificato un errore!")}<br><br><b>${error}</b>`,
                 icon: "error"
             })
         }) {
@@ -229,4 +237,4 @@ class Request {
     }
 }
 
-const request = new Request();
+const request = new XHR();

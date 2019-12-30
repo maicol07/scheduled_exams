@@ -8,7 +8,7 @@ function addClassroomToList(data) {
             .find('.mdc-layout-grid__cell').first()
     }
     inner.append(`<div class="mdc-card" style="display: none">
-                    <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + 'app/classroom?view=${data.code}'">
+                    <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + '/app/classroom?view=${data.code}'">
                         <div class="mdc-card__primary">
                             <h2 class="mdc-typography--headline6">${data.name}</h2>
                         </div>
@@ -18,7 +18,7 @@ function addClassroomToList(data) {
                     </div>
                     <div class="mdc-card__actions">
                         <div class="mdc-card__action-buttons">
-                            <a href="class?view=${data.code}" class="mdc-button mdc-card__action mdc-card__action--button">
+                            <a href="classroom?view=${data.code}" class="mdc-button mdc-card__action mdc-card__action--button">
                                 <div class="mdc-button__ripple"></div>
                                 <i class="mdi-outline-open_in_new mdc-button__icon"></i>
                                 <span class="mdc-button__label">${tr.__("Apri")}</span>
@@ -47,7 +47,7 @@ function addClassroomToList(data) {
 async function createClassroom() {
     const {value: classroom_name} = await Swal_md.fire({
         title: tr.__("Crea classe"),
-        html: tr.__("Inserire il nome della classe:") + renderSwalInput('classroom_name_input', tr.__("Nome classe")),
+        html: tr.__("Inserire il nome della classe:") + renderOutlinedInput('classroom_name_input', tr.__("Nome classe")),
         imageUrl: ROOTDIR + "/app/assets/img/plus.svg",
         imageAlt: tr.__("Crea classe"),
         imageHeight: 150,
@@ -65,9 +65,8 @@ async function createClassroom() {
             name: classroom_name
         }, (data) => {
             addClassroomToList(data);
-            Swal.fire({
+            Toast.fire({
                 title: tr.__("Classe creata!"),
-                text: tr.__("La classe è stata creata! Puoi ora chiudere questo messaggio"),
                 icon: "success"
             });
         })
@@ -93,9 +92,8 @@ function deleteClassroom(id, name) {
                 div.fadeOut(1000, () => {
                     div.remove()
                 });
-                Swal_md.fire({
+                Toast.fire({
                     title: tr.__("Classe eliminata!"),
-                    text: tr.__("La classe è stata eliminata con successo!"),
                     icon: "success"
                 });
             })
@@ -111,16 +109,115 @@ function shareClassroom(code) {
     });
 }
 
-function joinClassroom() {
+$('#join_classroom').submit((event) => {
+    event.preventDefault();
     request.post({
         action: "join_classroom",
         code: $("#classroom_join_code").val()
     }, (data) => {
         addClassroomToList(data);
-        Swal_md.fire({
+        Toast.fire({
             title: tr.__("Ti sei unito alla classe %s", data.name),
-            text: tr.__("Puoi ora chiudere questa finestra"),
             icon: "success"
+        })
+    })
+});
+
+// Classroom page
+function usersList() {
+    request.post({
+        action: 'get_classroom_users'
+    });
+    Swal_md.fire({
+        title: __("Lista utenti"),
+        html: __()
+    })
+}
+
+function studentsList() {
+
+}
+
+function editClassroom() {
+    var card = $('#class_info');
+    var img = card.find('.mdc-card__media');
+
+    // Image upload
+    img.append(`
+                <div class="hvr-img">
+                    <input type="file" name="class_img" class="upload" id="image_input" accept="image/*">
+                </div>
+                <i class="mdi-outline-camera_alt"></i>`);
+    card.find('.mdc-card__primary-action').click((event) => {
+        if (!$(event.target).is('#image_input')) {
+            $('#image_input').trigger('click');
+        }
+    });
+    $('#image_input').on('change', () => {
+        var file = $("#image_input")[0].files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            img.css('background-image', `url(${reader.result})`);
+        };
+        if (file && file.type.match("image.*")) {
+            reader.readAsDataURL(file);
+        } else {
+            Swal_md.fire({
+                title: tr.__("File inserito non valido!"),
+                html: tr.__("Non hai inserito nessun file oppure il file inserito non è un file immagine (deve avere una fra le seguenti estensioni:<br> " +
+                    "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, .ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"),
+                icon: "error"
+            })
+        }
+    });
+
+    // Class name
+    var name = card.find('.mdc-card__primary div.mdc-typography--headline6');
+    name.replaceWith(renderOutlinedInput("class_name", tr.__("Nome classe"), name.text()));
+
+    // Class description
+    var description = card.find('.mdc-card__secondary div.mdc-typography--subtitle2');
+    description.replaceWith(renderOutlinedInput("class_description", tr.__("Descrizione classe"), description.text(), true));
+    initInput($('input#class_name, textarea#class_description').parent('.mdc-text-field'));
+
+    // Edit button
+    var button = card.find('.mdc-card__actions button#edit_button');
+    button.attr("title", tr.__("Salva")).attr("onclick", "saveClassroom()").attr('id', 'save_button');
+    button.find('i.mdc-button__icon').removeClass().addClass('mdc-button__icon mdi-outline-save')
+}
+
+function saveClassroom() {
+    request.post({
+        action: 'update_classroom',
+        code: get('view'),
+        name: $('input#class_name').val(),
+        description: $('textarea#class_description').val(),
+        image: $('#class_info .mdc-card__media').css('background-image').slice(4, -1).replace(/"/g, "")
+    }, () => {
+        var card = $('#class_info');
+        var img = card.find('.mdc-card__media');
+
+        // Image
+        img.find('div.hvr-img').remove();
+        img.find('i').remove();
+        card.find('.mdc-card__primary-action').off('click');
+
+        // Class name
+        var name = $('input#class_name');
+        name.parent('div.mdc-text-field').replaceWith(`<div class="mdc-typography--headline6">${name.val()}</div>`);
+
+        // Class description
+        var description = $('textarea#class_description');
+        description.parent('div.mdc-text-field').replaceWith(`<div class="mdc-typography--subtitle2">${description.val()}</div>`);
+
+        // Edit button
+        var button = card.find('.mdc-card__actions button#save_button');
+        button.attr("title", tr.__("Modifica")).attr("onclick", "editClassroom()").attr('id', 'edit_button');
+        button.find('i.mdc-button__icon').removeClass().addClass('mdc-button__icon mdi-outline-edit');
+
+        Toast.fire({
+            title: tr.__("Classe modificata!"),
+            icon: 'success'
         })
     })
 }

@@ -12,8 +12,9 @@ class Classroom
     public $code;
     /* @var Medoo */
     private $db;
-    private $id = null;
+    public $id = null;
     private $attributes = [
+        'id',
         "name",
         "description",
         "image",
@@ -39,20 +40,19 @@ class Classroom
         $this->db = $db;
         $this->user = $user;
         if (!empty($id) and $this->db->has("classrooms", ['id' => (int)$id])) {
-            // GET
             $this->id = $id;
-            $select = $this->db->get("classrooms", $this->attributes, ["id" => $this->id]);
+            $key = 'id';
+            $value = $id;
+        } elseif (!empty($code) and $this->db->has("classrooms", ['code' => $code])) {
+            $this->code = $code;
+            $key = 'code';
+            $value = $code;
+        }
+        if (!empty($key)) {
+            $select = $this->db->get("classrooms", $this->attributes, [$key => $value]);
             foreach ($select as $attribute => $value) {
                 $this->$attribute = $value;
             }
-        }
-        if (!empty($code) and $this->db->has("classrooms", ['code' => $code])) {
-            $this->code = $code;
-            $select = $this->db->get("classrooms", ["id", "name", "users", "admin"], ['code' => $code]);
-            $this->name = $select['name'];
-            $this->id = $select['id'];
-            $this->users = $select['users'];
-            $this->admin = $select['admin'];
         }
     }
 
@@ -107,15 +107,16 @@ class Classroom
             $this->id = $this->db->id();
             $this->code = $code;
         } else {
+            $attr = [];
             foreach ($this->attributes as $attribute) {
-                $this->attributes[$attribute] = $this[$attribute];
+                $attr[$attribute] = $this->$attribute;
             }
-            $query = $this->db->update("classrooms", $this->attributes, ['id' => $this->id]);
+            $query = $this->db->update("classrooms", $attr, ['id' => $this->id]);
         }
         if ($query->rowCount()) {
             return new Result(['code' => $this->code, 'id' => $this->id]);
         } else {
-            return new Result(null, $query->errorCode(), $query->errorInfo());
+            return new Result(null, $query->errorCode(), $query->errorInfo()[2]);
         }
     }
 

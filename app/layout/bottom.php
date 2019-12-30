@@ -51,8 +51,11 @@ $scripts = [
 if (!empty($include_scripts)) {
     $scripts = array_merge($scripts, $include_scripts);
 }
-echo $assets->add($scripts)->js()
-//echo Utils::buildAssetsImport($scripts);
+echo $assets->add($scripts)->js();
+
+if (!PRODUCTION) {
+    echo $debugbarRenderer->render();
+}
 ?>
 </body>
 </html>

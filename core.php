@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,6 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
  */
 require_once __DIR__ . '/dir.php';
 require_once DOCROOT . "/config/config.php";
+
 /*
  *
  * Gettext Initialization
@@ -43,8 +43,6 @@ if ($inside) {
         exit;
     }
 }
-
-require_once DOCROOT . "/vendor/stolz/assets/src/Manager.php";
 
 /*
  * Assets
