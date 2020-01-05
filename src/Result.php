@@ -12,10 +12,15 @@ class Result
 
     public function __construct(array $data = null, $errorcode = null, $errorinfo = null)
     {
-        if (is_array($data) and !empty($data)) {
-            foreach ($data as $key => $value) {
-                $this->$key = $value;
+        if (!empty($data)) {
+            if (is_array($data)) {
+                foreach ($data as $key => $value) {
+                    $this->$key = $value;
+                }
+            } else {
+                $this->data = $data;
             }
+
         }
         $this->errorcode = $errorcode;
         $this->errorinfo = $errorinfo;
