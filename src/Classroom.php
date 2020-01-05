@@ -6,13 +6,14 @@ use Medoo\Medoo;
 
 class Classroom
 {
+    public $id = null;
     public $name;
     public $description;
     public $image;
     public $code;
     /* @var Medoo */
     private $db;
-    public $id = null;
+
     private $attributes = [
         'id',
         "name",
@@ -21,12 +22,16 @@ class Classroom
         "users",
         "code",
         "admin",
-        "lists"
+        "lists",
+        'students'
     ];
     /**
-     * @var array|string
+     * @var string
      */
-    private $users;
+    public $users;
+    /* @var string (json) Example: {student1: {name: ..., surname: ..., user_id: ...}, ...} */
+    public $students;
+    public $admin;
 
     /**
      * Classroom constructor.
@@ -63,8 +68,8 @@ class Classroom
 
     private function manageUser($user = null, $mode = "add")
     {
-        $this->users = unserialize($this->users);
-        if ($this->users === false) {
+        $this->users = json_decode($this->users);
+        if (empty($this->users)) {
             $this->users = [];
         }
         if (empty($user)) {
@@ -81,17 +86,79 @@ class Classroom
                 unset($this->users[array_search($user, $this->users)]);
                 break;
         }
-        $query = $this->db->update("classrooms", ['users' => serialize($this->users)], ['id' => $this->id]);
-        if ($query->rowCount()) {
-            return new Result(['code' => $this->code, 'name' => $this->name]);
-        } else {
-            return new Result(null, $query->errorCode(), $query->errorInfo());
-        }
+        $this->users = json_encode($this->users);
+        return $this->save();
     }
 
     public function removeUser($user = null)
     {
         return $this->manageUser($user, "remove");
+    }
+
+    public function addStudent($student)
+    {
+        return $this->manageStudent($student);
+    }
+
+    private function manageStudent($student, $mode = "add", $new_student_info = null)
+    {
+        $students = json_decode($this->students, true);
+        if (empty($this->students)) {
+            $students = [];
+        }
+        $student_id = (int)$student;
+        switch ($mode) {
+            case 'add':
+                if (!empty($students) and in_array($student, array_column(array_values($this->getStudents()), 'name'))) {
+                    return new Result(null, 'ALREADY_EXISTS', __("Lo studente fa già parte della classe"));
+                }
+                $student_id = count($students);
+                $students[$student_id] = [
+                    'name' => $student,
+                    'user_id' => 0
+                ];
+                break;
+            case 'edit':
+                if ($students[$student_id]['name'] == $new_student_info) {
+                    return new Result(null, "SAME_NAME", __("Il nome inserito è identico a quello precedente!"));
+                }
+                $students[$student_id]['name'] = $new_student_info;
+                break;
+            case 'link':
+                $students[$student_id]['user_id'] = $new_student_info;
+                break;
+            case 'unlink':
+                $students[$student_id]['user_id'] = 0;
+                break;
+            case 'remove':
+                unset($students[$student_id]);
+                break;
+        }
+        if ($mode != 'remove') {
+            $students[$student_id] = (object)$students[$student_id];
+        }
+        $this->students = json_encode($students);
+        return $this->save();
+    }
+
+    public function editStudent($student, $new_name)
+    {
+        return $this->manageStudent($student, "edit", $new_name);
+    }
+
+    public function linkStudent($student, $user_id)
+    {
+        return $this->manageStudent($student, "link", $user_id);
+    }
+
+    public function unlinkStudent($student)
+    {
+        return $this->manageStudent($student, "unlink");
+    }
+
+    public function removeStudent($student)
+    {
+        return $this->manageStudent($student, "remove");
     }
 
     public function save()
@@ -101,7 +168,7 @@ class Classroom
             $query = $this->db->insert("classrooms", [
                 "name" => $this->name,
                 "code" => $code,
-                "users" => serialize([$this->user->getId()]),
+                "users" => json_encode([$this->user->getId()]),
                 "admin" => $this->user->getId(),
             ]);
             $this->id = $this->db->id();
@@ -151,8 +218,43 @@ class Classroom
             'users',
             'code',
             'admin'
-        ], [
-            'admin' => $this->user->getId()
-        ]);
+        ],
+            Medoo::raw('WHERE `admin` = ' . $this->user->getId() . ' OR JSON_CONTAINS(users, ' . $this->user->getId() . ')')
+        );
+    }
+
+    public function getStudents()
+    {
+        $students = json_decode($this->students);
+        $list = null;
+        if (!empty($this->students)) {
+            $list = [];
+            foreach ($students as $student_id => $student) {
+                $value = ['name' => $student->name, 'username' => '', 'image' => ROOTDIR . '/app/assets/img/user.svg', 'id' => $student_id];
+                $users = json_decode($this->users, true);
+                if (!empty($users) and in_array($student->user_id, $users)) {
+                    $value['username'] = $this->db->get('users', 'username', ['id' => $student->user_id]);
+                    //TODO 1.1: $value['image'] = (new Gravatar())->avatar($this->db->get('users', 'email', ['id' => $student->user_id]));
+                }
+                $list[] = $value;
+            }
+        }
+        return $list;
+    }
+
+    public function getUsers()
+    {
+        $users = json_decode($this->users);
+        $list = null;
+        if (!empty($this->users)) {
+            $list = [];
+            foreach ($users as $user) {
+                $username = $this->db->get('users', 'username', [
+                    'id' => $user
+                ]);
+                $list[$user] = $username;
+            }
+        }
+        return $list;
     }
 }
