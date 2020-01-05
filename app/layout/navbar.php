@@ -3,7 +3,6 @@
 use Gravatar\Gravatar;
 use src\Utils;
 
-require_once DOCROOT . '/vendor/gravatarphp/gravatar/src/Gravatar.php';
 ?>
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">

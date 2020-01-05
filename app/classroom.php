@@ -91,16 +91,14 @@ require_once DOCROOT . "/app/layout/top.php";
                 </div>
                 <div class="mdc-card__actions">
                     <div class="mdc-card__action-buttons">
-                        <button class="mdc-button mdc-card__action mdc-card__action--button" onclick="usersList()">
-                            <div class="mdc-button__ripple"></div>
-                            <i class="mdc-button__icon mdi-outline-people_outline"></i>
-                            <span class="mdc-button__label"><?php echo __("Lista utenti") ?></span>
-                        </button>
-                        <button class="mdc-button mdc-card__action mdc-card__action--button" onclick="studentsList()">
-                            <div class="mdc-button__ripple"></div>
-                            <i class="mdc-button__icon mdi-outline-class"></i>
-                            <span class="mdc-button__label"><?php echo __("Lista studenti") ?></span>
-                        </button>
+                        <?php if ($user->getId() == $classroom->admin) {
+                            echo '<button class="mdc-button mdc-card__action mdc-card__action--button" onclick="studentsList()">
+                                <div class="mdc-button__ripple"></div>
+                                <i class="mdc-button__icon mdi-outline-people_outline"></i>
+                                <span class="mdc-button__label">' . __("Lista studenti") . '</span>
+                            </button>';
+                        }
+                        ?>
                     </div>
                     <div class="mdc-card__action-icons">
                         <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"

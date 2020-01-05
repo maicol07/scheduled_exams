@@ -12,6 +12,7 @@ switch (post("action")) {
         $classroom = new Classroom($db, $user);
         $classroom->name = post("name");
         $result = $classroom->save();
+        $result->name = $classroom->name;
         break;
     case "update_classroom":
         $classroom = new Classroom($db, $user, null, post('code'));
@@ -49,10 +50,44 @@ switch (post("action")) {
         $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->addUser();
         break;
+    case "leave_classroom":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = $classroom->removeUser();
+        break;
+    case "add_classroom_student":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = $classroom->addStudent(post('name'));
+        break;
+    case "edit_classroom_student":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = $classroom->editStudent(post('student_id'), post('student_name'));
+        break;
+    case "link_classroom_student":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = $classroom->linkStudent(post('student_id'), post('user_id'));
+        break;
+    case "unlink_classroom_student":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = $classroom->unlinkStudent(post('student_id'));
+        break;
+    case "delete_classroom_student":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = $classroom->removeStudent(post('student_id'));
+        break;
+    case "get_classroom_students":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = new Result(['students' => $classroom->getStudents()]);
+        break;
+    case "get_classroom_users":
+        $classroom = new Classroom($db, $user, null, post('code'));
+        $result = new Result(['users' => $classroom->getUsers()]);
+        break;
 }
 header('Content-Type: application/json; charset=utf-8');
 if (!$result->success) {
-    var_dump($db->last());
+    if (!PRODUCTION and !empty($db->last())) {
+        $result->errorinfo .= (" - {$db->last()}");
+    }
     $errorinfo = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $result->errorinfo);
     $errorcode = $result->errorcode;
     header("HTTP/1.0 550 $errorinfo");

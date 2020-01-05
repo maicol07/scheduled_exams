@@ -14,6 +14,8 @@ if (window.tr == null) {
 
 // MDC
 const mdc = window.mdc;
+window.inputs = {};
+window.selects = {};
 
 // Auto init
 mdc.autoInit();
@@ -33,10 +35,10 @@ const initModalDrawer = () => {
     $('.mdc-drawer-app-content').before('<div class="mdc-drawer-scrim"></div>');
 
     $(drawerElement).removeClass("mdc-drawer--dismissible").addClass("mdc-drawer--modal");
-    const drawer = mdc.drawer.MDCDrawer.attachTo(drawerElement);
+    const drawer = new mdc.drawer.MDCDrawer(drawerElement);
     drawer.open = false;
 
-    const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(topAppBarElement);
+    const topAppBar = new mdc.topAppBar.MDCTopAppBar(topAppBarElement);
     topAppBar.setScrollTarget(mainContentEl);
     topAppBar.listen('MDCTopAppBar:nav', () => {
         drawer.open = !drawer.open;
@@ -47,10 +49,10 @@ const initModalDrawer = () => {
 
 const initPermanentDrawer = () => {
     $(drawerElement).removeClass("mdc-drawer--modal");
-    const drawer = mdc.drawer.MDCDrawer.attachTo(drawerElement);
+    const drawer = new mdc.drawer.MDCDrawer(drawerElement);
     drawer.open = true;
 
-    const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(topAppBarElement);
+    const topAppBar = new mdc.topAppBar.MDCTopAppBar(topAppBarElement);
     topAppBar.setScrollTarget(mainContentEl);
     topAppBar.listen('MDCTopAppBar:nav', () => {
         drawer.open = !drawer.open;
@@ -75,7 +77,7 @@ $(window).resize(resizeHandler);
 
 // MDC Menu initialization
 $('.mdc-menu').each((index, element) => {
-    const menu = mdc.menu.MDCMenu.attachTo(element);
+    const menu = new mdc.menu.MDCMenu(element);
     $(element).prev('.menu-button').click(() => {
         menu.open = !menu.open;
     });
@@ -84,7 +86,7 @@ $('.mdc-menu').each((index, element) => {
 // MDC Ripples initialization
 function initRipple(elements) {
     $(elements).each((index, element) => {
-        const ripple = mdc.ripple.MDCRipple.attachTo(element);
+        const ripple = new mdc.ripple.MDCRipple(element);
         if ($(element).hasClass('mdc-icon-button')) {
             ripple.unbounded = true;
         }
@@ -94,12 +96,30 @@ function initRipple(elements) {
 // MDC Text Input initialization
 function initInput(elements = $('.mdc-text-field')) {
     $(elements).each((index, element) => {
-        mdc.textField.MDCTextField.attachTo(element);
+        window.inputs[$(element).attr('id')] = new mdc.textField.MDCTextField(element);
         if ($(element).hasClass("mdc-text-field--outlined")) {
-            mdc.notchedOutline.MDCNotchedOutline.attachTo($(element).find('.mdc-notched-outline')[0])
+            new mdc.notchedOutline.MDCNotchedOutline($(element).find('.mdc-notched-outline')[0])
         }
         if ($(element).hasClass("mdc-text-field--with-leading-icon") || $(element).hasClass("mdc-text-field--with-trailing-icon")) {
-            mdc.textField.MDCTextFieldIcon.attachTo($(element).find('.mdc-text-field__icon')[0])
+            new mdc.textField.MDCTextFieldIcon($(element).find('.mdc-text-field__icon')[0])
+        }
+    });
+}
+
+// MDC List Initialization
+function initList(elements = $('.mdc-list')) {
+    $(elements).each((index, element) => {
+        const list = new mdc.list.MDCList(element);
+        initRipple(list.listElements);
+    });
+}
+
+// MDC Select Initialization
+function initSelect(elements = $('.mdc-select')) {
+    $(elements).each((index, element) => {
+        window.selects[$(element).attr('id')] = new mdc.select.MDCSelect(element);
+        if ($(element).hasClass('mdc-select--with-leading-icon')) {
+            const select_icon = new mdc.select.MDCSelectIcon($(element).find('i.mdc-select__icon')[0]);
         }
     });
 }
@@ -112,12 +132,34 @@ initRipple($('.mdc-card__primary-action'));
 initInput();
 
 // Swal2
-function initSwalBtn() {
-    var buttons = $('.swal2-popup .mdc-button');
+function initSwalBtn(dom) {
+    var buttons = $(dom).find('.mdc-button');
     buttons.each((index, btn) => {
-        $(btn).html('<div class="mdc-button__ripple"></div><span class="mdc-button__label">' + $(btn).text() + '</span>');
+        $(btn).html('<div class="mdc-button__ripple"></div>' + $(btn).html());
+        var icon = $(btn).find('i.mdc-button__icon');
+        if (icon) {
+            icon.css('line-height', 'unset')
+        }
     });
     initRipple(buttons)
+}
+
+function initSwalInput(dom) {
+    var inputs = $(dom).find('.mdc-text-field');
+    initInput(inputs);
+    inputs.each((index, input) => {
+        $(input).keyup((event) => {
+            if (event.key === 'Enter') {
+                $(dom).find('.swal2-actions button.swal2-confirm').click();
+            }
+        })
+    });
+    // Focus
+    if (inputs.first().length) {
+        $(dom).ready(() => {
+            window.inputs[inputs.first().attr('id')].focus()
+        });
+    }
 }
 
 function renderOutlinedInput(id, label, value = "", textarea = false) {
@@ -138,6 +180,45 @@ function renderOutlinedInput(id, label, value = "", textarea = false) {
         </div>`;
 }
 
+/**
+ * Renders an outlined select from MDC for Web framework.
+ *
+ * @param id
+ * @param label
+ * @param values
+ * @param selected
+ * @param required
+ * @param icon
+ * @param icon_as_btn
+ * @param width
+ * @returns {string}
+ */
+function renderOutlinedSelect(id, label, values = {}, selected = null, required = false, icon = null, icon_as_btn = false, width = "240px") {
+    var list = '';
+    Object.keys(values).forEach((value) => {
+        list += `
+                <li class="mdc-list-item ${(selected === value) ? 'mdc-list-item--selected" aria-selected="true' : ''}" data-value="${value}">
+                    ${values[value]}
+                </li>`
+    });
+    return `
+    <div id="${id}" class="mdc-select ${required ? 'mdc-select--required' : ''} ${icon ? 'mdc-select--with-leading-icon' : ''}">
+        <div class="mdc-select__anchor" style="width: ${width}">
+            ${icon ? `<i class="${icon} mdc-select__icon" ${icon_as_btn ? 'tabindex="0" role="button"' : ''} style="font-size: 24px;"></i>` : ''}
+            <i class="mdc-select__dropdown-icon"></i>
+            <div class="mdc-select__selected-text" ${required ? 'aria-required="true"' : ''}></div>
+            <span class="mdc-floating-label">${label}</span>
+            <div class="mdc-line-ripple"></div>
+        </div>
+    
+        <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="width: ${width}">
+            <ul class="mdc-list">
+              ${list}
+            </ul>
+        </div>
+    </div>`
+}
+
 const Swal_md = Swal.mixin({
     customClass: {
         confirmButton: 'mdc-button mdc-button--raised mdc-typography--button',
@@ -148,8 +229,10 @@ const Swal_md = Swal.mixin({
     },
     buttonsStyling: false,
     showCloseButton: true,
-    onRender: () => {
-        initSwalBtn()
+    onOpen: (dom) => {
+        initSwalBtn(dom);
+        initSwalInput(dom);
+        initSelect($(dom).find('.mdc-select'))
     }
 });
 

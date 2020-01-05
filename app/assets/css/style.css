@@ -232,33 +232,13 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     height: 100%;
 }
 
-/*----------------------------------------
-    Profile
-------------------------------------------*/
-/*
-#profile-page-header .card-profile-image {
-    width: 110px;
-    position: absolute;
-    top: 190px;
-    z-index: 1;
-    left: 40px;
-    margin: 0;
+/* SWEETALERT2 */
+.swal2-content {
+    z-index: 2 !important;
 }
 
-#profile-page-header .card-content {
-    margin-top: -20px;
-}
-
-#content .container .row {
-    margin-bottom: 0;
-}
-
-.pt-2 {
-    padding-top: 2% !important;
-}
-
-.medium-small {
-    font-size: 0.9rem !important;
+.swal2-content .mdc-select__menu {
+    left: 6.45em !important;
 }
 
 /*----------------------------------------

@@ -54,6 +54,7 @@ if (!empty($include_scripts)) {
 echo $assets->add($scripts)->js();
 
 if (!PRODUCTION) {
+    $debugbar["messages"]->addMessage(basename($_SERVER['SCRIPT_NAME'], '.php'));
     echo $debugbarRenderer->render();
 }
 ?>

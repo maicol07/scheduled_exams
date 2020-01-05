@@ -19,7 +19,8 @@ if (!empty($classrooms)) {
     <div class="mdc-layout-grid__inner">';
     foreach ($classrooms as $classroom) {
         $classroom = (object)$classroom;
-        if (!in_array($user->getId(), unserialize($classroom->users))) {
+        $classroom_users = json_decode($classroom->users);
+        if (is_array($classroom_users) and !in_array($user->getId(), $classroom_users)) {
             continue;
         }
         echo '
@@ -33,7 +34,7 @@ if (!empty($classrooms)) {
                         <h2 class="mdc-typography--headline6">' . $classroom->name . '</h2>
                     </div>
                     <div class="mdc-card__secondary mdc-typography--body2">
-                        ' . $classroom->description . (!empty($classroom->description) ? "<br>" : "") . '<small>' . __("Codice classe: %s", $classroom->code) . '</small>
+                        ' . $classroom->description . (!empty($classroom->description) ? "<br>" : "") . '
                     </div>
                 </div>
                 <div class="mdc-card__actions">
@@ -45,15 +46,19 @@ if (!empty($classrooms)) {
                         </a>
                     </div>
                     <div class="mdc-card__action-icons">
-                        <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
+                        <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                 title="' . __("Condividi") . '" onclick="shareClassroom(\'' . $classroom->code . '\')">
                           <i class="mdi-outline-share mdc-button__icon"></i>
                         </button>
-                        ' . ($user->getId() == $classroom->admin ? '<button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
+                        ' . ($user->getId() == $classroom->admin ? '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                 title="' . __("Elimina") . '"
                                 onclick="deleteClassroom(\'' . $classroom->id . '\', \'' . $classroom->name . '\')">
                           <i class="mdi-outline-delete mdc-button__icon"></i>
-                        </button>' : '') . '
+                        </button>' : '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                title="' . __("Abbandona") . '"
+                                onclick="leaveClassroom(\'' . $classroom->id . '\', \'' . $classroom->name . '\')">
+                          <i class="mdi-outline-exit_to_app mdc-button__icon"></i>
+                        </button>') . '
                     </div>
                 </div>
             </div>
