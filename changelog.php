@@ -72,7 +72,7 @@ $parser = new Parsedown();
           href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon-32x32.png"); ?>">
     <link rel="icon" type="image/png" sizes="16x16"
           href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon-16x16.png"); ?>">
-    <link rel="manifest" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/site.webmanifest"); ?>">
+    <link rel="manifest" href="<?php echo Utils::buildAssetsURI("/app/manifest.php"); ?>">
     <link rel="mask-icon" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/safari-pinned-tab.svg"); ?>"
           color="#5bbad5">
     <link rel="shortcut icon" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon.ico"); ?>">

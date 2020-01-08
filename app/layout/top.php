@@ -41,8 +41,8 @@ use src\Utils;
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+            rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180"
@@ -51,7 +51,7 @@ use src\Utils;
           href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon-32x32.png"); ?>">
     <link rel="icon" type="image/png" sizes="16x16"
           href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon-16x16.png"); ?>">
-    <link rel="manifest" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/site.webmanifest"); ?>">
+    <link rel="manifest" href="<?php echo Utils::buildAssetsURI("/app/manifest"); ?>">
     <link rel="mask-icon" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/safari-pinned-tab.svg"); ?>"
           color="#5bbad5">
     <link rel="shortcut icon" href="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/favicon.ico"); ?>">
@@ -61,6 +61,17 @@ use src\Utils;
     <meta name="msapplication-config"
           content="<?php echo Utils::buildAssetsURI("/app/assets/img/favicon/browserconfig.xml"); ?>">
     <meta name="theme-color" content="#ffffff">
+
+    <!-- Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('<?php echo ROOTDIR ?>/app/sw.js').then((registration) => {
+                console.log('Registration successful, scope is:', registration.scope);
+            }).catch((error) => {
+                console.log('Service worker registration failed, error:', error);
+            });
+        }
+    </script>
 
     <?php
     // MDC web
@@ -86,13 +97,13 @@ use src\Utils;
 if (isset($body) and !$body) {
     return;
 }
-if (!PRODUCTION) {
+if (isset($debugbarRenderer)) {
     echo $debugbarRenderer->renderHead();
 }
 ?>
 <body class="mdc-typography">
 <!-- Preloader -->
-<script src="<?php echo Utils::buildAssetsURI("app/assets/preloader.min.js") ?>"></script>
+<script src="<?php echo Utils::buildAssetsURI("app/assets/js/preloader.min.js") ?>"></script>
 <?php
 if (!isset($navbar) or $navbar) {
     require_once DOCROOT . "/app/layout/navbar.php";

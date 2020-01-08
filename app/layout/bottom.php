@@ -37,7 +37,7 @@ $scripts = [
     // SweetAlert2
     "sweetalert2",
     // Polyfill (ES6 Promises for IE11 and Android Browsers)
-    //"promise-polyfill",
+    "promise-polyfill",
     // GetText Translator
     'gettext-translator',
     // Perfect Scrollbar
@@ -53,7 +53,7 @@ if (!empty($include_scripts)) {
 }
 echo $assets->add($scripts)->js();
 
-if (!PRODUCTION) {
+if (isset($debugbar) and isset($debugbarRenderer)) {
     $debugbar["messages"]->addMessage(basename($_SERVER['SCRIPT_NAME'], '.php'));
     echo $debugbarRenderer->render();
 }

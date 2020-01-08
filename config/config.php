@@ -74,24 +74,28 @@ $db = new Medoo([
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_general_ci'
 ]);
-$pdo = new DebugBar\DataCollector\PDO\TraceablePDO($db->pdo);
-$debugbar->addCollector(new DebugBar\DataCollector\PDO\PDOCollector($pdo));
+if (isset($debugbar)) {
+    $pdo = new DebugBar\DataCollector\PDO\TraceablePDO($db->pdo);
+    $debugbar->addCollector(new DebugBar\DataCollector\PDO\PDOCollector($pdo));
+}
 
 /*
  *
  * Auth config
  *
  */
-$user = new Auth($db);
-$logged = $user->isAuthenticated();
-// Add user to Sentry if is logged in
-if ($logged) {
-    Sentry\configureScope(function (Sentry\State\Scope $scope): void {
-        global $user;
-        $scope->setUser([
-            'email' => $user->getEmail()
-        ]);
-    });
+if (empty($no_auth)) {
+    $user = new Auth($db);
+    $logged = $user->isAuthenticated();
+    // Add user to Sentry if is logged in
+    if ($logged) {
+        Sentry\configureScope(function (Sentry\State\Scope $scope): void {
+            global $user;
+            $scope->setUser([
+                'email' => $user->getEmail()
+            ]);
+        });
+    }
 }
 
 /*

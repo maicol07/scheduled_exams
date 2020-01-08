@@ -2,6 +2,7 @@ Options +FollowSymLinks
 <FilesMatch ".(eot|ttf|otf|woff)">
   Header set Access-Control-Allow-Origin "*"
 </FilesMatch>
+Header set Service-Worker-Allowed "/"
 
 ##### SSL #####
 # This will enable the Rewrite capabilities
