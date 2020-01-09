@@ -11,7 +11,7 @@ if (defined("DOCROOT")) {
 /**
  * Whoops (only dev)
  */
-if (PRODUCTION) {
+if (!PRODUCTION) {
     ini_set('display_errors', true);
     // Whoops initialization
     $whoops = new Whoops\Run();
@@ -26,6 +26,7 @@ if (PRODUCTION) {
     /*
      * PHP Debug Bar
      */
+    require_once DOCROOT . "/vendor/maximebf/debugbar/src/DebugBar/StandardDebugBar.php";
     $debugbar = new StandardDebugBar();
     $debugbarRenderer = $debugbar->getJavascriptRenderer();
     $debugbarRenderer->setBaseUrl(ROOTDIR . '/vendor/maximebf/debugbar/src/DebugBar/Resources');

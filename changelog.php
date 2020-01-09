@@ -17,24 +17,55 @@ $changelog = [
                 "type" => "new",
                 "badge_text" => __("Nuovo"),
                 // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
-                "text" => __("Nuova UI: ora viene offerto uno stile grafico più simile a quello utilizzato da Google, grazie a [MDC](https://material.io/develop/web)"),
+                "text" => __("Nuova UI: ora viene offerto uno stile grafico più simile a quello utilizzato da Google, grazie a [MDC](https://material.io/develop/web), chiamato Material Design Refresh o Material Design 2"),
             ],
             [
                 "type" => "new",
                 "badge_text" => __("Nuovo"),
-                "text" => __("Integrazione con Maicol07 Account (SSO): puoi ora utilizzare il tuo account di Maicol07 Network per accedere"),
+                // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
+                "text" => __("Integrazione con [Maicol07 Account](https://account.maicol07.it) (SSO): puoi ora utilizzare il tuo account di Maicol07 Network per accedere (il tuo vecchio account su Interrogazioni Programmate è stato migrato automaticamente.
+                Per motivi di privacy è necessario reimpostare la password al primo accesso)"),
+            ],
+            [
+                "type" => "changed",
+                "badge_text" => __("Cambiato"),
+                "text" => __("Metodo di iscrizione degli utenti alle classi: ora gli utenti si iscrivono con un codice classe direttamente dalla dashboard.
+                Con lo stesso codice è anche possibile visualizzare la classe e le relative liste (*in sola lettura*) come visitatori, senza effettuare l'accesso"),
             ],
             [
                 "type" => "improved",
                 "badge_text" => __("Migliorato"),
-                "text" => __("Struttura interna dell'app"),
+                // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
+                "text" => __("Supporto a [PWA (Progressive Web Apps)](https://developers.google.com/web/progressive-web-apps): è possibile aggiungere alla propria schermata home una icona per accedere più velocemente all'app senza ogni volta dover aprire il browser e digitare l'URL 
+                (**Funzione disponibile solo per browser supportati: controlla [QUI](https://www.goodbarber.com/blog/progressive-web-apps-browser-support-compatibility-a883/) per una lista aggiornata!**"),
             ],
             [
-                "type" => "deprecated",
-                "badge_text" => __("Deprecato"),
+                "type" => "improved",
+                "badge_text" => __("Migliorato"),
                 // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
-                "text" => __("Gestione del profilo (quest'ultimo viene ora gestito da [Maicol07 Account](https://account.maicol07.it))"),
-            ]
+                "text" => __("Supporto alle lingue grazie alla libreria [Gettext](https://github.com/oscarotero/Gettext) di [Oscar Otero](https://github.com/oscarotero)"),
+            ],
+            [
+                "type" => "improved",
+                "badge_text" => __("Migliorato"),
+                "text" => __("Struttura interna dell'app: sono state implementate le seguenti caratteristiche:
+                - Classi;
+                - Struttura modulare;
+                - Composer per le librerie esterne;
+                - Yarn/NPM per gli assets"),
+            ],
+            [
+                "type" => "removed",
+                "badge_text" => __("Rimosso"),
+                // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
+                "text" => __("Gestione del profilo (il proprio account può essere ora gestito da [Maicol07 Account](https://account.maicol07.it))"),
+            ],
+            [
+                "type" => "removed",
+                "badge_text" => __("Rimosso"),
+                // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
+                "text" => __("Impostazioni (le impostazioni riguardanti il proprio account possono essere ora gestite da [Maicol07 Account](https://account.maicol07.it))"),
+            ],
         ]
     ],
     "0.1 - Alpha" => [
@@ -62,7 +93,7 @@ $parser = new Parsedown();
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Manjari:400,700&display=swap"
           rel="stylesheet">
-    <link href="<?php echo Utils::buildAssetsURI("app/assets/icons/mdi-outline/mdi-outline.min.css") ?>"
+    <link href="<?php echo Utils::buildAssetsURI("app/assets/css/mdi-outline/mdi-outline.min.css") ?>"
           rel="stylesheet">
 
     <!-- Favicon -->
@@ -98,8 +129,7 @@ $parser = new Parsedown();
             $feature = (object)$feature;
             echo '<div class="feature">
               <p class ="label ' . $feature->type . '">' . strtoupper($feature->badge_text) . '</p>
-              <p>' . $parser->text($feature->text) . '</p>
-              <br>
+              ' . $parser->text($feature->text) . '
            </div>';
         }
         echo '</div>

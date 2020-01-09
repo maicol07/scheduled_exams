@@ -215,22 +215,62 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 5px;
     display: none;
     text-align: center;
+    vertical-align: middle;
 }
 
 .cd-timeline-content .new {
     background: #2196F3;
 }
 
+.cd-timeline-content .new::before {
+    font-family: "material-icon-outline", sans-serif;
+    content: '\ec3f';
+    vertical-align: sub;
+    margin-right: 2px;
+}
+
 .cd-timeline-content .improved {
     background: #4caf50;
 }
 
+.cd-timeline-content .improved::before {
+    font-family: "material-icon-outline", sans-serif;
+    content: '\e910';
+    vertical-align: sub;
+    margin-right: 2px;
+}
+
+.cd-timeline-content .changed {
+    background: #9700ff;
+}
+
+.cd-timeline-content .changed::before {
+    font-family: "material-icon-outline", sans-serif;
+    content: '\eb1f';
+    vertical-align: sub;
+    margin-right: 2px;
+}
+
 .cd-timeline-content .fixed {
+    background: #ff0100;
+}
+
+.cd-timeline-content .fixed::before {
+    font-family: "material-icon-outline", sans-serif;
+    content: '\e994';
+    vertical-align: sub;
+    margin-right: 2px;
+}
+
+.cd-timeline-content .removed {
     background: #ff5722;
 }
 
-.cd-timeline-content .deprecated {
-    background: #ff5722;
+.cd-timeline-content .removed::before {
+    font-family: "material-icon-outline", sans-serif;
+    content: '\e9f5';
+    vertical-align: sub;
+    margin-right: 2px;
 }
 
 .cd-timeline-content::before {
@@ -263,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media only screen and (min-width: 1170px) {
     .cd-timeline-content {
-        color: white;
+        color: #000000DE;
         margin-left: 0;
         padding: 1.6em;
         width: 36%;
