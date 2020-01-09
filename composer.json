@@ -1,12 +1,8 @@
 {
-  "name": "maicol07/scheduled_exams",
-  "description": "Scheduled Exams",
-  "minimum-stability": "stable",
-  "license": "proprietary",
   "authors": [
     {
-      "name": "Maicol",
-      "email": "maicolbattistini@live.it"
+      "email": "maicolbattistini@live.it",
+      "name": "Maicol"
     }
   ],
   "autoload": {
@@ -14,40 +10,44 @@
       "src\\": "src/"
     }
   },
-  "require": {
-    "ext-intl": "*",
-    "phpmailer/phpmailer": "^6.1",
-    "catfan/medoo": "^1.7",
-    "lindelius/php-jwt": "^0.8.1",
-    "ext-curl": "*",
-    "php-curl-class/php-curl-class": "^8.6",
-    "gettext/gettext": "^5.0",
-    "filp/whoops": "^2.5",
-    "sentry/sdk": "^2.0",
-    "gettext/json": "^1.0",
-    "gettext/translator": "^1.0",
-    "foxy/foxy": "^1.0",
-    "gettext/php-scanner": "^1.0",
-    "gettext/js-scanner": "^1.0",
-    "ext-json": "*",
-    "delight-im/cookie": "^3.1",
-    "gravatarphp/gravatar": "^2.0",
-    "erusev/parsedown": "^1.7",
-    "stolz/assets": "dev-master",
-    "ext-iconv": "*",
-    "cloudinary/cloudinary_php": "^1.16",
-    "ext-fileinfo": "*",
-    "maximebf/debugbar": "^1.16"
-  },
   "config": {
     "foxy": {
       "manager": "yarn"
     }
   },
+  "description": "Scheduled Exams",
+  "license": "proprietary",
+  "minimum-stability": "stable",
+  "name": "maicol07/scheduled_exams",
   "repositories": [
     {
       "type": "vcs",
       "url": "https://github.com/maicol07/Assets"
     }
-  ]
+  ],
+  "require": {
+    "catfan/medoo": "^1.7",
+    "cloudinary/cloudinary_php": "^1.16",
+    "delight-im/cookie": "^3.1",
+    "erusev/parsedown": "^1.7",
+    "ext-curl": "*",
+    "ext-fileinfo": "*",
+    "ext-iconv": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "filp/whoops": "^2.5",
+    "foxy/foxy": "^1.0",
+    "gettext/gettext": "^5.0",
+    "gettext/js-scanner": "^1.0",
+    "gettext/json": "^1.0",
+    "gettext/php-scanner": "^1.0",
+    "gettext/translator": "^1.0",
+    "gravatarphp/gravatar": "^2.0",
+    "lindelius/php-jwt": "^0.8.1",
+    "maximebf/debugbar": "^1.16",
+    "php-curl-class/php-curl-class": "^8.6",
+    "phpmailer/phpmailer": "^6.1",
+    "sentry/sdk": "^2.0",
+    "stolz/assets": "dev-master"
+  }
 }
