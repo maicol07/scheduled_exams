@@ -22,7 +22,6 @@ class Classroom
         "users",
         "code",
         "admin",
-        "lists",
         'students'
     ];
     /**
@@ -211,7 +210,7 @@ class Classroom
     public function getClassrooms()
     {
         return $this->db->select("classrooms", [
-            'id',
+            'id [Int]',
             'name',
             'description',
             'image',

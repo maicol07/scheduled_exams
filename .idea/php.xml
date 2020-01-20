@@ -6,7 +6,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
       <path value="$PROJECT_DIR$/vendor/gettext/translator" />
       <path value="$PROJECT_DIR$/vendor/gettext/gettext" />
-      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/gettext/json" />
       <path value="$PROJECT_DIR$/vendor/gettext/js-scanner" />
       <path value="$PROJECT_DIR$/vendor/mck89/peast" />
@@ -20,7 +19,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
       <path value="$PROJECT_DIR$/vendor/http-interop/http-factory-guzzle" />
       <path value="$PROJECT_DIR$/vendor/php-curl-class/php-curl-class" />
       <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
@@ -31,10 +29,8 @@
       <path value="$PROJECT_DIR$/vendor/php-http/message" />
       <path value="$PROJECT_DIR$/vendor/lindelius/php-jwt" />
       <path value="$PROJECT_DIR$/vendor/php-http/promise" />
-      <path value="$PROJECT_DIR$/vendor/php-http/curl-client" />
       <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
       <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/sentry/sentry" />
@@ -64,9 +60,12 @@
       <path value="$PROJECT_DIR$/vendor/mrclay/minify" />
       <path value="$PROJECT_DIR$/vendor/cloudinary/cloudinary_php" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

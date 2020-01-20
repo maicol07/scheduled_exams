@@ -29,29 +29,9 @@ ROOTDIR = '" . ROOTDIR . "';
 BASEURL = '" . BASEURL . "';
 USER_LANG = '" . $lang . "';
 </script>";
-$scripts = [
-    // jQuery
-    "jquery",
-    // Materialize
-    "material-components-web",
-    // SweetAlert2
-    "sweetalert2",
-    // Polyfill (ES6 Promises for IE11 and Android Browsers)
-    "promise-polyfill",
-    // GetText Translator
-    'gettext-translator',
-    // Perfect Scrollbar
-    //'vendor/npm-asset/perfect-scrollbar/dist/perfect-scrollbar.js',
-    // Cookie consent
-    "cookieconsent",
-    // Scripts
-    "init.js",
-    "navbar.js"
-];
-if (!empty($include_scripts)) {
-    $scripts = array_merge($scripts, $include_scripts);
-}
-echo $assets->add($scripts)->js();
+
+
+echo $assets->js();
 
 if (isset($debugbar) and isset($debugbarRenderer)) {
     $debugbar["messages"]->addMessage(basename($_SERVER['SCRIPT_NAME'], '.php'));

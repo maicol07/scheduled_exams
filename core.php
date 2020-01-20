@@ -18,6 +18,8 @@ require_once DOCROOT . "/config/config.php";
  */
 require DOCROOT . "/config/gettext.php";
 
+$detector = new Mobile_Detect();
+
 $url = explode("/", $_SERVER['REQUEST_URI']);
 $inside = in_array("app", $url);
 if ($inside) {
@@ -50,6 +52,8 @@ if ($inside) {
 
 use Stolz\Assets\Manager;
 
+require_once DOCROOT . '/config/assets.php';
+
 // Set config options
 $config = [
     'pipeline' => PRODUCTION,
@@ -59,7 +63,8 @@ $config = [
     'js_dir' => ROOTDIR . "/app/assets/js",
     'packages_dir' => "/vendor/web-assets",
     'npm_dir' => 'vendor/web-assets',
-    'docroot' => DOCROOT
+    'docroot' => DOCROOT,
+    'autoload' => array_merge($css, $js) // Autoload all the default assets
 ];
 
 // Instantiate the library

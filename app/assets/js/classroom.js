@@ -1,7 +1,12 @@
 // Global constants
 const CLASSROOM_CODE = get('view');
 
-function addClassroomToList(data) {
+/**
+ * Add classroom to classrooms grid list in Dashboard
+ *
+ * @param data {Object}
+ */
+function addClassroomToGrid(data) {
     var inner;
     var grid = $('.mdc-layout-grid__inner');
     if (grid.length) {
@@ -31,7 +36,7 @@ function addClassroomToList(data) {
                             </button>
                             <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                     title="${tr.__("Elimina")}"
-                                    onclick="deleteClassroom('${data.id}', '${data.name}')">
+                                    onclick="deleteClassroom(${data.id}, '${data.name}')">
                               <i class="mdi-outline-delete mdc-button__icon"></i>
                             </button>
                         </div>
@@ -45,17 +50,21 @@ function addClassroomToList(data) {
     });
 }
 
+/**
+ * Create classroom popup
+ *
+ * @returns {Promise<void>}
+ */
 async function createClassroom() {
     const {value: classroom_name} = await Swal_md.fire({
         title: tr.__("Crea classe"),
-        html: tr.__("Inserire il nome della classe:") + renderOutlinedInput('classroom_name_input', tr.__("Nome classe")),
+        html: renderOutlinedInput('classroom_name_input', tr.__("Nome classe"), {
+            required: true,
+            icon: "mdi-outline-school",
+        }),
         imageUrl: ROOTDIR + "/app/assets/img/plus.svg",
         imageAlt: tr.__("Crea classe"),
         imageHeight: 150,
-        onRender: () => {
-            initInput($('#classroom_name_input').parent());
-            initSwalBtn() // This onRender() replaces the default one
-        },
         preConfirm: () => {
             return $('#classroom_name_input').val()
         }
@@ -65,7 +74,7 @@ async function createClassroom() {
             action: "create_classroom",
             name: classroom_name
         }, (data) => {
-            addClassroomToList(data);
+            addClassroomToGrid(data);
             Toast.fire({
                 title: tr.__("Classe creata!"),
                 icon: "success"
@@ -74,6 +83,12 @@ async function createClassroom() {
     }
 }
 
+/**
+ * Delete the classroom specified
+ *
+ * @param id {number}
+ * @param name {string}
+ */
 function deleteClassroom(id, name) {
     Swal_md.fire({
         title: tr.__("Sei sicuro di voler eliminare la classe %s?", name),
@@ -105,6 +120,11 @@ function deleteClassroom(id, name) {
     });
 }
 
+/**
+ * Share classroom through code
+ *
+ * @param code {string}
+ */
 function shareClassroom(code) {
     Swal_md.fire({
         title: tr.__("Condividi la classe"),
@@ -119,7 +139,7 @@ $('#join_classroom').submit((event) => {
         action: "join_classroom",
         code: $("#classroom_join_code").val()
     }, (data) => {
-        addClassroomToList(data);
+        addClassroomToGrid(data);
         Toast.fire({
             title: tr.__("Ti sei unito alla classe %s", data.name),
             icon: "success"
@@ -128,6 +148,10 @@ $('#join_classroom').submit((event) => {
 });
 
 // Classroom page
+
+/**
+ * Show students list
+ */
 function studentsList() {
     Swal.showLoading();
     request.post({
@@ -137,6 +161,11 @@ function studentsList() {
         var html;
         var image = '';
 
+        /**
+         * Build HTML students list
+         *
+         * @returns {string}
+         */
         function buildStudentsList() {
             html = `<ul class="mdc-list mdc-list--two-line">`;
             data.students.forEach((student) => {
@@ -183,16 +212,14 @@ function studentsList() {
             confirmButtonText: `<i class="mdi-outline-add mdc-button__icon"></i><span class="mdc-button__label">${tr.__("Aggiungi")}</span>`,
             showCancelButton: true,
             cancelButtonText: tr.__("Chiudi"),
-            onRender: () => {
-                initList($('.swal2-content ul.mdc-list'));
-                initRipple($('.swal2-content ul.mdc-list li.mdc-list-item span.mdc-list-item__graphic button.mdc-icon-button'));
-                initSwalBtn() // This onRender() replaces the default one
-            }
         }).then(async (result) => {
             if (result.value) {
                 const {value: student_name} = await Swal_md.fire({
                     title: tr.__("Aggiungi studente"),
-                    html: tr.__("Inserire il nome e cognome dello studente:") + renderOutlinedInput('student_name_input', tr.__("Nome studente")),
+                    html: renderOutlinedInput('student_name_input', tr.__("Nome studente"), {
+                        required: true,
+                        icon: "mdi-outline-person",
+                    }),
                     imageUrl: ROOTDIR + "/app/assets/img/plus.svg",
                     imageAlt: tr.__("Aggiungi studente"),
                     imageHeight: 150,
@@ -219,10 +246,17 @@ function studentsList() {
     });
 }
 
+/**
+ * Edit student infos
+ *
+ * @param id {number}
+ * @param name {string}
+ * @returns {Promise<void>}
+ */
 async function editStudent(id, name) {
     const {value: student_name} = await Swal_md.fire({
         title: tr.__("Modifica studente"),
-        html: tr.__("Inserire il nome e cognome dello studente:") + renderOutlinedInput('student_name_input', tr.__("Nome studente"), name),
+        html: renderOutlinedInput('student_name_input', tr.__("Nome studente"), name),
         imageUrl: ROOTDIR + "/app/assets/img/edit.svg",
         imageAlt: tr.__("Modifica studente"),
         imageHeight: 150,
@@ -260,7 +294,11 @@ function linkStudent(id, name) {
         const {value: selected_user} = await Swal_md.fire({
             title: tr.__("Collegamento studente a utente"),
             html: `${tr.__("Scegliere a quale utente collegare lo studente %s:", name)}<br><br>
-                    ${renderOutlinedSelect('user_select', tr.__("Utente"), values, null, true, 'mdi-outline-person')}`,
+                    ${renderOutlinedSelect('user_select', tr.__("Utente"), {
+                values: values,
+                required: true,
+                icon: "mdi-outline-person"
+            })}`,
             preConfirm: () => {
                 return window.selects["user_select"].value
             }
@@ -285,6 +323,12 @@ function linkStudent(id, name) {
     })
 }
 
+/**
+ * Unlink a student from his user
+ *
+ * @param id {number}
+ * @param name {string}
+ */
 function unlinkStudent(id, name) {
     Swal_md.fire({
         title: tr.__("Attenzione!"),
@@ -310,6 +354,12 @@ function unlinkStudent(id, name) {
     })
 }
 
+/**
+ * Remove a student from the list
+ *
+ * @param id {number}
+ * @param name {string}
+ */
 function removeStudent(id, name) {
     Swal_md.fire({
         title: tr.__("Attenzione!"),
@@ -335,6 +385,9 @@ function removeStudent(id, name) {
     })
 }
 
+/**
+ * Edit the classroom infos
+ */
 function editClassroom() {
     var card = $('#class_info');
     var img = card.find('.mdc-card__media');
@@ -370,12 +423,18 @@ function editClassroom() {
 
     // Class name
     var name = card.find('.mdc-card__primary div.mdc-typography--headline6');
-    name.replaceWith(renderOutlinedInput("class_name", tr.__("Nome classe"), name.text()));
+    name.replaceWith(renderOutlinedInput('classroom_name', tr.__("Nome classe"), {
+        value: name.text(),
+        icon: "mdi-outline-school",
+    }));
 
     // Class description
     var description = card.find('.mdc-card__secondary div.mdc-typography--subtitle2');
-    description.replaceWith(renderOutlinedInput("class_description", tr.__("Descrizione classe"), description.text(), true));
-    initInput($('input#class_name, textarea#class_description').parent('.mdc-text-field'));
+    description.replaceWith(renderOutlinedInput("classroom_description", tr.__("Descrizione classe"), {
+        value: description.text(),
+        textarea: true,
+    }));
+    initInput($('input#classroom_name, textarea#classroom_description').parent('.mdc-text-field'));
 
     // Edit button
     var button = card.find('.mdc-card__actions button#edit_button');
@@ -383,12 +442,15 @@ function editClassroom() {
     button.find('i.mdc-button__icon').removeClass().addClass('mdc-button__icon mdi-outline-save')
 }
 
+/**
+ * Save classroom infos
+ */
 function saveClassroom() {
     request.post({
         action: 'update_classroom',
         code: CLASSROOM_CODE,
-        name: $('input#class_name').val(),
-        description: $('textarea#class_description').val(),
+        name: $('input#classroom_name').val(),
+        description: $('textarea#classroom_description').val(),
         image: $('#class_info .mdc-card__media').css('background-image').slice(4, -1).replace(/"/g, "")
     }, () => {
         var card = $('#class_info');
@@ -400,11 +462,11 @@ function saveClassroom() {
         card.find('.mdc-card__primary-action').off('click');
 
         // Class name
-        var name = $('input#class_name');
+        var name = $('input#classroom_name');
         name.parent('div.mdc-text-field').replaceWith(`<div class="mdc-typography--headline6">${name.val()}</div>`);
 
         // Class description
-        var description = $('textarea#class_description');
+        var description = $('textarea#classroom_description');
         description.parent('div.mdc-text-field').replaceWith(`<div class="mdc-typography--subtitle2">${description.val()}</div>`);
 
         // Edit button
@@ -419,6 +481,12 @@ function saveClassroom() {
     })
 }
 
+/**
+ * Leave classroom
+ *
+ * @param id {number}
+ * @param name {string}
+ */
 function leaveClassroom(id, name) {
     Swal_md.fire({
         title: tr.__("Sei sicuro di voler abbandonare la classe %s?", name),

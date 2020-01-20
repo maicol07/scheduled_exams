@@ -74,23 +74,8 @@ use src\Utils;
     </script>
 
     <?php
-    // MDC web
-    $styles = [
-        // MDC
-        'material-components-web',
-        // Flag icon CSS
-        "flag-icon-css",
-        // Cookie consent
-        "cookieconsent",
-        // Styles
-        "style.css",
-        // Material Design Outline Icons
-        "mdi-outline/mdi-outline.css",
-    ];
-    if (!empty($include_styles)) {
-        $styles = array_merge($styles, $include_styles);
-    }
-    echo $assets->add($styles)->css()
+    // CSS
+    echo $assets->css()
     ?>
 </head>
 <?php

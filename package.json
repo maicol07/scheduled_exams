@@ -7,13 +7,13 @@
     "license": "proprietary",
     "private": true,
     "dependencies": {
-        "cookieconsent": "^3",
-        "flag-icon-css": "^3",
-        "gettext-translator": "^3",
-        "jquery": "^3",
-        "material-components-web": "^4",
+        "cookieconsent": "latest",
+        "flag-icon-css": "latest",
+        "gettext-translator": "latest",
+        "jquery": "latest",
+        "material-components-web": "latest",
         "materialize-css": "latest",
-        "promise-polyfill": "^8",
-        "sweetalert2": "^9"
+        "promise-polyfill": "latest",
+        "sweetalert2": "latest"
     }
 }

@@ -144,6 +144,17 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     margin-left: 15px;
 }
 
+/* MDC Lists */
+.mdc-list-item__graphic img {
+    width: 48px;
+    height: 48px;
+}
+
+/* MDC Selects */
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
+    color: var(--mdc-theme-primary)
+}
+
 @media only screen and (max-width: 900px) {
     .mdc-drawer:not(.mdc-drawer--open) + .mdc-drawer-scrim + .mdc-drawer-app-content .mdc-top-app-bar {
         left: 0;
@@ -235,10 +246,6 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
 /* SWEETALERT2 */
 .swal2-content {
     z-index: 2 !important;
-}
-
-.swal2-content .mdc-select__menu {
-    left: 6.45em !important;
 }
 
 /*----------------------------------------

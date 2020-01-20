@@ -63,7 +63,7 @@ use src\Auth;
 if (defined("DOCROOT")) {
     require_once DOCROOT . "/config/db.php";
 } else {
-    require_once "db.php";
+    require_once "db.example.php";
 }
 $db = new Medoo([
     'database_type' => $db_type,
@@ -84,6 +84,7 @@ if (isset($debugbar)) {
  * Auth config
  *
  */
+$user = null;
 if (empty($no_auth)) {
     $user = new Auth($db);
     $logged = $user->isAuthenticated();

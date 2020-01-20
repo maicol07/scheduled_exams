@@ -1,6 +1,7 @@
 <?php
 
 use src\Classroom;
+use src\Collection;
 use src\Utils;
 
 require_once "../core.php";
@@ -8,6 +9,7 @@ require_once "../core.php";
 $classroom = new Classroom($db, $user, null, get('view'));
 
 $title = __("Classe %s", $classroom->name);
+$assets->add('datepicker.css');
 require_once DOCROOT . "/app/layout/top.php";
 ?>
 <button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createList()">
@@ -17,58 +19,57 @@ require_once DOCROOT . "/app/layout/top.php";
 </button>
 <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner" style="display: flex">
-        <div class="mdc-layout-grid__cell" style="flex: 1">
+        <div id="lists_grid"
+             class="mdc-layout-grid__cell<?php echo $detector->isMobile() ? ' mdc-layout-grid__cell--order-2' : '' ?>"
+             style="flex: 1">
             <?php
-            $lists = null;
+            $lists = (new Collection($db, $user))->getLists($classroom->id);
             if (!empty($lists)) {
                 echo '<h3>' . __("Liste") . '</h3>
-                <div class="mdc-layout-grid__inner">';
-                foreach ($classrooms as $classroom) {
-                    $classroom = (object)$classroom;
-                    if (!in_array($user->getId(), unserialize($classroom->users))) {
-                        continue;
-                    }
+                <div class="mdc-layout-grid__inner" style="display: flex">';
+                foreach ($lists as $list) {
+                    $list = (object)$list;
                     echo '
-                    <div class="mdc-layout-grid__cell" id="classroom_' . $classroom->code . '">
+                    <div class="mdc-layout-grid__cell" id="list_' . $list->code . '">
                         <div class="mdc-card">
-                            <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + \'app/classroom?view=' . $classroom->code . '\'">
-                                ' . (!empty($classroom->image) ?
-                            '<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(&quot;' . $classroom->image . '&quot;);"></div>'
+                            <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + \'app/list?view=' . $list->code . '\'">
+                                ' . (!empty($list->image) ?
+                            '<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(&quot;' . $list->image . '&quot;);"></div>'
                             : '') . '
                                 <div class="mdc-card__primary">
-                                    <h2 class="mdc-typography--headline6">' . $classroom->name . '</h2>
+                                    <h2 class="mdc-typography--headline6">' . $list->name . '</h2>
                                 </div>
                                 <div class="mdc-card__secondary mdc-typography--body2">
-                                    ' . $classroom->description . (!empty($classroom->description) ? "<br>" : "") . '<small>' . __("Codice classe: %s", $classroom->code) . '</small>
+                                    ' . $list->description . (!empty($list->description) ? "<br>" : "") . '
                                 </div>
                             </div>
                             <div class="mdc-card__actions">
                                 <div class="mdc-card__action-buttons">
-                                    <a href="classroom?view=' . $classroom->code . '" class="mdc-button mdc-card__action mdc-card__action--button">
+                                    <a href="list?view=' . $list->code . '" class="mdc-button mdc-card__action mdc-card__action--button">
                                         <div class="mdc-button__ripple"></div>
                                         <i class="mdi-outline-open_in_new mdc-button__icon"></i>
                                         <span class="mdc-button__label">' . __("Apri") . '</span>
                                     </a>
                                 </div>
                                 <div class="mdc-card__action-icons">
-                                    <button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
-                                            title="' . __("Condividi") . '" onclick="shareClassroom(\'' . $classroom->code . '\')">
+                                    <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                            title="' . __("Condividi") . '" onclick="shareList(\'' . $list->code . '\')">
                                       <i class="mdi-outline-share mdc-button__icon"></i>
                                     </button>
-                                    ' . ($user->getId() == $classroom->admin ? '<button class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
+                                    ' . ($user->getId() == $classroom->admin ? '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                             title="' . __("Elimina") . '"
-                                            onclick="deleteClassroom(\'' . $classroom->id . '\', \'' . $classroom->name . '\')">
+                                            onclick="deleteList(\'' . $list->id . '\', \'' . $list->name . '\')">
                                       <i class="mdi-outline-delete mdc-button__icon"></i>
                                     </button>' : '') . '
                                 </div>
                             </div>
-                        </div>';
+                        </div>
+                    </div>';
                 }
-                echo "</div>
-            </div>";
+                echo "</div>";
             } else {
                 echo '
-                <div id="noclassrooms" style="text-align: center" xmlns="http://www.w3.org/1999/html">
+                <div id="nolists" style="text-align: center" xmlns="http://www.w3.org/1999/html">
                     <img src="' . Utils::buildAssetsURI("/app/assets/img/undraw/no_data.svg") . '" alt="' . __("Nessuna lista") . '"
                     style="width: 350px; margin-bottom: 20px"><br>
                     <span class="mdc-typography--headline5">' . __("Nessuna lista") . '</span><br>
@@ -77,7 +78,8 @@ require_once DOCROOT . "/app/layout/top.php";
             }
             ?>
         </div>
-        <div class="mdc-layout-grid__cell" style="flex: 1">
+        <div class="mdc-layout-grid__cell<?php echo $detector->isMobile() ? ' mdc-layout-grid__cell--order-1' : '' ?>"
+             style="flex: 1">
             <div class="mdc-card" id="class_info">
                 <div class="mdc-card__primary-action">
                     <div class="mdc-card__media mdc-card__media--16-9"
@@ -128,6 +130,10 @@ require_once DOCROOT . "/app/layout/top.php";
 </div>
 
 <?php
-$include_scripts = ['classroom.js'];
+require_once DOCROOT . '/app/assets/lib/material-date-picker/datepicker.php';
+$assets->add(['classroom.js', 'list.js', 'datepicker.js']);
 require_once DOCROOT . "/app/layout/bottom.php";
 ?>
+<script>
+    var dp = DatePicker($(':root').css("--mdc-theme-secondary"))
+</script>

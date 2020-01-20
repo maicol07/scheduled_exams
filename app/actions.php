@@ -1,6 +1,7 @@
 <?php
 
 use src\Classroom;
+use src\Collection;
 use src\Result;
 
 require "../core.php";
@@ -8,6 +9,7 @@ switch (post("action")) {
     case "change_language":
         $result = $user->setLanguage(post("lang"));
         break;
+    // CLASSROOM
     case "create_classroom":
         $classroom = new Classroom($db, $user);
         $classroom->name = post("name");
@@ -81,6 +83,25 @@ switch (post("action")) {
     case "get_classroom_users":
         $classroom = new Classroom($db, $user, null, post('code'));
         $result = new Result(['users' => $classroom->getUsers()]);
+        break;
+
+    // LISTS
+    case 'create_list':
+        $list = new Collection($db, $user);
+        $list->name = post('name');
+        $list->type = post('type');
+        $list->start_date = post('start_date');
+        $list->weekdays = serialize(post('weekdays'));
+        $list->quantity = post('quantity');
+        // Link to classroom
+        $classroom = new Classroom($db, $user, null, post('classroom_code'));
+        $list->classroom_id = $classroom->id;
+        $result = $list->save();
+        $result->name = $list->name;
+        break;
+    case 'delete_list':
+        $list = new Collection($db, $user, post('id'));
+        $result = $list->delete();
         break;
 }
 header('Content-Type: application/json; charset=utf-8');

@@ -11,6 +11,8 @@ if (defined("DOCROOT")) {
 /**
  * Whoops (only dev)
  */
+$whoops = null;
+$debugbar = null;
 if (!PRODUCTION) {
     ini_set('display_errors', true);
     // Whoops initialization

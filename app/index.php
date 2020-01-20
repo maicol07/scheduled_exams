@@ -95,6 +95,6 @@ if (!empty($classrooms)) {
 </form>
 
 <?php
-$include_scripts = ['classroom.js'];
+$assets->add('classroom.js');
 require_once DOCROOT . "/app/layout/bottom.php";
 ?>

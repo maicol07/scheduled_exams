@@ -16,6 +16,7 @@ if (window.tr == null) {
 const mdc = window.mdc;
 window.inputs = {};
 window.selects = {};
+window.chipsets = {};
 
 // Auto init
 mdc.autoInit();
@@ -83,7 +84,11 @@ $('.mdc-menu').each((index, element) => {
     });
 });
 
-// MDC Ripples initialization
+/**
+ * Initialize MDC Ripple
+ *
+ * @param elements {Object}
+ */
 function initRipple(elements) {
     $(elements).each((index, element) => {
         const ripple = new mdc.ripple.MDCRipple(element);
@@ -93,20 +98,31 @@ function initRipple(elements) {
     });
 }
 
-// MDC Text Input initialization
+/**
+ * Initialize MDC Input
+ *
+ * @param elements {Object}
+ */
 function initInput(elements = $('.mdc-text-field')) {
     $(elements).each((index, element) => {
-        window.inputs[$(element).attr('id')] = new mdc.textField.MDCTextField(element);
+        window.inputs[$(element).find('input').attr('id')] = new mdc.textField.MDCTextField(element);
         if ($(element).hasClass("mdc-text-field--outlined")) {
             new mdc.notchedOutline.MDCNotchedOutline($(element).find('.mdc-notched-outline')[0])
         }
         if ($(element).hasClass("mdc-text-field--with-leading-icon") || $(element).hasClass("mdc-text-field--with-trailing-icon")) {
             new mdc.textField.MDCTextFieldIcon($(element).find('.mdc-text-field__icon')[0])
         }
+        if ($(element).hasClass('mdc-text-field--with-leading-icon')) {
+            const select_icon = new mdc.textField.MDCTextFieldIcon($(element).find('i.mdc-text-field__icon')[0]);
+        }
     });
 }
 
-// MDC List Initialization
+/**
+ * Initialize MDC List
+ *
+ * @param elements {Object}
+ */
 function initList(elements = $('.mdc-list')) {
     $(elements).each((index, element) => {
         const list = new mdc.list.MDCList(element);
@@ -114,13 +130,31 @@ function initList(elements = $('.mdc-list')) {
     });
 }
 
-// MDC Select Initialization
+/**
+ * Initialize MDC Select
+ *
+ * @param elements {Object}
+ */
 function initSelect(elements = $('.mdc-select')) {
     $(elements).each((index, element) => {
         window.selects[$(element).attr('id')] = new mdc.select.MDCSelect(element);
         if ($(element).hasClass('mdc-select--with-leading-icon')) {
             const select_icon = new mdc.select.MDCSelectIcon($(element).find('i.mdc-select__icon')[0]);
         }
+    });
+}
+
+/**
+ * Initialize MDC Chipset
+ *
+ * @param elements {Object}
+ */
+function initChipset(elements = $('.mdc-chip-set')) {
+    $(elements).each((index, element) => {
+        window.chipsets[$(element).attr('id')] = new mdc.chips.MDCChipSet(element);
+        /*if ($(element).hasClass('mdc-chip-set--filter')) {
+            const select_icon = new mdc.select.MDCSelectIcon($(element).find('i.mdc-select__icon')[0]);
+        }*/
     });
 }
 
@@ -132,6 +166,12 @@ initRipple($('.mdc-card__primary-action'));
 initInput();
 
 // Swal2
+
+/**
+ * Intialize Swal2 MDC Button
+ *
+ * @param dom {HTMLCollection}
+ */
 function initSwalBtn(dom) {
     var buttons = $(dom).find('.mdc-button');
     buttons.each((index, btn) => {
@@ -144,6 +184,11 @@ function initSwalBtn(dom) {
     initRipple(buttons)
 }
 
+/**
+ * Initialize Swal2 MDC input
+ *
+ * @param dom {HTMLCollection}
+ */
 function initSwalInput(dom) {
     var inputs = $(dom).find('.mdc-text-field');
     initInput(inputs);
@@ -155,68 +200,141 @@ function initSwalInput(dom) {
         })
     });
     // Focus
-    if (inputs.first().length) {
+    if (inputs.lenght === 1 && inputs.first().length) {
         $(dom).ready(() => {
             window.inputs[inputs.first().attr('id')].focus()
         });
     }
 }
 
-function renderOutlinedInput(id, label, value = "", textarea = false) {
+/**
+ * Renders an outlined select from MDC for Web framework.
+ *
+ * @param id {string} ID of the select
+ * @param label {string} Label of the select
+ * @param properties {Object}
+ * @returns {string}
+ */
+function renderOutlinedInput(id, label, properties = {
+    value: "",
+    required: false,
+    type: 'text',
+    icon: null,
+    icon_as_btn: false,
+    textarea: false,
+    style: "margin: 1em auto",
+    width: ""
+}) {
     var type = "input";
-    if (textarea) {
+    if (!empty(properties.textarea)) {
         type = "textarea"
     }
-    return `<br>
-        <div class="mdc-text-field ${textarea ? "mdc-text-field--textarea" : "mdc-text-field--outlined"}" style="margin: 1em auto">
-        <${type} type="text" id="${id}" name="${id}" value="${value}" class="mdc-text-field__input">${textarea ? value + "</textarea>" : ""}
-            <div class="mdc-notched-outline">
-                <div class="mdc-notched-outline__leading"></div>
-                <div class="mdc-notched-outline__notch">
-                    <label class="mdc-floating-label" for="${id}">${label}</label>
-                </div>
-                <div class="mdc-notched-outline__trailing"></div>
-            </div>
-        </div>`;
+    return `
+<div class="mdc-text-field ${!empty(properties.textarea) ? "mdc-text-field--textarea" : "mdc-text-field--outlined"}
+            ${!empty(properties.icon) ? 'mdc-text-field--with-leading-icon' : ''}"
+    style="${!empty(properties.style) ? properties.style : ""}; ${!empty(properties.width) ? `width: ${properties.width}` : ''}">
+    ${!empty(properties.icon) ? `<i class="${properties.icon} mdc-text-field__icon"
+                                           ${!empty(properties.icon_as_btn) ? 'tabindex="0" role="button"' : ''} style="font-size: 24px;"></i>` : ''}
+    <${type} type="${!empty(properties.text) ? properties.text : 'text'}" id="${id}" name="${id}" value="${!empty(properties.value) ? properties.value : ''}"
+    class="mdc-text-field__input" ${!empty(properties.required) ? "required" : ""}>
+    ${!empty(properties.textarea) ? ((!empty(properties.value) ? properties.value : '') + "</textarea>") : ""}
+    <div class="mdc-notched-outline">
+        <div class="mdc-notched-outline__leading"></div>
+        <div class="mdc-notched-outline__notch">
+            <label class="mdc-floating-label" for="${id}">${label}</label>
+        </div>
+        <div class="mdc-notched-outline__trailing"></div>
+    </div>
+</div>
+`;
 }
 
 /**
  * Renders an outlined select from MDC for Web framework.
  *
- * @param id
- * @param label
- * @param values
- * @param selected
- * @param required
- * @param icon
- * @param icon_as_btn
- * @param width
+ * @param id {string} ID of the select
+ * @param label {string} Label of the select
+ * @param properties {Object}
  * @returns {string}
  */
-function renderOutlinedSelect(id, label, values = {}, selected = null, required = false, icon = null, icon_as_btn = false, width = "240px") {
+function renderOutlinedSelect(id, label, properties = {
+    values: {},
+    selected: null,
+    required: false,
+    icon: null,
+    icon_as_btn: false,
+    width: "240px"
+}) {
     var list = '';
-    Object.keys(values).forEach((value) => {
+    Object.keys(properties.values).forEach((value) => {
         list += `
-                <li class="mdc-list-item ${(selected === value) ? 'mdc-list-item--selected" aria-selected="true' : ''}" data-value="${value}">
-                    ${values[value]}
+                <li class="mdc-list-item ${(properties.selected === value) ? 'mdc-list-item--selected" aria-selected="true' : ''}" data-value="${value}">
+                    ${properties.values[value]}
                 </li>`
     });
     return `
-    <div id="${id}" class="mdc-select ${required ? 'mdc-select--required' : ''} ${icon ? 'mdc-select--with-leading-icon' : ''}">
-        <div class="mdc-select__anchor" style="width: ${width}">
-            ${icon ? `<i class="${icon} mdc-select__icon" ${icon_as_btn ? 'tabindex="0" role="button"' : ''} style="font-size: 24px;"></i>` : ''}
+    <div id="${id}" class="mdc-select mdc-select--outlined ${!empty(properties.required) ? 'mdc-select--required' : ''}
+        ${!empty(properties.icon) ? 'mdc-select--with-leading-icon' : ''}" style="display: inline-block">
+        <div class="mdc-select__anchor" style="width: ${!empty(properties.width) ? properties.width : '240px'}">
+            <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading">
+                ${!empty(properties.icon) ? `<i class="${properties.icon} mdc-select__icon" ${!empty(properties.icon_as_btn) ? 'tabindex="0" role="button"' : ''}
+            style="font-size: 24px;"></i>` : ''}
+                </div>
+                <div class="mdc-notched-outline__notch">
+                    <label class="mdc-floating-label">${label}</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+            </div>
             <i class="mdc-select__dropdown-icon"></i>
-            <div class="mdc-select__selected-text" ${required ? 'aria-required="true"' : ''}></div>
-            <span class="mdc-floating-label">${label}</span>
+            <div class="mdc-select__selected-text" ${!empty(properties.required) ? 'aria-required="true"' : ''}></div>
             <div class="mdc-line-ripple"></div>
         </div>
     
-        <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="width: ${width}">
+        <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="width: ${!empty(properties.width) ? properties.width : '240px'}">
             <ul class="mdc-list">
               ${list}
             </ul>
         </div>
     </div>`
+}
+
+/**
+ * Renders a MDC chipset
+ *
+ * @param id {string} ID of the chipset
+ * @param properties {Object}
+ * @returns {string}
+ */
+function renderChipset(id, properties = {
+    chips: [{}, {}],
+    choice: false,
+    filter: false,
+    input: false
+}) {
+    var chips_list = '';
+    properties.chips.forEach((value) => {
+        chips_list += `
+        <div class="mdc-chip" role="row">
+            <div class="mdc-chip__ripple"></div>
+            ${!empty(value.icon) ? `<i class="${value.icon} mdc-chip__icon mdc-chip__icon--leading"></i>` : ''}
+            ${!empty(properties.filter) ? `<span class="mdc-chip__checkmark">
+                <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
+                    <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+            </span>` : ''}
+            <span role="gridcell">
+                <span id="${value.id}" role="checkbox" tabindex="0" aria-checked="false" class="mdc-chip__text">${value.text}</span>
+            </span>
+        </div>
+        `
+    });
+    return `
+<div id="${id}" class="mdc-chip-set ${!empty(properties.choice) ? 'mdc-chip-set--choice' : ''} ${!empty(properties.filter) ? 'mdc-chip-set--filter' : ''}
+                       ${!empty(properties.input) ? 'mdc-chip-set--input' : ''}" role="grid">
+    ${chips_list}
+</div>`
 }
 
 const Swal_md = Swal.mixin({
@@ -229,10 +347,11 @@ const Swal_md = Swal.mixin({
     },
     buttonsStyling: false,
     showCloseButton: true,
-    onOpen: (dom) => {
+    onBeforeOpen: (dom) => {
         initSwalBtn(dom);
         initSwalInput(dom);
-        initSelect($(dom).find('.mdc-select'))
+        initSelect($(dom).find('.mdc-select'));
+        initList($(dom).find('.mdc-list'))
     }
 });
 
@@ -249,7 +368,7 @@ const Toast = Swal.mixin({
     }
 });
 
-// GET function
+
 /**
  * Get the value of the parameter specified from a GET request
  *
@@ -269,9 +388,15 @@ function get(parameterName) {
     return result;
 }
 
-/* XHR CLASS */
+
 class XHR {
 
+    /**
+     * XHR constructor
+     *
+     * @param url {string} If not set, it will point to the actions.php file
+     * @param error {function} If not set, it will be used the sample error alert
+     */
     constructor(
         url = ROOTDIR + '/app/actions',
         error = function (jqxhr, status, error) {
@@ -288,10 +413,10 @@ class XHR {
     /**
      * Sends an XHR Post Request
      *
-     * @param data
-     * @param success
-     * @param error
-     * @param url
+     * @param data {Object}
+     * @param success {function}
+     * @param error {function} If not set, it will run the function saved in Object property in case of error
+     * @param url {string} If not set, it will point to the url saved in Object property
      */
     post(data, success, error = this.error, url = this.url) {
         $.post({
@@ -305,10 +430,10 @@ class XHR {
     /**
      * Sends an XHR Get Request
      *
-     * @param data
-     * @param success
-     * @param error
-     * @param url
+     * @param data {Object}
+     * @param success {function}
+     * @param error {function} If not set, it will run the function saved in Object property in case of error
+     * @param url {string} If not set, it will point to the url saved in Object property
      */
     get(data, success, error = this.error, url = this.url) {
         $.get({
