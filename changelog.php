@@ -23,6 +23,15 @@ $changelog = [
                 "type" => "new",
                 "badge_text" => __("Nuovo"),
                 // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
+                "text" => __("Tre nuovi tipi di generazione delle liste:
+                - **Manuale**: le liste vengono create a mano dall'amministratore della classe;
+                - **Automatico**: le liste vengono create in automatico (tipico sorteggio casuale);
+                - **Automatico da data di inizio**: le liste vengono create in automatico ma vengono già stabiliti i giorni utili per l'interrogazione (automaticamente)"),
+            ],
+            [
+                "type" => "new",
+                "badge_text" => __("Nuovo"),
+                // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
                 "text" => __("Integrazione con [Maicol07 Account](https://account.maicol07.it) (SSO): puoi ora utilizzare il tuo account di Maicol07 Network per accedere (il tuo vecchio account su Interrogazioni Programmate è stato migrato automaticamente.
                 Per motivi di privacy è necessario reimpostare la password al primo accesso)"),
             ],

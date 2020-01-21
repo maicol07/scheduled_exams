@@ -2,8 +2,10 @@
 
 namespace src;
 
+use Delight\Cookie\Cookie;
 use Delight\Cookie\Session;
 use Medoo\Medoo;
+use function Sentry\captureMessage;
 
 class Auth
 {
@@ -27,12 +29,16 @@ class Auth
     public function __construct($db = null)
     {
         $broker = new Broker("4", "https://account.maicol07.it/sso/auth", "gDbeu6oYB6U0bx9k");
-        if (!Session::has("user_jwt")) {
+        $jwt_cookie = new Cookie("user_jwt");
+        if (!Cookie::exists("user_jwt")) {
             $this->user = $broker->login();
-            Session::set("user_jwt", serialize($this->user));
+            $jwt_cookie->setValue(serialize($this->user));
+            if (!$jwt_cookie->save()) {
+                captureMessage("JWT cookie save failed for user {$this->user->user_login}");
+            }
             $this->logged = true;
         } else {
-            $this->user = unserialize(Session::get("user_jwt"));
+            $this->user = unserialize(Cookie::get("user_jwt"));
             $this->logged = true;
         }
 
