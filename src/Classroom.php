@@ -112,6 +112,9 @@ class Classroom
                     return new Result(null, 'ALREADY_EXISTS', __("Lo studente fa già parte della classe"));
                 }
                 $student_id = count($students);
+                if (array_key_exists($student_id, $students)) {
+                    $student_id = end($students) + 1;
+                }
                 $students[$student_id] = [
                     'name' => $student,
                     'user_id' => 0
