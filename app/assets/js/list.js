@@ -149,7 +149,7 @@ async function createList() {
             return data
         }
     });
-    if (!empty(list_data)) {
+    if (!empty(list_data.type) && !empty(list_data.name)) {
         list_data.action = 'create_list';
         list_data.classroom_code = CLASSROOM_CODE;
         request.post(list_data, (data) => {
@@ -160,7 +160,11 @@ async function createList() {
             });
         })
     } else {
-        dp.hide()
+        dp.hide();
+        Toast.fire({
+            title: tr.__("Alcuni dati non sono stati immessi!"),
+            icon: 'error'
+        })
     }
 }
 

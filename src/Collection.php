@@ -69,6 +69,7 @@ class Collection
             $code = Utils::generateCode($this->db);
             $query = $this->db->insert("lists", [
                 "name" => $this->name,
+                'classroom_id' => (int)$this->classroom_id,
                 "code" => $code,
                 "type" => $this->type,
                 'start_date' => $this->start_date,
@@ -93,9 +94,6 @@ class Collection
 
     public function delete()
     {
-        var_dump($this->id);
-        header("HTTP/1.0 550 " . (string)$this->id);
-        exit();
         if (empty($this->id)) {
             return new Result(null, "NO_ID", "NO_ID");
         }
@@ -126,8 +124,11 @@ class Collection
             'code',
             'type'
         ], $classroom_id ? [
-            'classroom_id' => $classroom_id
-        ] : []
+            'classroom_id' => $classroom_id,
+            'ORDER' => 'name'
+        ] : [
+            'ORDER' => 'name'
+        ]
         );
     }
 }
