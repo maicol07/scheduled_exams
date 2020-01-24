@@ -50,7 +50,7 @@ async function createList() {
         title: tr.__("Crea lista"),
         html: `${renderOutlinedInput('list_name_input', tr.__("Nome lista"), {
             required: true,
-            icon: "mdi-outline-format_list_bulleted",
+            icon: "mdi-outline-format_list_numbered",
             width: "400px"
         })}<br>
         <br>
@@ -104,6 +104,9 @@ async function createList() {
                             chips: chips
                         })}<br>
                             ${renderOutlinedInput('student_num', tr.__("Numero di studenti interrogati per volta"), {
+                            type: "number",
+                            value: 1,
+                            min: 1,
                             icon: 'mdi-outline-people_outline',
                             width: "400px"
                         })}
@@ -113,7 +116,8 @@ async function createList() {
                         initInput(input.parent());
                         input.focus(() => {
                             dp.show(new Date(), (date) => {
-                                inputs['start_date_selection'].value = date.toLocaleDateString()
+                                inputs['start_date_selection'].value = date.toLocaleDateString();
+                                $("#start_date_selection").attr('data-timestamp', date.toISOString());
                             })
                         });
 
@@ -139,7 +143,7 @@ async function createList() {
                 type: selects["list_type_input"].value
             };
             if (data.type === "FROM_START_DATE") {
-                data.start_date = $("#start_date_selection").val();
+                data.start_date = $("#start_date_selection").attr('data-timestamp');
                 data.weekdays = [];
                 chipsets.exam_days.selectedChipIds.forEach((id) => {
                     data.weekdays.push($(`#${id}`).find('span.mdc-chip__text').attr('id'))
@@ -150,10 +154,12 @@ async function createList() {
         }
     });
     if (!empty(list_data.type) && !empty(list_data.name)) {
+        Swal.showLoading();
         list_data.action = 'create_list';
         list_data.classroom_code = CLASSROOM_CODE;
         request.post(list_data, (data) => {
             addListToGrid(data);
+            Swal.hideLoading();
             Toast.fire({
                 title: tr.__("Lista creata!"),
                 icon: "success"
@@ -171,8 +177,7 @@ async function createList() {
 function deleteList(id, name) {
     Swal_md.fire({
         title: tr.__("Sei sicuro di voler eliminare la lista %s?", name),
-        html: tr.__("Non sarà poi possibile ripristinarla! Perderai, inoltre, tutte le liste e le informazioni associate " +
-            "alla lista!<br>Sei sicuro di voler continuare?"),
+        html: tr.__(`Non sarà poi possibile ripristinarla! Perderai, inoltre, tutte le informazioni associate ad essa!<br>Sei sicuro di voler continuare?`),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: tr.__("Sì, eliminala!"),
@@ -202,24 +207,23 @@ function deleteList(id, name) {
 function shareList(code) {
     Swal_md.fire({
         title: tr.__("Condividi la lista"),
-        html: `${tr.__("Il codice della lista è :code:.<br>Il seguente indirizzo pubblico, invece, è l'indirizzo a cui sarà " +
-            "possibile visiualizzare la lista (<b>Attenzione! Chiunque possieda il link può visualizzare le informazioni " +
-            "contenuti in essa!</b>): :link:", {
+        html: `${tr.__(`Il codice della lista è :code:.<br>Il seguente indirizzo pubblico, invece, indica l'indirizzo a cui è 
+possibile visiualizzare la lista (<b>Attenzione! Chiunque possieda il link può visualizzare le informazioni contenuti in essa!</b>): :link:`, {
             ':code:': `<pre>${code}</pre>`, ':link:': `<br><br><code>
-<a href="${BASEURL}/list?view=${code}">${BASEURL}/list?view=${code}</a></code>`
+<a href="${BASEURL}/app/list?view=${code}">${BASEURL}/app/list?view=${code}</a></code>`
         })}`
     });
 }
 
 // List page
 function editList() {
-    var card = $('#class_info');
+    var card = $('#list_info');
     var img = card.find('.mdc-card__media');
 
     // Image upload
     img.append(`
                 <div class="hvr-img">
-                    <input type="file" name="class_img" class="upload" id="image_input" accept="image/*">
+                    <input type="file" name="list_img" class="upload" id="image_input" accept="image/*">
                 </div>
                 <i class="mdi-outline-camera_alt"></i>`);
     card.find('.mdc-card__primary-action').click((event) => {
@@ -238,8 +242,8 @@ function editList() {
         } else {
             Swal_md.fire({
                 title: tr.__("File inserito non valido!"),
-                html: tr.__("Non hai inserito nessun file oppure il file inserito non è un file immagine (deve avere una fra le seguenti estensioni:<br> " +
-                    "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, .ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"),
+                html: tr.__(`Non hai inserito nessun file oppure il file inserito non è un file immagine (deve avere una fra le seguenti estensioni:<br>
+<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, .ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>`),
                 icon: "error"
             })
         }
@@ -247,28 +251,35 @@ function editList() {
 
     // Class name
     var name = card.find('.mdc-card__primary div.mdc-typography--headline6');
-    name.replaceWith(renderOutlinedInput("class_name", tr.__("Nome classe"), name.text()));
+    name.replaceWith(renderOutlinedInput("list_name", tr.__("Nome lista"), {
+        value: name.text().trim(),
+        icon: "mdi-outline-format_list_numbered",
+    }));
 
     // Class description
     var description = card.find('.mdc-card__secondary div.mdc-typography--subtitle2');
-    description.replaceWith(renderOutlinedInput("class_description", tr.__("Descrizione classe"), description.text(), true));
-    initInput($('input#class_name, textarea#class_description').parent('.mdc-text-field'));
+    description.replaceWith(renderOutlinedInput("list_description", tr.__("Descrizione classe"), {
+        value: description.text().trim(),
+        textarea: true,
+    }));
+    initInput($('input#list_name, textarea#list_description').parent('.mdc-text-field'));
 
     // Edit button
     var button = card.find('.mdc-card__actions button#edit_button');
-    button.attr("title", tr.__("Salva")).attr("onclick", "saveClassroom()").attr('id', 'save_button');
+    button.attr("title", tr.__("Salva")).attr("onclick", "saveList()").attr('id', 'save_button');
     button.find('i.mdc-button__icon').removeClass().addClass('mdc-button__icon mdi-outline-save')
 }
 
 function saveList() {
+    Swal.showLoading();
     request.post({
-        action: 'update_classroom',
-        code: CLASSROOM_CODE,
-        name: $('input#class_name').val(),
-        description: $('textarea#class_description').val(),
-        image: $('#class_info .mdc-card__media').css('background-image').slice(4, -1).replace(/"/g, "")
+        action: 'update_list',
+        code: LIST_CODE,
+        name: $('input#list_name').val(),
+        description: $('textarea#list_description').val(),
+        image: $('#list_info .mdc-card__media').css('background-image').slice(4, -1).replace(/"/g, "")
     }, () => {
-        var card = $('#class_info');
+        var card = $('#list_info');
         var img = card.find('.mdc-card__media');
 
         // Image
@@ -277,21 +288,65 @@ function saveList() {
         card.find('.mdc-card__primary-action').off('click');
 
         // Class name
-        var name = $('input#class_name');
+        var name = $('input#list_name');
         name.parent('div.mdc-text-field').replaceWith(`<div class="mdc-typography--headline6">${name.val()}</div>`);
 
         // Class description
-        var description = $('textarea#class_description');
+        var description = $('textarea#list_description');
         description.parent('div.mdc-text-field').replaceWith(`<div class="mdc-typography--subtitle2">${description.val()}</div>`);
 
         // Edit button
         var button = card.find('.mdc-card__actions button#save_button');
-        button.attr("title", tr.__("Modifica")).attr("onclick", "editClassroom()").attr('id', 'edit_button');
+        button.attr("title", tr.__("Modifica")).attr("onclick", "editList()").attr('id', 'edit_button');
         button.find('i.mdc-button__icon').removeClass().addClass('mdc-button__icon mdi-outline-edit');
 
         Toast.fire({
-            title: tr.__("Classe modificata!"),
+            title: tr.__("Lista modificata!"),
             icon: 'success'
         })
     })
+}
+
+// TABLE ROWS
+function addRow(table = $('table')) {
+    Swal_md.fire();
+    table.find('tbody').append(`
+        <tr id="list_row_${row_data.id}" class="mdc-data-table__row">
+            <td class="mdc-data-table__cell">
+                <div class="mdc-chip-set" role="grid">
+                    <div class="mdc-chip" role="row">
+                        <div class="mdc-chip__ripple"></div>
+                        <img src="${row_data.student.image}" class="mdc-chip__icon mdc-chip__icon--leading" alt="${row_data.student.name}">
+                        <span role="gridcell">
+                            <span role="button" tabindex="0" class="mdc-chip__text">${row_data.student.name}</span>
+                        </span>
+                    </div>
+                </div>
+            </td>
+            <td class="mdc-data-table__cell">
+                <span id="unix_timestamp" style="display: none">' . strtotime($row->date) . '</span>
+                ' . Utils::getLocaleDate($row->date, $lang) . '
+            </td>
+            <td class="mdc-data-table__cell">
+                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                            title="' . __("Modifica") . '" onclick="editRow(\\'list_row_' . $list->code . '\\')">
+                      <i class="mdi-outline-edit mdc-button__icon"></i>
+                </button>
+                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                            title="' . __("Elimina") . '" onclick="deleteRow(\\'list_row_' . $list->code . '\\')">
+                      <i class="mdi-outline-delete mdc-button__icon"></i>
+            </td>
+        </tr>`);
+    var no_rows_div = $("#no_rows");
+    if (no_rows_div.length) {
+        no_rows_div.append(`<a class="mdc-button" href="prints/list?view=<?php echo $list->code ?>" target="_blank" style="float: right;">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="mdi-outline-print mdc-button__icon"></i>
+                        <span class="mdc-button__label">${tr.__("Stampa")}</span>
+                    </a>`)
+    }
+}
+
+function deleteRow() {
+    Swal_md.fire({})
 }

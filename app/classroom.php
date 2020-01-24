@@ -11,6 +11,9 @@ $classroom = new Classroom($db, $user, null, get('view'));
 $title = __("Classe %s", $classroom->name);
 $assets->add('datepicker.css');
 require_once DOCROOT . "/app/layout/top.php";
+
+// Redefinition to avoid naming problems
+$classroom = new Classroom($db, $user, null, get('view'));
 ?>
 <button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createList()">
     <div class="mdc-fab__ripple"></div>
@@ -26,13 +29,13 @@ require_once DOCROOT . "/app/layout/top.php";
             $lists = (new Collection($db, $user))->getLists($classroom->id);
             if (!empty($lists)) {
                 echo '<h3>' . __("Liste") . '</h3>
-                <div class="mdc-layout-grid__inner" style="display: flex">';
+                <div class="mdc-layout-grid__inner">';
                 foreach ($lists as $list) {
                     $list = (object)$list;
                     echo '
                     <div class="mdc-layout-grid__cell" id="list_' . $list->code . '">
                         <div class="mdc-card">
-                            <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + \'app/list?view=' . $list->code . '\'">
+                            <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + \'/app/list?view=' . $list->code . '\'">
                                 ' . (!empty($list->image) ?
                             '<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(&quot;' . $list->image . '&quot;);"></div>'
                             : '') . '
@@ -80,6 +83,7 @@ require_once DOCROOT . "/app/layout/top.php";
         </div>
         <div class="mdc-layout-grid__cell<?php echo $detector->isMobile() ? ' mdc-layout-grid__cell--order-1' : '' ?>"
              style="flex: 1">
+            <h3><?php echo __("Informazioni sulla classe") ?></h3>
             <div class="mdc-card" id="class_info">
                 <div class="mdc-card__primary-action">
                     <div class="mdc-card__media mdc-card__media--16-9"

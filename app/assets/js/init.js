@@ -17,6 +17,7 @@ const mdc = window.mdc;
 window.inputs = {};
 window.selects = {};
 window.chipsets = {};
+window.data_tables = {};
 
 // Auto init
 mdc.autoInit();
@@ -152,9 +153,17 @@ function initSelect(elements = $('.mdc-select')) {
 function initChipset(elements = $('.mdc-chip-set')) {
     $(elements).each((index, element) => {
         window.chipsets[$(element).attr('id')] = new mdc.chips.MDCChipSet(element);
-        /*if ($(element).hasClass('mdc-chip-set--filter')) {
-            const select_icon = new mdc.select.MDCSelectIcon($(element).find('i.mdc-select__icon')[0]);
-        }*/
+    });
+}
+
+/**
+ * Initialize MDC Data Tables
+ *
+ * @param elements {Object}
+ */
+function initDataTables(elements = $('.mdc-data-table')) {
+    $(elements).each((index, element) => {
+        window.data_tables[$(element).attr('id')] = new mdc.dataTable.MDCDataTable(element);
     });
 }
 
@@ -162,6 +171,10 @@ function initChipset(elements = $('.mdc-chip-set')) {
 initRipple($('.mdc-button, .mdc-list-item ,.mdc-icon-button, .mdc-fab'));
 // CARDS RIPPLES
 initRipple($('.mdc-card__primary-action'));
+// CHIPSETS
+initChipset();
+// DATA TABLES
+initDataTables();
 // INPUTS
 initInput();
 
@@ -219,6 +232,7 @@ function renderOutlinedInput(id, label, properties = {
     value: "",
     required: false,
     type: 'text',
+    min: null, // Works only with NUMBER INPUT type
     icon: null,
     icon_as_btn: false,
     textarea: false,
@@ -235,9 +249,9 @@ function renderOutlinedInput(id, label, properties = {
     style="${!empty(properties.style) ? properties.style : ""}; ${!empty(properties.width) ? `width: ${properties.width}` : ''}">
     ${!empty(properties.icon) ? `<i class="${properties.icon} mdc-text-field__icon"
                                            ${!empty(properties.icon_as_btn) ? 'tabindex="0" role="button"' : ''} style="font-size: 24px;"></i>` : ''}
-    <${type} type="${!empty(properties.text) ? properties.text : 'text'}" id="${id}" name="${id}" value="${!empty(properties.value) ? properties.value : ''}"
-    class="mdc-text-field__input" ${!empty(properties.required) ? "required" : ""}>
-    ${!empty(properties.textarea) ? ((!empty(properties.value) ? properties.value : '') + "</textarea>") : ""}
+    <${type} type="${!empty(properties.type) ? properties.type : 'text'}" id="${id}" name="${id}" value="${!empty(properties.value) ? properties.value : ''}"
+    class="mdc-text-field__input" ${!empty(properties.required) ? "required" : ""} ${(properties.type === "number" && !empty(properties.min)) ?
+        `min="${properties.min}"` : ''}>${!empty(properties.textarea) ? ((!empty(properties.value) ? properties.value : '') + "</textarea>") : ""}
     <div class="mdc-notched-outline">
         <div class="mdc-notched-outline__leading"></div>
         <div class="mdc-notched-outline__notch">

@@ -21,18 +21,13 @@ switch (post("action")) {
         // Image
         $default = strpos(post('image'), 'exams.svg');
         if (!$default) {
-            $imgdata = base64_decode(post('image'));
-            $f = finfo_open();
-            $mime_type = finfo_buffer($f, $imgdata, FILEINFO_MIME_TYPE);
-            $split = explode('/', $mime_type);
-            $ext = $split[1];
             $cloudinary = Cloudinary\Uploader::upload(post('image'), [
-                'folder' => 'scheduled_exams/classes',
-                'public_id' => $classroom->code . ".$ext",
+                'folder' => 'scheduled_exams/classes/' . $classroom->code,
+                'public_id' => 'image',
                 'overwrite' => true
             ]);
             $classroom->image = $cloudinary['secure_url'];
-        } elseif ($default and post('name') == $classroom->name and post('description') == $classroom->description) {
+        } elseif (($default or post('image') == $list->image) and post('name') == $classroom->name and post('description') == $classroom->description) {
             $result = new Result(null, "EQUALS", __("Le informazioni immesse sono identiche a quelle precedenti!"));
             break;
         }
@@ -90,7 +85,7 @@ switch (post("action")) {
         $list = new Collection($db, $user);
         $list->name = post('name');
         $list->type = post('type');
-        $list->start_date = post('start_date');
+        $list->start_date = (new DateTime(post('start_date')))->format('Y-m-d');
         $list->weekdays = serialize(post('weekdays'));
         $list->quantity = post('quantity');
         // Link to classroom
@@ -98,6 +93,25 @@ switch (post("action")) {
         $list->classroom_id = $classroom->id;
         $result = $list->save();
         $result->name = $list->name;
+        break;
+    case "update_list":
+        $list = new Collection($db, $user, null, post('code'));
+        // Image
+        $default = strpos(post('image'), 'list.svg');
+        if (!$default) {
+            $cloudinary = Cloudinary\Uploader::upload(post('image'), [
+                'folder' => 'scheduled_exams/classes/' . (new Classroom($db, $user, $list->classroom_id))->code . '/lists/',
+                'public_id' => $list->code,
+                'overwrite' => true
+            ]);
+            $list->image = $cloudinary['secure_url'];
+        } elseif (($default or post('image') == $list->image) and post('name') == $list->name and post('description') == $list->description) {
+            $result = new Result(null, "EQUALS", __("Le informazioni immesse sono identiche a quelle precedenti!"));
+            break;
+        }
+        $list->name = post('name');
+        $list->description = post('description');
+        $result = $list->save();
         break;
     case 'delete_list':
         $list = new Collection($db, $user, post('id'));

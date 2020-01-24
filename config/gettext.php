@@ -11,15 +11,14 @@ use Gettext\GettextTranslator;
 use Gettext\Loader\PoLoader;
 use Gettext\Scanner\JsScanner;
 use Gettext\Scanner\PhpScanner;
+use Gettext\Translations;
 
-$locale_path = DOCROOT . "/locale/it/";
+$locale_path = DOCROOT . "/locale/it_IT/LC_MESSAGES/";
 $app_dirs = [
     // Root (no recursive)
     "" => ['recursive' => false],
     // App
     "app",
-    // Email templates
-    //"template/email",
     // Classes
     "src"
 ];
@@ -52,7 +51,7 @@ if (!file_exists($locale_path)) {
             foreach (iterator_to_array($result) as $file) {
                 $file = str_replace("\\", "/", $file);
                 foreach (explode("/", $file[0]) as $subpath) {
-                    if (in_array($subpath, ['vendors', 'vendor', 'scripts'])) {
+                    if (in_array($subpath, ['vendor'])) {
                         continue;
                     }
                 }
@@ -82,26 +81,27 @@ if (!file_exists($locale_path)) {
         $php_files = files_ext_filter($files, "php");
         $js_files = files_ext_filter($files, "js");
         if (!empty($php_files)) {
-            /** @noinspection PhpParamsInspection */
-            $php_scanner = new PhpScanner();
+            $php_scanner = new PhpScanner(Translations::create('messages'));
+            $php_scanner->setDefaultDomain('messages');
             foreach ($php_files as $php_file) {
                 $php_scanner->scanFile($php_file);
             }
         }
         if (!empty($js_files)) {
-            /** @noinspection PhpParamsInspection */
-            $js_scanner = new JsScanner();
+            $js_scanner = new JsScanner(Translations::create('messages'));
+            $php_scanner->setDefaultDomain('messages');
             foreach ($js_files as $js_file) {
                 $js_scanner->scanFile($js_file);
             }
         }
         // Debug info
-        /*if (!isset($php_messages) or !isset($js_messages)) {
+        /*if (!isset($php_scanner) or !isset($js_scanner)) {
             echo "<pre>";
             var_dump($options);
-            var_dump($path);
+            var_dump($dir);
             var_dump($files);
-            var_dump($file);
+            //var_dump($php_scanner);
+            var_dump($php_scanner->getTranslations());
             echo "<pre>";
             exit;
         }*/
@@ -113,14 +113,14 @@ if (!file_exists($locale_path)) {
         $po = new PoLoader();
         $messages = $po->loadFile($locale_path . "messages.po");
 
-        if (!empty($php_messages)) {
-            foreach ($php_scanner->getTranslations() as $translation) {
-                $messages->addOrMerge($translation);
+        if (!empty($php_scanner)) {
+            foreach ($php_scanner->getTranslations() as $domain => $translations) {
+                $messages = $messages->mergeWith($translations);
             }
         }
-        if (!empty($js_messages)) {
-            foreach ($js_scanner->getTranslations() as $translation) {
-                $messages->addOrMerge($translation);
+        if (!empty($js_scanner)) {
+            foreach ($js_scanner->getTranslations() as $domain => $translations) {
+                $messages = $messages->mergeWith($translations);
             }
         }
         $messages->setDomain("messages");

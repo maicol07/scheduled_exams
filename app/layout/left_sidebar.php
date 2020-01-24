@@ -9,8 +9,10 @@
             <?php
 
             use src\Classroom;
+            use src\Collection;
 
             $classroom_obj = new Classroom($db, $user);
+            $list_obj = new Collection($db, $user);
             $classrooms = $classroom_obj->getClassrooms();
             if (!empty($classrooms)) {
                 echo '<hr class="mdc-list-divider">
@@ -22,12 +24,27 @@
                         continue;
                     }
                     echo '<a class="mdc-list-item ' . (($current_page == "classroom" and get('view') == $classroom->code) ?
-                            'mdc-list-item--activated" aria-current="page' : 'href="app/classroom?view=' . $classroom->code . '') . '">
+                            'mdc-list-item--activated" aria-current="page' : '" href="classroom?view=' . $classroom->code . '') . '">
                             <i class="mdi-outline-class mdc-list-item__graphic"></i>
                             <span class="mdc-list-item__text mdc-typography--subtitle2">' . $classroom->name . '</span>
                           </a>';
+                    $lists = $list_obj->getLists($classroom->id);
+                    if (!empty($lists)) {
+                        echo '<hr class="mdc-list-divider mdc-menu-classroom-list">
+            <h6 class="mdc-list-group__subheader mdc-typography--subtitle1 mdc-menu-classroom-list">' . __("Liste") . '</h6>';
+                        foreach ($lists as $list) {
+                            $list = (object)$list;
+                            echo '<a class="mdc-menu-classroom-list mdc-list-item ' . (($current_page == "list" and get('view') == $list->code) ?
+                                    'mdc-list-item--activated" aria-current="page' : '" href="list?view=' . $list->code . '') . '">
+                            <i class="mdi-outline-format_list_numbered mdc-list-item__graphic"></i>
+                            <span class="mdc-list-item__text mdc-typography--subtitle2">' . $list->name . '</span>
+                          </a>';
+                        }
+                    }
                 }
             }
+
+
             ?>
         </div>
     </div>

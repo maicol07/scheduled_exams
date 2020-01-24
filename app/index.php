@@ -87,7 +87,7 @@ if (!empty($classrooms)) {
         <div class="mdc-line-ripple"></div>
     </div>
 
-    <button class="mdc-button mdc-button--outlined" type="submit" style="margin-left: 15px;">
+    <button class="mdc-button mdc-button--outlined" type="submit" style="margin-left: 15px; margin-top: 15px;">
         <div class="mdc-button__ripple"></div>
         <i class="mdi-outline-send mdc-button__icon"></i>
         <span class="mdc-button__label"><?php echo __("Unisciti") ?></span>

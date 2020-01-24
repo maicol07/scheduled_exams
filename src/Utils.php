@@ -31,7 +31,7 @@ class Utils
     }
 
     /**
-     * Generates a random string (used with classrooms and lists codes)
+     * Generates a random string (used with classrooms and lists.php codes)
      * Credits to Baba (https://stackoverflow.com/a/15198493/7520280)
      *
      * @param int $length
@@ -48,7 +48,7 @@ class Utils
     }
 
     /**
-     * Generates a random, UNIQUE code for lists and classrooms
+     * Generates a random, UNIQUE code for lists.php and classrooms
      *
      * @param Medoo $db
      * @param int $length
@@ -58,7 +58,7 @@ class Utils
     {
         do {
             $code = static::randomString($length);
-        } while ($db->has("classrooms", ["code" => $code]) or $db->has("lists", ["code" => $code]));
+        } while ($db->has("classrooms", ["code" => $code]) or $db->has("lists.php", ["code" => $code]));
         return $code;
     }
 

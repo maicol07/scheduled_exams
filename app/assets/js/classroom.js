@@ -92,8 +92,8 @@ async function createClassroom() {
 function deleteClassroom(id, name) {
     Swal_md.fire({
         title: tr.__("Sei sicuro di voler eliminare la classe %s?", name),
-        html: tr.__("Non sarà poi possibile ripristinarla! Perderai, inoltre, tutte le liste e le informazioni associate " +
-            "alla classe!<br>Sei sicuro di voler continuare?"),
+        html: tr.__(`Non sarà poi possibile ripristinarla! Perderai, inoltre, tutte le liste e le informazioni associate alla 
+classe!<br>Sei sicuro di voler continuare?`),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: tr.__("Sì, eliminala!"),
@@ -128,8 +128,13 @@ function deleteClassroom(id, name) {
 function shareClassroom(code) {
     Swal_md.fire({
         title: tr.__("Condividi la classe"),
-        html: `${tr.__("Il codice per entrare nella classe è %sIl codice è da inserire nella dashboard, " +
-            "premendo sul pulsante <b>Unisciti ad una classe</b>", `<pre>${code}</pre>`)}`
+        html: `${tr.__(`Il codice per entrare nella classe è :code:.<br>Il codice è da inserire nella dashboard, 
+premendo poi sul pulsante <b>Unisciti ad una classe</b>.<br><br>Il seguente indirizzo pubblico, invece, indica l'indirizzo a cui è 
+possibile visiualizzare la classe (<b>Attenzione! Chiunque possieda il link può visualizzare le informazioni 
+contenute in essa!</b>): :link:`, {
+            ':code:': `<pre>${code}</pre>`, ':link:': `<br><br><code>
+<a href="${BASEURL}/app/classroom?view=${code}">${BASEURL}/app/classroom?view=${code}</a></code>`
+        })}`
     });
 }
 
@@ -363,7 +368,7 @@ function unlinkStudent(id, name) {
 function removeStudent(id, name) {
     Swal_md.fire({
         title: tr.__("Attenzione!"),
-        text: tr.__(`Si vuole davvero eliminare lo studente ${name}?`),
+        text: tr.__("Si vuole davvero eliminare lo studente %s?", name),
         icon: "warning",
         confirmButtonText: tr.__("Sì"),
         showCancelButton: true,
@@ -414,8 +419,8 @@ function editClassroom() {
         } else {
             Swal_md.fire({
                 title: tr.__("File inserito non valido!"),
-                html: tr.__("Non hai inserito nessun file oppure il file inserito non è un file immagine (deve avere una fra le seguenti estensioni:<br> " +
-                    "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, .ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"),
+                html: tr.__(`Non hai inserito nessun file oppure il file inserito non è un file immagine (deve avere una fra le seguenti estensioni:<br>
+<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, .ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>`),
                 icon: "error"
             })
         }

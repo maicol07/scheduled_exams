@@ -16,6 +16,7 @@ class Collection
     public $weekdays;
     public $quantity;
     public $code;
+    public $rows;
     /* @var Medoo */
     private $db;
 
@@ -26,7 +27,7 @@ class Collection
         "description",
         "image",
         "type",
-        'start_date' .
+        'start_date',
         "weekdays",
         'quantity',
         "code",
@@ -34,7 +35,7 @@ class Collection
 
 
     /**
-     * Classroom constructor.
+     * Collection constructor.
      * @param $db Medoo
      * @param $user Auth
      * @param null|int $id
@@ -54,13 +55,76 @@ class Collection
             $value = $code;
         }
         if (!empty($key)) {
-            var_dump($this->attributes);
-            header("HTTP/1.0 550 ");
             $select = $this->db->get("lists", $this->attributes, [$key => $value]);
             foreach ($select as $attribute => $value) {
                 $this->$attribute = $value;
             }
+            $this->rows = $this->db->select("lists_rows", ['id', 'student_id', 'date'], ['list_id' => $this->id, 'ORDER' => 'date']);
         }
+    }
+
+    public function generateRows()
+    {
+        $classroom = new Classroom($this->db, $this->user, $this->classroom_id);
+        $students = $classroom->getStudents();
+        if (empty($this->quantity)) {
+            $this->quantity = 1;
+        }
+        $times = ceil(count($students) / $this->quantity);
+        $dates = [];
+        if (!empty($this->start_date)) {
+            $start_date = new \DateTime($this->start_date);
+            $dates[] = $start_date->format('Y-m-d');
+            $weekdays = unserialize($this->weekdays) ?: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            foreach (range(0, $times) as $i) {
+                foreach ($weekdays as $weekday) {
+                    $date = $start_date->modify("next $weekday");
+                    $dates[] = $date->format('Y-m-d');
+                }
+            }
+        }
+        $rows = [];
+
+        $i = 0;
+        $date = !empty($this->start_date) ? $dates[$i] : NULL;
+        foreach (array_rand($students, count($students)) as $student_id) {
+            if ($i > $times) {
+                break;
+            }
+            if (!empty($this->start_date)) {
+                if ($i % $this->quantity === 0) {
+                    $date = $dates[$i];
+                }
+            }
+
+            $rows[] = [
+                'list_id' => $this->id,
+                'student_id' => $student_id,
+                'date' => $date
+            ];
+        }
+        $this->rows = $rows;
+        return $rows;
+    }
+
+    public function manageRows($row_id, $date = null, $mode = "a")
+    {
+
+    }
+
+    public function addRow($row_id, $row_data)
+    {
+        $this->manageRows($row_id, $row_data->date);
+    }
+
+    public function editRow($row_id, $row_data)
+    {
+        $this->manageRows($row_id, $row_data->date, "e");
+    }
+
+    public function deleteRow($row_id)
+    {
+        $this->manageRows($row_id, null, "d");
     }
 
     public function save()
@@ -78,6 +142,9 @@ class Collection
             ]);
             $this->id = $this->db->id();
             $this->code = $code;
+            if ($this->type != "MANUAL") {
+                $this->db->insert('lists_rows', $this->generateRows());
+            }
         } else {
             $attr = [];
             foreach ($this->attributes as $attribute) {
@@ -94,12 +161,12 @@ class Collection
 
     public function delete()
     {
-        if (empty($this->id)) {
+        if (empty((int)$this->id)) {
             return new Result(null, "NO_ID", "NO_ID");
         }
         $code = $this->code;
         $query = $this->db->delete("lists", [
-            'id' => $this->id
+            'id' => (int)$this->id
         ]);
         if ($query->rowCount()) {
             return new Result(['code' => $code]);
@@ -109,7 +176,7 @@ class Collection
     }
 
     /**
-     * Get lists from database
+     * Get lists.php from database
      *
      * @param null|int $classroom_id If provided, search will be limited to this classroom only
      * @return array|bool

@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright (c) 2019.  Maicol07 - Tutti i diritti riservati - All rights reserved
- * Original template by Kodular (kodular.io)
+ * Original layout by Kodular (kodular.io)
  */
 
 use src\Utils;
@@ -22,11 +22,15 @@ $changelog = [
             [
                 "type" => "new",
                 "badge_text" => __("Nuovo"),
-                // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
                 "text" => __("Tre nuovi tipi di generazione delle liste:
                 - **Manuale**: le liste vengono create a mano dall'amministratore della classe;
                 - **Automatico**: le liste vengono create in automatico (tipico sorteggio casuale);
                 - **Automatico da data di inizio**: le liste vengono create in automatico ma vengono già stabiliti i giorni utili per l'interrogazione (automaticamente)"),
+            ],
+            [
+                "type" => "new",
+                "badge_text" => __("Nuovo"),
+                "text" => __("Possibilità di stampare le liste in PDF singolarmente o multiple dalla classe di riferimento")
             ],
             [
                 "type" => "new",

@@ -49,6 +49,7 @@
     "phpmailer/phpmailer": "^6.1",
     "sentry/sdk": "^2.0",
     "stolz/assets": "dev-master",
-    "mobiledetect/mobiledetectlib": "^2.8"
+    "mobiledetect/mobiledetectlib": "^2.8",
+    "mpdf/mpdf": "^8.0"
   }
 }

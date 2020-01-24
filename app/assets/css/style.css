@@ -108,6 +108,17 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     font-size: 24px;
 }
 
+.mdc-menu-classroom-list {
+    margin-left: 75px !important;
+}
+
+/* MDC GRID */
+@media screen and (min-width: 480px) {
+    .mdc-layout-grid__inner {
+        display: flex !important;
+    }
+}
+
 /* MDC CARDS */
 .mdc-card__primary {
     padding: 1rem
