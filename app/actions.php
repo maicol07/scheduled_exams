@@ -116,6 +116,8 @@ switch (post("action")) {
     case 'delete_list':
         $list = new Collection($db, $user, post('id'));
         $result = $list->delete();
+        $classroom = new Classroom($db, $user, $list->classroom_id);
+        $result->classroom_code = $classroom->code;
         break;
 }
 header('Content-Type: application/json; charset=utf-8');

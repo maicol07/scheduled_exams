@@ -188,7 +188,7 @@ function deleteList(id, name) {
                 action: "delete_list",
                 id: id
             }, (data) => {
-                var div = $(`#classroom_${data.code}`);
+                var div = $(`#list_${data.code}`);
                 div.fadeOut(1000, () => {
                     div.remove()
                 });
@@ -196,8 +196,8 @@ function deleteList(id, name) {
                     title: tr.__("Lista eliminata!"),
                     icon: "success"
                 });
-                if (CLASSROOM_CODE) {
-                    window.location.replace(BASEURL + '/app/classroom?view=' + CLASSROOM_CODE)
+                if (empty(CLASSROOM_CODE)) {
+                    window.location.replace(BASEURL + '/app/classroom?view=' + data.classroom_code)
                 }
             })
         }

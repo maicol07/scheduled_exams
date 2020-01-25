@@ -176,7 +176,7 @@ class Collection
     }
 
     /**
-     * Get lists.php from database
+     * Get lists from database
      *
      * @param null|int $classroom_id If provided, search will be limited to this classroom only
      * @return array|bool
