@@ -119,7 +119,7 @@ $list = new Collection($db, $user, null, get('view'));
                         if ($list->type == "FROM_START_DATE") {
                             if (!empty($list->start_date)) {
                                 $date = Utils::getLocaleDate($list->start_date, $lang);
-                                echo '<span id="list_start_date">' . __("Data di partenza delle interrogazioni: <b>%s</b>", $date) . '</span><br>';
+                                echo '<span id="list_start_date">' . __("Data di inizio delle interrogazioni: <b>%s</b>", $date) . '</span><br>';
                             }
                             $weekdays = unserialize($list->weekdays);
                             if (!empty($weekdays)) {
@@ -138,6 +138,7 @@ $list = new Collection($db, $user, null, get('view'));
                                 }
                                 echo '<span id="list_weekdays">' . __("Giorni in cui si effettua l'interrogazione: <b>%s</b>", $weekdays_str) . '</span>';
                             }
+                            echo '<span id="list_max_students">' . __("Numero massimo di studenti interrogati per volta: <b>%s</b>", $list->quantity) . '</span>';
                         }
                         ?>
                     </small>
