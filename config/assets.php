@@ -27,6 +27,8 @@ $js = [
     'gettext-translator',
     // Cookie consent
     "cookieconsent",
+    // Modernizr
+    "modernizr.js",
     // Utils function
     "utils.js",
     // Scripts

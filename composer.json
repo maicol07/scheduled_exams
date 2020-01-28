@@ -50,6 +50,7 @@
     "sentry/sdk": "^2.0",
     "stolz/assets": "dev-master",
     "mobiledetect/mobiledetectlib": "^2.8",
-    "mpdf/mpdf": "^8.0"
+    "mpdf/mpdf": "^8.0",
+    "monolog/monolog": "^2.0"
   }
 }

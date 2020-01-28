@@ -2,6 +2,7 @@
 
 namespace src;
 
+use DateTime;
 use Medoo\Medoo;
 
 class Collection
@@ -73,7 +74,7 @@ class Collection
         $times = ceil(count($students) / $this->quantity);
         $dates = [];
         if (!empty($this->start_date)) {
-            $start_date = new \DateTime($this->start_date);
+            $start_date = new DateTime($this->start_date);
             $dates[] = $start_date->format('Y-m-d');
             $weekdays = unserialize($this->weekdays) ?: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
             foreach (range(0, $times) as $i) {
@@ -87,7 +88,9 @@ class Collection
 
         $i = 0;
         $date = !empty($this->start_date) ? $dates[$i] : NULL;
-        foreach (array_rand($students, count($students)) as $student_id) {
+        // Randomize array
+        shuffle($students);
+        foreach ($students as $student_id) {
             if ($i > $times) {
                 break;
             }

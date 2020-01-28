@@ -1,11 +1,34 @@
 <?php
 
 use Debugbar\StandardDebugBar;
+use Monolog\Handler\FilterHandler;
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 if (defined("DOCROOT")) {
     require_once DOCROOT . "/config/class_loader.php";
 } else {
     require_once "class_loader.php";
+}
+
+/*
+ * Monolog error logging
+ */
+// Create a log channel
+$log = new Logger('Logs');
+$handlers = [];
+$handlers[] = new StreamHandler('logs/error.log', Logger::ERROR);
+// Log files rotation
+$handlers[] = new RotatingFileHandler(DOCROOT . '/logs/error.log', 0, Monolog\Logger::ERROR);
+// Format logs lines
+$pattern = '[%datetime%] %channel%.%level_name%: %message% %context%' . PHP_EOL . '%extra% ' . PHP_EOL;
+$monologFormatter = new Monolog\Formatter\LineFormatter($pattern);
+$monologFormatter->includeStacktraces(!PRODUCTION);
+
+foreach ($handlers as $handler) {
+    $handler->setFormatter($monologFormatter);
+    $log->pushHandler(new FilterHandler($handler, [$handler->getLevel()]));
 }
 
 /**
@@ -24,6 +47,18 @@ if (!PRODUCTION) {
         $whoops->prependHandler(new Whoops\Handler\PrettyPageHandler);
     }
     $whoops->register();
+    // Whoops integration with Monolog
+    // Place our custom handler in front of the others, capturing exceptions
+    // and logging them, then passing the exception on to the other handlers:
+    $whoops->pushHandler(function ($exception, $inspector, $run) use ($log) {
+        $log->error($exception->getMessage(), [
+            'code' => $exception->getCode(),
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'trace' => $exception->getTraceAsString(),
+        ]);
+    });
 
     /*
      * PHP Debug Bar

@@ -134,9 +134,12 @@ $list = new Collection($db, $user, null, get('view'));
                                 ];
                                 $weekdays_str = '';
                                 foreach ($weekdays as $weekday) {
-                                    $weekdays_str .= "{$week[$weekday]}, ";
+                                    if (array_search($weekday, $weekdays) > 0) {
+                                        $weekdays_str .= ", ";
+                                    }
+                                    $weekdays_str .= "{$week[$weekday]}";
                                 }
-                                echo '<span id="list_weekdays">' . __("Giorni in cui si effettua l'interrogazione: <b>%s</b>", $weekdays_str) . '</span>';
+                                echo '<span id="list_weekdays">' . __("Giorni in cui si effettua l'interrogazione: <b>%s</b>", $weekdays_str) . '</span><br>';
                             }
                             echo '<span id="list_max_students">' . __("Numero massimo di studenti interrogati per volta: <b>%s</b>", $list->quantity) . '</span>';
                         }

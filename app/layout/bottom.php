@@ -34,7 +34,6 @@ USER_LANG = '" . $lang . "';
 echo $assets->js();
 
 if (isset($debugbar) and isset($debugbarRenderer)) {
-    $debugbar["messages"]->addMessage(basename($_SERVER['SCRIPT_NAME'], '.php'));
     echo $debugbarRenderer->render();
 }
 ?>

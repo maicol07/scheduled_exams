@@ -6,7 +6,6 @@ use IntlDateFormatter;
 use Medoo\Medoo;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-use function Sentry\captureException;
 
 class Utils
 {
@@ -58,7 +57,7 @@ class Utils
     {
         do {
             $code = static::randomString($length);
-        } while ($db->has("classrooms", ["code" => $code]) or $db->has("lists.php", ["code" => $code]));
+        } while ($db->has("classrooms", ["code" => $code]) or $db->has("lists", ["code" => $code]));
         return $code;
     }
 
@@ -361,11 +360,10 @@ class Utils
      */
     public static function validate($str)
     {
-        try {
+        if (is_string($str)) {
             return trim(htmlspecialchars($str));
-        } catch (\ErrorException $exception) {
-            captureException($exception);
         }
+        return $str;
     }
 
     /**

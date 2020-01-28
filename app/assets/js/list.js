@@ -93,6 +93,7 @@ async function createList() {
                             <br>
                             ${renderOutlinedInput("start_date_selection", tr.__("Data di inizio"), {
                             required: true,
+                            type: "date",
                             icon: "mdi-outline-today",
                             width: "400px"
                         })}<br>
@@ -114,12 +115,14 @@ async function createList() {
                         $("#start_date_options").fadeIn(1000);
                         var input = $("#start_date_selection");
                         initInput(input.parent());
-                        input.focus(() => {
-                            dp.show(new Date(), (date) => {
-                                inputs['start_date_selection'].value = date.toLocaleDateString();
-                                $("#start_date_selection").attr('data-timestamp', date.toISOString());
-                            })
-                        });
+                        if (!Modernizr.inputtypes.date) {
+                            input.focus(() => {
+                                dp.show(new Date(), (date) => {
+                                    inputs['start_date_selection'].value = date.toLocaleDateString();
+                                    $("#start_date_selection").attr('data-timestamp', date.toISOString());
+                                })
+                            });
+                        }
 
                         var chips = $("#exam_days");
                         initChipset(chips);
@@ -143,7 +146,8 @@ async function createList() {
                 type: selects["list_type_input"].value
             };
             if (data.type === "FROM_START_DATE") {
-                data.start_date = $("#start_date_selection").attr('data-timestamp');
+                var date_input = $("#start_date_selection");
+                data.start_date = !empty(date_input.attr('data-timestamp')) ? date_input.attr('data-timestamp') : date_input.val();
                 data.weekdays = [];
                 chipsets.exam_days.selectedChipIds.forEach((id) => {
                     data.weekdays.push($(`#${id}`).find('span.mdc-chip__text').attr('id'))
