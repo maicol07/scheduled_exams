@@ -277,7 +277,8 @@ function renderOutlinedSelect(id, label, properties = {
     required: false,
     icon: null,
     icon_as_btn: false,
-    width: "240px"
+    width: "240px",
+    containerWidth: "240px"
 }) {
     var list = '';
     Object.keys(properties.values).forEach((value) => {
@@ -288,7 +289,8 @@ function renderOutlinedSelect(id, label, properties = {
     });
     return `
     <div id="${id}" class="mdc-select mdc-select--outlined ${!empty(properties.required) ? 'mdc-select--required' : ''}
-        ${!empty(properties.icon) ? 'mdc-select--with-leading-icon' : ''}" style="display: inline-block">
+        ${!empty(properties.icon) ? 'mdc-select--with-leading-icon' : ''}"
+        style="display: inline-block; width: ${!empty(properties.containerWidth) ? properties.containerWidth : '240px'}">
         <div class="mdc-select__anchor" style="width: ${!empty(properties.width) ? properties.width : '240px'}">
             <div class="mdc-notched-outline">
                 <div class="mdc-notched-outline__leading">

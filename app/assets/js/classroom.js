@@ -48,6 +48,13 @@ function addClassroomToGrid(data) {
     no_classrooms_div.fadeOut(1000, () => {
         no_classrooms_div.remove()
     });
+    var left_sidebar_div = $("#left_sidebar_classrooms");
+    if (left_sidebar_div.length) {
+        left_sidebar_div.append(`<a class="mdc-list-item" href="classroom?view=${data.code}">
+            <i class="mdi-outline-class mdc-list-item__graphic"></i>
+            <span class="mdc-list-item__text mdc-typography--subtitle2">${data.name}</span>
+        </a>`).children(':last').hide().fadeIn(1000);
+    }
 }
 
 /**

@@ -83,7 +83,7 @@ $list = new Collection($db, $user, null, get('view'));
                     <i class="mdi-outline-add mdc-button__icon"></i>
                     <span class="mdc-button__label"><?php echo __("Aggiungi") ?></span>
                 </button>
-                <a class="mdc-button" href="prints/list?view=<?php echo $list->code ?>" target="_blank"
+                <a class="mdc-button" href="prints/templates/list?view=<?php echo $list->code ?>" target="_blank"
                    style="float: right;">
                     <div class="mdc-button__ripple"></div>
                     <i class="mdi-outline-print mdc-button__icon"></i>

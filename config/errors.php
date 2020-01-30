@@ -18,7 +18,7 @@ if (defined("DOCROOT")) {
 // Create a log channel
 $log = new Logger('Logs');
 $handlers = [];
-$handlers[] = new StreamHandler('logs/error.log', Logger::ERROR);
+$handlers[] = new StreamHandler(DOCROOT . '/logs/error.log', Logger::ERROR);
 // Log files rotation
 $handlers[] = new RotatingFileHandler(DOCROOT . '/logs/error.log', 0, Monolog\Logger::ERROR);
 // Format logs lines

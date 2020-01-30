@@ -16,7 +16,8 @@
             $classrooms = $classroom_obj->getClassrooms();
             if (!empty($classrooms)) {
                 echo '<hr class="mdc-list-divider">
-            <h6 class="mdc-list-group__subheader mdc-typography--subtitle1">' . __("Classi") . '</h6>';
+            <h6 class="mdc-list-group__subheader mdc-typography--subtitle1">' . __("Classi") . '</h6>
+            <div id="left_sidebar_classrooms">';
                 foreach ($classrooms as $classroom) {
                     $classroom = (object)$classroom;
                     $classroom_users = json_decode($classroom->users);
@@ -31,7 +32,8 @@
                     $lists = $list_obj->getLists($classroom->id);
                     if (!empty($lists)) {
                         echo '<hr class="mdc-list-divider mdc-menu-classroom-list">
-            <h6 class="mdc-list-group__subheader mdc-typography--subtitle1 mdc-menu-classroom-list">' . __("Liste") . '</h6>';
+            <h6 class="mdc-list-group__subheader mdc-typography--subtitle1 mdc-menu-classroom-list">' . __("Liste") . '</h6>
+            <div id="left_sidebar_lists">';
                         foreach ($lists as $list) {
                             $list = (object)$list;
                             echo '<a class="mdc-menu-classroom-list mdc-list-item ' . (($current_page == "list" and get('view') == $list->code) ?
@@ -40,8 +42,10 @@
                             <span class="mdc-list-item__text mdc-typography--subtitle2">' . $list->name . '</span>
                           </a>';
                         }
+                        echo '</div>';
                     }
                 }
+                echo '</div>';
             }
 
 

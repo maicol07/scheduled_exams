@@ -1,10 +1,9 @@
 <?php
 
-use Mpdf\Mpdf;
 use src\Collection;
 use src\Utils;
 
-require_once "../../core.php";
+require_once "../../../core.php";
 
 $list = new Collection($db, $user, null, get('view'));
 
@@ -14,7 +13,6 @@ require_once DOCROOT . "/app/prints/layout/top.php";
 // Redefinition to avoid naming problems
 $list = new Collection($db, $user, null, get('view'));
 
-$pdf = new Mpdf(['tempDir' => DOCROOT . '/app/prints/temp']);
 ob_start();
 ?>
     <div class="mdc-data-table" style="width: 100%;">

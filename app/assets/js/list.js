@@ -43,6 +43,13 @@ function addListToGrid(data) {
     no_lists_div.fadeOut(1000, () => {
         no_lists_div.remove()
     });
+    var left_sidebar_div = $("#left_sidebar_lists");
+    if (left_sidebar_div.length) {
+        left_sidebar_div.append(`<a class="mdc-menu-classroom-list mdc-list-item" href="list?view=${data.code}">
+            <i class="mdi-outline-format_list_numbered mdc-list-item__graphic"></i>
+            <span class="mdc-list-item__text mdc-typography--subtitle2">${data.name}</span>
+        </a>`).children(':last').hide().fadeIn(1000);
+    }
 }
 
 async function createList() {
@@ -51,7 +58,7 @@ async function createList() {
         html: `${renderOutlinedInput('list_name_input', tr.__("Nome lista"), {
             required: true,
             icon: "mdi-outline-format_list_numbered",
-            width: "400px"
+            width: "auto"
         })}<br>
         <br>
         ${renderOutlinedSelect("list_type_input", tr.__("Tipo lista"), {
@@ -62,7 +69,7 @@ async function createList() {
             },
             required: true,
             icon: "mdi-outline-layers",
-            width: "400px"
+            width: "max-content",
         })}`,
         imageUrl: ROOTDIR + "/app/assets/img/plus.svg",
         imageAlt: tr.__("Crea lista"),
@@ -95,7 +102,7 @@ async function createList() {
                             required: true,
                             type: "date",
                             icon: "mdi-outline-today",
-                            width: "400px"
+                            width: "auto"
                         })}<br>
                             <br>
                             ${tr.__("Giorni in cui si effettua l'interrogazione:")}<br>
@@ -109,7 +116,7 @@ async function createList() {
                             value: 1,
                             min: 1,
                             icon: 'mdi-outline-people_outline',
-                            width: "400px"
+                            width: "auto"
                         })}
                         </div>`);
                         $("#start_date_options").fadeIn(1000);
