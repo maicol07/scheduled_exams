@@ -1,11 +1,18 @@
 <?php
 
+use src\Classroom;
 use src\Collection;
 use src\Utils;
 
 require_once "../core.php";
 
+if (!$db->has("lists", ['code' => get('view')])) {
+    http_response_code("404");
+    header("Location: " . BASEURL . "/app/404");
+}
+
 $list = new Collection($db, $user, null, get('view'));
+$classroom = new Classroom($db, $user, $list->classroom_id);
 
 $title = __("Lista %s", $list->name);
 require_once DOCROOT . "/app/layout/top.php";
@@ -23,20 +30,25 @@ $list = new Collection($db, $user, null, get('view'));
                     <thead>
                     <tr class="mdc-data-table__header-row">
                         <th class="mdc-data-table__header-cell" role="columnheader"
+                            scope="col"><?php echo __("N.") ?></th>
+                        <th class="mdc-data-table__header-cell" role="columnheader"
                             scope="col"><?php echo __("Studente") ?></th>
                         <th class="mdc-data-table__header-cell" role="columnheader"
                             scope="col"><?php echo __("Data") ?></th>
-                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col"></th>
+                        <?php if ($user->getId() == $classroom->admin) { ?>
+                            <th class="mdc-data-table__header-cell" role="columnheader" scope="col"></th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody class="mdc-data-table__content">
                     <?php
-                    $students = (new \src\Classroom($db, $user, $list->classroom_id))->getStudents();
-                    foreach ($list->rows as $row) {
+                    $students = $classroom->getStudents();
+                    foreach ($list->rows as $row_number => $row) {
                         $row = (object)$row;
                         $row_student = (object)$students[$row->student_id];
                         echo '
                         <tr id="list_row_' . $row->id . '" class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">' . (string)((int)$row_number + 1) . '</td>
                             <td class="mdc-data-table__cell">
                                 <div class="mdc-chip-set" role="grid">
                                     <div class="mdc-chip" role="row">
@@ -52,7 +64,8 @@ $list = new Collection($db, $user, null, get('view'));
                                 <span id="unix_timestamp" style="display: none">' . strtotime($row->date) . '</span>
                                 ' . Utils::getLocaleDate($row->date, $lang) . '
                             </td>
-                            <td class="mdc-data-table__cell">
+                            ' . (($user->getId() == $classroom->admin) ?
+                                '<td class="mdc-data-table__cell">
                                 <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                             title="' . __("Modifica") . '" onclick="editRow(\'list_row_' . $list->code . '\')">
                                       <i class="mdi-outline-edit mdc-button__icon"></i>
@@ -60,7 +73,7 @@ $list = new Collection($db, $user, null, get('view'));
                                 <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                             title="' . __("Elimina") . '" onclick="deleteRow(\'list_row_' . $list->code . '\')">
                                       <i class="mdi-outline-delete mdc-button__icon"></i>
-                            </td>
+                            </td>' : '') . '
                         </tr>
                         ';
                     }
@@ -77,12 +90,14 @@ $list = new Collection($db, $user, null, get('view'));
                 </table>
             </div>
             <div id="actions_buttons" style="margin-top: 10px">
-                <button class="mdc-button mdc-button--raised" style="float: left;"
-                        onclick="addRow('list_row_<?php echo $list->code ?>')">
-                    <div class="mdc-button__ripple"></div>
-                    <i class="mdi-outline-add mdc-button__icon"></i>
-                    <span class="mdc-button__label"><?php echo __("Aggiungi") ?></span>
-                </button>
+                <?php if ($user->getId() == $classroom->admin) { ?>
+                    <button class="mdc-button mdc-button--raised" style="float: left;"
+                            onclick="addRow('list_row_<?php echo $list->code ?>')">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="mdi-outline-add mdc-button__icon"></i>
+                        <span class="mdc-button__label"><?php echo __("Aggiungi") ?></span>
+                    </button>
+                <?php } ?>
                 <a class="mdc-button" href="prints/templates/list?view=<?php echo $list->code ?>" target="_blank"
                    style="float: right;">
                     <div class="mdc-button__ripple"></div>
@@ -113,9 +128,11 @@ $list = new Collection($db, $user, null, get('view'));
                     ]
                     ?>
                     <small id="list_details">
-                        <span
-                            id="list_type"><?php echo __("Tipo generazione lista: <b>%s</b>", $types[$list->type]) ?></span><br>
-                        <?php
+                        <?php if ($user->getId() == $classroom->admin) { ?>
+                            <span id="list_type"><?php echo __("Tipo generazione lista: <b>%s</b>", $types[$list->type]) ?></span>
+                            <br>
+                            <?php
+                        }
                         if ($list->type == "FROM_START_DATE") {
                             if (!empty($list->start_date)) {
                                 $date = Utils::getLocaleDate($list->start_date, $lang);
@@ -153,7 +170,7 @@ $list = new Collection($db, $user, null, get('view'));
                                 onclick="shareList('<?php echo $list->code ?>')">
                             <i class="mdc-button__icon mdi-outline-share"></i>
                         </button>
-                        <?php if ($user->getId() == (new \src\Classroom($db, $user, $list->classroom_id))->admin) {
+                        <?php if ($user->getId() == $classroom->admin) {
                             echo '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                 title="' . __("Modifica") . '"
                                 id="edit_button"

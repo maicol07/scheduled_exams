@@ -85,15 +85,12 @@ class Collection
             }
         }
         $rows = [];
-
         $i = 0;
         $date = !empty($this->start_date) ? $dates[$i] : NULL;
         // Randomize array
         shuffle($students);
-        foreach ($students as $student_id) {
-            if ($i > $times) {
-                break;
-            }
+        foreach ($students as $student) {
+            $student = (object)$student;
             if (!empty($this->start_date)) {
                 if ($i % $this->quantity === 0) {
                     $date = $dates[$i];
@@ -102,9 +99,10 @@ class Collection
 
             $rows[] = [
                 'list_id' => $this->id,
-                'student_id' => $student_id,
+                'student_id' => $student->id,
                 'date' => $date
             ];
+            $i++;
         }
         $this->rows = $rows;
         return $rows;

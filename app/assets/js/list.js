@@ -70,6 +70,7 @@ async function createList() {
             required: true,
             icon: "mdi-outline-layers",
             width: "max-content",
+            containerWidth: "auto"
         })}`,
         imageUrl: ROOTDIR + "/app/assets/img/plus.svg",
         imageAlt: tr.__("Crea lista"),
@@ -207,7 +208,7 @@ function deleteList(id, name) {
                     title: tr.__("Lista eliminata!"),
                     icon: "success"
                 });
-                if (empty(CLASSROOM_CODE)) {
+                if (!window.hasOwnProperty('CLASSROOM_CODE')) {
                     window.location.replace(BASEURL + '/app/classroom?view=' + data.classroom_code)
                 }
             })

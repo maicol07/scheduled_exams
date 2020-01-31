@@ -6,6 +6,11 @@ use src\Utils;
 
 require_once "../core.php";
 
+if (!$db->has("classrooms", ['code' => get('view')])) {
+    http_response_code("404");
+    header("Location: " . BASEURL . "/app/404");
+}
+
 $classroom = new Classroom($db, $user, null, get('view'));
 
 $title = __("Classe %s", $classroom->name);

@@ -268,7 +268,10 @@ function studentsList() {
 async function editStudent(id, name) {
     const {value: student_name} = await Swal_md.fire({
         title: tr.__("Modifica studente"),
-        html: renderOutlinedInput('student_name_input', tr.__("Nome studente"), name),
+        html: renderOutlinedInput('student_name_input', tr.__("Nome studente"), {
+            value: name,
+            icon: "mdi-outline-person"
+        }),
         imageUrl: ROOTDIR + "/app/assets/img/edit.svg",
         imageAlt: tr.__("Modifica studente"),
         imageHeight: 150,
