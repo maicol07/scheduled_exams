@@ -19,6 +19,7 @@ require_once DOCROOT . "/app/layout/top.php";
 
 // Redefinition to avoid naming problems
 $list = new Collection($db, $user, null, get('view'));
+$classroom = new Classroom($db, $user, $list->classroom_id);
 ?>
 <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner" style="display: flex">
