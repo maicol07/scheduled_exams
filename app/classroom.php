@@ -60,6 +60,10 @@ $classroom = new Classroom($db, $user, null, get('view'));
                                     </a>
                                 </div>
                                 <div class="mdc-card__action-icons">
+                                    <a class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                            title="' . __("Stampa") . '" href="prints/templates/list?view=' . $list->code . '" target="_blank">
+                                      <i class="mdi-outline-print mdc-button__icon"></i>
+                                    </a>
                                     <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                             title="' . __("Condividi") . '" onclick="shareList(\'' . $list->code . '\')">
                                       <i class="mdi-outline-share mdc-button__icon"></i>
@@ -75,6 +79,14 @@ $classroom = new Classroom($db, $user, null, get('view'));
                     </div>';
                 }
                 echo "</div>";
+                echo '<div>
+                <a class="mdc-button" href="prints/templates/classroom_lists?view=' . $classroom->code . '" target="_blank"
+                   style="float: right;">
+                    <div class="mdc-button__ripple"></div>
+                    <i class="mdi-outline-print mdc-button__icon"></i>
+                    <span class="mdc-button__label">' . __("Stampa tutte") . '</span>
+                </a>
+                </div>';
             } else {
                 echo '
                 <div id="nolists" style="text-align: center" xmlns="http://www.w3.org/1999/html">

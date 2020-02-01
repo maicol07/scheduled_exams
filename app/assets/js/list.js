@@ -25,6 +25,10 @@ function addListToGrid(data) {
                             </a>
                         </div>
                         <div class="mdc-card__action-icons">
+                            <a class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                            title="${tr.__("Stampa")}" href="prints/templates/list?view=${data.code}" target="_blank">
+                              <i class="mdi-outline-print mdc-button__icon"></i>
+                            </a>
                             <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                     title="${tr.__("Condividi")}" onclick="shareList('${data.code}')">
                               <i class="mdi-outline-share mdc-button__icon"></i>

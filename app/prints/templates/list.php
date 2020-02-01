@@ -19,22 +19,22 @@ $list = new Collection($db, $user, null, get('view'));
 
 ob_start();
 ?>
-    <h4><?php echo __("Interrogazioni della lista :list: - Classe :classroom:", [':list:' => $list->name, ':classroom:' => $classroom->name]) ?></h4>
-    <table id="list_table" class='table table-striped table-bordered'>
-        <thead>
-        <tr>
-            <th><?php echo __("N.") ?></th>
-            <th><?php echo __("Studente") ?></th>
-            <th><?php echo __("Data") ?></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $students = (new \src\Classroom($db, $user, $list->classroom_id))->getStudents();
-        foreach ($list->rows as $key => $row) {
-            $row = (object)$row;
-            $row_student = (object)$students[$row->student_id];
-            echo '
+<h4><?php echo __("Interrogazioni della lista :list: - Classe :classroom:", [':list:' => $list->name, ':classroom:' => $classroom->name]) ?></h4>
+<table id="list_table" class='table table-striped table-bordered'>
+    <thead>
+    <tr>
+        <th><?php echo __("N.") ?></th>
+        <th><?php echo __("Studente") ?></th>
+        <th><?php echo __("Data") ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    $students = (new \src\Classroom($db, $user, $list->classroom_id))->getStudents();
+    foreach ($list->rows as $key => $row) {
+        $row = (object)$row;
+        $row_student = (object)$students[$row->student_id];
+        echo '
                 <tr id="list_row_' . $row->id . '">
                     <td>
                         ' . (string)((int)$key + 1) . '
@@ -47,17 +47,18 @@ ob_start();
                     </td>
                 </tr>
                 ';
-        }
-        ?>
-        </tbody>
-    </table>
+    }
+    ?>
+    </tbody>
+</table>
 
 <?php
 $pdf->WriteHTML(ob_get_clean(), HTMLParserMode::HTML_BODY);
 
 // Footer
-$footer = '<small id="list_details">';
+$footer = '';
 if ($list->type == "FROM_START_DATE") {
+    $footer .= '<small id="list_details">';
     if (!empty($list->start_date)) {
         $date = Utils::getLocaleDate($list->start_date, $lang);
         $footer .= '<span id="list_start_date">' . __("Data di inizio delle interrogazioni: <b>%s</b>", $date) . '</span><br>';
@@ -83,7 +84,9 @@ if ($list->type == "FROM_START_DATE") {
         $footer .= '<span id="list_weekdays">' . __("Giorni in cui si effettua l'interrogazione: <b>%s</b>", $weekdays_str) . '</span><br>';
     }
     $footer .= '<span id="list_max_students">' . __("Numero massimo di studenti interrogati per volta: <b>%s</b>", $list->quantity) . '</span>';
+    $footer .= '</small><br><br>';
 }
+$footer .= '<small>' . __("Stampato il %s utilizzando Interrogazioni Programmate", Utils::getLocaleDate(date("Y-m-d"), $lang)) . '</small>';
 
 $pdf->SetHTMLFooter($footer);
 $pdf->Output($title . ".pdf", Destination::INLINE);
