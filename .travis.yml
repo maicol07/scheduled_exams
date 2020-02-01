@@ -13,4 +13,7 @@ php:
 install:
   - composer install
 before_script: phpenv config-add .travis_config.ini
-script: index.php
+script: vendor/bin/phpunit --coverage-text
+cache:
+  directories:
+    - $HOME/.composer/cache/files
