@@ -4,7 +4,7 @@ use src\Classroom;
 use src\Collection;
 use src\Result;
 
-require "../core.php";
+require __DIR__ . "/../core.php";
 switch (post("action")) {
     case "change_language":
         $result = $user->setLanguage(post("lang"));

@@ -5,7 +5,7 @@ use Mpdf\Output\Destination;
 use src\Collection;
 use src\Utils;
 
-require_once "../../../core.php";
+require_once __DIR__ . "/../../../core.php";
 
 $list = new Collection($db, $user, null, get('view'));
 $classroom = new \src\Classroom($db, $user, $list->classroom_id);

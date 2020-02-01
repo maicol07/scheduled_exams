@@ -2,7 +2,7 @@
 
 use src\Utils;
 
-require_once "../core.php";
+require_once __DIR__ . "/../core.php";
 
 $title = __("404 - Pagina non trovata!");
 require_once DOCROOT . "/app/layout/top.php";

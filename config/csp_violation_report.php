@@ -1,5 +1,5 @@
 <?php
-require_once "../core.php";
+require_once __DIR__ . "/../core.php";
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;

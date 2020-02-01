@@ -4,7 +4,7 @@ use src\Classroom;
 use src\Collection;
 use src\Utils;
 
-require_once "../core.php";
+require_once __DIR__ . "/../core.php";
 
 if (!$db->has("lists", ['code' => get('view')])) {
     http_response_code("404");

@@ -6,7 +6,7 @@ use src\Classroom;
 use src\Collection;
 use src\Utils;
 
-require_once "../../../core.php";
+require_once __DIR__ . "/../../../core.php";
 
 $classroom = new Classroom($db, $user, null, get('view'));
 $list = new Collection($db, $user, null, null);
