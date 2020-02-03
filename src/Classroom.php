@@ -21,7 +21,7 @@ class Classroom
         "image",
         "users",
         "code",
-        "admin",
+        "admins",
         'students'
     ];
     /**
@@ -30,7 +30,7 @@ class Classroom
     public $users;
     /* @var string (json) Example: {student1: {name: ..., surname: ..., user_id: ...}, ...} */
     public $students;
-    public $admin;
+    public $admins;
 
     /**
      * Classroom constructor.
@@ -130,11 +130,27 @@ class Classroom
                 $students[$student_id]['user_id'] = $new_student_info;
                 break;
             case 'unlink':
+                $result = $this->revokeAdmin($student);
+                if (!$result->success) {
+                    return $result;
+                }
                 $students[$student_id]['user_id'] = 0;
                 break;
             case 'remove':
                 unset($students[$student_id]);
                 break;
+            case 'new_admin':
+                $admins = json_decode($this->admins);
+                $admins[] = $students[$student_id]['user_id'];
+                $this->admins = json_encode($this->admins);
+                break;
+            case 'revoke_admin':
+                $admins = json_decode($this->admins);
+                if (count($admins) == 1) {
+                    return new Result(null, "ONLY_ONE_ADMIN_LEFT", __("Non è possibile scollegare/eliminare l'unico amministratore della classe!"));
+                }
+                unset($admins[array_search($students[$student_id]['user_id'], $admins)]);
+                $this->admins = json_encode($this->admins);
         }
         if ($mode != 'remove') {
             $students[$student_id] = (object)$students[$student_id];
@@ -158,6 +174,16 @@ class Classroom
         return $this->manageStudent($student, "unlink");
     }
 
+    public function addAdmin($student)
+    {
+        return $this->manageStudent($student, "add_admin");
+    }
+
+    public function revokeAdmin($student)
+    {
+        return $this->manageStudent($student, "revoke_admin");
+    }
+
     public function removeStudent($student)
     {
         return $this->manageStudent($student, "remove");
@@ -167,11 +193,12 @@ class Classroom
     {
         if (empty($this->id)) {
             $code = Utils::generateCode($this->db);
+            $first_user = json_encode([$this->user->getId()]);
             $query = $this->db->insert("classrooms", [
                 "name" => $this->name,
                 "code" => $code,
-                "users" => json_encode([$this->user->getId()]),
-                "admin" => $this->user->getId(),
+                "users" => $first_user,
+                "admin" => $first_user,
             ]);
             $this->id = $this->db->id();
             $this->code = $code;
@@ -219,9 +246,9 @@ class Classroom
             'image',
             'users',
             'code',
-            'admin'
+            'admins'
         ],
-            Medoo::raw('WHERE `admin` = ' . $this->user->getId() . ' OR JSON_CONTAINS(users, ' . $this->user->getId() . ')')
+            Medoo::raw('WHERE JSON_CONTAINS(`users`, \'' . $this->user->getId() . '\')')
         );
     }
 
@@ -236,6 +263,10 @@ class Classroom
                 $users = json_decode($this->users, true);
                 if (!empty($users) and in_array($student->user_id, $users)) {
                     $value['username'] = $this->db->get('users', 'username', ['id' => $student->user_id]);
+                    $admins = json_decode($this->admins);
+                    if (in_array($student->user_id, $admins)) {
+                        $value['admin'] = true;
+                    }
                     //TODO 1.1: $value['image'] = (new Gravatar())->avatar($this->db->get('users', 'email', ['id' => $student->user_id]));
                 }
                 $list[] = $value;

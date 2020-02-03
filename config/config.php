@@ -63,7 +63,7 @@ use src\Auth;
 if (defined("DOCROOT")) {
     require_once DOCROOT . "/config/db.php";
 } else {
-    require_once "db.example.php";
+    require_once "db.php";
 }
 $db = new Medoo([
     'database_type' => $db_type,

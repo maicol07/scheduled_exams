@@ -68,7 +68,7 @@ $classroom = new Classroom($db, $user, null, get('view'));
                                             title="' . __("Condividi") . '" onclick="shareList(\'' . $list->code . '\')">
                                       <i class="mdi-outline-share mdc-button__icon"></i>
                                     </button>
-                                    ' . ($user->getId() == $classroom->admin ? '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                    ' . (in_array($user->getId(), json_decode($classroom->admins)) ? '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                             title="' . __("Elimina") . '"
                                             onclick="deleteList(\'' . $list->id . '\', \'' . $list->name . '\')">
                                       <i class="mdi-outline-delete mdc-button__icon"></i>
@@ -81,7 +81,7 @@ $classroom = new Classroom($db, $user, null, get('view'));
                 echo "</div>";
                 echo '<div>
                 <a class="mdc-button" href="prints/templates/classroom_lists?view=' . $classroom->code . '" target="_blank"
-                   style="float: right;">
+                   style="float: right; margin-top: 25px;">
                     <div class="mdc-button__ripple"></div>
                     <i class="mdi-outline-print mdc-button__icon"></i>
                     <span class="mdc-button__label">' . __("Stampa tutte") . '</span>
@@ -114,7 +114,7 @@ $classroom = new Classroom($db, $user, null, get('view'));
                 </div>
                 <div class="mdc-card__actions">
                     <div class="mdc-card__action-buttons">
-                        <?php if ($user->getId() == $classroom->admin) {
+                        <?php if (in_array($user->getId(), json_decode($classroom->admins))) {
                             echo '<button class="mdc-button mdc-card__action mdc-card__action--button" onclick="studentsList()">
                                 <div class="mdc-button__ripple"></div>
                                 <i class="mdc-button__icon mdi-outline-people_outline"></i>
@@ -129,7 +129,7 @@ $classroom = new Classroom($db, $user, null, get('view'));
                                 onclick="shareClassroom('<?php echo $classroom->code ?>')">
                             <i class="mdc-button__icon mdi-outline-share"></i>
                         </button>
-                        <?php if ($user->getId() == $classroom->admin) {
+                        <?php if (in_array($user->getId(), json_decode($classroom->admins))) {
                             echo '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                 title="' . __("Modifica") . '"
                                 id="edit_button"

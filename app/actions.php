@@ -5,19 +5,21 @@ use src\Collection;
 use src\Result;
 
 require __DIR__ . "/../core.php";
+
+$classroom = new Classroom($db, $user, post('id'), post('code'));
+$list = new Collection($db, $user, post('id'), post('code'));
+
 switch (post("action")) {
     case "change_language":
         $result = $user->setLanguage(post("lang"));
         break;
     // CLASSROOM
     case "create_classroom":
-        $classroom = new Classroom($db, $user);
         $classroom->name = post("name");
         $result = $classroom->save();
         $result->name = $classroom->name;
         break;
     case "update_classroom":
-        $classroom = new Classroom($db, $user, null, post('code'));
         // Image
         $default = strpos(post('image'), 'exams.svg');
         if (!$default) {
@@ -36,7 +38,6 @@ switch (post("action")) {
         $result = $classroom->save();
         break;
     case "delete_classroom":
-        $classroom = new Classroom($db, $user, post('id'));
         $result = $classroom->delete();
         break;
     case "join_classroom":
@@ -44,45 +45,41 @@ switch (post("action")) {
             $result = new Result(null, 'CLASS_DOES_NOT_EXISTS', __("Il codice della classe inserito non è associato ad alcuna classe"));
             break;
         }
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->addUser();
         break;
     case "leave_classroom":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->removeUser();
         break;
     case "add_classroom_student":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->addStudent(post('name'));
         break;
     case "edit_classroom_student":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->editStudent(post('student_id'), post('student_name'));
         break;
     case "link_classroom_student":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->linkStudent(post('student_id'), post('user_id'));
         break;
     case "unlink_classroom_student":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->unlinkStudent(post('student_id'));
         break;
+    case "add_classroom_admin":
+        $result = $classroom->addAdmin(post('student_id'));
+        break;
+    case "revoke_classroom_admin":
+        $result = $classroom->revokeAdmin(post('student_id'));
+        break;
     case "delete_classroom_student":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = $classroom->removeStudent(post('student_id'));
         break;
     case "get_classroom_students":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = new Result(['students' => $classroom->getStudents()]);
         break;
     case "get_classroom_users":
-        $classroom = new Classroom($db, $user, null, post('code'));
         $result = new Result(['users' => $classroom->getUsers()]);
         break;
 
     // LISTS
     case 'create_list':
-        $list = new Collection($db, $user);
         $list->name = post('name');
         $list->type = post('type');
         $list->start_date = (new DateTime(post('start_date')))->format('Y-m-d');
@@ -95,7 +92,6 @@ switch (post("action")) {
         $result->name = $list->name;
         break;
     case "update_list":
-        $list = new Collection($db, $user, null, post('code'));
         // Image
         $default = strpos(post('image'), 'list.svg');
         if (!$default) {
@@ -114,7 +110,6 @@ switch (post("action")) {
         $result = $list->save();
         break;
     case 'delete_list':
-        $list = new Collection($db, $user, post('id'));
         $result = $list->delete();
         $classroom = new Classroom($db, $user, $list->classroom_id);
         $result->classroom_code = $classroom->code;

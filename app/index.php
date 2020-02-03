@@ -50,7 +50,7 @@ if (!empty($classrooms)) {
                                 title="' . __("Condividi") . '" onclick="shareClassroom(\'' . $classroom->code . '\')">
                           <i class="mdi-outline-share mdc-button__icon"></i>
                         </button>
-                        ' . ($user->getId() == $classroom->admin ? '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                        ' . (in_array($user->getId(), json_decode($classroom->admins)) ? '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                 title="' . __("Elimina") . '"
                                 onclick="deleteClassroom(\'' . $classroom->id . '\', \'' . $classroom->name . '\')">
                           <i class="mdi-outline-delete mdc-button__icon"></i>

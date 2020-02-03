@@ -19,10 +19,10 @@ self.addEventListener('install', e => {
             'assets/img/undraw/exams.svg',
             'assets/img/undraw/no_data.svg',
             'assets/css/mdi-outline/mdi-outline.css',
-            'assets/css/mdi-outline/fonts/material-icon-outline.eot',
-            'assets/css/mdi-outline/fonts/material-icon-outline.svg',
-            'assets/css/mdi-outline/fonts/material-icon-outline.ttf',
-            'assets/css/mdi-outline/fonts/material-icon-outline.woff'
+            'assets/css/mdi-outline/fonts/mdi-outline.eot',
+            'assets/css/mdi-outline/fonts/mdi-outline.svg',
+            'assets/css/mdi-outline/fonts/mdi-outline.ttf',
+            'assets/css/mdi-outline/fonts/mdi-outline.woff'
         ]).then(() => self.skipWaiting());
     }))
 });

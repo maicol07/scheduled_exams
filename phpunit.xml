@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true">
+<phpunit colors="true" bootstrap="./vendor/autoload.php">
     <testsuites>
-        <testsuite name="Package Test Suite">
+        <testsuite name="Scheduled Exams PHP compatibility tests">
             <directory suffix=".php">./</directory>
             <directory suffix=".php">./app/</directory>
         </testsuite>

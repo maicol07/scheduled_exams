@@ -182,6 +182,10 @@ function studentsList() {
             html = `<ul class="mdc-list mdc-list--two-line">`;
             data.students.forEach((student) => {
                 var link_btn = student.username ? `
+                    <button class="mdc-icon-button"
+${student.admin ? `title="${tr.__("Revoca permessi di amministratore")}" onclick="revokeAdmin(${student.id}, '${student.name}')"` : `title="${tr.__("Rendi amministratore")}" onclick="addAdmin(${student.id}, '${student.name}')"`}>
+                        <i class="mdi-outline-${student.admin ? "account-convert" : "crown"}"></i>
+                    </button>
                     <button class="mdc-icon-button" title="${tr.__("Scollega da questo utente")}" onclick="unlinkStudent(${student.id}, '${student.name}')">
                         <i class="mdc-button__icon mdi-outline-link_off"></i>
                     </button>` : `<button class="mdc-icon-button" title="${tr.__("Collega ad un utente...")}" onclick="linkStudent(${student.id}, '${student.name}')">
@@ -191,7 +195,7 @@ function studentsList() {
                        <li class="mdc-list-item">
                             <span class="mdc-list-item__graphic"><img src="${student.image}" alt="${student.name}"></span>
                             <span class="mdc-list-item__text">
-                                <span class="mdc-list-item__primary-text">${student.name}</span>
+                                <span class="mdc-list-item__primary-text">${student.admin ? "<i class='mdi-outline-crown'></i>" : ""} ${student.name}</span>
                                 ${student.username ? `<span class="mdc-list-item__secondary-text">${student.username}</span>` : ''}
                             </span>
                             <span class="mdc-list-item__meta">
@@ -252,6 +256,8 @@ function studentsList() {
                         });
                         studentsList()
                     })
+                } else {
+                    studentsList();
                 }
             }
         });
@@ -292,6 +298,8 @@ async function editStudent(id, name) {
             });
             studentsList()
         })
+    } else {
+        studentsList();
     }
 }
 
@@ -334,6 +342,8 @@ function linkStudent(id, name) {
                 });
                 studentsList();
             })
+        } else {
+            studentsList();
         }
     })
 }
@@ -396,6 +406,60 @@ function removeStudent(id, name) {
                 });
                 studentsList()
             })
+        } else {
+            studentsList();
+        }
+    })
+}
+
+function addAdmin(id, name) {
+    Swal_md.fire({
+        text: tr.__("Si vuole davvero rendere lo studente %s un amministratore della classe?", name),
+        icon: "question",
+        confirmButtonText: tr.__("Sì"),
+        showCancelButton: true,
+        cancelButtonText: tr.__("No")
+    }).then((result) => {
+        if (result.value) {
+            request.post({
+                action: 'add_classroom_admin',
+                student_id: id,
+                code: CLASSROOM_CODE
+            }, (data) => {
+                Toast.fire({
+                    title: tr.__("Lo studente %s è ora amministratore della classe!", name),
+                    icon: "success"
+                });
+                studentsList()
+            })
+        } else {
+            studentsList();
+        }
+    })
+}
+
+function revokeAdmin(id, name) {
+    Swal_md.fire({
+        title: tr.__("Si vuole davvero revocare i permessi di amministratore dello studente %s?", name),
+        icon: "question",
+        confirmButtonText: tr.__("Sì"),
+        showCancelButton: true,
+        cancelButtonText: tr.__("No")
+    }).then((result) => {
+        if (result.value) {
+            request.post({
+                action: 'revoke_classroom_admin',
+                student_id: id,
+                code: CLASSROOM_CODE
+            }, (data) => {
+                Toast.fire({
+                    title: tr.__("Lo studente %s non è più un amministratore della classe!", name),
+                    icon: "success"
+                });
+                studentsList()
+            })
+        } else {
+            studentsList();
         }
     })
 }

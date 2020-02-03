@@ -36,7 +36,7 @@ $classroom = new Classroom($db, $user, $list->classroom_id);
                             scope="col"><?php echo __("Studente") ?></th>
                         <th class="mdc-data-table__header-cell" role="columnheader"
                             scope="col"><?php echo __("Data") ?></th>
-                        <?php if ($user->getId() == $classroom->admin) { ?>
+                        <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
                             <th class="mdc-data-table__header-cell" role="columnheader" scope="col"></th>
                         <?php } ?>
                     </tr>
@@ -65,7 +65,7 @@ $classroom = new Classroom($db, $user, $list->classroom_id);
                                 <span id="unix_timestamp" style="display: none">' . strtotime($row->date) . '</span>
                                 ' . Utils::getLocaleDate($row->date, $lang) . '
                             </td>
-                            ' . (($user->getId() == $classroom->admin) ?
+                            ' . ((in_array($user->getId(), json_decode($classroom->admins))) ?
                                 '<td class="mdc-data-table__cell">
                                 <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                             title="' . __("Modifica") . '" onclick="editRow(\'list_row_' . $list->code . '\')">
@@ -91,7 +91,7 @@ $classroom = new Classroom($db, $user, $list->classroom_id);
                 </table>
             </div>
             <div id="actions_buttons" style="margin-top: 10px">
-                <?php if ($user->getId() == $classroom->admin) { ?>
+                <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
                     <button class="mdc-button mdc-button--raised" style="float: left;"
                             onclick="addRow('list_row_<?php echo $list->code ?>')">
                         <div class="mdc-button__ripple"></div>
@@ -129,7 +129,7 @@ $classroom = new Classroom($db, $user, $list->classroom_id);
                     ]
                     ?>
                     <small id="list_details">
-                        <?php if ($user->getId() == $classroom->admin) { ?>
+                        <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
                             <span id="list_type"><?php echo __("Tipo generazione lista: <b>%s</b>", $types[$list->type]) ?></span>
                             <br>
                             <?php
@@ -171,7 +171,7 @@ $classroom = new Classroom($db, $user, $list->classroom_id);
                                 onclick="shareList('<?php echo $list->code ?>')">
                             <i class="mdc-button__icon mdi-outline-share"></i>
                         </button>
-                        <?php if ($user->getId() == $classroom->admin) {
+                        <?php if (in_array($user->getId(), json_decode($classroom->admins))) {
                             echo '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
                                 title="' . __("Modifica") . '"
                                 id="edit_button"
