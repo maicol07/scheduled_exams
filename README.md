@@ -1,7 +1,6 @@
 <img src="app/assets/img/logo.svg" width="150" align="right" alt="Scheduled Exams">
 
 # Scheduled Exams
-[![Build Status](https://travis-ci.com/maicol07/scheduled_exams.svg?token=foRHZCAitQCEwUQNqbKf&branch=master)](https://travis-ci.com/maicol07/scheduled_exams)
 <!--[![GitHub license](https://img.shields.io/github/license/maicol07/scheduled_exams.svg)](https://github.com/maicol07/scheduled_exams/blob/master/LICENSE)
 [![Inline docs](http://inch-ci.org/github/maicol07/scheduled_exams.svg?branch=master)](http://inch-ci.org/github/maicol07/scheduled_exams)
 [![HitCount](http://hits.dwyl.io/maicol07/scheduled_exams.svg)](http://hits.dwyl.io/maicol07/scheduled_exams)
