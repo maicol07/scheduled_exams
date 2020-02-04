@@ -24,7 +24,7 @@
                     if (is_array($classroom_users) and !in_array($user->getId(), $classroom_users)) {
                         continue;
                     }
-                    echo '<a class="mdc-list-item ' . (($current_page == "classroom" and get('view') == $classroom->code) ?
+                    echo '<a id="ls_classroom_' . $classroom->code . '" class="mdc-list-item ' . (($current_page == "classroom" and get('view') == $classroom->code) ?
                             'mdc-list-item--activated" aria-current="page' : '" href="classroom?view=' . $classroom->code . '') . '">
                             <i class="mdi-outline-class mdc-list-item__graphic"></i>
                             <span class="mdc-list-item__text mdc-typography--subtitle2">' . $classroom->name . '</span>
@@ -36,7 +36,7 @@
             <div id="left_sidebar_lists">';
                         foreach ($lists as $list) {
                             $list = (object)$list;
-                            echo '<a class="mdc-menu-classroom-list mdc-list-item ' . (($current_page == "list" and get('view') == $list->code) ?
+                            echo '<a id="ls_list_' . $list->code . '" class="mdc-menu-classroom-list mdc-list-item ' . (($current_page == "list" and get('view') == $list->code) ?
                                     'mdc-list-item--activated" aria-current="page' : '" href="list?view=' . $list->code . '') . '">
                             <i class="mdi-outline-format_list_numbered mdc-list-item__graphic"></i>
                             <span class="mdc-list-item__text mdc-typography--subtitle2">' . $list->name . '</span>

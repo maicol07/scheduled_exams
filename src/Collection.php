@@ -73,25 +73,25 @@ class Collection
         }
         $times = ceil(count($students) / $this->quantity);
         $dates = [];
-        if (!empty($this->start_date)) {
+        if ($this->type == "FROM_START_DATE") {
             $start_date = new DateTime($this->start_date);
             $dates[] = $start_date->format('Y-m-d');
             $weekdays = unserialize($this->weekdays) ?: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
             foreach (range(0, $times) as $i) {
                 foreach ($weekdays as $weekday) {
-                    $date = $start_date->modify("next $weekday");
-                    $dates[] = $date->format('Y-m-d');
+                    $next_date = $start_date->modify("next $weekday");
+                    $dates[] = $next_date->format('Y-m-d');
                 }
             }
         }
         $rows = [];
         $i = 0;
-        $date = !empty($this->start_date) ? $dates[$i] : NULL;
+        $date = ($this->type == "FROM_START_DATE") ? $dates[$i] : NULL;
         // Randomize array
         shuffle($students);
         foreach ($students as $student) {
             $student = (object)$student;
-            if (!empty($this->start_date)) {
+            if ($this->type == "FROM_START_DATE") {
                 if ($i % $this->quantity === 0) {
                     $date = $dates[$i];
                 }

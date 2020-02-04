@@ -79,14 +79,12 @@ $classroom = new Classroom($db, $user, null, get('view'));
                     </div>';
                 }
                 echo "</div>";
-                echo '<div>
-                <a class="mdc-button" href="prints/templates/classroom_lists?view=' . $classroom->code . '" target="_blank"
+                echo '<a class="mdc-button" href="prints/templates/classroom_lists?view=' . $classroom->code . '" target="_blank"
                    style="float: right; margin-top: 25px;">
                     <div class="mdc-button__ripple"></div>
                     <i class="mdi-outline-print mdc-button__icon"></i>
                     <span class="mdc-button__label">' . __("Stampa tutte") . '</span>
-                </a>
-                </div>';
+                </a>';
             } else {
                 echo '
                 <div id="nolists" style="text-align: center" xmlns="http://www.w3.org/1999/html">

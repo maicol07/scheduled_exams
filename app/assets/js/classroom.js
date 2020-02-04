@@ -50,7 +50,7 @@ function addClassroomToGrid(data) {
     });
     var left_sidebar_div = $("#left_sidebar_classrooms");
     if (left_sidebar_div.length) {
-        left_sidebar_div.append(`<a class="mdc-list-item" href="classroom?view=${data.code}">
+        left_sidebar_div.append(`<a id="ls_classroom_${data.code}" class="mdc-list-item" href="classroom?view=${data.code}">
             <i class="mdi-outline-class mdc-list-item__graphic"></i>
             <span class="mdc-list-item__text mdc-typography--subtitle2">${data.name}</span>
         </a>`).children(':last').hide().fadeIn(1000);
@@ -115,11 +115,17 @@ classe!<br>Sei sicuro di voler continuare?`),
                 div.fadeOut(1000, () => {
                     div.remove()
                 });
+
+                var ls_classroom = $(`#ls_classroom_${data.code}`);
+                ls_classroom.fadeOut(1000, () => {
+                    ls_classroom.remove()
+                });
+
                 Toast.fire({
                     title: tr.__("Classe eliminata!"),
                     icon: "success"
                 });
-                if (CLASSROOM_CODE) {
+                if (!empty(typeof CLASSROOM_CODE)) {
                     window.location.replace(BASEURL + '/app/')
                 }
             })

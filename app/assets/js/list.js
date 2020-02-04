@@ -49,7 +49,7 @@ function addListToGrid(data) {
     });
     var left_sidebar_div = $("#left_sidebar_lists");
     if (left_sidebar_div.length) {
-        left_sidebar_div.append(`<a class="mdc-menu-classroom-list mdc-list-item" href="list?view=${data.code}">
+        left_sidebar_div.append(`<a id="ls_list_${data.code}" class="mdc-menu-classroom-list mdc-list-item" href="list?view=${data.code}">
             <i class="mdi-outline-format_list_numbered mdc-list-item__graphic"></i>
             <span class="mdc-list-item__text mdc-typography--subtitle2">${data.name}</span>
         </a>`).children(':last').hide().fadeIn(1000);
@@ -208,11 +208,17 @@ function deleteList(id, name) {
                 div.fadeOut(1000, () => {
                     div.remove()
                 });
+
+                var ls_list = $(`#ls_list_${data.code}`);
+                ls_list.fadeOut(1000, () => {
+                    ls_list.remove()
+                });
+
                 Toast.fire({
                     title: tr.__("Lista eliminata!"),
                     icon: "success"
                 });
-                if (!window.hasOwnProperty('CLASSROOM_CODE')) {
+                if (empty(typeof CLASSROOM_CODE)) {
                     window.location.replace(BASEURL + '/app/classroom?view=' + data.classroom_code)
                 }
             })
