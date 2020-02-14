@@ -2,6 +2,9 @@
 
 namespace src;
 
+use App\Auth;
+use App\Result;
+use App\Utils;
 use Medoo\Medoo;
 
 class Classroom
@@ -31,6 +34,10 @@ class Classroom
     /* @var string (json) Example: {student1: {name: ..., surname: ..., user_id: ...}, ...} */
     public $students;
     public $admins;
+    /**
+     * @var Auth
+     */
+    private $user;
 
     /**
      * Classroom constructor.
@@ -52,7 +59,7 @@ class Classroom
             $key = 'code';
             $value = $code;
         }
-        if (!empty($key)) {
+        if (!empty($key) and !empty($value)) {
             $select = $this->db->get("classrooms", $this->attributes, [$key => $value]);
             foreach ($select as $attribute => $value) {
                 $this->$attribute = $value;
@@ -193,12 +200,12 @@ class Classroom
     {
         if (empty($this->id)) {
             $code = Utils::generateCode($this->db);
-            $first_user = json_encode([$this->user->getId()]);
+            $first_user = json_encode([(int)$this->user->getId()]);
             $query = $this->db->insert("classrooms", [
                 "name" => $this->name,
                 "code" => $code,
                 "users" => $first_user,
-                "admin" => $first_user,
+                "admins" => $first_user,
             ]);
             $this->id = $this->db->id();
             $this->code = $code;
@@ -269,10 +276,36 @@ class Classroom
                     }
                     //TODO 1.1: $value['image'] = (new Gravatar())->avatar($this->db->get('users', 'email', ['id' => $student->user_id]));
                 }
-                $list[] = $value;
+                $list[$student_id] = $value;
             }
         }
         return $list;
+    }
+
+    /**
+     * Returns the students list filtered with the desidered filters.
+     *
+     * @param null|array $filters Accepted filters: id, name, username, image and admin
+     * @return bool|array|object
+     */
+    public function getFilteredStudents($filters = null)
+    {
+        if (empty($filters)) {
+            return false;
+        }
+        $list = $this->getStudents();
+        $filtered = array_filter($list, function ($value) use ($filters) {
+            foreach ($filters as $filter => $filter_value) {
+                if ($value[$filter] == $filter_value) {
+                    return true;
+                }
+            }
+            return false;
+        });
+        if (count($filtered) === 1) {
+            return reset($filtered);
+        }
+        return $filtered;
     }
 
     public function getUsers()

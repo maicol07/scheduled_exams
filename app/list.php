@@ -1,8 +1,8 @@
 <?php
 
+use App\Utils;
 use src\Classroom;
 use src\Collection;
-use src\Utils;
 
 require_once __DIR__ . "/../core.php";
 
@@ -25,75 +25,83 @@ $classroom = new Classroom($db, $user, $list->classroom_id);
     <div class="mdc-layout-grid__inner" style="display: flex">
         <div class="mdc-layout-grid__cell<?php echo $detector->isMobile() ? ' mdc-layout-grid__cell--order-2' : '' ?>"
              style="flex: 1; margin-top: 15px">
-            <div class="mdc-data-table" style="width: 100%;">
-                <table id="list_table" class="mdc-data-table__table"
-                       aria-label="<?php echo __("Interrogazioni della lista %s", $list->name) ?>">
-                    <thead>
-                    <tr class="mdc-data-table__header-row">
-                        <th class="mdc-data-table__header-cell" role="columnheader"
-                            scope="col"><?php echo __("N.") ?></th>
-                        <th class="mdc-data-table__header-cell" role="columnheader"
-                            scope="col"><?php echo __("Studente") ?></th>
-                        <th class="mdc-data-table__header-cell" role="columnheader"
-                            scope="col"><?php echo __("Data") ?></th>
-                        <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
-                            <th class="mdc-data-table__header-cell" role="columnheader" scope="col"></th>
-                        <?php } ?>
-                    </tr>
-                    </thead>
-                    <tbody class="mdc-data-table__content">
-                    <?php
-                    $students = $classroom->getStudents();
-                    foreach ($list->rows as $row_number => $row) {
-                        $row = (object)$row;
-                        $row_student = (object)$students[$row->student_id];
-                        echo '
-                        <tr id="list_row_' . $row->id . '" class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">' . (string)((int)$row_number + 1) . '</td>
-                            <td class="mdc-data-table__cell">
-                                <div class="mdc-chip-set" role="grid">
-                                    <div class="mdc-chip" role="row">
-                                        <div class="mdc-chip__ripple"></div>
-                                        <img src="' . $row_student->image . '" class="mdc-chip__icon mdc-chip__icon--leading" alt="' . $row_student->name . '">
-                                        <span role="gridcell">
-                                            <span role="button" tabindex="0" class="mdc-chip__text">' . $row_student->name . '</span>
-                                        </span>
-                                    </div>
+            <table id="list_table" class="mdc-data-table__table"
+                   aria-label="<?php echo __("Interrogazioni della lista %s", $list->name) ?>">
+                <thead>
+                <tr class="mdc-data-table__header-row">
+                    <th class="mdc-data-table__header-cell" role="columnheader"
+                        scope="col"><?php echo __("N.") ?></th>
+                    <th class="mdc-data-table__header-cell" role="columnheader"
+                        scope="col"><?php echo __("Studente") ?></th>
+                    <th class="mdc-data-table__header-cell" role="columnheader"
+                        scope="col"><?php echo __("Data") ?></th>
+                    <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col"></th>
+                    <?php } ?>
+                </tr>
+                </thead>
+                <tbody class="mdc-data-table__content">
+                <?php
+                $students = $classroom->getStudents();
+                $row_number = 0;
+                foreach ($list->rows as $row) {
+                    $row = (object)$row;
+                    $row_student = (object)$students[$row->student_id];
+                    echo '
+                    <tr id="list_row_' . $row->id . '" class="mdc-data-table__row">
+                        <td class="mdc-data-table__cell">' . (string)((int)$row_number + 1) . '</td>
+                        <td class="mdc-data-table__cell">
+                            <div class="mdc-chip-set" role="grid">
+                                <div id="' . $row_student->username . '" class="mdc-chip" role="row">
+                                    <div class="mdc-chip__ripple"></div>
+                                    <img src="' . $row_student->image . '" class="mdc-chip__icon mdc-chip__icon--leading" alt="' . $row_student->name . '">
+                                    <span role="gridcell">
+                                        <span role="button" tabindex="0" class="mdc-chip__text">' . $row_student->name . '</span>
+                                    </span>
                                 </div>
+                            </div>
+                        </td>
+                        <td class="mdc-data-table__cell">
+                        ' . ((!empty($row->date) and $row->date != "0000-00-00") ?
+                            ('<span id="unix_timestamp" style="display: none">' . strtotime($row->date) . '</span>
+                            <span class="date-local">' . Utils::getLocaleDate($row->date, $lang) . '</span>') : '') . '
+                        </td>
+                        ' . ((in_array($user->getId(), json_decode($classroom->admins))) ?
+                            '<td class="mdc-data-table__cell" style="overflow: visible;">
+                            <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                        title="' . __("Modifica") . '" onclick="editRow(\'' . $row->id . '\')">
+                                  <i class="mdi-outline-edit mdc-button__icon"></i>
+                            </button>
+                            <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                        title="' . __("Elimina") . '" onclick="deleteRow(\'' . $row->id . '\')">
+                                  <i class="mdi-outline-delete mdc-button__icon"></i>
+                            </button>
+                            <button class="mdc-icon-button mdc-card__action mdc-card__action--icon up" title="' . __("Su") . '">
+                                  <i class="mdi-outline-keyboard_arrow_up mdc-button__icon"></i>
+                            </button>
+                            <button class="mdc-icon-button mdc-card__action mdc-card__action--icon down" title="' . __("Giù") . '">
+                                  <i class="mdi-outline-keyboard_arrow_down mdc-button__icon"></i>
+                            </button>
+                        </td>' : '') . '
+                    </tr>
+                    ';
+                    $row_number += 1;
+                }
+                if (empty($list->rows)) {
+                    echo '
+                        <tr id="no_rows" class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell" colspan="4" style="text-align: center;">
+                                ' . __("Nessuna riga nella lista") . '
                             </td>
-                            <td class="mdc-data-table__cell">
-                                <span id="unix_timestamp" style="display: none">' . strtotime($row->date) . '</span>
-                                ' . Utils::getLocaleDate($row->date, $lang) . '
-                            </td>
-                            ' . ((in_array($user->getId(), json_decode($classroom->admins))) ?
-                                '<td class="mdc-data-table__cell">
-                                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                                            title="' . __("Modifica") . '" onclick="editRow(\'list_row_' . $list->code . '\')">
-                                      <i class="mdi-outline-edit mdc-button__icon"></i>
-                                </button>
-                                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                                            title="' . __("Elimina") . '" onclick="deleteRow(\'list_row_' . $list->code . '\')">
-                                      <i class="mdi-outline-delete mdc-button__icon"></i>
-                            </td>' : '') . '
-                        </tr>
-                        ';
-                    }
-                    if (empty($list->rows)) {
-                        echo '
-                            <tr id="no_rows" class="mdc-data-table__row">
-                                <td class="mdc-data-table__cell" colspan="3" style="text-align: center;">
-                                    ' . __("Nessuna riga nella lista") . '
-                                </td>
-                            </tr>';
-                    }
-                    ?>
-                    </tbody>
-                </table>
-            </div>
+                        </tr>';
+                }
+                ?>
+                </tbody>
+            </table>
             <div id="actions_buttons" style="margin-top: 10px">
                 <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
                     <button class="mdc-button mdc-button--raised" style="float: left;"
-                            onclick="addRow('list_row_<?php echo $list->code ?>')">
+                            onclick="addRow()">
                         <div class="mdc-button__ripple"></div>
                         <i class="mdi-outline-add mdc-button__icon"></i>
                         <span class="mdc-button__label"><?php echo __("Aggiungi") ?></span>

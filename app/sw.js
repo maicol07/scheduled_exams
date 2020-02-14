@@ -18,7 +18,7 @@ self.addEventListener('install', e => {
             'assets/img/undraw/empty.svg',
             'assets/img/undraw/exams.svg',
             'assets/img/undraw/no_data.svg',
-            'assets/css/mdi-outline/mdi-outline.css',
+            'assets/css/mdi-outline/mdi-outline.min.css',
             'assets/css/mdi-outline/fonts/mdi-outline.eot',
             'assets/css/mdi-outline/fonts/mdi-outline.svg',
             'assets/css/mdi-outline/fonts/mdi-outline.ttf',

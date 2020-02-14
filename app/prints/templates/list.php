@@ -1,16 +1,16 @@
 <?php
 
+use App\Utils;
 use Mpdf\HTMLParserMode;
 use Mpdf\Output\Destination;
 use src\Collection;
-use src\Utils;
 
 require_once __DIR__ . "/../../../core.php";
 
 $list = new Collection($db, $user, null, get('view'));
 $classroom = new \src\Classroom($db, $user, $list->classroom_id);
 
-$title = __("Lista :list: - :classroom:", [':list:' => $list->name, ':classroom:' => $classroom->name]);
+$title = __("Lista %list% - %classroom%", ['%list%' => $list->name, '%classroom%' => $classroom->name]);
 require_once DOCROOT . "/app/prints/init.php";
 $pdf->setTitle($title);
 
@@ -19,7 +19,7 @@ $list = new Collection($db, $user, null, get('view'));
 
 ob_start();
 ?>
-<h4><?php echo __("Interrogazioni della lista :list: - Classe :classroom:", [':list:' => $list->name, ':classroom:' => $classroom->name]) ?></h4>
+<h4><?php echo __("Interrogazioni della lista %list% - Classe %classroom%", ['%list%' => $list->name, '%classroom%' => $classroom->name]) ?></h4>
 <table id="list_table" class='table table-striped table-bordered'>
     <thead>
     <tr>

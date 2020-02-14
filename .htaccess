@@ -1,3 +1,5 @@
+ErrorDocument 404 https://%{HTTP_HOST}/app/404
+
 Options +FollowSymLinks
 <FilesMatch ".(eot|ttf|otf|woff)">
   Header set Access-Control-Allow-Origin "*"
@@ -22,3 +24,9 @@ RewriteRule ^ /%1 [NC,L,R]
 
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+
+# Hide files from users
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>

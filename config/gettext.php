@@ -18,7 +18,7 @@ $app_dirs = [
     // Root (no recursive)
     "" => ['recursive' => false],
     // App
-    "app",
+    "App",
     // Classes
     "src"
 ];

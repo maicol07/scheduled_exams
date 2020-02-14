@@ -1,8 +1,8 @@
 <?php
 
+use App\Result;
 use src\Classroom;
 use src\Collection;
-use src\Result;
 
 require __DIR__ . "/../core.php";
 
@@ -72,6 +72,9 @@ switch (post("action")) {
         $result = $classroom->removeStudent(post('student_id'));
         break;
     case "get_classroom_students":
+        if (!empty(post('get_as_list'))) {
+            $classroom = new Classroom($db, $user, $list->classroom_id);
+        }
         $result = new Result(['students' => $classroom->getStudents()]);
         break;
     case "get_classroom_users":
@@ -112,7 +115,30 @@ switch (post("action")) {
     case 'delete_list':
         $result = $list->delete();
         $classroom = new Classroom($db, $user, $list->classroom_id);
+        /** @noinspection PhpUndefinedFieldInspection */
         $result->classroom_code = $classroom->code;
+        break;
+    case 'add_row_list':
+        $result = $list->addRow((object)[
+            'student_id' => post('student_id'),
+            'date' => post('date')
+        ]);
+        break;
+    case 'edit_row_list':
+        $result = $list->editRow(post('row_id'), (object)['student_id' => post('student_id'), 'date' => post('date')]);
+        break;
+    case 'delete_row_list':
+        $result = $list->deleteRow(post('row_id'));
+        break;
+    case 'order_row_list':
+        switch (post('direction')) {
+            case 'up':
+                $result = $list->rowUp(post('row_id'));
+                break;
+            case 'down':
+                $result = $list->rowDown(post('row_id'));
+                break;
+        }
         break;
 }
 header('Content-Type: application/json; charset=utf-8');

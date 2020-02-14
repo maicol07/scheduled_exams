@@ -2,6 +2,9 @@
 
 namespace src;
 
+use App\Auth;
+use App\Result;
+use App\Utils;
 use DateTime;
 use Medoo\Medoo;
 
@@ -20,6 +23,8 @@ class Collection
     public $rows;
     /* @var Medoo */
     private $db;
+    /* @var Classroom */
+    private $classroom;
 
     private $attributes = [
         'id',
@@ -33,6 +38,10 @@ class Collection
         'quantity',
         "code",
     ];
+    /**
+     * @var Auth
+     */
+    private $user;
 
 
     /**
@@ -55,12 +64,26 @@ class Collection
             $key = 'code';
             $value = $code;
         }
-        if (!empty($key)) {
+        if (!empty($key) and !empty($value)) {
             $select = $this->db->get("lists", $this->attributes, [$key => $value]);
             foreach ($select as $attribute => $value) {
                 $this->$attribute = $value;
             }
-            $this->rows = $this->db->select("lists_rows", ['id', 'student_id', 'date'], ['list_id' => $this->id, 'ORDER' => 'date']);
+            $this->classroom = new Classroom($this->db, $this->user, $this->classroom_id);
+            $this->rows = $this->db->select("lists_rows", [
+                'id' => [
+                    'id',
+                    'student_id',
+                    'date',
+                    'order'
+                ]
+            ], [
+                'list_id' => $this->id,
+                'ORDER' => [
+                    'order',
+                    'date'
+                ]
+            ]);
         }
     }
 
@@ -74,13 +97,21 @@ class Collection
         $times = ceil(count($students) / $this->quantity);
         $dates = [];
         if ($this->type == "FROM_START_DATE") {
-            $start_date = new DateTime($this->start_date);
-            $dates[] = $start_date->format('Y-m-d');
+            /** @noinspection PhpUnhandledExceptionInspection */
+            $date = new DateTime($this->start_date);
             $weekdays = unserialize($this->weekdays) ?: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-            foreach (range(0, $times) as $i) {
+            if (!in_array(strtolower($date->format('l')), $weekdays)) {
+                $date = $date->modify("next $weekdays[0]");
+            }
+            $counter = 0;
+            while ($counter < count($students)) {
                 foreach ($weekdays as $weekday) {
-                    $next_date = $start_date->modify("next $weekday");
-                    $dates[] = $next_date->format('Y-m-d');
+                    /** @noinspection PhpUnusedLocalVariableInspection */
+                    foreach (range(0, $times - 1) as $i) {
+                        $dates[] = $date->format('Y-m-d');
+                        $counter += 1;
+                    }
+                    $date = $date->modify("next $weekday");
                 }
             }
         }
@@ -93,14 +124,15 @@ class Collection
             $student = (object)$student;
             if ($this->type == "FROM_START_DATE") {
                 if ($i % $this->quantity === 0) {
-                    $date = $dates[$i];
+                    $date = next($dates);
                 }
             }
 
             $rows[] = [
                 'list_id' => $this->id,
                 'student_id' => $student->id,
-                'date' => $date
+                'date' => $date,
+                'order' => $i
             ];
             $i++;
         }
@@ -108,24 +140,108 @@ class Collection
         return $rows;
     }
 
-    public function manageRows($row_id, $date = null, $mode = "a")
+    public function manageRows($row_id = null, $date = null, $student_id = null, $mode = "add")
     {
-
+        $rows = $this->rows;
+        if (empty($this->rows)) {
+            $rows = [];
+        }
+        $row_id = !empty($row_id) ? $row_id : (int)$row_id;
+        switch ($mode) {
+            case 'add':
+                if ($student_id !== "0" and empty($student_id)) {
+                    return new Result(null, 'NO_ROW_DATA', __("Non è stato scelto nessuno studente!"));
+                }
+                $row_id = count($rows);
+                if (array_key_exists($row_id, $rows)) {
+                    $row_id = end($rows) + 1;
+                }
+                $order = $this->db->max('lists_rows', 'order [Int]', ['list_id' => $this->id]);
+                if ($order == 0 or !empty($order)) {
+                    $order += 1;
+                } else {
+                    $order = 0;
+                }
+                $rows[$row_id] = [
+                    'list_id' => $this->id,
+                    'student_id' => $student_id,
+                    'date' => $date,
+                    'order' => $order
+                ];
+                $query = $this->db->insert('lists_rows', $rows[$row_id]);
+                break;
+            case 'edit':
+                if ($rows[$row_id]['student_id'] == $student_id and $rows[$row_id]['date'] == $date) {
+                    return new Result(null, "SAME_DATA", __("I dati inseriti sono identici a quelli precedenti!"));
+                }
+                $rows[$row_id]['student_id'] = $student_id;
+                $rows[$row_id]['date'] = $date;
+                $query = $this->db->update('lists_rows', $rows[$row_id], ['id' => $row_id]);
+                break;
+            case 'delete':
+                unset($rows[$row_id]);
+                $student_id = $this->db->get('lists_rows', 'student_id', ['id' => $row_id]);
+                $query = $this->db->delete('lists_rows', ['id' => $row_id]);
+                break;
+            case 'up':
+                $student_id = $this->db->get('lists_rows', 'student_id', ['id' => $row_id]);
+                $order = $this->db->get('lists_rows', 'order [Int]', ['id' => $row_id]);
+                if ($order > 0) {
+                    $order -= 1;
+                }
+                if ($this->db->has('lists_rows', ['list_id' => $this->id, 'order' => $order])) {
+                    $this->db->update('lists_rows', ['order' => $order + 1], ['list_id' => $this->id, 'order' => $order, 'id[!]' => $row_id]);
+                }
+                $query = $this->db->update('lists_rows', ['order' => $order], ['id' => $row_id]);
+                break;
+            case 'down':
+                $student_id = $this->db->get('lists_rows', 'student_id', ['id' => $row_id]);
+                $order = $this->db->get('lists_rows', 'order [Int]', ['id' => $row_id]);
+                if ($order < $this->db->max('lists_rows', 'order [Int]', ['list_id' => $this->id])) {
+                    $order += 1;
+                }
+                if ($this->db->has('lists_rows', ['list_id' => $this->id, 'order' => $order])) {
+                    $this->db->update('lists_rows', ['order' => $order - 1], ['list_id' => $this->id, 'order' => $order, 'id[!]' => $row_id]);
+                }
+                $query = $this->db->update('lists_rows', ['order' => $order], ['id' => $row_id]);
+                break;
+        }
+        /** @noinspection PhpUndefinedVariableInspection */
+        if ($query->rowCount()) {
+            return new Result([
+                'code' => $this->code,
+                'id' => $this->id,
+                'number' => count($this->rows),
+                'student' => $this->classroom->getFilteredStudents(['id' => $student_id])
+            ]);
+        } else {
+            return new Result(null, $query->errorCode(), $query->errorInfo()[2]);
+        }
     }
 
-    public function addRow($row_id, $row_data)
+    public function addRow($row_data)
     {
-        $this->manageRows($row_id, $row_data->date);
+        return $this->manageRows(null, $row_data->date, $row_data->student_id);
     }
 
     public function editRow($row_id, $row_data)
     {
-        $this->manageRows($row_id, $row_data->date, "e");
+        return $this->manageRows($row_id, $row_data->date, $row_data->student_id, "edit");
     }
 
     public function deleteRow($row_id)
     {
-        $this->manageRows($row_id, null, "d");
+        return $this->manageRows($row_id, null, null, "delete");
+    }
+
+    public function rowUp($row_id)
+    {
+        return $this->manageRows($row_id, null, null, "up");
+    }
+
+    public function rowDown($row_id)
+    {
+        return $this->manageRows($row_id, null, null, "down");
     }
 
     public function save()

@@ -1,10 +1,12 @@
 /*
- =========
-    MDC
- =========
+ ===============================================
+    Scheduled Exams Main Cascading StyleSheet
+ ===============================================
 */
 
-/* MDC variables */
+/*----------------------------------------
+    MDC Variables
+------------------------------------------*/
 :root {
     --mdc-theme-primary: #1884f3;
     --mdc-theme-secondary: #0d47a1;
@@ -36,7 +38,9 @@
     --mdc-theme-outline-border-dark: #95979b
 }
 
-/* MDC BUTTONS */
+/*----------------------------------------
+    MDC Buttons
+------------------------------------------*/
 .mdc-button--outlined:not(:disabled) {
     border-color: var(--mdc-theme-outline-border,
     #dadce0);
@@ -46,7 +50,9 @@
     background-color: var(--mdc-theme-outline-border-dark);
 }
 
-/* MDC TYPOGRAPHY */
+/*----------------------------------------
+    MDC Typography
+------------------------------------------*/
 .mdc-typography, .mdc-typography--body1, .mdc-typography--body2, .mdc-typography--caption, .mdc-typography--overline {
     font-family: Raleway, sans-serif;
 }
@@ -57,7 +63,9 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     font-family: Montserrat, sans-serif !important;
 }
 
-/* MDC TOP APP BAR + DRAWER */
+/*----------------------------------------
+    MDC Drawer and Top App Bar
+------------------------------------------*/
 .mdc-drawer .mdc-list-item--activated, .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
     color: var(--mdc-theme-text-activated)
 }
@@ -73,7 +81,7 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     left: 0;
     background-color: white;
     box-shadow: inset 0 -1px 0 0 #dadce0;
-    z-index: 7; /* Drawer below app bar */
+    z-index: 7; /* Drawer below App bar */
     position: absolute;
 }
 
@@ -112,7 +120,9 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     margin-left: 75px !important;
 }
 
-/* MDC GRID */
+/*----------------------------------------
+    MDC Grid
+------------------------------------------*/
 @media screen and (min-width: 480px) {
     .mdc-layout-grid__inner {
         display: flex !important;
@@ -125,7 +135,9 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     }
 }
 
-/* MDC CARDS */
+/*----------------------------------------
+    MDC Cards
+------------------------------------------*/
 .mdc-card__primary {
     padding: 1rem
 }
@@ -134,11 +146,14 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     padding: 0 1rem 8px;
 }
 
-/* MDC FAB */
+/*----------------------------------------
+    MDC FAB
+------------------------------------------*/
 .mdc-fab--bottom {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
+    z-index: 1;
 }
 
 @media (min-width: 1024px) {
@@ -148,7 +163,9 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     }
 }
 
-/* MDC Inputs */
+/*----------------------------------------
+    MDC Inputs
+------------------------------------------*/
 .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
     color: var(--mdc-theme-primary)
 }
@@ -161,13 +178,17 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     margin-left: 15px;
 }
 
-/* MDC Lists */
+/*----------------------------------------
+    MDC Lists
+------------------------------------------*/
 .mdc-list-item__graphic img {
     width: 48px;
     height: 48px;
 }
 
-/* MDC Selects */
+/*----------------------------------------
+    MDC Selects
+------------------------------------------*/
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
     color: var(--mdc-theme-primary)
 }
@@ -187,7 +208,9 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     }
 }
 
-/* Image upload */
+/*----------------------------------------
+    Image upload
+------------------------------------------*/
 
 .mdc-card__media:hover input.upload {
     display: block;
@@ -260,9 +283,16 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
     height: 100%;
 }
 
-/* SWEETALERT2 */
+/*----------------------------------------
+    SweetAlert2
+------------------------------------------*/
 .swal2-content {
     z-index: 2 !important;
+}
+
+.swal2-footer[style="display: flex;"] {
+    text-align: center;
+    display: initial !important;
 }
 
 /*----------------------------------------
@@ -335,96 +365,42 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
 }
 
 /*----------------------------------------
-    Stats cards
+    Footer
 ------------------------------------------*/
-/*
-.stats-card {
-    display: block;
-    position: relative;
-    overflow: hidden;
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    background-color: var(--mdc-theme-background);
 }
 
-.stats-card > i {
-    position: absolute;
-    font-size: 6rem;
-    right: 0;
-    bottom: -1rem;
+footer > div {
+    padding-left: 10px;
 }
 
-.stats-card > i[class*=material-icons], .stats-card > i[class*=ion-] {
-    bottom: -2.4rem;
+#info_links {
+    display: flex;
+    padding-top: 10px;
+    border-top: var(--mdc-theme-outline-border) solid 1px;
 }
 
-.stats-card .count {
-    position: relative;
+#copyright_footer {
+    border-top: var(--mdc-theme-outline-border) solid 1px;
+    padding-top: 10px;
+    display: flex;
+}
+
+.footer-title {
+    font-family: Montserrat, sans-serif;
     font-weight: bold;
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: 1.25rem;
+    letter-spacing: 0.0125em;
+    padding-left: 20px;
+    color: var(--mdc-theme-text-primary-on-light, #5f6368) !important;
 }
 
-.stats-card .name {
-    position: relative;
-    font-size: 1rem;
-    line-height: 1rem;
+.mdc-drawer:not(.mdc-drawer--open) + #footer-hide + #footer-show {
+    right: 1em;
 }
 
-.stats-card .graph {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.stats-card .progress {
-    position: absolute;
-    border-radius: 0;
-    margin: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-shadow: none;
-}
-
-.stats-card .progress.top {
-    bottom: auto;
-    top: 0;
-}
-
-.stats-card .progress.background {
-    top: 0;
-    height: 100%;
-}
-
-.stats-card .progress.background > div {
-    height: 100%;
-}
-
-.stats-card.large {
-    padding: 1.6rem;
-}
-
-.stats-card.large > i {
-    font-size: 8rem;
-    bottom: -1.3rem;
-}
-
-.stats-card.large .count {
-    font-size: 3rem;
-    line-height: 3rem;
-}
-
-.stats-card.large .name {
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-}
-
-
-/*----------------------------------------
-    Sticky Footer
-------------------------------------------*/
-/*
-Note: Last three lines of body rule at the top of the stylesheet are in this section
-
-main {
-    flex: 1 0 auto;
-}*/

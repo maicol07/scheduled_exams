@@ -1,25 +1,34 @@
 <?php
-/*
- *
- * General Constants
- *
- */
+if (!defined("DOCROOT")) {
+    define('DOCROOT', '');
+}
+
+require_once DOCROOT . "/config/class_loader.php";
+
+use App\Auth;
+use App\Config;
+use Medoo\Medoo;
+
+$config = new Config(DOCROOT . '/config/config.ini');
+
 if (!defined("PRODUCTION")) {
-    if (BASEURL == "app.scheduledexams.tk") {
+    if (!empty($config->get('general', 'env'))) {
+        switch (strtolower($config->get('general', 'env'))) {
+            case 'production':
+                define("PRODUCTION", true);
+                break;
+            default:
+                define("PRODUCTION", false);
+                break;
+        }
+    } else if (BASEURL == "app.scheduledexams.tk") {
         define("PRODUCTION", true);
     } else {
         define("PRODUCTION", false);
     }
 }
 
-
-if (defined("DOCROOT")) {
-    require_once DOCROOT . "/config/class_loader.php";
-    require_once DOCROOT . "/config/errors.php";
-} else {
-    require_once "class_loader.php";
-    require_once "errors.php";
-}
+require_once DOCROOT . "/config/errors.php";
 
 /*
  * Shortcut functions
@@ -33,7 +42,7 @@ if (!function_exists("get")) {
      */
     function get($name)
     {
-        return src\Utils::get($name);
+        return App\Utils::get($name);
     }
 }
 
@@ -46,7 +55,7 @@ if (!function_exists("post")) {
      */
     function post($name)
     {
-        return src\Utils::post($name);
+        return App\Utils::post($name);
     }
 }
 
@@ -57,23 +66,16 @@ if (!function_exists("post")) {
  *
  */
 
-use Medoo\Medoo;
-use src\Auth;
-
-if (defined("DOCROOT")) {
-    require_once DOCROOT . "/config/db.php";
-} else {
-    require_once "db.php";
-}
 $db = new Medoo([
-    'database_type' => $db_type,
-    'database_name' => $db_name,
-    'server' => $db_host,
-    'username' => $db_user,
-    'password' => $db_psw,
+    'database_type' => $config->get('database', 'type'),
+    'database_name' => $config->get('database', 'name'),
+    'server' => $config->get('database', 'host'),
+    'username' => $config->get('database', 'username'),
+    'password' => $config->get('database', 'password'),
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_general_ci'
 ]);
+
 if (isset($debugbar)) {
     $pdo = new DebugBar\DataCollector\PDO\TraceablePDO($db->pdo);
     $debugbar->addCollector(new DebugBar\DataCollector\PDO\PDOCollector($pdo));
@@ -93,6 +95,7 @@ if (empty($no_auth)) {
         Sentry\configureScope(function (Sentry\State\Scope $scope): void {
             global $user;
             $scope->setUser([
+                'username' => $user->getUsername(),
                 'email' => $user->getEmail()
             ]);
         });
@@ -102,14 +105,9 @@ if (empty($no_auth)) {
 /*
  * Cloudinary config
  */
-if (defined("DOCROOT")) {
-    require_once DOCROOT . "/config/cloudinary.php";
-} else {
-    require_once "cloudinary.php";
-}
 Cloudinary::config([
-    "cloud_name" => $cloud_name,
-    "api_key" => $api_key,
-    "api_secret" => $api_secret,
+    "cloud_name" => $config->get('cloudinary', 'cloud_name'),
+    "api_key" => $config->get('cloudinary', 'api_key'),
+    "api_secret" => $config->get('cloudinary', 'api_secret'),
     "secure" => true
 ]);

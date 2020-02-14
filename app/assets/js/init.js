@@ -159,12 +159,40 @@ function initChipset(elements = $('.mdc-chip-set')) {
 /**
  * Initialize MDC Data Tables
  *
+ * @param datatables {boolean}
  * @param elements {Object}
  */
-function initDataTables(elements = $('.mdc-data-table')) {
+function initDataTables(datatables = true, elements = $('table.mdc-data-table__table')) {
     $(elements).each((index, element) => {
-        window.data_tables[$(element).attr('id')] = new mdc.dataTable.MDCDataTable(element);
+        window.data_tables[$(element).attr('id')] = {
+            //datatables: datatables ? initDataTable(element) : null,
+            mdc: (() => {
+                if (!$(element).length) {
+                    return null
+                }
+                var parent = $(element).parent('.mdc-data-table');
+                if (!parent.length) {
+                    $(element).wrap('<div class="mdc-data-table" style="width: 100%"></div>');
+                    parent = $(element).parent('.mdc-data-table')
+                }
+                return new mdc.dataTable.MDCDataTable(parent[0])
+            })(),
+        };
     });
+}
+
+/**
+ * Initialize jQuery Data table
+ *
+ * @param element {Object}
+ * @param options {Object}
+ */
+function initDataTable(element = $('table'), options = {
+    paging: false,
+    scrollY: 400,
+    scrollX: "70vh"
+}) {
+    $(element).DataTable(options)
 }
 
 // BUTTONS RIPPLES
@@ -174,7 +202,7 @@ initRipple($('.mdc-card__primary-action'));
 // CHIPSETS
 initChipset();
 // DATA TABLES
-initDataTables();
+initDataTables(true);
 // INPUTS
 initInput();
 
@@ -278,7 +306,8 @@ function renderOutlinedSelect(id, label, properties = {
     icon: null,
     icon_as_btn: false,
     width: "240px",
-    containerWidth: "240px"
+    containerWidth: "240px",
+    style: ''
 }) {
     var list = '';
     Object.keys(properties.values).forEach((value) => {
@@ -290,7 +319,7 @@ function renderOutlinedSelect(id, label, properties = {
     return `
     <div id="${id}" class="mdc-select mdc-select--outlined ${!empty(properties.required) ? 'mdc-select--required' : ''}
         ${!empty(properties.icon) ? 'mdc-select--with-leading-icon' : ''}"
-        style="display: inline-block; width: ${!empty(properties.containerWidth) ? properties.containerWidth : '240px'}">
+        style="display: inline-block; width: ${!empty(properties.containerWidth) ? properties.containerWidth : '240px'}; ${!empty(properties.style) ? properties.style : ''}">
         <div class="mdc-select__anchor" style="width: ${!empty(properties.width) ? properties.width : '240px'}">
             <div class="mdc-notched-outline">
                 <div class="mdc-notched-outline__leading">

@@ -15,8 +15,8 @@ if (!defined('DOCROOT')) {
     $rootdir = str_replace('%2F', '/', rawurlencode($rootdir));
 
     // $baseurl individuation
-    require_once __DIR__ . "/src/Utils.php";
-    $baseurl = (src\Utils::isHTTPS(true) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $rootdir;
+    require_once __DIR__ . "/src/app/Utils.php";
+    $baseurl = (App\Utils::isHTTPS(true) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $rootdir;
 
     // Set global vars
     define('DOCROOT', __DIR__);

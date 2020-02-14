@@ -1,6 +1,6 @@
 <?php
 
-use src\Utils;
+use App\Utils;
 
 require_once __DIR__ . "/../core.php";
 

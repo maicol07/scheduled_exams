@@ -8,12 +8,16 @@
     "private": true,
     "dependencies": {
         "cookieconsent": "latest",
-        "flag-icon-css": "latest",
+        "datatables.net-colreorder-dt": "^1",
+        "datatables.net-dt": "^1.10",
+        "datatables.net-responsive-dt": "^2",
+        "datatables.net-rowreorder-dt": "^1",
+        "flag-icon-css": "^3",
         "gettext-translator": "latest",
         "jquery": "latest",
         "material-components-web": "latest",
         "materialize-css": "latest",
         "promise-polyfill": "latest",
-        "sweetalert2": "^9.7.0"
+        "sweetalert2": "^9"
     }
 }

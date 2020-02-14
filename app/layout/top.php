@@ -23,7 +23,7 @@ header($cspheader);
  */
 header('X-Frame-Options: SAMEORIGIN');
 
-use src\Utils;
+use App\Utils;
 
 ?>
 <!DOCTYPE html>

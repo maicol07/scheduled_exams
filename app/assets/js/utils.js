@@ -1,3 +1,9 @@
+/**
+ * Check a value if it's empty
+ *
+ * @param mixedVar
+ * @returns {boolean}
+ */
 function empty(mixedVar) {
     //  discuss at: https://locutus.io/php/empty/
     // original by: Philippe Baumann

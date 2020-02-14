@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cd-timeline-content .new::before {
-    font-family: "material-icon-outline", sans-serif;
+    font-family: "mdi-outline", sans-serif;
     content: '\ec3f';
     vertical-align: sub;
     margin-right: 2px;
@@ -234,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cd-timeline-content .improved::before {
-    font-family: "material-icon-outline", sans-serif;
+    font-family: "mdi-outline", sans-serif;
     content: '\e910';
     vertical-align: sub;
     margin-right: 2px;
@@ -245,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cd-timeline-content .changed::before {
-    font-family: "material-icon-outline", sans-serif;
+    font-family: "mdi-outline", sans-serif;
     content: '\eb1f';
     vertical-align: sub;
     margin-right: 2px;
@@ -256,7 +256,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cd-timeline-content .fixed::before {
-    font-family: "material-icon-outline", sans-serif;
+    font-family: "mdi-outline", sans-serif;
     content: '\e994';
     vertical-align: sub;
     margin-right: 2px;
@@ -267,7 +267,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cd-timeline-content .removed::before {
-    font-family: "material-icon-outline", sans-serif;
+    font-family: "mdi-outline", sans-serif;
     content: '\e9f5';
     vertical-align: sub;
     margin-right: 2px;

@@ -6,11 +6,10 @@ use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-if (defined("DOCROOT")) {
-    require_once DOCROOT . "/config/class_loader.php";
-} else {
-    require_once "class_loader.php";
+if (!defined("DOCROOT")) {
+    define('DOCROOT', '');
 }
+require_once DOCROOT . "/config/class_loader.php";
 
 /*
  * Monolog error logging
@@ -72,8 +71,12 @@ if (!PRODUCTION) {
 /**
  * Sentry
  */
+$env = $config->get('general', 'env');
+if (empty($env)) {
+    $env = PRODUCTION ? "prod" : "dev";
+}
 Sentry\init([
     'dsn' => 'https://d7fe1b1c89eb4dd58faf6a213052235b@sentry.io/1810091',
     'release' => file_get_contents(DOCROOT . "/VERSION"),
-    'environment' => PRODUCTION ? "prod" : "dev"
+    'environment' => $env
 ]);

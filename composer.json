@@ -7,7 +7,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "src\\": "src/"
+      "src\\": "src/",
+      "App\\": "src/app/"
     }
   },
   "config": {
@@ -51,6 +52,7 @@
     "stolz/assets": "dev-master",
     "mobiledetect/mobiledetectlib": "^2.8",
     "mpdf/mpdf": "^8.0",
-    "monolog/monolog": "^2.0"
+    "monolog/monolog": "^2.0",
+    "matomo/ini": "^2.0"
   }
 }

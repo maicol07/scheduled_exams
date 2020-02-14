@@ -31,7 +31,8 @@ if ($inside) {
     // Exceptions
     $exceptions = [
         "changelog", // Changelog viewer
-        "src" // Src folder
+        "src", // Src folder
+        "config" // CSP violation report
     ];
     foreach ($exceptions as $exception) {
         $ex = in_array($exception, $url);

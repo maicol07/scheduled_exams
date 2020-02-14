@@ -1,7 +1,7 @@
 <?php
 
+use App\Utils;
 use Gravatar\Gravatar;
-use src\Utils;
 
 ?>
 <header class="mdc-top-app-bar">

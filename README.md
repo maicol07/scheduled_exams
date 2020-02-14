@@ -14,11 +14,32 @@
 Scheduled Exams is a webapp that helps you in exams management.
 
 ## Requirements
-Web server: PHP 7+, MySQL 5.7+
-Other DB types are not supported
+Web server: PHP 7.2+, MySQL 5.7+
+Other DB types are not supported (they need to support JSON field)
 
 Browsers: Google Chrome 46+, Mozilla Firefox 50+, Opera 33+, Opera Mobile 46, Firefox Android 60+, UC Browser Android 11.8+, Browser Android 5.x+, Google Chrome per Android, Samsung Internet 5+, Safari 11+
 
-WIP!
+## Installation on your own web server
+### Dev requirements
+Assuming you already satisfy general requirements reported above you need also the following tools installed on your web server or PC:
+- **Composer**: <https://getcomposer.org/>
+- **Yarn**: <https://yarnpkg.com/>
+- **SSH** (if these two tools above are installed on your web server) or **Shell/CMD/PowerShell**
+- Some tool to access the database and execute SQL queries like PHPMyAdmin
+
+### Installation
+1. First, we need to install dependencies from Composer and Yarn. Open your command line and execute these two commands in your working directory:
+```
+composer install
+yarn install
+```
+
+2. Then, we need to set up the database. Create a database if you don't have one and import the sql/tables.sql file into your database using your preferred tool (i.e. PHPMyAdmin)
+3. Config the app. Rename the file config/config.example.ini to config.ini and set up all the required settings (at the time I'm writing this guide, all settings are required)
+4. Upload all the files to your web server
+
 ## Development and contributing
 Read file [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Donate
+You can use the sponsor button at the top and choose your preferred type

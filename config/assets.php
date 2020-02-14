@@ -3,6 +3,8 @@
 $css = [
     // MDC
     'material-components-web',
+    // Datatables MDC
+    //'dataTables.material.min.css',
     // Flag icon CSS
     "flag-icon-css",
     // Cookie consent
@@ -17,8 +19,18 @@ $css = [
 $js = [
     // jQuery
     "jquery",
-    // Materialize
+    // MDC
     "material-components-web",
+    // Datatables MAIN
+    //'datatables.net',
+    // Datatables Column Reorder
+    //'datatables.net-colreorder',
+    // Datatables Responsive
+    //'datatables.net-responsive',
+    // Datatables Row Reorder
+    //'datatables.net-rowreorder',
+    // Datatables MDC
+    //'dataTables.material.min.js',
     // SweetAlert2
     "sweetalert2",
     // Polyfill (ES6 Promises for IE11 and Android Browsers)
@@ -33,5 +45,6 @@ $js = [
     "utils.js",
     // Scripts
     "init.js",
-    "navbar.js"
+    "navbar.js",
+    "footer.js"
 ];

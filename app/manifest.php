@@ -1,6 +1,6 @@
 <?php
 
-use src\Utils;
+use App\Utils;
 
 require_once '../dir.php';
 $no_auth = true;

@@ -9,8 +9,8 @@ $data = json_decode($requestContent, true);
 
 $mail = new PHPMailer(TRUE);
 try {
-    $mail->setFrom('noreply@scheduledexams.tk', 'Scheduled Exams');
-    $mail->addAddress("maicolbattistini@live.it", "Maicol");
+    $mail->setFrom($config->get('csp', 'sender_email'), $config->get('csp', 'sender_name'));
+    $mail->addAddress($config->get('csp', 'recipient_email'), $config->get('csp', 'recipient_name'));
     $mail->Subject = "CSP Violations - Scheduled Exams";
     $mail->isHTML();
     $message = "Following violations occured:<br/><br/>";
@@ -36,12 +36,12 @@ try {
     /* PHPMailer exception */
     die(json_encode([
         'success' => false,
-        'error' => "Si è verificato un errore improvviso:" . "<br>" . $e->errorMessage()
+        'error' => "An unexpected error occured:" . "<br>" . $e->errorMessage()
     ]));
 } catch (\Exception $e) {
     /* PHP exception */
     die(json_encode([
         'success' => false,
-        'error' => "Si è verificato un errore improvviso:" . "<br>" . $e->getMessage()
+        'error' => "An unexpected error occured:" . "<br>" . $e->getMessage()
     ]));
 }

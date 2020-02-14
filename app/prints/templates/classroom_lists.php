@@ -1,10 +1,10 @@
 <?php
 
+use App\Utils;
 use Mpdf\HTMLParserMode;
 use Mpdf\Output\Destination;
 use src\Classroom;
 use src\Collection;
-use src\Utils;
 
 require_once __DIR__ . "/../../../core.php";
 

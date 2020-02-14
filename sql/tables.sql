@@ -54,12 +54,13 @@ CREATE TABLE IF NOT EXISTS `lists_rows`
     `ID`         int(10) unsigned NOT NULL AUTO_INCREMENT,
     `list_id`    int(10) unsigned NOT NULL,
     `student_id` int(10)          NOT NULL,
-    `date`       date DEFAULT NULL,
+    `date`       date       DEFAULT NULL,
+    `order`      tinyint(4) DEFAULT NULL,
     PRIMARY KEY (`ID`),
     KEY `FK_lists_rows_lists` (`list_id`),
     CONSTRAINT `FK_lists_rows_lists` FOREIGN KEY (`list_id`) REFERENCES `lists` (`ID`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 33
+  AUTO_INCREMENT = 51
   DEFAULT CHARSET = latin1 COMMENT ='Rows of a list';
 
 -- Dump structure of table scheduled_exams.users

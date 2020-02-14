@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace App;
 
 use Delight\Cookie\Cookie;
 use Delight\Cookie\Session;

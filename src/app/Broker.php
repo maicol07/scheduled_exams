@@ -3,7 +3,7 @@
  * Copyright (c) 2019.  Maicol07 - Tutti i diritti riservati - All rights reserved
  */
 
-namespace src;
+namespace App;
 
 use Curl\Curl;
 use Exception;

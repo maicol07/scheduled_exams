@@ -114,7 +114,9 @@ function info() {
             if (finished) {
                 var icons = {
                     "Kiranshastry": "https://www.flaticon.com/authors/kiranshastry",
-                    "Smashicons": "https://www.flaticon.come/authors/smashicons"
+                    "Smashicons": "https://www.flaticon.come/authors/smashicons",
+                    "Srip": "https://www.flaticon.com/authors/srip",
+                    "Pixel perfect": "https://www.flaticon.com/authors/pixel-perfect"
                 };
                 var icons_ul = $('<ul style="list-style-type: none"></ul>');
                 Object.keys(icons).forEach((value, key) => {

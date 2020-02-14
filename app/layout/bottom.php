@@ -1,22 +1,87 @@
 <?php
 
-use src\Utils;
+use App\Utils;
 
 ?>
 </div>
 </main>
-<!-- START FOOTER
-<footer class="page-footer footer footer-static footer-dark gradient-45deg-indigo-blue gradient-shadow navbar-border navbar-shadow">
-    <div class="footer-copyright">
-        <div class="container">
-            <span><?php echo __("Copyright © 2019 Maicol07") ?></span>
-            <span class="right hide-on-small-only">
-                <a onclick="showInfo()" style="cursor: pointer;"><?php echo __("Versione") . ' ' . Utils::getVersion() ?></a> - <?php echo __("Sviluppato da Maicol07") ?>
+<!-- START FOOTER -->
+<footer>
+    <div id="info_links">
+        <button id="footer_hide" class="mdc-icon-button" style="position: absolute; right: 256px;"
+                onclick="hideFooter(this)">
+            <i class="mdc-icon-button__icon mdi-outline-keyboard_arrow_down"></i>
+        </button>
+        <div id="footer_info" style="flex: 1;">
+            <img src="<?php echo Utils::buildAssetsURI("/app/assets/img/logo.svg") ?>"
+                 alt="<?php echo __("Interrogazioni Programmate") ?>"
+                 style="margin-left: 15px; width: 40px; height: 40px; margin-right: -8px; vertical-align: middle">
+            <span class="footer-title">
+                <?php echo __("Interrogazioni Programmate") ?>
+            </span>
+            <br><br>
+            <span class="footer-content">
+                <?php echo __("Un software closed source sviluppato da %s", "<a href='https://maicol07.it'>Maicol Battistini (maicol07)</a>") ?>
             </span>
         </div>
+        <div id="footer_links" style="flex: 1;">
+            <h3><?php echo __("Link utili") ?></h3>
+            <ul style="list-style: none; padding-left: initial">
+                <?php
+                $links = [
+                    [
+                        "label" => __("Sito web"),
+                        "url" => "https://scheduledexams.tk",
+                        "icon" => 'public'
+                    ],
+                    [
+                        "label" => __("Segnala un problema"),
+                        "url" => "https://bugs.maicol07.it",
+                        "icon" => 'bug'
+                    ],
+                    [
+                        "label" => __("Documentazione"),
+                        "url" => "https://docs.maicol07.it",
+                        "icon" => 'file'
+                    ],
+                    [
+                        "label" => __("Informazioni"),
+                        "onclick" => "info()",
+                        "icon" => 'info'
+                    ]
+                ];
+                foreach ($links as $link) {
+                    $link = (object)$link;
+                    echo '
+                        <li>
+                            <a ' . (property_exists($link, 'url') ? 'href="' . $link->url . '"' : '') . ' class="mdc-button"
+                            onclick="' . (property_exists($link, 'onclick') ? $link->onclick : '') . '">
+                                <div class="mdc-button__ripple"></div>
+                                <i class="mdi-outline-' . $link->icon . ' mdc-button__icon"></i>
+                                <span class="mdc-button__label">' . $link->label . '</span>
+                            </a>
+                        </li>';
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div id="copyright_footer">
+        <button id="footer_show" class="mdc-icon-button"
+                style="display: none; position: absolute; right: 256px; scale: 0.75; bottom: -15px;"
+                onclick="showFooter(this)">
+            <i class="mdc-icon-button__icon mdi-outline-keyboard_arrow_up"></i>
+        </button>
+        <span style="flex: 1"><?php echo __("Copyright © 2019-%s Maicol07", date("Y")) ?></span>
+        <?php if (!$detector->isMobile()) { ?>
+            <span style="flex: 1">
+            <a onclick="info()"
+               style="cursor: pointer;"><?php echo __("Versione") . ' ' . Utils::getVersion() ?></a> - <?php echo __("Sviluppato da Maicol07") ?>
+        </span>
+        <?php } ?>
     </div>
 </footer>
- END FOOTER -->
+<!-- END FOOTER -->
 </div>
 <!-- ================================================
       Scripts

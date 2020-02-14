@@ -4,7 +4,7 @@
  * Original layout by Kodular (kodular.io)
  */
 
-use src\Utils;
+use App\Utils;
 
 require_once 'core.php';
 require_once DOCROOT . '/vendor/erusev/parsedown/Parsedown.php';
@@ -49,7 +49,7 @@ $changelog = [
                 "type" => "improved",
                 "badge_text" => __("Migliorato"),
                 // NOTE FOR TRANSLATORS ABOUT THE [AAA](BBB) part: Don't translate the URL but only the AAA text (inside the square brackets)
-                "text" => __("Supporto a [PWA (Progressive Web Apps)](https://developers.google.com/web/progressive-web-apps): è possibile aggiungere alla propria schermata home una icona per accedere più velocemente all'app senza ogni volta dover aprire il browser e digitare l'URL 
+                "text" => __("Supporto a [PWA (Progressive Web Apps)](https://developers.google.com/web/progressive-web-apps): è possibile aggiungere alla propria schermata home una icona per accedere più velocemente all'App senza ogni volta dover aprire il browser e digitare l'URL 
                 (**Funzione disponibile solo per browser supportati: controlla [QUI](https://www.goodbarber.com/blog/progressive-web-apps-browser-support-compatibility-a883/) per una lista aggiornata!**"),
             ],
             [
@@ -61,7 +61,7 @@ $changelog = [
             [
                 "type" => "improved",
                 "badge_text" => __("Migliorato"),
-                "text" => __("Struttura interna dell'app: sono state implementate le seguenti caratteristiche:
+                "text" => __("Struttura interna dell'App: sono state implementate le seguenti caratteristiche:
                 - Classi;
                 - Struttura modulare;
                 - Composer per le librerie esterne;

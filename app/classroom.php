@@ -1,8 +1,8 @@
 <?php
 
+use App\Utils;
 use src\Classroom;
 use src\Collection;
-use src\Utils;
 
 require_once __DIR__ . "/../core.php";
 
