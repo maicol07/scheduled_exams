@@ -21,7 +21,7 @@ if (!defined("PRODUCTION")) {
                 define("PRODUCTION", false);
                 break;
         }
-    } else if (BASEURL == "app.scheduledexams.tk") {
+    } else if (strpos(BASEURL, "app.scheduledexams.tk")) {
         define("PRODUCTION", true);
     } else {
         define("PRODUCTION", false);
