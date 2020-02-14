@@ -55,9 +55,10 @@ use Stolz\Assets\Manager;
 
 require_once DOCROOT . '/config/assets.php';
 
+
 // Set config options
 $config = [
-    'pipeline' => PRODUCTION,
+    'pipeline' => false, // Bugged
     'pipeline_dir' => 'min',
     'public_dir' => ROOTDIR,
     'css_dir' => ROOTDIR . "/app/assets/css",
