@@ -28,9 +28,10 @@ class Auth
      */
     public function __construct($db = null)
     {
-        $broker = new Broker("4", "https://account.maicol07.it/sso/auth", "gDbeu6oYB6U0bx9k");
-        $jwt_cookie = new Cookie("user_jwt");
-        if (!Cookie::exists("user_jwt")) {
+        $config = new Config(DOCROOT . '/config/config.ini');
+        $broker = new Broker($config->get('sso', 'broker_id'), $config->get('sso', 'server_url'), $config->get('sso', 'broker_secret'));
+        $jwt_cookie = new Cookie($config->get('sso', 'cookie_name'));
+        if (!Cookie::exists($config->get('sso', 'cookie_name'))) {
             $this->user = $broker->login();
             $jwt_cookie->setValue(serialize($this->user));
             if (!$jwt_cookie->save()) {
@@ -38,7 +39,7 @@ class Auth
             }
             $this->logged = true;
         } else {
-            $this->user = unserialize(Cookie::get("user_jwt"));
+            $this->user = unserialize(Cookie::get($config->get('sso', 'cookie_name')));
             $this->logged = true;
         }
 
@@ -46,7 +47,7 @@ class Auth
         if (!Session::has('user_id')) {
             if (!empty($renew = $broker->needsRefresh($this->user))) {
                 $this->user = $renew;
-                Session::set("user_jwt", serialize($this->user));
+                Session::set($config->get('sso', 'cookie_name'), serialize($this->user));
             }
             if (!$this->db->has("users", ['username' => $this->getUsername()])) {
                 $this->db->insert("users", [
