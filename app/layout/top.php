@@ -82,7 +82,7 @@ use App\Utils;
 if (isset($body) and !$body) {
     return;
 }
-if (isset($debugbarRenderer)) {
+if (!empty($debugbar) and isset($debugbarRenderer)) {
     echo $debugbarRenderer->renderHead();
 }
 ?>

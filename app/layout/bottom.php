@@ -98,7 +98,7 @@ USER_LANG = '" . $lang . "';
 
 echo $assets->js();
 
-if (isset($debugbar) and isset($debugbarRenderer)) {
+if (!empty($debugbar) and isset($debugbarRenderer)) {
     echo $debugbarRenderer->render();
 }
 ?>
