@@ -211,7 +211,7 @@ class Collection
             return new Result([
                 'code' => $this->code,
                 'id' => $this->id,
-                'number' => count($this->rows),
+                'number' => count($rows),
                 'student' => $this->classroom->getFilteredStudents(['id' => $student_id])
             ]);
         } else {
