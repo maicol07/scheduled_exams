@@ -45,13 +45,14 @@ foreach ($lists as $list_key => $list) {
             <tbody>
             <?php
             $students = (new Classroom($db, $user, $list->classroom_id))->getStudents();
-            foreach ($list->rows as $key => $row) {
+            $key = 0;
+            foreach ($list->rows as $row) {
                 $row = (object)$row;
                 $row_student = (object)$students[$row->student_id];
                 echo '
                         <tr id="list_row_' . $row->id . '">
                             <td>
-                                ' . (string)((int)$key + 1) . '
+                                ' . (string)($key + 1) . '
                             </td>
                             <td>
                                 ' . $row_student->name . '
@@ -60,7 +61,8 @@ foreach ($lists as $list_key => $list) {
                                 ' . Utils::getLocaleDate($row->date, $lang) . '
                             </td>
                         </tr>
-                        ';
+                ';
+                $key += 1;
             }
             ?>
             </tbody>
