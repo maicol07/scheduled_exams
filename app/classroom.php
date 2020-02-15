@@ -22,11 +22,13 @@ require_once DOCROOT . "/app/layout/top.php";
 // Redefinition to avoid naming problems
 $classroom = new Classroom($db, $user, null, get('view'));
 ?>
-<button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createList()">
-    <div class="mdc-fab__ripple"></div>
-    <i class="mdi-outline-add mdc-fab__icon"></i>
-    <span class="mdc-fab__label"><?php echo __("Crea lista") ?></span>
-</button>
+<?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
+    <button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createList()">
+        <div class="mdc-fab__ripple"></div>
+        <i class="mdi-outline-add mdc-fab__icon"></i>
+        <span class="mdc-fab__label"><?php echo __("Crea lista") ?></span>
+    </button>
+<?php } ?>
 <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner" style="display: flex">
         <div id="lists_grid"
