@@ -13,39 +13,41 @@ function addClassroomToGrid(data) {
     if (grid.length) {
         inner = grid.append(`<div class="mdc-layout-grid__cell" id="classroom_${data.code}"></div>`).find(`#classroom_${data.code}`)
     } else {
-        inner = no_classrooms_div.before(`<div class="mdc-layout-grid">
+        inner = no_classrooms_div.before(`
+        <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell" id="classroom_${data.code}"></div>
             </div>
         </div>`).prev('.mdc-layout-grid').find('.mdc-layout-grid__cell').first()
     }
-    inner.append(`<div class="mdc-card" style="display: none">
-                    <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + '/app/classroom?view=${data.code}'">
-                        <div class="mdc-card__primary">
-                            <h2 class="mdc-typography--headline6">${data.name}</h2>
-                        </div>
-                    </div>
-                    <div class="mdc-card__actions">
-                        <div class="mdc-card__action-buttons">
-                            <a href="classroom?view=${data.code}" class="mdc-button mdc-card__action mdc-card__action--button">
-                                <div class="mdc-button__ripple"></div>
-                                <i class="mdi-outline-open_in_new mdc-button__icon"></i>
-                                <span class="mdc-button__label">${tr.__("Apri")}</span>
-                            </a>
-                        </div>
-                        <div class="mdc-card__action-icons">
-                            <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                                    title="${tr.__("Condividi")}" onclick="shareClassroom('${data.code}')">
-                              <i class="mdi-outline-share mdc-button__icon"></i>
-                            </button>
-                            <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                                    title="${tr.__("Elimina")}"
-                                    onclick="deleteClassroom(${data.id}, '${data.name}')">
-                              <i class="mdi-outline-delete mdc-button__icon"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>`);
+    inner.append(`
+    <div class="mdc-card" style="display: none">
+        <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + '/app/classroom?view=${data.code}'">
+            <div class="mdc-card__primary">
+                <h2 class="mdc-typography--headline6">${data.name}</h2>
+            </div>
+        </div>
+        <div class="mdc-card__actions">
+            <div class="mdc-card__action-buttons">
+                <a href="classroom?view=${data.code}" class="mdc-button mdc-card__action mdc-card__action--button">
+                    <div class="mdc-button__ripple"></div>
+                    <i class="mdi-outline-open_in_new mdc-button__icon"></i>
+                    <span class="mdc-button__label">${tr.__("Apri")}</span>
+                </a>
+            </div>
+            <div class="mdc-card__action-icons">
+                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                        title="${tr.__("Condividi")}" onclick="shareClassroom('${data.code}')">
+                  <i class="mdi-outline-share mdc-button__icon"></i>
+                </button>
+                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                        title="${tr.__("Elimina")}"
+                        onclick="deleteClassroom(${data.id}, '${data.name}')">
+                  <i class="mdi-outline-delete mdc-button__icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>`);
     inner.find('.mdc-card:hidden').fadeIn(1000, () => {
         initRipple($(`#classroom_${data.code}`).find('div.mdc-card .mdc-card__primary-action'));
     });

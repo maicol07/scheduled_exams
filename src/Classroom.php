@@ -217,7 +217,7 @@ class Classroom
             $query = $this->db->update("classrooms", $attr, ['id' => $this->id]);
         }
         if ($query->rowCount()) {
-            return new Result(['code' => $this->code, 'id' => $this->id]);
+            return new Result(['code' => $this->code, 'id' => $this->id, 'name' => $this->name]);
         } else {
             return new Result(null, $query->errorCode(), $query->errorInfo()[2]);
         }
