@@ -19,8 +19,8 @@ if (!empty($classrooms)) {
     <div class="mdc-layout-grid__inner">';
     foreach ($classrooms as $classroom) {
         $classroom = (object)$classroom;
-        $classroom_users = $classroom->getUsers();
-        if (is_array($classroom_users) and !in_array($user->getUsername(), array_values($classroom_users))) {
+        $classroom_users = json_decode($classroom->users);
+        if (is_array($classroom_users) and !in_array((int)$user->getId(), $classroom_users)) {
             continue;
         }
         echo '

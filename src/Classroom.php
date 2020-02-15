@@ -86,10 +86,10 @@ class Classroom
                 if (in_array($user, $this->users)) {
                     return new Result(null, 'ALREADY_EXISTS', __("L'utente fa già parte della classe"));
                 }
-                $this->users[] = $user;
+                $this->users[] = (int)$user;
                 break;
             case 'remove':
-                unset($this->users[array_search($user, $this->users)]);
+                unset($this->users[array_search((int)$user, $this->users)]);
                 break;
         }
         $this->users = json_encode($this->users);
