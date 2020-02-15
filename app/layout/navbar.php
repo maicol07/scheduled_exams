@@ -37,7 +37,11 @@ use Gravatar\Gravatar;
             </div>
             <?php
             $gravatar = new Gravatar();
-            $user_img = $gravatar->avatar($user->getEmail());
+            if (empty($noauth)) {
+                $user_img = $gravatar->avatar($user->getEmail());
+            } else {
+                $user_img = $gravatar->avatar('sample@example.com');
+            }
             ?>
             <div class="mdc-top-app-bar__action-item">
                 <button class="mdc-icon-button" aria-label="<?php echo __("Il tuo profilo") ?>" id="user_btn"

@@ -86,20 +86,17 @@ if (isset($debugbar)) {
  * Auth config
  *
  */
-$user = null;
-if (empty($no_auth)) {
-    $user = new Auth($db);
-    $logged = $user->isAuthenticated();
-    // Add user to Sentry if is logged in
-    if ($logged) {
-        Sentry\configureScope(function (Sentry\State\Scope $scope): void {
-            global $user;
-            $scope->setUser([
-                'username' => $user->getUsername(),
-                'email' => $user->getEmail()
-            ]);
-        });
-    }
+$user = new Auth($db, isset($noauth) ? $noauth : false);
+$logged = $user->isAuthenticated();
+// Add user to Sentry if is logged in
+if ($logged) {
+    Sentry\configureScope(function (Sentry\State\Scope $scope): void {
+        global $user;
+        $scope->setUser([
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail()
+        ]);
+    });
 }
 
 /*

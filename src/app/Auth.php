@@ -25,13 +25,14 @@ class Auth
      * Auth constructor
      * .
      * @param null|Medoo $db
+     * @param bool $noauth
      */
-    public function __construct($db = null)
+    public function __construct($db = null, $noauth = false)
     {
         $config = new Config(DOCROOT . '/config/config.ini');
         $broker = new Broker($config->get('sso', 'broker_id'), $config->get('sso', 'server_url'), $config->get('sso', 'broker_secret'));
         $jwt_cookie = new Cookie($config->get('sso', 'cookie_name'));
-        if (!Cookie::exists($config->get('sso', 'cookie_name'))) {
+        if (!Cookie::exists($config->get('sso', 'cookie_name')) and empty($noauth)) {
             $this->user = $broker->login();
             $jwt_cookie->setValue(serialize($this->user));
             if (!$jwt_cookie->save()) {
@@ -44,7 +45,7 @@ class Auth
         }
 
         $this->db = $db;
-        if (!Session::has('user_id')) {
+        if (!Session::has('user_id') and empty($noauth)) {
             if (!empty($renew = $broker->needsRefresh($this->user))) {
                 $this->user = $renew;
                 Session::set($config->get('sso', 'cookie_name'), serialize($this->user));
@@ -61,6 +62,9 @@ class Auth
             Session::set('user_id', $this->id);
         } else {
             $this->id = Session::get('user_id');
+        }
+        if (!empty($noauth)) {
+            $this->logged = false;
         }
     }
 

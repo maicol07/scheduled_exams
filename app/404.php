@@ -2,6 +2,8 @@
 
 use App\Utils;
 
+$noauth = true;
+
 require_once __DIR__ . "/../core.php";
 
 $title = __("404 - Pagina non trovata!");

@@ -23,7 +23,7 @@ $detector = new Mobile_Detect();
 $url = explode("/", $_SERVER['REQUEST_URI']);
 $inside = in_array("app", $url);
 if ($inside) {
-    if (!$user->isAuthenticated()) {
+    if (empty($noauth) and !$user->isAuthenticated()) {
         header("Location: " . BASEURL);
         exit;
     }

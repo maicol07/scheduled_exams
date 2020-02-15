@@ -4,6 +4,8 @@ use App\Utils;
 use src\Classroom;
 use src\Collection;
 
+$noauth = true;
+
 require_once __DIR__ . "/../core.php";
 
 if (!$db->has("lists", ['code' => get('view')])) {
