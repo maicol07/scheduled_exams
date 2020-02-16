@@ -36,6 +36,13 @@ use App\Utils;
     <meta name="keywords" content="maicol07, scheduled, exams, interrogazioni, programmate">
     <meta name="author" content="maicol07">
 
+    <?php
+    $adsense_publisher_id = $config->get('ads', 'adsense_publisher_id');
+    if (!empty($adsense_publisher_id)) {
+        echo '<script data-ad-client="ca-' . trim($adsense_publisher_id) . '" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>';
+    }
+    ?>
+
     <title><?php echo __("%s - Interrogazioni Programmate", $title) ?></title>
 
     <!-- Fonts -->
