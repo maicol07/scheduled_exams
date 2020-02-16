@@ -4,7 +4,7 @@
  
  Si raccomanda di utilizzare una buona IDE di programmazione come Phpstorm di Jetbrains. Per ottenere quest'ultima in modo completamente legale e gratuito è possibile ottenere una licenza studente <a href="https://www.jetbrains.com/student/" alt="Ottieni una licenza studente gratuita per i prodotti Jetbrains!">QUI</a>.
  
-Prima di continuare, ti consiglio di leggere il [Glossario di GitHub](#Glossario).
+Prima di continuare, ti consiglio di leggere il [Glossario](#glossario) di Github.
 
 Dunque, come cloniamo il nostro progetto?
 ## A. Clonare il repository

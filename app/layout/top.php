@@ -105,6 +105,6 @@ if (!isset($left_sidebar) or $left_sidebar) {
 }
 ?>
 <div class="mdc-drawer-app-content">
-    <!-- BEGIN: Page Main-->
+    <!-- BEGIN: Page Main -->
     <main id="main-content">
         <div class="mdc-top-app-bar--fixed-adjust">

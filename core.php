@@ -57,7 +57,7 @@ require_once DOCROOT . '/config/assets.php';
 
 
 // Set config options
-$config = [
+$assets_cfg = [
     'pipeline' => false, // Bugged
     'pipeline_dir' => 'min',
     'public_dir' => ROOTDIR,
@@ -70,4 +70,4 @@ $config = [
 ];
 
 // Instantiate the library
-$assets = new Manager($config);
+$assets = new Manager($assets_cfg);
