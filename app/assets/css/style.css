@@ -8,8 +8,8 @@
     MDC Variables
 ------------------------------------------*/
 :root {
-    --mdc-theme-primary: #1884f3;
-    --mdc-theme-secondary: #0d47a1;
+    --mdc-theme-primary: #8000ff;
+    --mdc-theme-secondary: #5d009f;
     --mdc-theme-background: #fff;
     --mdc-theme-surface: #fff;
     --mdc-theme-error: #d33;
@@ -33,7 +33,7 @@
     --mdc-theme-text-hint-on-dark: rgba(255, 255, 255, 0.5);
     --mdc-theme-text-disabled-on-dark: rgba(255, 255, 255, 0.5);
     --mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
-    --mdc-theme-text-activated: #1a237e;
+    --mdc-theme-text-activated: #43006d;
     --mdc-theme-outline-border: #dadce0;
     --mdc-theme-outline-border-dark: #95979b
 }
