@@ -303,7 +303,7 @@ class Utils
                     unset($pieces[$minified]);
                 }
             } elseif (!$minified and !empty(PRODUCTION)) {
-                array_splice($pieces, -2, 0, ["min"]);
+                array_splice($pieces, -1, 0, ["min"]);
             }
             $dir = implode(".", $pieces);
         }
