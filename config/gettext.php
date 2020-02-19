@@ -125,10 +125,14 @@ if (!file_exists($locale_path)) {
         }
         $messages->setDomain("messages");
         $messages->setLanguage("it_IT");
+        foreach ($messages as $message) {
+            $message->translate($message->getOriginal());
+        }
         $generator = new PoGenerator();
         $generator->generateFile($messages, $locale_path . "messages.po");
     }
 }
+
 if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get("regenerate_json")) {
     /* Export translations in JSON for JS */
     $dir_ite = new RecursiveDirectoryIterator(DOCROOT . "/locale");
@@ -142,10 +146,13 @@ if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get(
         // Load the po file with the translations
         $po = new PoLoader();
         $tr = $po->loadFile($l);
+
         // Export to a json file
         $tr->setDomain("messages");
         $json = new JsonGenerator();
-        $json->generateFile($tr, str_replace(".po", ".json", $l));
+        if (!$json->generateFile($tr, str_replace(".po", ".json", $l))) {
+            trigger_error("Impossibile salvare il file!", E_USER_WARNING);
+        };
     }
 }
 $t = new GettextTranslator();
