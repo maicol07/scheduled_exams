@@ -1,5 +1,7 @@
 msgid ""
 msgstr ""
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Domain: messages\n"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:18
