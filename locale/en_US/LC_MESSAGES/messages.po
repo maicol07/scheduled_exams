@@ -1,102 +1,107 @@
 # Maicol Battistini <maicolbattistini@live.it>, 2020.
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2020-02-28 10:30+0000\n"
+"Last-Translator: Maicol Battistini <maicolbattistini@live.it>\n"
+"Language-Team: English (United States) <https://translate.maicol07.it/"
+"projects/scheduled-exams/webapp/en_US/>\n"
 "Language: en_US\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.2\n"
 "X-Domain: messages\n"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:98
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:100
 msgid "Maicol07 Account"
-msgstr ""
+msgstr "Maicol07 Account"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:111
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:117
 msgid "Si è verificato un errore inaspettato:"
-msgstr ""
+msgstr "An unexpected error occurred:"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:156
 msgid "meno di 1 secondo fa"
-msgstr ""
+msgstr "less than 1 second ago"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:160
 msgid "anno"
-msgstr ""
+msgstr "Year"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:160
 msgid "anni"
-msgstr ""
+msgstr "Years"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:161
 msgid "mese"
-msgstr ""
+msgstr "Month"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:161
 msgid "mesi"
-msgstr ""
+msgstr "Months"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:162
 msgid "giorno"
-msgstr ""
+msgstr "Day"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:162
 msgid "giorni"
-msgstr ""
+msgstr "Days"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:163
 msgid "ora"
-msgstr ""
+msgstr "Now"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:163
 msgid "ore"
-msgstr ""
+msgstr "Hours"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:164
 msgid "minuto"
-msgstr ""
+msgstr "Minute"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:164
 msgid "minuti"
-msgstr ""
+msgstr "Minutes"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:165
 msgid "secondo"
-msgstr ""
+msgstr "Second"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:165
 msgid "secondi"
-msgstr ""
+msgstr "Seconds"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:184
 msgid "circa"
-msgstr ""
+msgstr "About"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:184
 msgid "fa"
-msgstr ""
+msgstr "Ago"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:87
 msgid "L'utente fa già parte della classe"
-msgstr ""
+msgstr "The user is already part of the class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:119
 msgid "Lo studente fa già parte della classe"
-msgstr ""
+msgstr "The student is already in the class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:132
 msgid "Il nome inserito è identico a quello precedente!"
-msgstr ""
+msgstr "The name you entered is the same as the previous one!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:157
 msgid "Non è possibile scollegare/eliminare l'unico amministratore della classe!"
-msgstr ""
+msgstr "You cannot unlink/delete the only class administrator!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:153
 msgid "Non è stato scelto nessuno studente!"
-msgstr ""
+msgstr "No student was chosen!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:175
 msgid "I dati inseriti sono identici a quelli precedenti!"
-msgstr ""
+msgstr "The data entered is identical to the previous ones!"
