@@ -1,0 +1,99 @@
+msgid ""
+msgstr ""
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Domain: messages\n"
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:98
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:100
+msgid "Maicol07 Account"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:111
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:117
+msgid "Si è verificato un errore inaspettato:"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:156
+msgid "meno di 1 secondo fa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:160
+msgid "anno"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:160
+msgid "anni"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:161
+msgid "mese"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:161
+msgid "mesi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:162
+msgid "giorno"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:162
+msgid "giorni"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:163
+msgid "ora"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:163
+msgid "ore"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:164
+msgid "minuto"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:164
+msgid "minuti"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:165
+msgid "secondo"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:165
+msgid "secondi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:184
+msgid "circa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:184
+msgid "fa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:87
+msgid "L'utente fa già parte della classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:119
+msgid "Lo studente fa già parte della classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:132
+msgid "Il nome inserito è identico a quello precedente!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:157
+msgid "Non è possibile scollegare/eliminare l'unico amministratore della classe!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:153
+msgid "Non è stato scelto nessuno studente!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:175
+msgid "I dati inseriti sono identici a quelli precedenti!"
+msgstr ""
