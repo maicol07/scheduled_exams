@@ -37,7 +37,7 @@ use Gravatar\Gravatar;
             </div>
             <?php
             $gravatar = new Gravatar();
-            if (empty($noauth)) {
+            if ($user->isAuthenticated()) {
                 $user_img = $gravatar->avatar($user->getEmail());
             } else {
                 $user_img = $gravatar->avatar('sample@example.com');

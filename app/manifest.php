@@ -3,7 +3,7 @@
 use App\Utils;
 
 require_once '../dir.php';
-$no_auth = true;
+$noauth = true;
 require_once DOCROOT . "/config/config.php";
 require DOCROOT . "/config/gettext.php";
 
