@@ -42,10 +42,10 @@ if (!file_exists($locale_path)) {
     }*/
     foreach ($app_dirs as $dir => $options) {
         $f = new FileList();
-        $path = DOCROOT . '/' . $options;
         if (is_array($options) and empty($options['recursive'])) {
             $path = DOCROOT . "/" . $dir;
         } else {
+            $path = DOCROOT . '/' . $options;
             $f->recurse();
         }
 
@@ -110,8 +110,8 @@ if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get(
     /* Export translations in JSON for JS */
     $f = new FileList();
     $f->recurse();
-    $f->add_filter('ext', ['.po']);
-    $files = $f->scan(DOCROOT . '/locale');
+    $f->add_filter('ext', ['po']);
+    $files = array_column($f->scan(DOCROOT . '/locale'), 'pathname');
     foreach ($files as $l) {
         // Load the po file with the translations
         $po = new PoLoader();
