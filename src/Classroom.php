@@ -199,6 +199,7 @@ class Classroom
     public function save()
     {
         if (empty($this->id)) {
+            $method = "insert";
             $code = Utils::generateCode($this->db);
             $first_user = json_encode([(int)$this->user->getId()]);
             $query = $this->db->insert("classrooms", [
@@ -210,13 +211,14 @@ class Classroom
             $this->id = $this->db->id();
             $this->code = $code;
         } else {
+            $method = "update";
             $attr = [];
             foreach ($this->attributes as $attribute) {
                 $attr[$attribute] = $this->$attribute;
             }
             $query = $this->db->update("classrooms", $attr, ['id' => $this->id]);
         }
-        if ($query->rowCount()) {
+        if (($method == "insert" and $query->rowCount()) or ($method == "update" and $query)) {
             return new Result(['code' => $this->code, 'id' => $this->id, 'name' => $this->name]);
         } else {
             return new Result(null, $query->errorCode(), $query->errorInfo()[2]);

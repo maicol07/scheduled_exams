@@ -207,7 +207,7 @@ class Collection
                 break;
         }
         /** @noinspection PhpUndefinedVariableInspection */
-        if ($query->rowCount()) {
+        if ((in_array($mode, ['add', 'delete']) and $query->rowCount()) or (in_array($mode, ['add', 'delete']) and $query)) {
             return new Result([
                 'code' => $this->code,
                 'id' => $this->id,
@@ -247,6 +247,7 @@ class Collection
     public function save()
     {
         if (empty($this->id)) {
+            $method = "insert";
             $code = Utils::generateCode($this->db);
             $query = $this->db->insert("lists", [
                 "name" => $this->name,
@@ -263,13 +264,14 @@ class Collection
                 $this->db->insert('lists_rows', $this->generateRows());
             }
         } else {
+            $method = "update";
             $attr = [];
             foreach ($this->attributes as $attribute) {
                 $attr[$attribute] = $this->$attribute;
             }
             $query = $this->db->update("lists", $attr, ['id' => $this->id]);
         }
-        if ($query->rowCount()) {
+        if (($method == "insert" and $query->rowCount()) or ($method == "update" and $query)) {
             return new Result(['code' => $this->code, 'id' => $this->id]);
         } else {
             return new Result(null, $query->errorCode(), $query->errorInfo()[2]);

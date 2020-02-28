@@ -130,7 +130,7 @@ class Auth
         ], [
             "id" => $this->id
         ]);
-        if ($update->rowCount()) {
+        if ($update) {
             return new Result();
         } else {
             return new Result(null, $update->errorCode(), $update->errorInfo());

@@ -146,7 +146,7 @@ if (!$result->success) {
     if (!PRODUCTION and !empty($db->last())) {
         $result->errorinfo .= (" - {$db->last()}");
     }
-    $errorinfo = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $result->errorinfo);
+    $errorinfo = iconv("UTF-8", "ISO-8859-1//TRANSLIT", (string)$result->errorinfo);
     $errorcode = $result->errorcode;
     header("HTTP/1.0 550 $errorinfo");
 }
