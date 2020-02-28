@@ -6,6 +6,9 @@
     }
   ],
   "autoload": {
+    "files": [
+      "src/lib/FileList.php"
+    ],
     "psr-4": {
       "src\\": "src/",
       "App\\": "src/app/"

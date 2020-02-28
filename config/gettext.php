@@ -5,6 +5,7 @@ if (defined("DOCROOT")) {
     require_once "class_loader.php";
 }
 
+use Chirp\FileList;
 use Gettext\Generator\JsonGenerator;
 use Gettext\Generator\PoGenerator;
 use Gettext\GettextTranslator;
@@ -40,46 +41,17 @@ if (!file_exists($locale_path)) {
         $pr_folder = $folder . "/";
     }*/
     foreach ($app_dirs as $dir => $options) {
-        if (isset($options['recursive']) and !$options['recursive']) {
-            $files = glob(DOCROOT . $dir . "/*.{php,js}", GLOB_BRACE);
+        $f = new FileList();
+        $path = DOCROOT . '/' . $options;
+        if (is_array($options) and empty($options['recursive'])) {
+            $path = DOCROOT . "/" . $dir;
         } else {
-            $path = DOCROOT . "/" . $options;
-            $dir_ite = new RecursiveDirectoryIterator($path);
-            $iterator = new RecursiveIteratorIterator($dir_ite);
-            $result = new RegexIterator($iterator, '/^.+\.(php|js)$/i', RecursiveRegexIterator::GET_MATCH);
-            $files = [];
-            foreach (iterator_to_array($result) as $file) {
-                $file = str_replace("\\", "/", $file);
-                foreach (explode("/", $file[0]) as $subpath) {
-                    if (in_array($subpath, ['vendor'])) {
-                        continue;
-                    }
-                }
-                $files[] = $file[0];
-            }
+            $f->recurse();
         }
-        if (!function_exists("files_ext_filter")) {
-            /** @noinspection PhpMissingDocCommentInspection */
-            function files_ext_filter($files, $extension)
-            {
-                global $ext;
-                $ext = $extension;
-                if (is_object($files)) {
-                    $files = get_object_vars($files);
-                }
-                return array_filter($files, function ($file) {
-                    global $ext;
-                    $file_info = new SplFileInfo(DOCROOT . $file);
-                    if ($file_info->getExtension() == $ext) {
-                        return true;
-                    }
-                    return false;
-                });
-            }
-        }
-        //file_put_contents(DOCROOT . "/log/gettext.log", print_r($files, true));
-        $php_files = files_ext_filter($files, "php");
-        $js_files = files_ext_filter($files, "js");
+
+        $php_files = array_column($f->scan($path, 'ext', ['php']), 'pathname');
+        $js_files = array_column($f->scan($path, 'ext', ['js']), 'pathname');
+
         if (!empty($php_files)) {
             $php_scanner = new PhpScanner(Translations::create('messages'));
             $php_scanner->setDefaultDomain('messages');
@@ -105,13 +77,13 @@ if (!file_exists($locale_path)) {
             echo "<pre>";
             exit;
         }*/
-        if (!file_exists($locale_path . "messages.po")) {
-            file_put_contents($locale_path . 'messages.po', ''); // File creation
+        if (!file_exists($locale_path . "messages.pot")) {
+            file_put_contents($locale_path . 'messages.pot', ''); // File creation
         }
 
 
         $po = new PoLoader();
-        $messages = $po->loadFile($locale_path . "messages.po");
+        $messages = $po->loadFile($locale_path . "messages.pot");
 
         if (!empty($php_scanner)) {
             foreach ($php_scanner->getTranslations() as $domain => $translations) {
@@ -125,11 +97,12 @@ if (!file_exists($locale_path)) {
         }
         $messages->setDomain("messages");
         $messages->setLanguage("it_IT");
+        $generator = new PoGenerator();
+        $generator->generateFile($messages, $locale_path . "messages.pot");
         foreach ($messages as $message) {
             $message->translate($message->getOriginal());
         }
-        $generator = new PoGenerator();
-        $generator->generateFile($messages, $locale_path . "messages.po");
+        $generator->generateFile($messages, $locale_path . "messages.gen.po");
     }
 }
 
@@ -137,7 +110,7 @@ if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get(
     /* Export translations in JSON for JS */
     $dir_ite = new RecursiveDirectoryIterator(DOCROOT . "/locale");
     $iterator = new RecursiveIteratorIterator($dir_ite);
-    $result = new RegexIterator($iterator, '/^.+\.(po)$/i', RecursiveRegexIterator::GET_MATCH);
+    $result = new RegexIterator($iterator, '/^.+\.(gen.po)$/i', RecursiveRegexIterator::GET_MATCH);
     $files = [];
     foreach (iterator_to_array($result) as $file) {
         $files[] = $file[0];
@@ -149,10 +122,12 @@ if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get(
 
         // Export to a json file
         $tr->setDomain("messages");
+        $tr->setLanguage("it_IT");
         $json = new JsonGenerator();
-        if (!$json->generateFile($tr, str_replace(".po", ".json", $l))) {
+        if (!$json->generateFile($tr, str_replace(".gen.po", ".json", $l))) {
             trigger_error("Impossibile salvare il file!", E_USER_WARNING);
         };
+        unlink($l);
     }
 }
 $t = new GettextTranslator();
