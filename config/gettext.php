@@ -108,13 +108,10 @@ if (!file_exists($locale_path)) {
 
 if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get("regenerate_json")) {
     /* Export translations in JSON for JS */
-    $dir_ite = new RecursiveDirectoryIterator(DOCROOT . "/locale");
-    $iterator = new RecursiveIteratorIterator($dir_ite);
-    $result = new RegexIterator($iterator, '/^.+\.(gen.po)$/i', RecursiveRegexIterator::GET_MATCH);
-    $files = [];
-    foreach (iterator_to_array($result) as $file) {
-        $files[] = $file[0];
-    }
+    $f = new FileList();
+    $f->recurse();
+    $f->add_filter('ext', ['.po']);
+    $files = $f->scan(DOCROOT . '/locale');
     foreach ($files as $l) {
         // Load the po file with the translations
         $po = new PoLoader();

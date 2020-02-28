@@ -71,7 +71,9 @@ class FileList
             $retval[] = $file_struct;
         }
 
-        $this->removeFilters($filter, $filter_opt);
+        if (!empty($filter) and is_array($filter_opt)) {
+            $this->removeFilters($filter, $filter_opt);
+        }
 
         return $retval;
     }
