@@ -15,7 +15,7 @@
         "flag-icon-css": "^3",
         "gettext-translator": "latest",
         "jquery": "latest",
-        "material-components-web": "latest",
+        "material-components-web": "^5.1.0",
         "materialize-css": "latest",
         "promise-polyfill": "latest",
         "sweetalert2": "^9"
