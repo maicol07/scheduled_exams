@@ -41,6 +41,20 @@ use App\Utils;
     if (!empty($adsense_publisher_id)) {
         echo '<script data-ad-client="ca-' . trim($adsense_publisher_id) . '" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>';
     }
+
+    $analytics_monitoring_code = $config->get('analytics', 'monitoring_code');
+    if (!empty($analytics_monitoring_code)) {
+        echo '<!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=' . $analytics_monitoring_code . '"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag("js", new Date());
+            
+              gtag("config", "' . $analytics_monitoring_code . '");
+            </script>
+        ';
+    }
     ?>
 
     <title><?php echo __("%s - Interrogazioni Programmate", $title) ?></title>
