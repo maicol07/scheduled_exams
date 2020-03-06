@@ -9,7 +9,11 @@ use App\Auth;
 use App\Config;
 use Medoo\Medoo;
 
-$config = new Config(DOCROOT . '/config/config.ini');
+try {
+    $config = new Config(DOCROOT . '/config/config.ini');
+} catch (\Matomo\Ini\IniReadingException $e) {
+    $config = new Config(DOCROOT . '/config/config.example.ini');
+}
 
 if (!defined("PRODUCTION")) {
     if (!empty($config->get('general', 'env'))) {
@@ -33,31 +37,7 @@ require_once DOCROOT . "/config/errors.php";
 /*
  * Shortcut functions
  */
-if (!function_exists("get")) {
-    /**
-     * Returns a validated GET request parameter
-     *
-     * @param string $name
-     * @return string|bool
-     */
-    function get($name)
-    {
-        return App\Utils::get($name);
-    }
-}
-
-if (!function_exists("post")) {
-    /**
-     * Returns a validated POST request parameter
-     *
-     * @param string $name
-     * @return string|bool
-     */
-    function post($name)
-    {
-        return App\Utils::post($name);
-    }
-}
+require_once DOCROOT . "/config/functions.php";
 
 
 /*

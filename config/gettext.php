@@ -1,9 +1,7 @@
 <?php
-if (defined("DOCROOT")) {
-    require_once DOCROOT . "/config/class_loader.php";
-} else {
-    require_once "class_loader.php";
-}
+require_once "../dir.php";
+require_once "config.php";
+require_once DOCROOT . "/config/class_loader.php";
 
 use Chirp\FileList;
 use Gettext\Generator\JsonGenerator;
@@ -35,11 +33,6 @@ if (get("regenerate_tr")) {
 }
 if (!file_exists($locale_path)) {
     mkdir($locale_path, 0755, true);
-    /*$pr_folder = null;
-    foreach (explode("/", $locale_path) as $folder) {
-        empty($pr_folder) ? mkdir($folder, 0755) : (file_exists($pr_folder)) ?: mkdir($pr_folder . $folder, 0755);
-        $pr_folder = $folder . "/";
-    }*/
     foreach ($app_dirs as $dir => $options) {
         $f = new FileList();
         if (is_array($options) and empty($options['recursive'])) {
@@ -66,21 +59,11 @@ if (!file_exists($locale_path)) {
                 $js_scanner->scanFile($js_file);
             }
         }
-        // Debug info
-        /*if (!isset($php_scanner) or !isset($js_scanner)) {
-            echo "<pre>";
-            var_dump($options);
-            var_dump($dir);
-            var_dump($files);
-            //var_dump($php_scanner);
-            var_dump($php_scanner->getTranslations());
-            echo "<pre>";
-            exit;
-        }*/
+
+
         if (!file_exists($locale_path . "messages.pot")) {
             file_put_contents($locale_path . 'messages.pot', ''); // File creation
         }
-
 
         $po = new PoLoader();
         $messages = $po->loadFile($locale_path . "messages.pot");
