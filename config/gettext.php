@@ -54,7 +54,7 @@ if (!file_exists($locale_path)) {
         }
         if (!empty($js_files)) {
             $js_scanner = new JsScanner(Translations::create('messages'));
-            $php_scanner->setDefaultDomain('messages');
+            $js_scanner->setDefaultDomain('messages');
             foreach ($js_files as $js_file) {
                 $js_scanner->scanFile($js_file);
             }
@@ -76,6 +76,11 @@ if (!file_exists($locale_path)) {
         if (!empty($js_scanner)) {
             foreach ($js_scanner->getTranslations() as $domain => $translations) {
                 $messages = $messages->mergeWith($translations);
+            }
+        }
+        foreach ($messages as $message) {
+            if (!empty($message->getTranslation())) {
+                $message->translate("");
             }
         }
         $messages->setDomain("messages");

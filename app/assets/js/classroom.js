@@ -253,7 +253,7 @@ ${student.admin ? `title="${tr.__("Revoca permessi di amministratore")}" onclick
             title: (data.students != null) ? tr.__("Lista studenti") : tr.__("Nessuno studente"),
             html: html,
             imageUrl: image,
-            imageAlt: tr.__("No data"),
+            imageAlt: tr.__("Nessun dato"),
             imageHeight: 150,
             confirmButtonText: `<i class="mdi-outline-add mdc-button__icon"></i><span class="mdc-button__label">${tr.__("Aggiungi")}</span>`,
             showCancelButton: true,
