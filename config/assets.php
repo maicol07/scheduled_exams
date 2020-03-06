@@ -2,7 +2,7 @@
 // CSS files list
 $css = [
     // MDC
-    'material-components-web',
+    "material-components-web",
     // Datatables MDC
     //'dataTables.material.min.css',
     // Flag icon CSS
@@ -13,14 +13,13 @@ $css = [
     "style.css",
     // Material Design Outline Icons
     "mdi-outline/mdi-outline.css",
+    'adblock-checker.css'
 ];
 
 // JS files list
 $js = [
     // jQuery
     "jquery",
-    // MDC
-    "material-components-web",
     // Datatables MAIN
     //'datatables.net',
     // Datatables Column Reorder
@@ -43,6 +42,7 @@ $js = [
     "modernizr.js",
     // Utils function
     "utils.js",
+    'adblock-checker.js',
     // Scripts
     "init.js",
     "navbar.js",

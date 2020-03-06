@@ -12,6 +12,16 @@ if (window.tr == null) {
     tr = window.tr;
 }
 
+adb_checker({
+    url: 'http://www.afreesms.com/adblock/disabling/', // Link to help users disable AdBlock
+    redirect: false, // True to redirect user to the above url
+    warning: {
+        text: tr.__("Si prega di disabilitare AdBlock (blocco della pubblicità)"), // Message to the users
+        button: tr.__("Aiutami a disattivarlo!")
+    }
+});
+
+
 // MDC
 const mdc = window.mdc;
 window.inputs = {};
@@ -275,7 +285,7 @@ function renderOutlinedInput(id, label, properties = {
 <div class="mdc-text-field ${!empty(properties.textarea) ? "mdc-text-field--textarea" : "mdc-text-field--outlined"}
             ${!empty(properties.icon) ? 'mdc-text-field--with-leading-icon' : ''}"
     style="${!empty(properties.style) ? properties.style : ""}; ${!empty(properties.width) ? `width: ${properties.width}` : ''}">
-    ${!empty(properties.icon) ? `<i class="${properties.icon} mdc-text-field__icon"
+    ${!empty(properties.icon) ? `<i class="${properties.icon} mdc-text-field__icon mdc-text-field__icon--leading"
                                            ${!empty(properties.icon_as_btn) ? 'tabindex="0" role="button"' : ''} style="font-size: 24px;"></i>` : ''}
     <${type} type="${!empty(properties.type) ? properties.type : 'text'}" id="${id}" name="${id}" value="${!empty(properties.value) ? properties.value : ''}"
     class="mdc-text-field__input" ${!empty(properties.required) ? "required" : ""} ${(properties.type === "number" && !empty(properties.min)) ?
