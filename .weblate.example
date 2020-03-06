@@ -1,0 +1,6 @@
+[weblate]
+url = https://translate.maicol07.it/api/
+key = YOUR_API_KEY
+project = scheduled-exams
+component = webapp
+source_language = it_IT

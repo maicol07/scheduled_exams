@@ -43,16 +43,13 @@
       <path value="$PROJECT_DIR$/vendor/web-assets/sweetalert2" />
       <path value="$PROJECT_DIR$/vendor/web-assets/promise-polyfill" />
       <path value="$PROJECT_DIR$/vendor/web-assets/tslib" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/tabbable" />
       <path value="$PROJECT_DIR$/vendor/web-assets/material-components-web" />
       <path value="$PROJECT_DIR$/vendor/web-assets/jquery" />
       <path value="$PROJECT_DIR$/vendor/web-assets/materialize-css" />
       <path value="$PROJECT_DIR$/vendor/web-assets/flag-icon-css" />
       <path value="$PROJECT_DIR$/vendor/web-assets/cookieconsent" />
       <path value="$PROJECT_DIR$/vendor/web-assets/gettext-translator" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/focus-trap" />
       <path value="$PROJECT_DIR$/vendor/web-assets/@material" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/xtend" />
       <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
       <path value="$PROJECT_DIR$/vendor/stolz/assets" />
       <path value="$PROJECT_DIR$/vendor/mrclay/minify" />
