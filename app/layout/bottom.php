@@ -83,6 +83,25 @@ use App\Utils;
 </footer>
 <!-- END FOOTER -->
 </div>
+<script>
+    var $buoop = {
+        required: {e: 79, f: 74, o: -3, s: 12, c: 75},
+        insecure: true,
+        unsupported: true
+    };
+
+    function $buo_f() {
+        var e = document.createElement("script");
+        e.src = "https://browser-update.org/update.min.js";
+        document.body.appendChild(e);
+    }
+
+    try {
+        document.addEventListener("DOMContentLoaded", $buo_f, false)
+    } catch (e) {
+        window.attachEvent("onload", $buo_f)
+    }
+</script>
 <!-- ================================================
       Scripts
 ================================================ -->
