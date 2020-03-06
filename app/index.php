@@ -81,7 +81,7 @@ if (!empty($classrooms)) {
 <br><br>
 <form id="join_classroom">
     <div class="mdc-text-field mdc-text-field--with-leading-icon">
-        <i class="mdi-outline-confirmation_number mdc-text-field__icon"></i>
+        <i class="mdi-outline-confirmation_number mdc-text-field__icon mdc-text-field__icon--leading"></i>
         <input type="text" id="classroom_join_code" class="mdc-text-field__input">
         <label class="mdc-floating-label" for="classroom_join_code"><?php echo __("Codice classe") ?></label>
         <div class="mdc-line-ripple"></div>
