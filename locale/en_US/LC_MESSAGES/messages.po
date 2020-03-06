@@ -1,7 +1,8 @@
 # Maicol Battistini <maicolbattistini@live.it>, 2020.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-28 10:30+0000\n"
+"Report-Msgid-Bugs-To: webmaster@maicol07.it\n"
+"PO-Revision-Date: 2020-02-29 10:47+0000\n"
 "Last-Translator: Maicol Battistini <maicolbattistini@live.it>\n"
 "Language-Team: English (United States) <https://translate.maicol07.it/"
 "projects/scheduled-exams/webapp/en_US/>\n"
@@ -18,7 +19,7 @@ msgstr ""
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:37
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:89
 msgid "Nuovo"
-msgstr ""
+msgstr "New"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:20
 msgid ""
@@ -26,6 +27,9 @@ msgid ""
 "da Google, grazie a [MDC](https://material.io/develop/web), chiamato "
 "Material Design Refresh o Material Design 2"
 msgstr ""
+"New UI: Now a graphic style is offered more similar to that used by Google, "
+"thanks to [MDC](https://material.io/develop/web), called Material Design "
+"Refresh or Material Design 2"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:25
 msgid ""
@@ -38,12 +42,21 @@ msgid ""
 "in automatico ma vengono già stabiliti i giorni utili per l'interrogazione "
 "(automaticamente)"
 msgstr ""
+"Three new types of list generation:\r\n"
+"                - \"Manual\": Lists are created by hand by the class "
+"administrator;\r\n"
+"                -'Automatic': lists are created automatically (typical "
+"random draw);\r\n"
+"                - 'Automatic from start date': lists are created "
+"automatically but useful days for the query are already established "
+"(automatically)"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:33
 msgid ""
 "Possibilità di stampare le liste in PDF singolarmente o multiple dalla "
 "classe di riferimento"
 msgstr ""
+"Ability to print PDF lists individually or multiplefrom the reference class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:39
 msgid ""
@@ -54,10 +67,15 @@ msgid ""
 "                Per motivi di privacy è necessario reimpostare la password "
 "al primo accesso)"
 msgstr ""
+"Integration with [Maicol07 Account](https://account.maicol07.it) (SSO): You "
+"can now use your Maicol07 Network account to sign in (your old Account on "
+"Scheduled Queries was automatically migrated.\r\n"
+"                For privacy reasons, you must reset your password the first "
+"time you sign in)"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:44
 msgid "Cambiato"
-msgstr ""
+msgstr "Changed"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:45
 msgid ""
@@ -67,12 +85,16 @@ msgid ""
 "classe e le relative liste (*in sola lettura*) come visitatori, senza "
 "effettuare l'accesso"
 msgstr ""
+"How users sign up for classes: Users now sign up with class code directly "
+"from the dashboard.\r\n"
+"                With the same code, you can also view the class and its "
+"lists (\"read-only\") as visitors, without signing in"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:50
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:57
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:63
 msgid "Migliorato"
-msgstr ""
+msgstr "Improved"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:52
 msgid ""
@@ -84,12 +106,22 @@ msgid ""
 "controlla [QUI](https://www.goodbarber.com/blog/progressive-web-apps-browser-"
 "support-compatibility-a883/) per una lista aggiornata!**"
 msgstr ""
+"Support for [PWA (Progressive Web Apps)](https://developers.google.com/web/"
+"progressive-web-apps): You can add an icon to your home screen to access the "
+"App faster without having to open your browser each time and type in the URL "
+"\n"
+"                (**Only available for supported browsers: check "
+"[QUI](https://www.goodbarber.com/blog/"
+"progressive-web-apps-browser-support-compatibility-a883/) for an updated "
+"list!**"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:59
 msgid ""
 "Supporto alle lingue grazie alla libreria [Gettext](https://github.com/"
 "oscarotero/Gettext) di [Oscar Otero](https://github.com/oscarotero)"
 msgstr ""
+"Language support with [Oscar Otero](https://github.com/oscarotero/"
+"Gettext](https://github.com/oscarotero)"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:64
 msgid ""
@@ -100,31 +132,40 @@ msgid ""
 "                - Composer per le librerie esterne;\r\n"
 "                - Yarn/NPM per gli assets"
 msgstr ""
+"App internal structure: The following features have been implemented:\r\n"
+"                - Classes;\r\n"
+"                - Modular structure;\r\n"
+"                - Composer for external libraries;\r\n"
+"                - Yarn/NPM for assets"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:72
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:78
 msgid "Rimosso"
-msgstr ""
+msgstr "Removed"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:74
 msgid ""
 "Gestione del profilo (il proprio account può essere ora gestito da [Maicol07 "
 "Account](https://account.maicol07.it))"
 msgstr ""
+"Profile management (your account can now be managed by [Maicol07 "
+"Account](https://account.maicol07.it))"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:80
 msgid ""
 "Impostazioni (le impostazioni riguardanti il proprio account possono essere "
 "ora gestite da [Maicol07 Account](https://account.maicol07.it))"
 msgstr ""
+"Settings (settings regarding your account can now be managed by [Maicol07 "
+"Account](https://account.maicol07.it))"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:90
 msgid "Rilascio iniziale"
-msgstr ""
+msgstr "Initial release"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:101
 msgid "Note di rilascio"
-msgstr ""
+msgstr "Release Notes"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:101
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:98
@@ -135,98 +176,98 @@ msgstr "Maicol07 Account"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:9
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:16
 msgid "404 - Pagina non trovata!"
-msgstr ""
+msgstr "404 - Page not found!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:17
 msgid ""
 "La pagina specificata non è stata trovata! Rieffettuare la ricerca o premi "
 "il pulsante qui sotto per tornare alla Dashboard"
 msgstr ""
+"The specified page was not found! Redo your search or press the button below "
+"to return to the Dashboard"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:22
 msgid "Vai alla Dashboard"
-msgstr ""
+msgstr "Go to Dashboard"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:33
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:108
-#, fuzzy
-#| msgid "I dati inseriti sono identici a quelli precedenti!"
 msgid "Le informazioni immesse sono identiche a quelle precedenti!"
-msgstr "The data entered is identical to the previous ones!"
+msgstr "The information you have entered is identical to the previous ones!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:45
 msgid "Il codice della classe inserito non è associato ad alcuna classe"
-msgstr ""
+msgstr "The code of the inserted class is not associated with any class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Dom"
-msgstr ""
+msgstr "Dom"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Lun"
-msgstr ""
+msgstr "Mon"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Mer"
-msgstr ""
+msgstr "Mer"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Gio"
-msgstr ""
+msgstr "Thu"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Ven"
-msgstr ""
+msgstr "Fri"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Sab"
-msgstr ""
+msgstr "Sat"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:31
 msgid "Reimposta"
-msgstr ""
+msgstr "Reset"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:36
 msgid "Annulla"
-msgstr ""
+msgstr "Cancel"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:40
 msgid "OK"
-msgstr ""
+msgstr "Ok"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:18
 msgid "Classe %s"
-msgstr ""
+msgstr "Class %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:29
 msgid "Crea lista"
-msgstr ""
+msgstr "Create List"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:40
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:35
 msgid "Liste"
-msgstr ""
+msgstr "Lists"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:63
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:45
 msgid "Apri"
-msgstr ""
+msgstr "Open"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:68
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:116
 msgid "Stampa"
-msgstr ""
+msgstr "Print"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:72
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:130
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:50
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:180
 msgid "Condividi"
-msgstr ""
+msgstr "Share"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:76
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:142
@@ -234,77 +275,77 @@ msgstr ""
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:78
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:192
 msgid "Elimina"
-msgstr ""
+msgstr "Delete"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:90
 msgid "Stampa tutte"
-msgstr ""
+msgstr "Print All"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:95
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:97
 msgid "Nessuna lista"
-msgstr ""
+msgstr "No list"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:98
 msgid "Puoi aggiungere nuove liste dal pulsante in basso a destra"
-msgstr ""
+msgstr "You can add new lists from the button at the bottom right"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:105
 msgid "Informazioni sulla classe"
-msgstr ""
+msgstr "About the class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:123
 msgid "Lista studenti"
-msgstr ""
+msgstr "Student list"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:136
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:74
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:186
 msgid "Modifica"
-msgstr ""
+msgstr "Review"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:7
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:7
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:13
 msgid "Crea classe"
-msgstr ""
+msgstr "Create Class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:17
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:19
 msgid "Classi"
-msgstr ""
+msgstr "Classes"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:58
 msgid "Abbandona"
-msgstr ""
+msgstr "Abandons"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:72
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:74
 msgid "Nessuna classe"
-msgstr ""
+msgstr "No class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:75
 msgid "Puoi aggiungere nuove classi dal pulsante in basso a destra oppure"
-msgstr ""
+msgstr "You can add new classes from the button at the bottom right or"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:79
 msgid "Unisciti ad una classe"
-msgstr ""
+msgstr "Join a class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:80
 msgid "Inserisci il codice della tua classe e premi il pulsante: "
-msgstr ""
+msgstr "Enter your class code and press the button: "
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:86
 msgid "Codice classe"
-msgstr ""
+msgstr "Class code"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:93
 msgid "Unisciti"
-msgstr ""
+msgstr "Join"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:17
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:20
@@ -314,203 +355,203 @@ msgstr ""
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/manifest.php:13
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/init.php:13
 msgid "Interrogazioni Programmate"
-msgstr ""
+msgstr "Scheduled Exams"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:24
 msgid "Un software closed source sviluppato da %s"
-msgstr ""
+msgstr "Closed source software developed by %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:28
 msgid "Link utili"
-msgstr ""
+msgstr "Useful links"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:33
 msgid "Sito web"
-msgstr ""
+msgstr "Website"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:38
 msgid "Segnala un problema"
-msgstr ""
+msgstr "Report a problem"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:43
 msgid "Documentazione"
-msgstr ""
+msgstr "Documentation"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:48
 msgid "Informazioni"
-msgstr ""
+msgstr "Information"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:75
 msgid "Copyright © 2019-%s Maicol07"
-msgstr ""
+msgstr "Copyright © 2019-%s Maicol07"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:79
 msgid "Versione"
-msgstr ""
+msgstr "Version"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:79
 msgid "Sviluppato da Maicol07"
-msgstr ""
+msgstr "Developed by Maicol07"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/navbar.php:20
 msgid "Cambia lingua"
-msgstr ""
+msgstr "Change language"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/navbar.php:47
 msgid "Il tuo profilo"
-msgstr ""
+msgstr "Your profile"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/top.php:46
 msgid "%s - Interrogazioni Programmate"
-msgstr ""
+msgstr "%s - Scheduled Queries"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:19
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:36
 msgid "Lista %s"
-msgstr ""
+msgstr "List %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:31
 msgid "Interrogazioni della lista %s"
-msgstr ""
+msgstr "List queries %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:35
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:40
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:26
 msgid "N."
-msgstr ""
+msgstr "N."
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:37
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:41
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:27
 msgid "Studente"
-msgstr ""
+msgstr "Student"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:39
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:42
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:28
 msgid "Data"
-msgstr ""
+msgstr "Date"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:81
 msgid "Su"
-msgstr ""
+msgstr "On"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:84
 msgid "Giù"
-msgstr ""
+msgstr "Down"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:96
 msgid "Nessuna riga nella lista"
-msgstr ""
+msgstr "No lines in the list"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:109
 msgid "Aggiungi"
-msgstr ""
+msgstr "Add"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:122
 msgid "Informazioni sulla lista"
-msgstr ""
+msgstr "List information"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:136
 msgid "Automatica"
-msgstr ""
+msgstr "Automatic"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:137
 msgid "Automatica da data di inizio"
-msgstr ""
+msgstr "Automatic from start date"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:138
 msgid "Manuale"
-msgstr ""
+msgstr "Manual"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:143
 msgid "Tipo generazione lista: <b>%s</b>"
-msgstr ""
+msgstr "List Generation Type: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:150
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:76
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:66
 msgid "Data di inizio delle interrogazioni: <b>%s</b>"
-msgstr ""
+msgstr "Question start date: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:155
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:81
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:71
 msgid "Lunedì"
-msgstr ""
+msgstr "Monday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:156
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:82
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:72
 msgid "Martedì"
-msgstr ""
+msgstr "Tuesday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:157
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:83
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:73
 msgid "Mercoledì"
-msgstr ""
+msgstr "Wednesday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:158
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:84
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:74
 msgid "Giovedì"
-msgstr ""
+msgstr "Thursday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:159
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:85
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:75
 msgid "Venerdì"
-msgstr ""
+msgstr "Friday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:160
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:86
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:76
 msgid "Sabato"
-msgstr ""
+msgstr "Saturday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:161
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:87
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:77
 msgid "Domenica"
-msgstr ""
+msgstr "Sunday"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:170
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:96
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:86
 msgid "Giorni in cui si effettua l'interrogazione: <b>%s</b>"
-msgstr ""
+msgstr "Question days: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:172
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:98
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:88
 msgid "Numero massimo di studenti interrogati per volta: <b>%s</b>"
-msgstr ""
+msgstr "Maximum number of students questioned at a time: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/manifest.php:14
 msgid "Gestisci le tue interrogazioni online insieme alla tua classe!"
-msgstr ""
+msgstr "Manage your online queries with your class!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:15
 msgid "Interrogazioni classe %s"
-msgstr ""
+msgstr "Class Queries %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:21
 msgid "Interrogazioni della classe %s"
-msgstr ""
+msgstr "Class Queries %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:111
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:91
 msgid "Stampato il %s utilizzando Interrogazioni Programmate"
-msgstr ""
+msgstr "Printed %s using Scheduled Queries"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:13
 msgid "Lista %list% - %classroom%"
-msgstr ""
+msgstr "List %list% - %classroom%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:22
 msgid "Interrogazioni della lista %list% - Classe %classroom%"
-msgstr ""
+msgstr "List queries %list% - Class %classroom%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:111
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:117
