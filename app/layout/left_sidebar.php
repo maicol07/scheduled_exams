@@ -1,8 +1,9 @@
 <aside class="mdc-drawer mdc-drawer--dismissible">
     <div class="mdc-drawer__content">
-        <div class="mdc-list">
+        <nav class="mdc-list">
             <?php $current_page = basename($_SERVER['SCRIPT_NAME'], '.php') ?>
-            <a class="mdc-list-item <?php echo $current_page == "index" ? 'mdc-list-item--activated" aria-current="page' : '"href="index' ?>">
+            <a class="mdc-list-item <?php echo $current_page == "index" ? 'mdc-list-item--activated" aria-current="page' : '"href="index' ?>"
+               tabindex="0">
                 <i class="mdi-outline-dashboard mdc-list-item__graphic" aria-hidden="true"></i>
                 <span class="mdc-list-item__text mdc-typography--subtitle2"><?php echo __("Dashboard") ?></span>
             </a>
@@ -50,6 +51,6 @@
 
 
             ?>
-        </div>
+        </nav>
     </div>
 </aside>
