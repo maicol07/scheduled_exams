@@ -3,15 +3,15 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: webmaster@maicol07.it\n"
-"PO-Revision-Date: 2020-03-07 11:55+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2020-03-13 13:46+0000\n"
+"Last-Translator: Maicol Battistini <maicolbattistini@live.it>\n"
 "Language-Team: English (United States) <https://translate.maicol07.it/"
 "projects/scheduled-exams/webapp/en_US/>\n"
 "Language: en_US\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11.2\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Domain: messages\n"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:18
@@ -44,7 +44,7 @@ msgid ""
 "(automaticamente)"
 msgstr ""
 "Three new types of list generation:\r\n"
-"                - \"Manual\": Lists are created by hand by the class "
+"                - \"Manual\": Lists are created by hand by the classroom "
 "administrator;\r\n"
 "                -'Automatic': lists are created automatically (typical "
 "random draw);\r\n"
@@ -86,9 +86,9 @@ msgid ""
 "classe e le relative liste (*in sola lettura*) come visitatori, senza "
 "effettuare l'accesso"
 msgstr ""
-"How users sign up for classes: Users now sign up with class code directly "
-"from the dashboard.\r\n"
-"                With the same code, you can also view the class and its "
+"How users sign up for classrooms: Users now sign up with classroom code "
+"directly from the dashboard.\r\n"
+"                With the same code, you can also view the classroom and its "
 "lists (\"read-only\") as visitors, without signing in"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:50
@@ -120,8 +120,8 @@ msgid ""
 "Supporto alle lingue grazie alla libreria [Gettext](https://github.com/"
 "oscarotero/Gettext) di [Oscar Otero](https://github.com/oscarotero)"
 msgstr ""
-"Language support with [Oscar Otero](https://github.com/oscarotero/Gettext]"
-"(https://github.com/oscarotero)"
+"Language support with [Oscar Otero](https://github.com/oscarotero)'s "
+"[Gettext](https://github.com/oscarotero/Gettext) library"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:64
 msgid ""
@@ -197,11 +197,11 @@ msgstr "The information you have entered is identical to the previous ones!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:45
 msgid "Il codice della classe inserito non è associato ad alcuna classe"
-msgstr "The code of the inserted class is not associated with any class"
+msgstr "The code of the inserted classroom is not associated with any class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Dom"
-msgstr "Dom"
+msgstr "Sun"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Lun"
@@ -209,11 +209,11 @@ msgstr "Mon"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Mar"
-msgstr "Mar"
+msgstr "Tue"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Mer"
-msgstr "Mer"
+msgstr "Wed"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
 msgid "Gio"
@@ -237,11 +237,11 @@ msgstr "Cancel"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:40
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:18
 msgid "Classe %s"
-msgstr "Class %s"
+msgstr "Classroom %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:29
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:64
@@ -320,7 +320,7 @@ msgstr "You can add new lists from the button at the bottom right"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:105
 msgid "Informazioni sulla classe"
-msgstr "About the class"
+msgstr "About the classroom"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:123
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:253
@@ -352,16 +352,16 @@ msgstr "Dashboard"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:80
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:36
 msgid "Crea classe"
-msgstr "Create Class"
+msgstr "Create Classroom"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:17
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:19
 msgid "Classi"
-msgstr "Classes"
+msgstr "Classrooms"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:58
 msgid "Abbandona"
-msgstr "Abandons"
+msgstr "Leave"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:72
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:74
@@ -372,7 +372,7 @@ msgstr "Abandons"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:39
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:66
 msgid "Nessuna classe"
-msgstr "No class"
+msgstr "No classrooms"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:75
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:130
@@ -380,7 +380,7 @@ msgstr "No class"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:40
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:66
 msgid "Puoi aggiungere nuove classi dal pulsante in basso a destra oppure"
-msgstr "You can add new classes from the button at the bottom right or"
+msgstr "You can add new classrooms from the button at the bottom right or"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:79
 msgid "Unisciti ad una classe"
@@ -388,11 +388,11 @@ msgstr "Join a class"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:80
 msgid "Inserisci il codice della tua classe e premi il pulsante: "
-msgstr "Enter your class code and press the button: "
+msgstr "Enter your classroom code and press the button: "
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:86
 msgid "Codice classe"
-msgstr "Class code"
+msgstr "Classroom code"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:93
 msgid "Unisciti"
@@ -430,7 +430,7 @@ msgstr "Documentation"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:48
 msgid "Informazioni"
-msgstr "Information"
+msgstr "About"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:75
 msgid "Copyright © 2019-%s Maicol07"
@@ -456,7 +456,7 @@ msgstr "Your profile"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/top.php:60
 msgid "%s - Interrogazioni Programmate"
-msgstr "%s - Scheduled Queries"
+msgstr "%s - Scheduled Exams"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:19
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:36
@@ -465,13 +465,13 @@ msgstr "List %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:31
 msgid "Interrogazioni della lista %s"
-msgstr "List queries %s"
+msgstr "Exams of the list %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:35
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:40
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:26
 msgid "N."
-msgstr "N."
+msgstr "No."
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:37
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:41
@@ -497,7 +497,7 @@ msgstr "Date"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:417
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:61
 msgid "Su"
-msgstr "On"
+msgstr "Up"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:84
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:420
@@ -543,7 +543,7 @@ msgstr "List Generation Type: <b>%s</b>"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:76
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:66
 msgid "Data di inizio delle interrogazioni: <b>%s</b>"
-msgstr "Question start date: <b>%s</b>"
+msgstr "Exams start date: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:155
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:81
@@ -612,30 +612,30 @@ msgstr "Sunday"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:96
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:86
 msgid "Giorni in cui si effettua l'interrogazione: <b>%s</b>"
-msgstr "Question days: <b>%s</b>"
+msgstr "Exam days: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:172
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:98
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:88
 msgid "Numero massimo di studenti interrogati per volta: <b>%s</b>"
-msgstr "Maximum number of students questioned at a time: <b>%s</b>"
+msgstr "Maximum number of students examined at a time: <b>%s</b>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/manifest.php:14
 msgid "Gestisci le tue interrogazioni online insieme alla tua classe!"
-msgstr "Manage your online queries with your class!"
+msgstr "Manage your online exams with your class!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:15
 msgid "Interrogazioni classe %s"
-msgstr "Class Queries %s"
+msgstr "Exams of class %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:21
 msgid "Interrogazioni della classe %s"
-msgstr "Class Queries %s"
+msgstr "Exams of class %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:111
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:91
 msgid "Stampato il %s utilizzando Interrogazioni Programmate"
-msgstr "Printed %s using Scheduled Queries"
+msgstr "Printed on %s using Scheduled Exams"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:13
 msgid "Lista %list% - %classroom%"
@@ -643,7 +643,7 @@ msgstr "List %list% - %classroom%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:22
 msgid "Interrogazioni della lista %list% - Classe %classroom%"
-msgstr "List queries %list% - Class %classroom%"
+msgstr "Exams of list %list% - Classroom %classroom%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:75
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:535
@@ -678,7 +678,6 @@ msgstr ""
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:521
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
-#, fuzzy
 msgid "Sì, eliminala!"
 msgstr "Yes, delete it!"
 
@@ -688,15 +687,13 @@ msgstr "Yes, delete it!"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:522
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
-#, fuzzy
 msgid "No, non eliminarla!"
 msgstr "No, don't delete it!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:149
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:40
-#, fuzzy
 msgid "Classe eliminata!"
-msgstr "Deleted class!"
+msgstr "Classroom deleted!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:167
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:42
@@ -704,7 +701,6 @@ msgid "Condividi la classe"
 msgstr "Share classroom"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:168
-#, fuzzy
 msgid ""
 "Il codice per entrare nella classe è %code%.<br>Il codice è da inserire "
 "nella dashboard, \r\n"
@@ -714,13 +710,13 @@ msgid ""
 "può visualizzare le informazioni \r\n"
 "contenute in essa!</b>): %link%"
 msgstr ""
-"The code to enter the class is %code%. <br>The code is to be inserted into "
-"the dashboard, \r\n"
-"then press the button <b> Join a class</b>. <br><br>The following public "
-"address, on the other hand, indicates the address to which \r\n"
-"you can visualize the class (<b> Attention! Anyone with the link can view "
-"the information \r\n"
-"</b>): %link%"
+"The code to enter the classroom is %code%. <br>The code has to be entered in "
+"the dashboard, \n"
+"then press the button <b>Join a classroom</b>. <br><br>The following public "
+"address, on the other hand, indicates the address to which \n"
+"you can visualize the classroom (<b> Warning! Anyone with the link can see "
+"the information \n"
+"contained in it</b>): %link%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:186
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:43
@@ -729,33 +725,28 @@ msgstr "You have joined classroom %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:216
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:44
-#, fuzzy
 msgid "Revoca permessi di amministratore"
 msgstr "Revoke administrator permissions"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:216
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:44
-#, fuzzy
 msgid "Rendi amministratore"
 msgstr "Make administrator"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:219
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:45
-#, fuzzy
 msgid "Scollega da questo utente"
 msgstr "Unlink from this user"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:221
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:45
-#, fuzzy
 msgid "Collega ad un utente..."
 msgstr "Link to a user..."
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:249
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:48
-#, fuzzy
 msgid "Non è presente alcun studente. Vuoi aggiungerne uno?"
-msgstr "There is no student present. Do you want to add one?"
+msgstr "There is no student. Do you want to add one?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:253
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
@@ -770,7 +761,6 @@ msgstr "No data"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:56
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:13
-#, fuzzy
 msgid "Chiudi"
 msgstr "Close"
 
@@ -801,19 +791,16 @@ msgstr "Edit student"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:326
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:52
-#, fuzzy
 msgid "Studente modificato!"
-msgstr "Modified student!"
+msgstr "Student edited!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:348
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:53
-#, fuzzy
 msgid "Collegamento studente a utente"
 msgstr "Linking student to user"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:349
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:53
-#, fuzzy
 msgid "Scegliere a quale utente collegare lo studente %s:"
 msgstr "Choose which user to link student %s to:"
 
@@ -824,7 +811,6 @@ msgstr "User"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:367
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:54
-#, fuzzy
 msgid "Studente %student_name% collegato a %user_name%!"
 msgstr "Student %student_name% linked to %user_name%!"
 
@@ -832,15 +818,13 @@ msgstr "Student %student_name% linked to %user_name%!"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:420
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
-#, fuzzy
 msgid "Attenzione!"
-msgstr "Attention!"
+msgstr "Warning!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:390
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
-#, fuzzy
 msgid "Si è sicuri di voler scollegare lo studente %s dal suo utente?"
-msgstr "Are you sure you want to disconnect student %s from its user?"
+msgstr "Are you sure you want to unlink student %s from its user?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:392
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:423
@@ -852,7 +836,6 @@ msgstr "Are you sure you want to disconnect student %s from its user?"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:11
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
-#, fuzzy
 msgid "Sì"
 msgstr "Yes"
 
@@ -866,33 +849,28 @@ msgstr "Yes"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:12
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
-#, fuzzy
 msgid "No"
-msgstr "№"
+msgstr "No"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:403
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
-#, fuzzy
 msgid "Studente %s scollegato dal suo utente!"
-msgstr "Student %s disconnected by its user!"
+msgstr "Student %s unlinked from its user!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:421
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
-#, fuzzy
 msgid "Si vuole davvero eliminare lo studente %s?"
 msgstr "Do you really want to delete student %s?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:434
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
-#, fuzzy
 msgid "Studente eliminato!"
-msgstr "Student eliminated!"
+msgstr "Student deleted!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:447
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:57
-#, fuzzy
 msgid "Si vuole davvero rendere lo studente %s un amministratore della classe?"
-msgstr "Do you really want to make student %s a class administrator?"
+msgstr "Do you really want to make student %s a classroom admin?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:460
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:57
@@ -901,10 +879,9 @@ msgstr "Student %s is now a classroom admin!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:473
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
-#, fuzzy
 msgid ""
 "Si vuole davvero revocare i permessi di amministratore dello studente %s?"
-msgstr "Do you really want to revoke student admin permissions %s?"
+msgstr "Do you really want to revoke admin permissions of the student %s?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:486
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
@@ -915,21 +892,19 @@ msgstr "Student %s isn't a classroom admin anymore!"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:60
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:288
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:51
-#, fuzzy
 msgid "File inserito non valido!"
-msgstr "Invalid file entered!"
+msgstr "Invalid file uploaded!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:526
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:289
-#, fuzzy
 msgid ""
 "Non hai inserito nessun file oppure il file inserito non è un file immagine "
 "(deve avere una fra le seguenti estensioni:<br>\r\n"
 "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, ."
 "ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"
 msgstr ""
-"You have not entered any files or the inserted file is not an image file ("
-"must have one of the following extensions:<br>\r\n"
+"You have not uploaded any file or the uploaded file is not an image file ("
+"must have one of the following extensions:<br>\n"
 "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, "
 ".ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"
 
@@ -944,49 +919,41 @@ msgstr "Classroom description"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:61
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:313
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:52
-#, fuzzy
 msgid "Salva"
 msgstr "Save"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:587
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:64
-#, fuzzy
 msgid "Classe modificata!"
-msgstr "Modified class!"
+msgstr "Classroom edited!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:601
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
-#, fuzzy
 msgid "Sei sicuro di voler abbandonare la classe %s?"
-msgstr "Are you sure you want to leave class %s?"
+msgstr "Are you sure you want to leave classroom %s?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:602
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
-#, fuzzy
 msgid ""
 "Potrai nuovamente rientrare nella classe utilizzando il codice della classe"
-msgstr "You can re-enter the class using the class code"
+msgstr "You can re-enter the classroom using the classroom code"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:605
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
-#, fuzzy
 msgid "Sì, abbandono la classe!"
-msgstr "Yes, I'm dropping out of class!"
+msgstr "Yes, I'm leaving the classroom!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:606
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
-#, fuzzy
 msgid "No, ho sbagliato!"
 msgstr "No, I was wrong!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:635
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:67
-#, fuzzy
 msgid "Classe abbandonata!"
-msgstr "Abandoned class!"
+msgstr "Classroom left!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:38
-#, fuzzy
 msgid ""
 "Non sarà poi possibile ripristinarla! Perderai, inoltre, tutte le liste e le "
 "informazioni associate alla \n"
@@ -994,10 +961,9 @@ msgid ""
 msgstr ""
 "You won't be able to restore it! You will also lose all lists and "
 "information associated with the \n"
-"Class! <br>I'm sure you want to continue?"
+"classroom! <br>Are you sure you want to continue?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:42
-#, fuzzy
 msgid ""
 "Il codice per entrare nella classe è %code%.<br>Il codice è da inserire "
 "nella dashboard, \n"
@@ -1007,105 +973,89 @@ msgid ""
 "può visualizzare le informazioni \n"
 "contenute in essa!</b>): %link%"
 msgstr ""
-"The code to enter the class is %code%. <br>The code is to be inserted into "
-"the dashboard, \n"
-"then press the button <b> Join a class</b>. <br><br>The following public "
+"The code to enter the classroom is %code%. <br>The code has to be inserted "
+"into the dashboard, \n"
+"then press the button <b>Join a class</b>. <br><br>The following public "
 "address, on the other hand, indicates the address to which \n"
-"you can visualize the class (<b> Attention! Anyone with the link can view "
-"the information \n"
-"</b>): %link%"
+"you can see the classroom (<b> Warning! Anyone with the link can view the "
+"information \n"
+"contained in it</b>): %link%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
-#, fuzzy
 msgid "No data"
-msgstr "No date"
+msgstr "No data"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:60
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:51
-#, fuzzy
 msgid ""
 "Non hai inserito nessun file oppure il file inserito non è un file immagine "
 "(deve avere una fra le seguenti estensioni:<br>\n"
 "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, ."
 "ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"
 msgstr ""
-"You have not entered any files or the inserted file is not an image file ("
+"You have not uploaded any file or the uploaded file is not an image file ("
 "must have one of the following extensions:<br>\n"
 "<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, "
 ".ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:19
-#, fuzzy
 msgid "Gennaio"
 msgstr "January"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:20
-#, fuzzy
 msgid "Febbraio"
 msgstr "February"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:21
-#, fuzzy
 msgid "Marzo"
-msgstr "MARCH"
+msgstr "March"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:22
 msgid "Aprile"
 msgstr "April"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:23
-#, fuzzy
 msgid "Maggio"
 msgstr "May"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:24
-#, fuzzy
 msgid "Giugno"
 msgstr "June"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:25
-#, fuzzy
 msgid "Luglio"
 msgstr "July"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:26
-#, fuzzy
 msgid "Agosto"
 msgstr "August"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:27
-#, fuzzy
 msgid "Settembre"
 msgstr "September"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:28
-#, fuzzy
 msgid "Ottobre"
 msgstr "October"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:29
-#, fuzzy
 msgid "Novembre"
 msgstr "November"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:30
-#, fuzzy
 msgid "Dicembre"
 msgstr "December"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:19
-#, fuzzy
 msgid "Si prega di disabilitare AdBlock (blocco della pubblicità)"
 msgstr "Please disable AdBlock (ad blocking)"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:20
-#, fuzzy
 msgid "Aiutami a disattivarlo!"
 msgstr "Help me turn it off!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:459
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.min.js:31
-#, fuzzy
 msgid "Ooops... qualcosa è andato storto!"
 msgstr "Ooops... something went wrong!"
 
@@ -1133,7 +1083,6 @@ msgstr "Automatic generation from start date"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:74
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
-#, fuzzy
 msgid "Generazione automatica"
 msgstr "Automatic generation"
 
@@ -1154,31 +1103,27 @@ msgstr "Number of students examined at a time"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:183
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:44
-#, fuzzy
 msgid "Lista creata!"
 msgstr "List created!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:190
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:43
-#, fuzzy
 msgid "Alcuni dati non sono stati immessi!"
 msgstr "Some data has not been entered!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:198
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
-#, fuzzy
 msgid "Sei sicuro di voler eliminare la lista %s?"
-msgstr "Are you sure you want to delete the %s list?"
+msgstr "Are you sure you want to delete list %s?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:199
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
-#, fuzzy
 msgid ""
 "Non sarà poi possibile ripristinarla! Perderai, inoltre, tutte le "
 "informazioni associate ad essa!<br>Sei sicuro di voler continuare?"
 msgstr ""
 "You won't be able to restore it! You will also lose all the information "
-"associated with it! <br>I'm sure you want to continue?"
+"associated with it! <br>Are you sure you want to continue?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:240
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:47
@@ -1191,7 +1136,6 @@ msgid "Condividi la lista"
 msgstr "Share list"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:254
-#, fuzzy
 msgid ""
 "Il codice della lista è %code%.<br>Il seguente indirizzo pubblico, invece, "
 "indica l'indirizzo a cui è \r\n"
@@ -1199,15 +1143,14 @@ msgid ""
 "può visualizzare le informazioni contenuti in essa!</b>): %link%"
 msgstr ""
 "The list code is %code%. <br>The following public address, on the other "
-"hand, indicates the address to which \r\n"
-"you can see the list (<b> Attention! Anyone with the link can view the "
+"hand, indicates the address to which \n"
+"you can see the list (<b> Warning! Anyone with the link can view the "
 "information contained in it!</b>): %link%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:348
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:55
-#, fuzzy
 msgid "Lista modificata!"
-msgstr "Modified list!"
+msgstr "List edited!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:358
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:374
@@ -1220,7 +1163,6 @@ msgstr "Add row"
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:459
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:56
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:64
-#, fuzzy
 msgid "Dati riga: "
 msgstr "Row data: "
 
@@ -1233,9 +1175,8 @@ msgstr "Edit row"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:504
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:66
-#, fuzzy
 msgid "Riga modificata!"
-msgstr "Modified line!"
+msgstr "Line edited!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:514
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
@@ -1244,20 +1185,18 @@ msgstr "Delete row"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:515
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
-#, fuzzy
 msgid ""
 "Sei davvero sicuro di voler eliminare la riga n. %number% (Studente %student"
 "%)"
-msgstr "You're really sure you want to delete line %number% (Student %student%)"
+msgstr ""
+"Are you really sure you want to delete line %number% (Student %student%)"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:544
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:68
-#, fuzzy
 msgid "Riga eliminata!"
-msgstr "Deleted row!"
+msgstr "Row deleted!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:49
-#, fuzzy
 msgid ""
 "Il codice della lista è %code%.<br>Il seguente indirizzo pubblico, invece, "
 "indica l'indirizzo a cui è \n"
@@ -1266,18 +1205,16 @@ msgid ""
 msgstr ""
 "The list code is %code%. <br>The following public address, on the other "
 "hand, indicates the address to which \n"
-"you can see the list (<b> Attention! Anyone with the link can view the "
+"you can see the list (<b> Warning! Anyone with the link can view the "
 "information contained in it!</b>): %link%"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:8
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
-#, fuzzy
 msgid "Vuoi cambiare la lingua preferita?"
-msgstr "Want to change your preferred language?"
+msgstr "Do you want to change your preferred language?"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:9
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
-#, fuzzy
 msgid ""
 "La lingua scelta verrà utilizzata per tutte le sessioni. Se invece vuoi "
 "utilizzare questa lingua solo in questa sessione (se navighi su altre pagine "
@@ -1289,19 +1226,16 @@ msgstr ""
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:22
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
-#, fuzzy
 msgid "Lingua cambiata!"
 msgstr "Language changed!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:23
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:11
-#, fuzzy
 msgid "La pagina ora si aggiornerà per rendere visibili le modifiche..."
 msgstr "The page will now update to make your changes visible..."
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:53
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:13
-#, fuzzy
 msgid "Gestisci il tuo account"
 msgstr "Manage your account"
 
@@ -1312,7 +1246,6 @@ msgstr "About Scheduled Exams"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:123
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:15
-#, fuzzy
 msgid "di"
 msgstr "of"
 
@@ -1323,13 +1256,11 @@ msgstr "Scheduled Exams is a closed source software developed by %s"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:130
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
-#, fuzzy
 msgid "Librerie più utilizzate: "
 msgstr "Most used libraries: "
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:131
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
-#, fuzzy
 msgid "Icone create da: %s"
 msgstr "Icons created by: %s"
 
@@ -1340,9 +1271,8 @@ msgstr "Read the release notes"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:132
 #: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:17
-#, fuzzy
 msgid "Community"
-msgstr "Community, New10"
+msgstr "Community"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:111
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:117
@@ -1411,11 +1341,11 @@ msgstr "Ago"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:87
 msgid "L'utente fa già parte della classe"
-msgstr "The user is already part of the class"
+msgstr "The user is already part of the classroom"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:119
 msgid "Lo studente fa già parte della classe"
-msgstr "The student is already in the class"
+msgstr "The student is already in the classroom"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:132
 msgid "Il nome inserito è identico a quello precedente!"
@@ -1424,7 +1354,7 @@ msgstr "The name you entered is the same as the previous one!"
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:157
 msgid ""
 "Non è possibile scollegare/eliminare l'unico amministratore della classe!"
-msgstr "You cannot unlink/delete the only class administrator!"
+msgstr "You cannot unlink/delete the only classroom administrator!"
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:153
 msgid "Non è stato scelto nessuno studente!"
