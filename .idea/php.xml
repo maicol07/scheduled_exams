@@ -45,7 +45,6 @@
       <path value="$PROJECT_DIR$/vendor/web-assets/tslib" />
       <path value="$PROJECT_DIR$/vendor/web-assets/material-components-web" />
       <path value="$PROJECT_DIR$/vendor/web-assets/jquery" />
-      <path value="$PROJECT_DIR$/vendor/web-assets/materialize-css" />
       <path value="$PROJECT_DIR$/vendor/web-assets/flag-icon-css" />
       <path value="$PROJECT_DIR$/vendor/web-assets/cookieconsent" />
       <path value="$PROJECT_DIR$/vendor/web-assets/gettext-translator" />
