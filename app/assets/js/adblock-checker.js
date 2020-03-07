@@ -1,7 +1,7 @@
 /*! AdBlock Checker v1.0.0 | (c) 2015 Juno_okyo */
 function adb_checker(config) {
     // Detect AdBlock. Check is also based on Google Adsense
-    if (typeof adblock === 'undefined' && typeof (window.google_jobrunner) === "undefined") {
+    if (typeof adblock === 'undefined' && empty(window.google_jobrunner)) {
         if (typeof config === 'object') {
             var url = config.url;
             if (typeof url !== 'undefined' && url.length > 0) {
