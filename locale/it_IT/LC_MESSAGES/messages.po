@@ -13,3 +13,1270 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 "X-Generator: Translate Toolkit 2.4.0\n"
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:18
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:24
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:32
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:37
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:89
+msgid "Nuovo"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:20
+msgid ""
+"Nuova UI: ora viene offerto uno stile grafico pi simile a quello utilizzato "
+"da Google, grazie a [MDC](https://material.io/develop/web), chiamato "
+"Material Design Refresh o Material Design 2"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:25
+msgid ""
+"Tre nuovi tipi di generazione delle liste:\r\n"
+"                - **Manuale**: le liste vengono create a mano "
+"dall'amministratore della classe;\r\n"
+"                - **Automatico**: le liste vengono create in automatico "
+"(tipico sorteggio casuale);\r\n"
+"                - **Automatico da data di inizio**: le liste vengono create "
+"in automatico ma vengono gi stabiliti i giorni utili per l'interrogazione "
+"(automaticamente)"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:33
+msgid ""
+"Possibilit di stampare le liste in PDF singolarmente o multiple dalla classe "
+"di riferimento"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:39
+msgid ""
+"Integrazione con [Maicol07 Account](https://account.maicol07.it) (SSO): puoi "
+"ora utilizzare il tuo account di Maicol07 Network per accedere (il tuo "
+"vecchio account su Interrogazioni Programmate  stato migrato automaticamente."
+"\r\n"
+"                Per motivi di privacy  necessario reimpostare la password al "
+"primo accesso)"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:44
+msgid "Cambiato"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:45
+msgid ""
+"Metodo di iscrizione degli utenti alle classi: ora gli utenti si iscrivono "
+"con un codice classe direttamente dalla dashboard.\r\n"
+"                Con lo stesso codice  anche possibile visualizzare la classe "
+"e le relative liste (*in sola lettura*) come visitatori, senza effettuare "
+"l'accesso"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:50
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:57
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:63
+msgid "Migliorato"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:52
+msgid ""
+"Supporto a [PWA (Progressive Web Apps)](https://developers.google.com/web/"
+"progressive-web-apps):  possibile aggiungere alla propria schermata home una "
+"icona per accedere pi velocemente all'App senza ogni volta dover aprire il "
+"browser e digitare l'URL \r\n"
+"                (**Funzione disponibile solo per browser supportati: "
+"controlla [QUI](https://www.goodbarber.com/blog/progressive-web-apps-browser-"
+"support-compatibility-a883/) per una lista aggiornata!**"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:59
+msgid ""
+"Supporto alle lingue grazie alla libreria [Gettext](https://github.com/"
+"oscarotero/Gettext) di [Oscar Otero](https://github.com/oscarotero)"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:64
+msgid ""
+"Struttura interna dell'app: sono state implementate le seguenti "
+"caratteristiche:\r\n"
+"                - Classi;\r\n"
+"                - Struttura modulare;\r\n"
+"                - Composer per le librerie esterne;\r\n"
+"                - Yarn/NPM per gli assets"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:72
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:78
+msgid "Rimosso"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:74
+msgid ""
+"Gestione del profilo (il proprio account pu essere ora gestito da [Maicol07 "
+"Account](https://account.maicol07.it))"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:80
+msgid ""
+"Impostazioni (le impostazioni riguardanti il proprio account possono essere "
+"ora gestite da [Maicol07 Account](https://account.maicol07.it))"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:90
+msgid "Rilascio iniziale"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:101
+msgid "Note di rilascio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:101
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:98
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:100
+msgid "Maicol07 Account"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:9
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:16
+msgid "404 - Pagina non trovata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:17
+msgid ""
+"La pagina specificata non  stata trovata! Rieffettuare la ricerca o premi il "
+"pulsante qui sotto per tornare alla Dashboard"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/404.php:22
+msgid "Vai alla Dashboard"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:33
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:108
+msgid "Le informazioni immesse sono identiche a quelle precedenti!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/actions.php:45
+msgid "Il codice della classe inserito non  associato ad alcuna classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Dom"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Lun"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Mar"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Mer"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Gio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Ven"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:20
+msgid "Sab"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:31
+msgid "Reimposta"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:36
+msgid "Annulla"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/lib/material-date-picker/datepicker.php:40
+msgid "OK"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:18
+msgid "Classe %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:29
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:64
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:83
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:39
+msgid "Crea lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:40
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:35
+msgid "Liste"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:63
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:45
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:35
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:33
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:27
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:34
+msgid "Apri"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:68
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:116
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:32
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:34
+msgid "Stampa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:72
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:130
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:50
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:180
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:40
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:33
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:36
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:35
+msgid "Condividi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:76
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:142
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:54
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:78
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:192
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:44
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:236
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:34
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:48
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:40
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:414
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:35
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:61
+msgid "Elimina"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:90
+msgid "Stampa tutte"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:95
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:97
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:217
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:219
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:46
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:47
+msgid "Nessuna lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:98
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:220
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:47
+msgid "Puoi aggiungere nuove liste dal pulsante in basso a destra"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:105
+msgid "Informazioni sulla classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:123
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:253
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:48
+msgid "Lista studenti"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/classroom.php:136
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:74
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:186
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:233
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:583
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:47
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:64
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:344
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:410
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:55
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:60
+msgid "Modifica"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:7
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:7
+msgid "Dashboard"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:13
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:74
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:80
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:36
+msgid "Crea classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:17
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/left_sidebar.php:19
+msgid "Classi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:58
+msgid "Abbandona"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:72
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:74
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:127
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:129
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:627
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:629
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:39
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:66
+msgid "Nessuna classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:75
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:130
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:630
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:40
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:66
+msgid "Puoi aggiungere nuove classi dal pulsante in basso a destra oppure"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:79
+msgid "Unisciti ad una classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:80
+msgid "Inserisci il codice della tua classe e premi il pulsante: "
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:86
+msgid "Codice classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/index.php:93
+msgid "Unisciti"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:17
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:20
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/navbar.php:12
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/navbar.php:15
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/manifest.php:12
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/manifest.php:13
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/init.php:13
+msgid "Interrogazioni Programmate"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:24
+msgid "Un software closed source sviluppato da %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:28
+msgid "Link utili"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:33
+msgid "Sito web"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:38
+msgid "Segnala un problema"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:43
+msgid "Documentazione"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:48
+msgid "Informazioni"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:75
+msgid "Copyright  2019-%s Maicol07"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:79
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:128
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
+msgid "Versione"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/bottom.php:79
+msgid "Sviluppato da Maicol07"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/navbar.php:20
+msgid "Cambia lingua"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/navbar.php:47
+msgid "Il tuo profilo"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/layout/top.php:60
+msgid "%s - Interrogazioni Programmate"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:19
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:36
+msgid "Lista %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:31
+msgid "Interrogazioni della lista %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:35
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:40
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:26
+msgid "N."
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:37
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:41
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:27
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:362
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:462
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:56
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:64
+msgid "Studente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:39
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:42
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:28
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:368
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:469
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:57
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:65
+msgid "Data"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:81
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:417
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:61
+msgid "Su"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:84
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:420
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:61
+msgid "Gi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:96
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:536
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:68
+msgid "Nessuna riga nella lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:109
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:258
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
+msgid "Aggiungi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:122
+msgid "Informazioni sulla lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:136
+msgid "Automatica"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:137
+msgid "Automatica da data di inizio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:138
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:75
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
+msgid "Manuale"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:143
+msgid "Tipo generazione lista: <b>%s</b>"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:150
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:76
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:66
+msgid "Data di inizio delle interrogazioni: <b>%s</b>"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:155
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:81
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:71
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:10
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:91
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:39
+msgid "Luned"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:156
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:82
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:72
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:11
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:92
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:39
+msgid "Marted"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:157
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:83
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:73
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:12
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:93
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:39
+msgid "Mercoled"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:158
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:84
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:74
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:13
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:94
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:39
+msgid "Gioved"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:159
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:85
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:75
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:14
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:95
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:39
+msgid "Venerd"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:160
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:86
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:76
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:15
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:96
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:40
+msgid "Sabato"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:161
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:87
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:77
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:9
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:97
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:40
+msgid "Domenica"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:170
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:96
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:86
+msgid "Giorni in cui si effettua l'interrogazione: <b>%s</b>"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/list.php:172
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:98
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:88
+msgid "Numero massimo di studenti interrogati per volta: <b>%s</b>"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/manifest.php:14
+msgid "Gestisci le tue interrogazioni online insieme alla tua classe!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:15
+msgid "Interrogazioni classe %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:21
+msgid "Interrogazioni della classe %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/classroom_lists.php:111
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:91
+msgid "Stampato il %s utilizzando Interrogazioni Programmate"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:13
+msgid "Lista %list% - %classroom%"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/prints/templates/list.php:22
+msgid "Interrogazioni della lista %list% - Classe %classroom%"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:75
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:535
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:36
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:61
+msgid "Nome classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:93
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:37
+msgid "Classe creata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:108
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:38
+msgid "Sei sicuro di voler eliminare la classe %s?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:109
+msgid ""
+"Non sar poi possibile ripristinarla! Perderai, inoltre, tutte le liste e le "
+"informazioni associate alla \r\n"
+"classe!<br>Sei sicuro di voler continuare?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:113
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:38
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:202
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:521
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
+msgid "S, eliminala!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:114
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:38
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:203
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:522
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
+msgid "No, non eliminarla!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:149
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:40
+msgid "Classe eliminata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:167
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:42
+msgid "Condividi la classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:168
+msgid ""
+"Il codice per entrare nella classe  %code%.<br>Il codice  da inserire nella "
+"dashboard, \r\n"
+"premendo poi sul pulsante <b>Unisciti ad una classe</b>.<br><br>Il seguente "
+"indirizzo pubblico, invece, indica l'indirizzo a cui  \r\n"
+"possibile visiualizzare la classe (<b>Attenzione! Chiunque possieda il link "
+"pu visualizzare le informazioni \r\n"
+"contenute in essa!</b>): %link%"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:186
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:43
+msgid "Ti sei unito alla classe %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:216
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:44
+msgid "Revoca permessi di amministratore"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:216
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:44
+msgid "Rendi amministratore"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:219
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:45
+msgid "Scollega da questo utente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:221
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:45
+msgid "Collega ad un utente..."
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:249
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:48
+msgid "Non  presente alcun studente. Vuoi aggiungerne uno?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:253
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
+msgid "Nessuno studente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:256
+msgid "Nessun dato"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:260
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:56
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:13
+msgid "Chiudi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:264
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:270
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:50
+msgid "Aggiungi studente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:265
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:307
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:51
+msgid "Nome studente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:284
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:50
+msgid "Studente aggiunto!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:306
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:312
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:51
+msgid "Modifica studente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:326
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:52
+msgid "Studente modificato!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:348
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:53
+msgid "Collegamento studente a utente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:349
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:53
+msgid "Scegliere a quale utente collegare lo studente %s:"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:350
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:53
+msgid "Utente"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:367
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:54
+msgid "Studente %student_name% collegato a %user_name%!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:389
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:420
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
+msgid "Attenzione!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:390
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
+msgid "Si  sicuri di voler scollegare lo studente %s dal suo utente?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:392
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:423
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:449
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:475
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:57
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:11
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
+msgid "S"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:394
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:425
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:451
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:477
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:57
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:12
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
+msgid "No"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:403
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:55
+msgid "Studente %s scollegato dal suo utente!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:421
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
+msgid "Si vuole davvero eliminare lo studente %s?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:434
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:56
+msgid "Studente eliminato!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:447
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:57
+msgid "Si vuole davvero rendere lo studente %s un amministratore della classe?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:460
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:57
+msgid "Lo studente %s  ora amministratore della classe!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:473
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
+msgid ""
+"Si vuole davvero revocare i permessi di amministratore dello studente %s?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:486
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:58
+msgid "Lo studente %s non  pi un amministratore della classe!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:525
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:60
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:288
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:51
+msgid "File inserito non valido!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:526
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:289
+msgid ""
+"Non hai inserito nessun file oppure il file inserito non  un file immagine "
+"(deve avere una fra le seguenti estensioni:<br>\r\n"
+"<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, ."
+"ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:542
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:61
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:305
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:52
+msgid "Descrizione classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:550
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:61
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:313
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:52
+msgid "Salva"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:587
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:64
+msgid "Classe modificata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:601
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
+msgid "Sei sicuro di voler abbandonare la classe %s?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:602
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
+msgid ""
+"Potrai nuovamente rientrare nella classe utilizzando il codice della classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:605
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
+msgid "S, abbandono la classe!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:606
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:65
+msgid "No, ho sbagliato!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.js:635
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:67
+msgid "Classe abbandonata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:38
+msgid ""
+"Non sar poi possibile ripristinarla! Perderai, inoltre, tutte le liste e le "
+"informazioni associate alla \n"
+"classe!<br>Sei sicuro di voler continuare?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:42
+msgid ""
+"Il codice per entrare nella classe  %code%.<br>Il codice  da inserire nella "
+"dashboard, \n"
+"premendo poi sul pulsante <b>Unisciti ad una classe</b>.<br><br>Il seguente "
+"indirizzo pubblico, invece, indica l'indirizzo a cui  \n"
+"possibile visiualizzare la classe (<b>Attenzione! Chiunque possieda il link "
+"pu visualizzare le informazioni \n"
+"contenute in essa!</b>): %link%"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:49
+msgid "No data"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/classroom.min.js:60
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:51
+msgid ""
+"Non hai inserito nessun file oppure il file inserito non  un file immagine "
+"(deve avere una fra le seguenti estensioni:<br>\n"
+"<code>.jpe, .jpg, .jpeg, .gif, .png, .bmp, .ico, .svg, .svgz, .tif, .tiff, ."
+"ai, .drw, .pct, .psp, .xcf, .psd, .raw</code>"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:19
+msgid "Gennaio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:20
+msgid "Febbraio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:21
+msgid "Marzo"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:22
+msgid "Aprile"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:23
+msgid "Maggio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:24
+msgid "Giugno"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:25
+msgid "Luglio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:26
+msgid "Agosto"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:27
+msgid "Settembre"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:28
+msgid "Ottobre"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:29
+msgid "Novembre"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/datepicker.js:30
+msgid "Dicembre"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:19
+msgid "Si prega di disabilitare AdBlock (blocco della pubblicit)"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:20
+msgid "Aiutami a disattivarlo!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:459
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.min.js:31
+msgid "Ooops... qualcosa  andato storto!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.js:460
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/init.min.js:31
+msgid "Si  verificato un errore!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:65
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:298
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:52
+msgid "Nome lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:71
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
+msgid "Tipo lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:73
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
+msgid "Generazione automatica da data di inizio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:74
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:38
+msgid "Generazione automatica"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:109
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:40
+msgid "Data di inizio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:116
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:40
+msgid "Giorni in cui si effettua l'interrogazione:"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:122
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:41
+msgid "Numero di studenti interrogati per volta"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:183
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:44
+msgid "Lista creata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:190
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:43
+msgid "Alcuni dati non sono stati immessi!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:198
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
+msgid "Sei sicuro di voler eliminare la lista %s?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:199
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:45
+msgid ""
+"Non sar poi possibile ripristinarla! Perderai, inoltre, tutte le "
+"informazioni associate ad essa!<br>Sei sicuro di voler continuare?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:240
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:47
+msgid "Lista eliminata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:253
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:49
+msgid "Condividi la lista"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:254
+msgid ""
+"Il codice della lista  %code%.<br>Il seguente indirizzo pubblico, invece, "
+"indica l'indirizzo a cui  \r\n"
+"possibile visiualizzare la lista (<b>Attenzione! Chiunque possieda il link "
+"pu visualizzare le informazioni contenuti in essa!</b>): %link%"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:348
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:55
+msgid "Lista modificata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:358
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:374
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:56
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:57
+msgid "Aggiungi riga"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:359
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:459
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:56
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:64
+msgid "Dati riga: "
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:458
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:476
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:64
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:65
+msgid "Modifica riga"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:504
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:66
+msgid "Riga modificata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:514
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
+msgid "Elimina riga"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:515
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:67
+msgid ""
+"Sei davvero sicuro di voler eliminare la riga n. %number% (Studente %student"
+"%)"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.js:544
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:68
+msgid "Riga eliminata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/list.min.js:49
+msgid ""
+"Il codice della lista  %code%.<br>Il seguente indirizzo pubblico, invece, "
+"indica l'indirizzo a cui  \n"
+"possibile visiualizzare la lista (<b>Attenzione! Chiunque possieda il link "
+"pu visualizzare le informazioni contenuti in essa!</b>): %link%"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:8
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
+msgid "Vuoi cambiare la lingua preferita?"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:9
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
+msgid ""
+"La lingua scelta verr utilizzata per tutte le sessioni. Se invece vuoi "
+"utilizzare questa lingua solo in questa sessione (se navighi su altre pagine "
+"dovrai risceglierla ogni volta) premi No"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:22
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:10
+msgid "Lingua cambiata!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:23
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:11
+msgid "La pagina ora si aggiorner per rendere visibili le modifiche..."
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:53
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:13
+msgid "Gestisci il tuo account"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:60
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:13
+msgid "Informazioni su Interrogazioni Programmate"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:123
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:15
+msgid "di"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:128
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
+msgid "Interrogazioni Programmate  un software closed-source sviluppato da %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:130
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
+msgid "Librerie pi utilizzate: "
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:131
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
+msgid "Icone create da: %s"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:132
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:16
+msgid "Leggi le note di rilascio"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.js:132
+#: /home/maicol07/public_html/scheduledexams.tk/app/app/assets/js/navbar.min.js:17
+msgid "Community"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:111
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:117
+msgid "Si  verificato un errore inaspettato:"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:156
+msgid "meno di 1 secondo fa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:160
+msgid "anno"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:160
+msgid "anni"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:161
+msgid "mese"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:161
+msgid "mesi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:162
+msgid "giorno"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:162
+msgid "giorni"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:163
+msgid "ora"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:163
+msgid "ore"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:164
+msgid "minuto"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:164
+msgid "minuti"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:165
+msgid "secondo"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:165
+msgid "secondi"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:184
+msgid "circa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/app/Utils.php:184
+msgid "fa"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:87
+msgid "L'utente fa gi parte della classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:119
+msgid "Lo studente fa gi parte della classe"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:132
+msgid "Il nome inserito  identico a quello precedente!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Classroom.php:157
+msgid ""
+"Non  possibile scollegare/eliminare l'unico amministratore della classe!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:153
+msgid "Non  stato scelto nessuno studente!"
+msgstr ""
+
+#: /home/maicol07/public_html/scheduledexams.tk/app/src/Collection.php:175
+msgid "I dati inseriti sono identici a quelli precedenti!"
+msgstr ""
