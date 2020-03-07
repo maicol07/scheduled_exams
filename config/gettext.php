@@ -1,6 +1,10 @@
 <?php
-require_once "../dir.php";
-require_once "config.php";
+$docroot = '../';
+if (defined("DOCROOT")) {
+    $docroot = DOCROOT;
+}
+require_once $docroot . "/dir.php";
+require_once $docroot . "/config/config.php";
 require_once DOCROOT . "/config/class_loader.php";
 
 use Chirp\FileList;
