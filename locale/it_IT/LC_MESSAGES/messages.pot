@@ -62,7 +62,7 @@ msgstr ""
 
 #: /home/maicol07/public_html/scheduledexams.tk/app/changelog.php:64
 msgid ""
-"Struttura interna dell'App: sono state implementate le seguenti caratteristiche:\r\n"
+"Struttura interna dell'app: sono state implementate le seguenti caratteristiche:\r\n"
 "                - Classi;\r\n"
 "                - Struttura modulare;\r\n"
 "                - Composer per le librerie esterne;\r\n"

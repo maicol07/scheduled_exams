@@ -61,7 +61,7 @@ $changelog = [
             [
                 "type" => "improved",
                 "badge_text" => __("Migliorato"),
-                "text" => __("Struttura interna dell'App: sono state implementate le seguenti caratteristiche:
+                "text" => __("Struttura interna dell'app: sono state implementate le seguenti caratteristiche:
                 - Classi;
                 - Struttura modulare;
                 - Composer per le librerie esterne;
@@ -95,7 +95,6 @@ $changelog = [
 $parser = new Parsedown();
 ?>
 <!DOCTYPE html>
-<!-- Copyright 2017 maicol07. -->
 <html lang="<?php echo $lang ?>">
 <head>
     <title><?php echo __("Note di rilascio") . ' - ' . __("Maicol07 Account") ?></title>
