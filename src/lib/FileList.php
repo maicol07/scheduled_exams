@@ -28,7 +28,7 @@ class FileList
         $this->depth = $depth;
     }
 
-    public function scan($dir, $filter = null, $filter_opt = null, $depth = 0)
+    public function scan($dir, $depth = 0, $filter = null, $filter_opt = null)
     {
         if (!empty($filter) and is_array($filter_opt)) {
             $this->add_filter($filter, $filter_opt);

@@ -9,7 +9,7 @@ require_once DOCROOT . "/config/class_loader.php";
 
 use Chirp\FileList;
 use Gettext\Generator\JsonGenerator;
-use Gettext\Generator\PoGenerator;
+use Gettext\Generator\MoGenerator;
 use Gettext\GettextTranslator;
 use Gettext\Loader\PoLoader;
 use Gettext\Scanner\JsScanner;
@@ -46,8 +46,8 @@ if (!file_exists($locale_path)) {
             $f->recurse();
         }
 
-        $php_files = array_column($f->scan($path, 'ext', ['php']), 'pathname');
-        $js_files = array_column($f->scan($path, 'ext', ['js']), 'pathname');
+        $php_files = array_column($f->scan($path, 0, 'ext', ['php']), 'pathname');
+        $js_files = array_column($f->scan($path, 0, 'ext', ['js']), 'pathname');
 
         if (!empty($php_files)) {
             $php_scanner = new PhpScanner(Translations::create('messages'));
@@ -89,36 +89,9 @@ if (!file_exists($locale_path)) {
         }
         $messages->setDomain("messages");
         $messages->setLanguage("it_IT");
-        $generator = new PoGenerator();
-        $generator->generateFile($messages, $locale_path . "messages.pot");
-        foreach ($messages as $message) {
-            $message->translate($message->getOriginal());
-        }
-        $generator->generateFile($messages, $locale_path . "messages.gen.po");
     }
 }
 
-if (!file_exists($locale_path . "messages.json") or get("regenerate_tr") or get("regenerate_json")) {
-    /* Export translations in JSON for JS */
-    $f = new FileList();
-    $f->recurse();
-    $f->add_filter('ext', ['po']);
-    $files = array_column($f->scan(DOCROOT . '/locale'), 'pathname');
-    foreach ($files as $l) {
-        // Load the po file with the translations
-        $po = new PoLoader();
-        $tr = $po->loadFile($l);
-
-        // Export to a json file
-        $tr->setDomain("messages");
-        $tr->setLanguage("it_IT");
-        $json = new JsonGenerator();
-        if (!$json->generateFile($tr, str_replace(".gen.po", ".json", $l))) {
-            trigger_error("Impossibile salvare il file!", E_USER_WARNING);
-        };
-        unlink($l);
-    }
-}
 $t = new GettextTranslator();
 // Language detection
 if (get("lang")) {
@@ -130,8 +103,42 @@ if (get("lang")) {
 }
 $accepted_langs = array_map('basename', glob(DOCROOT . "/locale/*", GLOB_ONLYDIR));
 $lang = (in_array($lang, $accepted_langs) and strlen($lang) == 5) ? $lang : 'en_US';
+
+// MO and JSON Generation (if it doesn't exists)
+$path = DOCROOT . "/locale/" . $lang;
+if (!file_exists($path . '/LC_MESSAGES/messages.mo') or !file_exists($path . '/LC_MESSAGES/messages.json')) {
+    // Import translations
+    $loader = new PoLoader();
+    if (file_exists($path . '/LC_MESSAGES/messages.pot')) {
+        $ext = 'pot';
+    } else {
+        $ext = 'po';
+    }
+    $translations = $loader->loadFile($path . '/LC_MESSAGES/messages.' . $ext);
+
+    // Export to a .mo file:
+    $generator = new MoGenerator();
+    if (!$generator->generateFile($translations, $path . '/LC_MESSAGES/messages.mo')) {
+        trigger_error("Impossibile salvare il file!", E_USER_WARNING);
+    };
+
+    // Set translation equal to original for languages with a pot file
+    if ($ext == "pot") {
+        foreach ($translations as $translation) {
+            $translation->translate($translation->getOriginal());
+        }
+    }
+
+    // Export to a .json file
+    $json = new JsonGenerator();
+    if (!$json->generateFile($translations, $path . '/LC_MESSAGES/messages.json')) {
+        trigger_error("Impossibile salvare il file!", E_USER_WARNING);
+    };
+}
+
 // Set language and domain
-$t->loadDomain("messages", DOCROOT . "/locale");
+$t->setLanguage($lang);
+$t->loadDomain("messages", DOCROOT . '/locale');
 Gettext\TranslatorFunctions::register($t);
 $langs = [
     'it_IT' => [

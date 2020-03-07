@@ -2,7 +2,7 @@
  * Translation initialization
  */
 const Translator = window.translator.default;
-$.getJSON(ROOTDIR + '/locale/' + USER_LANG + '/messages.json', function (data) {
+$.getJSON(ROOTDIR + '/locale/' + USER_LANG + '/LC_MESSAGES/messages.json', function (data) {
     window.tr = new Translator(data);
 });
 var tr;
@@ -12,13 +12,15 @@ if (window.tr == null) {
     tr = window.tr;
 }
 
-adb_checker({
-    url: 'http://www.afreesms.com/adblock/disabling/', // Link to help users disable AdBlock
-    redirect: false, // True to redirect user to the above url
-    warning: {
-        text: tr.__("Si prega di disabilitare AdBlock (blocco della pubblicità)"), // Message to the users
-        button: tr.__("Aiutami a disattivarlo!")
-    }
+$(document).ready(() => {
+    adb_checker({
+        url: 'http://www.afreesms.com/adblock/disabling/', // Link to help users disable AdBlock
+        redirect: false, // True to redirect user to the above url
+        warning: {
+            text: tr.__("Si prega di disabilitare AdBlock (blocco della pubblicità)"), // Message to the users
+            button: tr.__("Aiutami a disattivarlo!")
+        }
+    })
 });
 
 
