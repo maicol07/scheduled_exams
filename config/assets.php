@@ -13,7 +13,6 @@ $css = [
     "style.css",
     // Material Design Outline Icons
     "mdi-outline/mdi-outline.css",
-    'adblock-checker.css'
 ];
 
 // JS files list
@@ -42,7 +41,6 @@ $js = [
     "modernizr.js",
     // Utils function
     "utils.js",
-    'adblock-checker.js',
     // Scripts
     "init.js",
     "navbar.js",
