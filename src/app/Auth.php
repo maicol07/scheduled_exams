@@ -32,39 +32,40 @@ class Auth
         $config = new Config(DOCROOT . '/config/config.ini');
         $broker = new Broker($config->get('sso', 'broker_id'), $config->get('sso', 'server_url'), $config->get('sso', 'broker_secret'));
         $jwt_cookie = new Cookie($config->get('sso', 'cookie_name'));
-        if (!Cookie::exists($config->get('sso', 'cookie_name')) and empty($noauth)) {
-            $this->user = $broker->login();
-            $jwt_cookie->setValue(serialize($this->user));
-            if (!$jwt_cookie->save()) {
-                captureMessage("JWT cookie save failed for user {$this->user->user_login}");
+        if (!Cookie::exists($config->get('sso', 'cookie_name'))) {
+            if (empty($noauth)) {
+                $this->user = $broker->login();
+                $jwt_cookie->setValue(serialize($this->user));
+                if (!$jwt_cookie->save()) {
+                    captureMessage("JWT cookie save failed for user {$this->user->user_login}");
+                }
+                $this->logged = true;
             }
-            $this->logged = true;
         } else {
             $this->user = unserialize(Cookie::get($config->get('sso', 'cookie_name')));
             $this->logged = true;
         }
 
         $this->db = $db;
-        if (!Session::has('user_id') and empty($noauth)) {
-            if (!empty($renew = $broker->needsRefresh($this->user))) {
-                $this->user = $renew;
-                Session::set($config->get('sso', 'cookie_name'), serialize($this->user));
+        if (!Session::has('user_id')) {
+            if ($this->logged or empty($noauth)) {
+                if (!empty($renew = $broker->needsRefresh($this->user))) {
+                    $this->user = $renew;
+                    Session::set($config->get('sso', 'cookie_name'), serialize($this->user));
+                }
+                if (!$this->db->has("users", ['username' => $this->getUsername()])) {
+                    $this->db->insert("users", [
+                        'username' => $this->getUsername(),
+                        'locale' => $this->getLanguage()
+                    ]);
+                    $this->id = $this->db->id();
+                } else {
+                    $this->id = $this->db->get("users", "id [Int]", ['username' => $this->getUsername()]);
+                }
+                Session::set('user_id', $this->id);
             }
-            if (!$this->db->has("users", ['username' => $this->getUsername()])) {
-                $this->db->insert("users", [
-                    'username' => $this->getUsername(),
-                    'locale' => $this->getLanguage()
-                ]);
-                $this->id = $this->db->id();
-            } else {
-                $this->id = $this->db->get("users", "id [Int]", ['username' => $this->getUsername()]);
-            }
-            Session::set('user_id', $this->id);
         } else {
             $this->id = Session::get('user_id');
-        }
-        if (!empty($noauth)) {
-            $this->logged = false;
         }
     }
 
