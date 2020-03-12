@@ -156,14 +156,13 @@ h1, h2, h3, h4, h5, h6, .mdc-typography--headline1, .mdc-typography--headline2, 
 ------------------------------------------*/
 .mdc-fab--bottom {
     position: fixed;
-    bottom: 1rem;
+    bottom: 3rem;
     right: 1rem;
     z-index: 1;
 }
 
 @media (min-width: 1024px) {
     .mdc-fab--bottom {
-        bottom: 3rem;
         right: 1.5rem;
     }
 }
@@ -404,8 +403,3 @@ footer > div {
     padding-left: 20px;
     color: var(--mdc-theme-text-primary-on-light, #5f6368) !important;
 }
-
-.mdc-drawer:not(.mdc-drawer--open) + #footer_hide {
-    right: 1em !important;
-}
-

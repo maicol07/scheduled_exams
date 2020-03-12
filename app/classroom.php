@@ -23,10 +23,15 @@ require_once DOCROOT . "/app/layout/top.php";
 $classroom = new Classroom($db, $user, null, get('view'));
 ?>
 <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
-    <button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createList()">
+    <button class="mdc-fab mdc-fab--bottom <?php echo !$detector->isMobile() ? 'mdc-fab--extended' : '" aria-label="' . __("Crea lista") ?>"
+            onclick="createClassroom()">
         <div class="mdc-fab__ripple"></div>
         <i class="mdi-outline-add mdc-fab__icon"></i>
-        <span class="mdc-fab__label"><?php echo __("Crea lista") ?></span>
+        <?php
+        if (!$detector->isMobile()) {
+            echo '<span class="mdc-fab__label">' . __("Crea lista") . '</span>';
+        }
+        ?>
     </button>
 <?php } ?>
 <div class="mdc-layout-grid">

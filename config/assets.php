@@ -44,5 +44,4 @@ $js = [
     // Scripts
     "init.js",
     "navbar.js",
-    "footer.js"
 ];

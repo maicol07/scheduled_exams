@@ -1,6 +1,6 @@
-/*
- * Translation initialization
- */
+/*----------------------------------------
+    Gettext Translator
+------------------------------------------*/
 const Translator = window.translator.default;
 $.getJSON(ROOTDIR + '/locale/' + USER_LANG + '/LC_MESSAGES/messages.json', function (data) {
     window.tr = new Translator(data);
@@ -52,11 +52,8 @@ window.data_tables = {};
 // Auto init
 mdc.autoInit();
 
-/*
- * Drawer
- */
-
-// Select DOM elements
+/*    MDC Drawer
+------------------------------------------*/
 
 const topAppBarElement = $('.mdc-top-app-bar')[0];
 const drawerElement = $('.mdc-drawer')[0];
@@ -106,6 +103,32 @@ const resizeHandler = () => {
     }
 };
 $(window).resize(resizeHandler);
+
+/*    Footer
+------------------------------------------*/
+function showFooter(btn) {
+    $('#info_links').slideDown();
+    $(btn).hide();
+    $("#footer_hide").show()
+}
+
+function hideFooter(btn) {
+    $('#info_links').slideUp();
+    $(this).hide();
+    $("#footer_show").show()
+}
+
+if (!drawer.open) {
+    $("#footer_show, #footer_hide").css('right', '1em')
+}
+$('body').on('MDCDrawer:closed', () => {
+    $("#footer_show, #footer_hide").css('right', '1em')
+}).on('MDCDrawer:opened', () => {
+    $("#footer_show, #footer_hide").css('right', '256px')
+});
+
+/*    MDC Inits
+------------------------------------------*/
 
 // MDC Menu initialization
 $('.mdc-menu').each((index, element) => {
@@ -236,7 +259,9 @@ initDataTables(true);
 // INPUTS
 initInput();
 
-// Swal2
+/*----------------------------------------
+    SweetAlert2
+------------------------------------------*/
 
 /**
  * Intialize Swal2 MDC Button
@@ -443,6 +468,9 @@ const Toast = Swal.mixin({
     }
 });
 
+/*----------------------------------------
+    Custom functions
+------------------------------------------*/
 
 /**
  * Get the value of the parameter specified from a GET request

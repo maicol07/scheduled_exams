@@ -7,10 +7,15 @@ require_once __DIR__ . "/../core.php";
 $title = __("Dashboard");
 require_once DOCROOT . "/app/layout/top.php";
 ?>
-<button class="mdc-fab mdc-fab--extended mdc-fab--bottom" onclick="createClassroom()">
+<button class="mdc-fab mdc-fab--bottom <?php echo !$detector->isMobile() ? 'mdc-fab--extended' : '" aria-label="' . __("Crea classe") ?>"
+        onclick="createClassroom()">
     <div class="mdc-fab__ripple"></div>
     <i class="mdi-outline-add mdc-fab__icon"></i>
-    <span class="mdc-fab__label"><?php echo __("Crea classe") ?></span>
+    <?php
+    if (!$detector->isMobile()) {
+        echo '<span class="mdc-fab__label">' . __("Crea classe") . '</span>';
+    }
+    ?>
 </button>
 <?php
 if (!empty($classrooms)) {

@@ -7,7 +7,7 @@ use App\Utils;
 </main>
 <!-- START FOOTER -->
 <footer>
-    <div id="info_links">
+    <div id="info_links" style="display: none">
         <button id="footer_hide" class="mdc-icon-button" style="position: absolute; right: 256px;"
                 onclick="hideFooter(this)">
             <i class="mdc-icon-button__icon mdi-outline-keyboard_arrow_down"></i>
@@ -68,7 +68,7 @@ use App\Utils;
     </div>
     <div id="copyright_footer">
         <button id="footer_show" class="mdc-icon-button"
-                style="display: none; position: absolute; right: 256px; scale: 0.75; bottom: -15px;"
+                style="position: absolute; right: 256px; scale: 0.75; bottom: -15px;"
                 onclick="showFooter(this)">
             <i class="mdc-icon-button__icon mdi-outline-keyboard_arrow_up"></i>
         </button>
