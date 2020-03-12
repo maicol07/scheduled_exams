@@ -7,6 +7,7 @@ require_once $docroot . "/dir.php";
 require_once $docroot . "/config/config.php";
 require_once DOCROOT . "/config/class_loader.php";
 
+use App\Utils;
 use Chirp\FileList;
 use Gettext\Generator\JsonGenerator;
 use Gettext\Generator\MoGenerator;
@@ -94,15 +95,16 @@ if (!file_exists($locale_path)) {
 
 $t = new GettextTranslator();
 // Language detection
+$lang = null;
 if (get("lang")) {
     $lang = get("lang"); // URL parameter
-} elseif (isset($user) and $user->isAuthenticated()) {
+} elseif ($user->isAuthenticated()) {
     $lang = $user->getLanguage(); // User preferred language
-} else {
-    $lang = (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : "en_US"; // Browser detection
 }
 $accepted_langs = array_map('basename', glob(DOCROOT . "/locale/*", GLOB_ONLYDIR));
-$lang = (in_array($lang, $accepted_langs) and strlen($lang) == 5) ? $lang : 'en_US';
+if (empty($lang) or strlen($lang) != 5 or !in_array($lang, $accepted_langs)) {
+    $lang = Utils::getBrowserLanguage($accepted_langs, 'en_US'); // Browser detection
+}
 
 // MO and JSON Generation (if it doesn't exists)
 $path = DOCROOT . "/locale/" . $lang;

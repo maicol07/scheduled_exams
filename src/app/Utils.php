@@ -95,9 +95,9 @@ class Utils
     {
         $mail = new PHPMailer(TRUE);
         try {
-            $mail->setFrom('noreply@account.maicol07.it', __("Maicol07 Account"));
+            $mail->setFrom('noreply@scheduledexams.tk', __("Scheduled Exams"));
             $mail->addAddress($recipient_email, $recipient_name);
-            $mail->Subject = "$subject - " . __("Maicol07 Account");
+            $mail->Subject = "$subject - " . __("Scheduled Exams");
             !$html ?: $mail->isHTML();
             $mail->Body = $body;
             $mail->send();
@@ -117,6 +117,37 @@ class Utils
                 "error" => __("Si è verificato un errore inaspettato:") . $e->getMessage()
             ];
         }
+    }
+
+    /**
+     * Get browser language, given an array of avalaible languages.
+     * Credits to Luca Rosaldi for the base function: https://gist.github.com/LucaRosaldi/5676962
+     *
+     * @param array $available Avalaible languages for the site
+     * @param string $default Default language for the site
+     * @return string   Language code/prefix
+     */
+    public static function getBrowserLanguage($available = [], $default = 'en_US')
+    {
+        if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            $index = count($langs) - 1;
+            $langs[$index] = substr($langs[$index], 0, strpos($langs[$index], ";"));
+            if (empty($available)) {
+                return $langs[0];
+            }
+            foreach ($langs as $lang) {
+                if (strlen($lang) == 2) {
+                    $lang .= '_' . strtoupper($lang);
+                } elseif (strpos($lang, "-")) {
+                    $lang = str_replace("-", "_", $lang);
+                }
+                if (in_array($lang, $available)) {
+                    return $lang;
+                }
+            }
+        }
+        return $default;
     }
 
     /**
