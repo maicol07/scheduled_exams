@@ -24,7 +24,7 @@ $classroom = new Classroom($db, $user, null, get('view'));
 ?>
 <?php if (in_array($user->getId(), json_decode($classroom->admins))) { ?>
     <button class="mdc-fab mdc-fab--bottom <?php echo !$detector->isMobile() ? 'mdc-fab--extended' : '" aria-label="' . __("Crea lista") ?>"
-            onclick="createClassroom()">
+            onclick="createList()">
         <div class="mdc-fab__ripple"></div>
         <i class="mdi-outline-add mdc-fab__icon"></i>
         <?php
