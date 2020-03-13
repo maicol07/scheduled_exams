@@ -5,8 +5,9 @@ const CLASSROOM_CODE = get('view');
  * Add classroom to classrooms grid list in Dashboard
  *
  * @param data {Object}
+ * @param mode {string}
  */
-function addClassroomToGrid(data) {
+function addClassroomToGrid(data, mode = "add") {
     var inner;
     var grid = $('.mdc-layout-grid__inner');
     var no_classrooms_div = $('#noclassrooms');
@@ -23,9 +24,11 @@ function addClassroomToGrid(data) {
     inner.append(`
     <div class="mdc-card" style="display: none">
         <div class="mdc-card__primary-action" tabindex="0" onclick="window.location.href = BASEURL + '/app/classroom?view=${data.code}'">
+            ${!empty(data.image) ? `<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(&quot;${data.image}&quot;);"></div>` : ''}
             <div class="mdc-card__primary">
                 <h2 class="mdc-typography--headline6">${data.name}</h2>
             </div>
+            ${!empty(data.description) ? `<div class="mdc-card__secondary mdc-typography--body2">${data.description}<br></div>` : ''}
         </div>
         <div class="mdc-card__actions">
             <div class="mdc-card__action-buttons">
@@ -41,9 +44,11 @@ function addClassroomToGrid(data) {
                   <i class="mdi-outline-share mdc-button__icon"></i>
                 </button>
                 <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                        title="${tr.__("Elimina")}"
+                        ${mode === "add" ? `title="${tr.__("Elimina")}"
                         onclick="deleteClassroom(${data.id}, '${data.name}')">
-                  <i class="mdi-outline-delete mdc-button__icon"></i>
+                  <i class="mdi-outline-delete mdc-button__icon"></i>` : `title="${tr.__("Abbandona")}"
+                        onclick="leaveClassroom(${data.id}, '${data.name}')">
+                  <i class="mdi-outline-exit_to_app mdc-button__icon"></i>`}
                 </button>
             </div>
         </div>
@@ -140,7 +145,7 @@ classe!<br>Sei sicuro di voler continuare?`),
                     }
                 });
 
-                var ls_classroom = $(`#ls_classroom_${data.code}`);
+                var ls_classroom = $(`#ls_classroom_${data.code}, #divider_${data.code}, #left_sidebar_lists_${data.code}`);
                 ls_classroom.fadeOut(1000, () => {
                     ls_classroom.remove()
                 });
@@ -181,7 +186,7 @@ $('#join_classroom').submit((event) => {
         action: "join_classroom",
         code: $("#classroom_join_code").val()
     }, (data) => {
-        addClassroomToGrid(data);
+        addClassroomToGrid(data, 'join');
         Toast.fire({
             title: tr.__("Ti sei unito alla classe %s", data.name),
             icon: "success"
@@ -611,31 +616,37 @@ function leaveClassroom(id, name) {
                 id: id
             }, (data) => {
                 var div = $(`#classroom_${data.code}`);
-                if (div) {
-                    div.fadeOut(1000, () => {
-                        div.remove()
-                    });
-                }
+                div.fadeOut(1000, () => {
+                    div.remove();
+                    if (!$('.mdc-layout-grid__cell').length) {
+                        var grid = $('.mdc-layout-grid');
+                        grid.before(`<div id="noclassrooms" style="text-align: center; display:none" xmlns="http://www.w3.org/1999/html">
+                            <img src="${ROOTDIR}/app/assets/img/undraw/no_data.svg" alt="${tr.__("Nessuna classe")}"
+                            style="width: 500px; margin-bottom: 20px"><br>
+                            <span class="mdc-typography--headline5">${tr.__("Nessuna classe")}</span><br>
+                            <span>${tr.__("Puoi aggiungere nuove classi dal pulsante in basso a destra oppure")}</span>
+                        </div>`);
+                        var no_classrooms = $("#noclassrooms");
+                        no_classrooms.fadeIn(1000);
+                        no_classrooms.prev('h3').fadeOut(1000, () => {
+                            no_classrooms.prev('h3').remove()
+                        });
+                        grid.fadeOut(1000, () => {
+                            grid.remove()
+                        })
+                    }
+                });
 
-                var ls_classroom = $(`#ls_classroom_${data.code}`);
+                var ls_classroom = $(`#ls_classroom_${data.code}, #divider_${data.code}, #left_sidebar_lists_${data.code}`);
                 ls_classroom.fadeOut(1000, () => {
                     ls_classroom.remove()
                 });
-
-                if (!$('.mdc-layout-grid__cell').length) {
-                    $('.mdc-layout-grid').before(`<div id="noclassrooms" style="text-align: center" xmlns="http://www.w3.org/1999/html">
-                    <img src="/app/assets/img/undraw/no_data.svg" alt="${tr.__("Nessuna classe")}"
-                    style="width: 500px; margin-bottom: 20px"><br>
-                    <span class="mdc-typography--headline5">${tr.__("Nessuna classe")}</span><br>
-                    <span>${tr.__("Puoi aggiungere nuove classi dal pulsante in basso a destra oppure")}</span>
-                </div>`)
-                }
 
                 Toast.fire({
                     title: tr.__("Classe abbandonata!"),
                     icon: "success"
                 });
-                if (CLASSROOM_CODE) {
+                if (!empty(typeof CLASSROOM_CODE) && !empty(CLASSROOM_CODE)) {
                     window.location.replace(BASEURL + '/app/')
                 }
             })

@@ -219,7 +219,13 @@ class Classroom
             $query = $this->db->update("classrooms", $attr, ['id' => $this->id]);
         }
         if (($method == "insert" and $query->rowCount()) or ($method == "update" and $query)) {
-            return new Result(['code' => $this->code, 'id' => $this->id, 'name' => $this->name]);
+            return new Result([
+                'code' => $this->code,
+                'id' => $this->id,
+                'name' => $this->name,
+                'image' => $this->image,
+                'description' => $this->description
+            ]);
         } else {
             return new Result(null, $query->errorCode(), $query->errorInfo()[2]);
         }

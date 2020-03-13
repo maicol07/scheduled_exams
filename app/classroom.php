@@ -148,6 +148,12 @@ $classroom = new Classroom($db, $user, null, get('view'));
                                 onclick="deleteClassroom(' . (string)$classroom->id . ', \'' . $classroom->name . '\')">
                             <i class="mdc-button__icon mdi-outline-delete"></i>
                         </button>';
+                        } else {
+                            echo '<button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                                title="' . __("Abbandona") . '"
+                                onclick="leaveClassroom(' . (string)$classroom->id . ', \'' . $classroom->name . '\')">
+                            <i class="mdc-button__icon mdi-outline-exit_to_app"></i>
+                        </button>';
                         }
                         ?>
                     </div>

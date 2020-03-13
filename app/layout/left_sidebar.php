@@ -32,9 +32,9 @@
                           </a>';
                     $lists = $list_obj->getLists($classroom->id);
                     if (!empty($lists)) {
-                        echo '<hr class="mdc-list-divider mdc-menu-classroom-list">
+                        echo '<hr class="mdc-list-divider mdc-menu-classroom-list" id="divider_' . $classroom->code . '">
             <h6 class="mdc-list-group__subheader mdc-typography--subtitle1 mdc-menu-classroom-list">' . __("Liste") . '</h6>
-            <div id="left_sidebar_lists">';
+            <div id="left_sidebar_lists_' . $classroom->code . '">';
                         foreach ($lists as $list) {
                             $list = (object)$list;
                             echo '<a id="ls_list_' . $list->code . '" class="mdc-menu-classroom-list mdc-list-item ' . (($current_page == "list" and get('view') == $list->code) ?
