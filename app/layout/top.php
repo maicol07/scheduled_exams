@@ -43,7 +43,7 @@ use App\Utils;
     }
 
     $analytics_monitoring_code = $config->get('analytics', 'monitoring_code');
-    if (!empty($analytics_monitoring_code)) {
+    if (!empty($analytics_monitoring_code) and empty($user->adsPurchased())) {
         echo '<!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=' . $analytics_monitoring_code . '"></script>
             <script>

@@ -137,4 +137,9 @@ class Auth
             return new Result(null, $update->errorCode(), $update->errorInfo());
         }
     }
+
+    public function adsPurchased()
+    {
+        return $this->db->get('users', 'ads_purchased [Bool]', ['id' => $this->id]);
+    }
 }
