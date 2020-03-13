@@ -95,9 +95,9 @@ class Utils
     {
         $mail = new PHPMailer(TRUE);
         try {
-            $mail->setFrom('noreply@scheduledexams.tk', __("Scheduled Exams"));
+            $mail->setFrom('noreply@scheduledexams.tk', __("Interrogazioni Programmate"));
             $mail->addAddress($recipient_email, $recipient_name);
-            $mail->Subject = "$subject - " . __("Scheduled Exams");
+            $mail->Subject = "$subject - " . __("Interrogazioni Programmate");
             !$html ?: $mail->isHTML();
             $mail->Body = $body;
             $mail->send();

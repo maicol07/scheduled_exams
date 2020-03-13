@@ -11,6 +11,7 @@ use App\Utils;
 use Chirp\FileList;
 use Gettext\Generator\JsonGenerator;
 use Gettext\Generator\MoGenerator;
+use Gettext\Generator\PoGenerator;
 use Gettext\GettextTranslator;
 use Gettext\Loader\PoLoader;
 use Gettext\Scanner\JsScanner;
@@ -65,11 +66,11 @@ if (!file_exists($locale_path)) {
             }
         }
 
-
         if (!file_exists($locale_path . "messages.pot")) {
             file_put_contents($locale_path . 'messages.pot', ''); // File creation
         }
 
+        /* PO and POT files generation */
         $po = new PoLoader();
         $messages = $po->loadFile($locale_path . "messages.pot");
 
@@ -90,6 +91,15 @@ if (!file_exists($locale_path)) {
         }
         $messages->setDomain("messages");
         $messages->setLanguage("it_IT");
+
+        $generator = new PoGenerator();
+        $generator->generateFile($messages, $locale_path . "messages.pot");
+
+        foreach ($messages as $message) {
+            $message->translate($message->getOriginal());
+        }
+        $generator->generateFile($messages, $locale_path . "messages.po");
+
     }
 }
 

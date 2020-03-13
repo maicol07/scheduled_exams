@@ -357,7 +357,7 @@ async function addRow(table = $('table#list_table')) {
     const {value: new_row_data} = await Swal_md.fire({
         title: tr.__("Aggiungi riga"),
         html: `${tr.__("Dati riga: ")}<br><br>
-        <div class="mdc-layout-grid" style="display: flex">
+        <div class="mdc-layout-grid" style="${!$.browser.mobile ? 'display: flex' : ''}">
             <div class="mdc-layout-grid__inner" style="flex: 1">
             ${renderOutlinedSelect("new_row_student", tr.__("Studente"), {
             values: await getStudents(true),
@@ -368,7 +368,7 @@ async function addRow(table = $('table#list_table')) {
             ${renderOutlinedInput("new_row_date", tr.__("Data"), {
             type: "date",
             icon: "mdi-outline-today",
-            width: "auto"
+            width: "max-content"
         })}</div></div>`,
         imageUrl: ROOTDIR + "/app/assets/img/add_row.svg",
         imageAlt: tr.__("Aggiungi riga"),
@@ -457,7 +457,7 @@ async function editRow(row_id) {
     const {value: row_data} = await Swal_md.fire({
         title: tr.__("Modifica riga"),
         html: `${tr.__("Dati riga: ")}<br><br>
-        <div class="mdc-layout-grid" style="display: flex">
+        <div class="mdc-layout-grid" style="${!$.browser.mobile ? 'display: flex' : ''}">
             <div class="mdc-layout-grid__inner" style="flex: 1">
             ${renderOutlinedSelect("row_student", tr.__("Studente"), {
             values: students,
@@ -470,7 +470,7 @@ async function editRow(row_id) {
             type: "date",
             value: date,
             icon: "mdi-outline-today",
-            width: "auto"
+            width: "max-content"
         })}</div></div>`,
         imageUrl: ROOTDIR + "/app/assets/img/edit_row.svg",
         imageAlt: tr.__("Modifica riga"),
