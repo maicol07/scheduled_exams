@@ -20,7 +20,7 @@ function langNotice(lang) {
             }, (data) => {
                 Swal.fire({
                     title: tr.__("Lingua cambiata!"),
-                    text: tr.__("La pagina ora si aggiornerà per rendere visibili le modifiche..."),
+                    text: tr.__("La pagina ora si aggiornerà per rendere visibili le modifiche…"),
                     icon: "success"
                 });
                 Swal.showLoading();

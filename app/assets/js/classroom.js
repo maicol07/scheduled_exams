@@ -223,7 +223,7 @@ ${student.admin ? `title="${tr.__("Revoca permessi di amministratore")}" onclick
                     </button>
                     <button class="mdc-icon-button" title="${tr.__("Scollega da questo utente")}" onclick="unlinkStudent(${student.id}, '${student.name}')">
                         <i class="mdc-button__icon mdi-outline-link_off"></i>
-                    </button>` : `<button class="mdc-icon-button" title="${tr.__("Collega ad un utente...")}" onclick="linkStudent(${student.id}, '${student.name}')">
+                    </button>` : `<button class="mdc-icon-button" title="${tr.__("Collega ad un utente…")}" onclick="linkStudent(${student.id}, '${student.name}')">
                                     <i class="mdc-button__icon mdi-outline-link"></i>
                                 </button>`;
                 html += `

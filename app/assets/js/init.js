@@ -504,7 +504,7 @@ class XHR {
         url = ROOTDIR + '/app/actions',
         error = function (jqxhr, status, error) {
             Swal_md.fire({
-                title: tr.__("Ooops... qualcosa è andato storto!"),
+                title: tr.__("Ooops… qualcosa è andato storto!"),
                 html: `${tr.__("Si è verificato un errore!")}<br><br><b>${error}</b>`,
                 icon: "error"
             })
