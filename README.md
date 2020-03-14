@@ -10,7 +10,7 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![weblate](https://translate.maicol07.it/widgets/scheduled-exams/-/webapp/svg-badge.svg)](https://translate.maicol07.it/engage/scheduled-exams/?utm_source=widget)
+[![Stato traduzione](https://translate.maicol07.it/widgets/scheduled-exams/-/webapp/svg-badge.svg)](https://translate.maicol07.it/engage/scheduled-exams/?utm_source=widget)
 
 Scheduled Exams is a webapp that helps you in exams management.
 
