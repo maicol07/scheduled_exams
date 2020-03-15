@@ -3,6 +3,7 @@
  * Copyright (c) 2019.  Maicol07 - Tutti i diritti riservati - All rights reserved
  * Original layout by Kodular (kodular.io)
  */
+$noauth = true;
 
 use App\Utils;
 
