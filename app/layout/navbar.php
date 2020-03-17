@@ -39,15 +39,19 @@ use Gravatar\Gravatar;
             $gravatar = new Gravatar();
             if ($user->isAuthenticated()) {
                 $user_img = $gravatar->avatar($user->getEmail());
+                $user_name = $user->getName();
+                $user_email = $user->getEmail();
             } else {
                 $user_img = $gravatar->avatar('sample@example.com');
+                $user_name = __("Visitatore");
+                $user_email = __("Nessuna email");
             }
             ?>
             <div class="mdc-top-app-bar__action-item">
                 <button class="mdc-icon-button" aria-label="<?php echo __("Il tuo profilo") ?>" id="user_btn"
-                        data-user-img="<?php echo $user_img ?>" data-user-name="<?php echo $user->getName() ?>"
-                        data-user-email="<?php echo $user->getEmail() ?>">
-                    <img src="<?php echo $user_img ?>" alt="<?php echo $user->getName() ?>" style="border-radius: 50%">
+                        data-user-img="<?php echo $user_img ?>" data-user-name="<?php echo $user_name ?>"
+                        data-user-email="<?php echo $user_email ?>">
+                    <img src="<?php echo $user_img ?>" alt="<?php echo $user_name ?>" style="border-radius: 50%">
                 </button>
             </div>
         </section>
