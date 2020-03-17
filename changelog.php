@@ -11,8 +11,18 @@ require_once 'core.php';
 require_once DOCROOT . '/vendor/erusev/parsedown/Parsedown.php';
 
 $changelog = [
+    "1.0.1 - Apatite" => [
+        "date" => "2020-03-21",
+        "features" => [
+            [
+                "type" => "fixed",
+                "badge_text" => __("Risolto"),
+                "text" => __("Errore quando si visita la pagina 404 da visitatore (senza aver effettuato l'accesso)")
+            ]
+        ]
+    ],
     "1.0 - Apatite" => [
-        "date" => "2020-XX-XX",
+        "date" => "2020-03-15",
         "features" => [
             [
                 "type" => "new",
