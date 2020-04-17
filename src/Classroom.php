@@ -148,8 +148,8 @@ class Classroom
                 break;
             case 'new_admin':
                 $admins = json_decode($this->admins);
-                $admins[] = $students[$student_id]['user_id'];
-                $this->admins = json_encode($this->admins);
+                $admins[] = (int)$students[$student_id]['user_id'];
+                $this->admins = json_encode($admins);
                 break;
             case 'revoke_admin':
                 $admins = json_decode($this->admins);
@@ -183,7 +183,7 @@ class Classroom
 
     public function addAdmin($student)
     {
-        return $this->manageStudent($student, "add_admin");
+        return $this->manageStudent($student, "new_admin");
     }
 
     public function revokeAdmin($student)
