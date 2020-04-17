@@ -11,6 +11,21 @@ require_once 'core.php';
 require_once DOCROOT . '/vendor/erusev/parsedown/Parsedown.php';
 
 $changelog = [
+    "1.0.2 - Apatite" => [
+        "date" => "2020-04-17",
+        "features" => [
+            [
+                "type" => "improved",
+                "badge_text" => __("Migliorato"),
+                "text" => __("Migliorata l'internazionalizzazione")
+            ],
+            [
+                "type" => "fixed",
+                "badge_text" => __("Risolto"),
+                "text" => __("Impossibile rendere amministratore uno studente/utente")
+            ]
+        ]
+    ],
     "1.0.1 - Apatite" => [
         "date" => "2020-03-21",
         "features" => [
