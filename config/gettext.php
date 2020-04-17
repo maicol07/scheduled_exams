@@ -118,7 +118,7 @@ if (empty($lang) or strlen($lang) != 5 or !in_array($lang, $accepted_langs)) {
 
 // MO and JSON Generation (if it doesn't exists)
 $path = DOCROOT . "/locale/" . $lang;
-if (!file_exists($path . '/LC_MESSAGES/messages.mo') or !file_exists($path . '/LC_MESSAGES/messages.json')) {
+if (!file_exists($path . '/LC_MESSAGES/messages.mo')) {
     // Import translations
     $loader = new PoLoader();
     if (file_exists($path . '/LC_MESSAGES/messages.pot')) {
@@ -133,6 +133,19 @@ if (!file_exists($path . '/LC_MESSAGES/messages.mo') or !file_exists($path . '/L
     if (!$generator->generateFile($translations, $path . '/LC_MESSAGES/messages.mo')) {
         trigger_error("Impossibile salvare il file!", E_USER_WARNING);
     };
+}
+if (!file_exists($path . '/LC_MESSAGES/messages.json')) {
+    // Check if translations were already loaded for MO generation
+    if (empty($translations)) {
+        // Import translations
+        $loader = new PoLoader();
+        if (file_exists($path . '/LC_MESSAGES/messages.pot')) {
+            $ext = 'pot';
+        } else {
+            $ext = 'po';
+        }
+        $translations = $loader->loadFile($path . '/LC_MESSAGES/messages.' . $ext);
+    }
 
     // Set translation equal to original for languages with a pot file
     if ($ext == "pot") {
