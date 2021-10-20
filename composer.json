@@ -1,61 +1,64 @@
 {
-  "authors": [
-    {
-      "email": "maicolbattistini@live.it",
-      "name": "Maicol"
-    }
-  ],
-  "autoload": {
-    "files": [
-      "src/lib/FileList.php"
+    "name": "maicol07/scheduledexams",
+    "type": "project",
+    "description": "Scheduled Exams",
+    "keywords": [
+        "scheduled",
+        "exams"
     ],
-    "psr-4": {
-      "src\\": "src/",
-      "App\\": "src/app/"
-    }
-  },
-  "config": {
-    "foxy": {
-      "manager": "yarn"
-    }
-  },
-  "description": "Scheduled Exams",
-  "license": "proprietary",
-  "minimum-stability": "stable",
-  "name": "maicol07/scheduled_exams",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/maicol07/Assets"
-    }
-  ],
-  "require": {
-    "catfan/medoo": "^1.7",
-    "cloudinary/cloudinary_php": "^1.16",
-    "delight-im/cookie": "^3.1",
-    "erusev/parsedown": "^1.7",
-    "ext-curl": "*",
-    "ext-fileinfo": "*",
-    "ext-iconv": "*",
-    "ext-intl": "*",
-    "ext-json": "*",
-    "filp/whoops": "^2.5",
-    "foxy/foxy": "^1.0",
-    "gettext/gettext": "^5.0",
-    "gettext/js-scanner": "^1.0",
-    "gettext/json": "^1.0",
-    "gettext/php-scanner": "^1.0",
-    "gettext/translator": "^1.0",
-    "gravatarphp/gravatar": "^2.0",
-    "lindelius/php-jwt": "^0.8.1",
-    "maximebf/debugbar": "^1.16",
-    "php-curl-class/php-curl-class": "^8.6",
-    "phpmailer/phpmailer": "^6.1",
-    "sentry/sdk": "^2.0",
-    "stolz/assets": "dev-master",
-    "mobiledetect/mobiledetectlib": "^2.8",
-    "mpdf/mpdf": "^8.0",
-    "monolog/monolog": "^2.0",
-    "matomo/ini": "^2.0"
-  }
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "inertiajs/inertia-laravel": "^0.4.4",
+        "innocenzi/laravel-vite": "^0.1.17",
+        "laravel/framework": "^8.54",
+        "laravel/sanctum": "^2.11",
+        "laravel/tinker": "^2.5"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "facade/ignition": "^2.5",
+        "nunomaduro/collision": "^5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
