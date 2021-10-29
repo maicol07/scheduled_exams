@@ -2,7 +2,7 @@ import {Drawer as MWCDrawer} from '@material/mwc-drawer';
 import {css} from 'lit';
 
 export default class MaterialDrawer extends MWCDrawer {
-    static styles = [MWCDrawer.styles, css`
+  static styles = [MWCDrawer.styles, css`
     :first-child {
       border-right: none;
     }

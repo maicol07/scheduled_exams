@@ -1,12 +1,12 @@
 import type {Cash} from 'cash-dom/dist/cash';
 import classnames, {Argument as ClassNames} from 'classnames';
 import collect, {Collection} from 'collect.js';
-import m, {Children, ClassComponent, Vnode, VnodeDOM} from 'mithril';
+import m, {type Children, type ClassComponent, type Vnode, type VnodeDOM} from 'mithril';
 
 interface Attributes extends Collection {
-    addClassNames(...classNames: ClassNames[]): void,
+  addClassNames(...classNames: ClassNames[]): void,
 
-    addStyles(...styles: string[]): void
+  addStyles(...styles: string[]): void
 }
 
 // eslint-disable-next-line no-secrets/no-secrets
@@ -42,143 +42,138 @@ interface Attributes extends Collection {
  * @see https://js.org/components.html
  */
 export default class Component implements ClassComponent {
-    /**
-     * The root DOM element for the component.
-     *
-     * @protected
-     */
-    element: Element;
+  /**
+   * The root DOM element for the component.
+   *
+   * @protected
+   */
+  element: Element;
 
-    /**
-     * The attributes passed into the component. They are transformed into a collection by initAttrs.
-     *
-     * @method <string> addClassNames()
-     *
-     * @see https://js.org/components.html#passing-data-to-components
-     * @see initAttrs
-     *
-     * @protected
-     */
-    attrs: Attributes;
+  /**
+   * The attributes passed into the component. They are transformed into a collection by initAttrs.
+   *
+   * @method <string> addClassNames()
+   *
+   * @see https://js.org/components.html#passing-data-to-components
+   * @see initAttrs
+   *
+   * @protected
+   */
+  attrs: Attributes;
 
-    /**
-     * Convenience method to attach a component without JSX.
-     * Has the same effect as calling `m(THIS_CLASS, attrs, children)`.
-     *
-     * @see https://js.org/hyperscript.html#mselector,-attributes,-children
-     */
-    static component(attributes: { ... } = {}, children): Vnode {
-        const componentAttributes: Record<string, any> = {...attributes};
+  /**
+   * Convenience method to attach a component without JSX.
+   * Has the same effect as calling `m(THIS_CLASS, attrs, children)`.
+   *
+   * @see https://js.org/hyperscript.html#mselector,-attributes,-children
+   */
+  static component(attributes: { ... } = {}, children): Vnode {
+    const componentAttributes: Record<string, any> = {...attributes};
 
-        return m(this, componentAttributes, children);
+    return m(this, componentAttributes, children);
+  }
+
+  /**
+   * @inheritdoc
+   * @abstract
+   */
+  view(vnode: Vnode): Children {}
+
+  /**
+   * @inheritdoc
+   */
+  oninit(vnode: Vnode) {
+    this.setAttrs(vnode.attrs);
+  }
+
+  /**
+   * @inheritdoc
+   */
+  oncreate(vnode: VnodeDOM) {
+    this.element = vnode.dom;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  onbeforeupdate(vnode: VnodeDOM) {
+    this.setAttrs(vnode.attrs);
+  }
+
+  /**
+   * @inheritdoc
+   */
+  onupdate(vnode: VnodeDOM) {}
+
+  /**
+   * @inheritdoc
+   */
+  onbeforeremove(vnode: VnodeDOM) {}
+
+  /**
+   * @inheritdoc
+   */
+  onremove(vnode: VnodeDOM) {}
+
+  /**
+   * Returns a Cash object for this component's element. If you pass in a
+   * selector string, this method will return a Cash object, using the current
+   * element as its buffer.
+   *
+   * For example, calling `component.$('li')` will return a Cash object
+   * containing all of the `li` elements inside the DOM element of this
+   * component.
+   *
+   * @param [selector] a Cash-compatible selector string
+   * @returns the Cash object for the DOM node
+   * @final
+   * @protected
+   */
+  $(selector?: string): Cash {
+    const $element: Cash<HTMLElement> = $(this.element);
+    return selector ? $element.find(element => selector(element)) : $element;
+  }
+
+  /**
+   * Saves a reference to the vnode attrs after running them through initAttrs,
+   * and checking for common issues.
+   *
+   * @private
+   */
+  setAttrs(attributes: { ... } = {}): void {
+    this.initAttrs(attributes);
+    if (attributes) {
+      if ('children' in attributes) {
+        // noinspection JSUnresolvedVariable
+        throw new Error(`[${this.constructor.name}] The "children" attribute of attrs should never be used. Either pass children in as the vnode children or rename the attribute`);
+      }
+      if ('tag' in attributes) {
+        // noinspection JSUnresolvedVariable
+        throw new Error(`[${this.constructor.name}] You cannot use the "tag" attribute name with Mithril 2.`);
+      }
     }
+    this.attrs = collect(attributes);
+    this.attrs.macro('addClassNames', (...classNames: ClassNames[]) => {
+      this.attrs.put('className', classnames(this.attrs.get('className'), ...classNames));
+    });
+    this.attrs.macro('addStyles', (...styles: string[]) => {
+      let s: string = this.attrs.get('style', '');
 
-    /**
-     * @inheritdoc
-     * @abstract
-     */
-    view(vnode: Vnode): Children {
-    }
+      if (!s.trimEnd().endsWith(';')) {
+        s += '; ';
+      }
 
-    /**
-     * @inheritdoc
-     */
-    oninit(vnode: Vnode) {
-        this.setAttrs(vnode.attrs);
-    }
+      s += styles.join('; ');
+      this.attrs.put('style', s);
+    });
+  }
 
-    /**
-     * @inheritdoc
-     */
-    oncreate(vnode: VnodeDOM) {
-        this.element = vnode.dom;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    onbeforeupdate(vnode: VnodeDOM) {
-        this.setAttrs(vnode.attrs);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    onupdate(vnode: VnodeDOM) {
-    }
-
-    /**
-     * @inheritdoc
-     */
-    onbeforeremove(vnode: VnodeDOM) {
-    }
-
-    /**
-     * @inheritdoc
-     */
-    onremove(vnode: VnodeDOM) {
-    }
-
-    /**
-     * Returns a Cash object for this component's element. If you pass in a
-     * selector string, this method will return a Cash object, using the current
-     * element as its buffer.
-     *
-     * For example, calling `component.$('li')` will return a Cash object
-     * containing all of the `li` elements inside the DOM element of this
-     * component.
-     *
-     * @param [selector] a Cash-compatible selector string
-     * @returns the Cash object for the DOM node
-     * @final
-     * @protected
-     */
-    $(selector?: string): Cash {
-        const $element: Cash<HTMLElement> = $(this.element);
-        return selector ? $element.find(element => selector(element)) : $element;
-    }
-
-    /**
-     * Saves a reference to the vnode attrs after running them through initAttrs,
-     * and checking for common issues.
-     *
-     * @private
-     */
-    setAttrs(attributes: { ... } = {}): void {
-        this.initAttrs(attributes);
-        if (attributes) {
-            if ('children' in attributes) {
-                // noinspection JSUnresolvedVariable
-                throw new Error(`[${this.constructor.name}] The "children" attribute of attrs should never be used. Either pass children in as the vnode children or rename the attribute`);
-            }
-            if ('tag' in attributes) {
-                // noinspection JSUnresolvedVariable
-                throw new Error(`[${this.constructor.name}] You cannot use the "tag" attribute name with Mithril 2.`);
-            }
-        }
-        this.attrs = collect(attributes);
-        this.attrs.macro('addClassNames', (...classNames: ClassNames[]) => {
-            this.attrs.put('className', classnames(this.attrs.get('className'), ...classNames));
-        });
-        this.attrs.macro('addStyles', (...styles: string[]) => {
-            let s: string = this.attrs.get('style', '');
-
-            if (!s.trimEnd().endsWith(';')) {
-                s += '; ';
-            }
-
-            s += styles.join('; ');
-            this.attrs.put('style', s);
-        });
-    }
-
-    /**
-     * Initialize the component's attrs.
-     *
-     * This can be used to assign default values for missing, optional attrs.
-     *
-     * @protected
-     */
-    initAttrs(attributes: { ... }): void {
-    }
+  /**
+   * Initialize the component's attrs.
+   *
+   * This can be used to assign default values for missing, optional attrs.
+   *
+   * @protected
+   */
+  initAttrs(attributes: { ... }): void {}
 }

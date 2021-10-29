@@ -28,21 +28,21 @@
  * @param {function} callback A callback which mutates the method's output
  */
 export function extend(proto, methods, callback) {
-    const allMethods = Array.isArray(methods) ? methods : [methods];
+  const allMethods = Array.isArray(methods) ? methods : [methods];
 
-    for (const method of allMethods) {
-        const original = proto[method];
+  for (const method of allMethods) {
+    const original = proto[method];
 
-        proto[method] = function (...arguments_) {
-            const value = original ? original.apply(this, arguments_) : undefined;
+    proto[method] = function (...arguments_) {
+      const value = original ? original.apply(this, arguments_) : undefined;
 
-            Reflect.apply(callback, this, [value, ...arguments_]);
+      Reflect.apply(callback, this, [value, ...arguments_]);
 
-            return value;
-        };
+      return value;
+    };
 
-        Object.assign(proto[method], original);
-    }
+    Object.assign(proto[method], original);
+  }
 }
 
 /**
@@ -73,15 +73,15 @@ export function extend(proto, methods, callback) {
  * @param {function} newMethod The method to replace it with
  */
 export function override(object, methods, newMethod) {
-    const allMethods = Array.isArray(methods) ? methods : [methods];
+  const allMethods = Array.isArray(methods) ? methods : [methods];
 
-    for (const method of allMethods) {
-        const original = object[method];
+  for (const method of allMethods) {
+    const original = object[method];
 
-        object[method] = function (...arguments_) {
-            return Reflect.apply(newMethod, this, [original.bind(this), ...arguments_]);
-        };
+    object[method] = function (...arguments_) {
+      return Reflect.apply(newMethod, this, [original.bind(this), ...arguments_]);
+    };
 
-        Object.assign(object[method], original);
-    }
+    Object.assign(object[method], original);
+  }
 }

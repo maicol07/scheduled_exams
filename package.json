@@ -58,6 +58,7 @@
         "@maicol07/babel-preset": "^1.0.0",
         "@maicol07/eslint-config": "^1.0.1",
         "@open-wc/eslint-config": "^7.0.0",
+        "@types/mithril": "^2.0.8",
         "babel-plugin-transform-flow-enums": "^0.0.2",
         "concurrently": "^6.3.0",
         "eslint": "^7.32.0",

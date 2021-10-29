@@ -8,7 +8,7 @@ import './WebComponents/MaterialDrawer';
 
 const drawer = document.querySelector('material-drawer');
 if (drawer) {
-    drawer.parentElement.addEventListener('MDCTopAppBar:nav', () => {
-        drawer.open = !drawer.open;
-    });
+  drawer.parentElement.addEventListener('MDCTopAppBar:nav', () => {
+    drawer.open = !drawer.open;
+  });
 }

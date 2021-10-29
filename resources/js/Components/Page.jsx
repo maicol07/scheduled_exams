@@ -6,12 +6,12 @@ import Component from './Component.jsx';
  * @abstract
  */
 export default class Page extends Component {
-    page: {
-        component: string,
-        locale: string,
-        props: { ... },
-        url: string,
-        version: string,
-        ...
-    } = JSON.parse($('#app').attr('data-page'));
+  page: {
+    component: string,
+    locale: string,
+    props: { ... },
+    url: string,
+    version: string,
+    ...
+  } = JSON.parse($('#app').attr('data-page'));
 }
