@@ -35,7 +35,7 @@
 @vite('app')
 
 <script>
-    const translations = JSON.parse('{{file_get_contents(resource_path('lang/'.app()->getLocale().'.json'))}}')
+    window.translations = JSON.parse('{{file_get_contents(resource_path('lang/'.app()->getLocale().'.json'))}}')
 </script>
 </body>
 </html>

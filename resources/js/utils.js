@@ -1,6 +1,8 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type {Cash} from 'cash-dom/dist/cash';
+import {Vnode} from 'mithril';
+import {sync as render} from 'mithril-node-render';
 
 /**
  * Check if class/object A is the same as or a subclass of class B.
@@ -72,4 +74,45 @@ export function isFormValid(element: Cash | HTMLFontElement) {
         });
 
     return isValid;
+}
+
+/**
+ * Return a translation
+ *
+ * @param {string|Vnode} key Source string
+ * @param {Object|boolean} replace Parameters to replace in translation
+ * If `true` (boolean), the behaviour is the same as the `returnAsString` parameter
+ * @param {boolean} returnAsString If `true` (boolean), the translation will be returned
+ *                                 as string instead of a Mithril Vnode
+ *
+ * @returns {Vnode}
+ *
+ * @protected
+ */
+export function __(
+  key: string | Vnode,
+  replace: { ... } | boolean = {},
+  returnAsString: boolean = false
+): Vnode {
+  let translation = key;
+  // noinspection JSUnresolvedVariable
+  if (window.translations && window.translations[key]) {
+    translation = window.translations[key];
+  }
+
+  // Returns translation as string (no parameters replacement)
+  if ((typeof replace === 'boolean' && replace) || (replace.length === 0 && !containsHTML(translation))) {
+    return translation;
+  }
+
+  for (const k of Object.keys(replace)) {
+    // `'attrs' in replace[k]` checks if `replace[k]` is a Mithril Vnode
+    translation = translation.replace(`:${k}`, ((typeof replace[k] === 'object' && 'attrs' in replace[k]) ? render(replace[k]) : replace[k]));
+  }
+
+  if (returnAsString || !containsHTML(translation)) {
+    return translation;
+  }
+
+  return window.m.trust(translation);
 }
