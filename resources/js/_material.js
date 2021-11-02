@@ -12,3 +12,15 @@ if (drawer) {
     drawer.open = !drawer.open;
   });
 }
+
+window.addEventListener('load', () => {
+  $('mwc-menu').each((index, menu) => {
+    const buttonLinked = $(menu).attr('trigger');
+    const button = buttonLinked ? $(`#${buttonLinked}`) : $(menu).prev();
+    button.on('click', () => {
+      menu.open = !menu.open;
+    });
+    menu.anchor = button.get(0);
+  });
+});
+
