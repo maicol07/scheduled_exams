@@ -1,8 +1,8 @@
 <mwc-list activatable>
     @foreach([
         'tipi-attivita' => [
-            'icon' => 'shape',
-            'text' => __('Tipi attività')
+            'icon' => 'view-dashboard',
+            'text' => __('Dashboard')
         ]
     ] as $route => $details)
         @switch($route)
