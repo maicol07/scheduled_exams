@@ -15,6 +15,9 @@
         "@inertiajs/inertia": "^0.10.1",
         "@inertiajs/progress": "^0.2.6",
         "@maicol07/inertia-mithril": "^0.4.0",
+        "@material/card": "^13.0.0",
+        "@material/data-table": "^13.0.0",
+        "@material/layout-grid": "^13.0.0",
         "@material/mwc-button": "^0.25.3",
         "@material/mwc-circular-progress": "^0.25.3",
         "@material/mwc-dialog": "^0.25.3",
@@ -29,15 +32,20 @@
         "@material/mwc-select": "^0.25.3",
         "@material/mwc-textarea": "^0.25.3",
         "@material/mwc-textfield": "^0.25.3",
-        "@material/mwc-top-app-bar": "^0.25.3",
+        "@material/mwc-top-app-bar-fixed": "^0.25.3",
+        "@material/theme": "^13.0.0",
+        "@material/typography": "^13.0.0",
         "@mdi/font": "^6.4.95",
         "async-wait-until": "^2.0.8",
         "cash-dom": "^8.1.0",
         "classnames": "^2.3.1",
         "collect.js": "^4.29.0",
+        "include-media": "^1.4.10",
         "lit": "^2.0.2",
         "mithril": "^2.0.4",
-        "mithril-node-render": "^3.0.2"
+        "mithril-node-render": "^3.0.2",
+        "mobile-detect": "^1.4.5",
+        "modern-normalize": "^1.1.0"
     },
     "devDependencies": {
         "@adeira/babel-preset-adeira": "^4.0.0",
@@ -77,6 +85,7 @@
         "eslint-plugin-you-dont-need-lodash-underscore": "^6.12.0",
         "flow-bin": "^0.162.1",
         "laravel-vite": "^0.0.21",
+        "sass": "^1.43.4",
         "vite": "^2.6.11"
     }
 }
