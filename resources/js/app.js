@@ -6,6 +6,8 @@ import {InertiaProgress} from '@inertiajs/progress';
 import {createInertiaApp} from '@maicol07/inertia-mithril';
 import $ from 'cash-dom';
 import m from 'mithril';
+import MobileDetect from 'mobile-detect';
+
 import {__} from './utils';
 
 // Fix Mithril JSX durante la compilazione
@@ -22,11 +24,12 @@ createInertiaApp({
   title: title => `${title} - OpenSTAManager`,
   resolve: (name: string) => import(`./Views/${name}.jsx`),
   setup({
-          el,
-          app
-        }) {
+    el,
+    app
+  }) {
     m.mount(el, app);
   }
 });
 
 window.__ = __;
+window.md = new MobileDetect(window.navigator.userAgent);
