@@ -19,6 +19,7 @@
     unread-background-color="#0080ff"
     unread-text-color="#ffffff"
 ></launchnotes-embed>
+
 <mwc-menu corner="BOTTOM_LEFT" id="user-info" trigger="user-info-btn">
     @if (Auth::hasUser())
         <img class="mdc-elevation--z2" src="{{auth()->user()->picture}}" alt="{{auth()->user()->username}}"
@@ -32,16 +33,20 @@
     <span>{{auth()->user()?->email}}</span>
     <br>
     <a href="">
-        <mwc-button outlined label="@lang('Il tuo profilo')" class="mwc-button--rounded" style="margin-top: 16px;">
+        <mwc-button outlined label="@lang('Your profile')" class="mwc-button--rounded" style="margin-top: 16px;">
             <i class="mdi mdi-account-circle-outline" slot="icon"></i>
         </mwc-button>
     </a>
     <br>
-    <form action="" method="post">
-        @csrf
-        <mwc-button outlined type="submit" label="@lang('Esci')" style="margin-top: 16px;">
+    <a href="{{route('oidc.logout')}}">
+        <mwc-button outlined type="submit" label="@lang('Logout')" style="margin-top: 16px;">
             <i class="mdi mdi-logout-variant" slot="icon"></i>
         </mwc-button>
-    </form>
+    </a>
     <hr>
+        <mwc-button id="app-info-btn" dense label="@lang('About Scheduled Exams')">
+            <i class="mdi mdi-information-outline" slot="icon"></i>
+        </mwc-button>
 </mwc-menu>
+
+<div id="app-info-container" data-version="{{trim(file_get_contents(base_path('VERSION')))}}"></div>

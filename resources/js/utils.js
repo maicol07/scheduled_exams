@@ -1,8 +1,10 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type {Cash} from 'cash-dom/dist/cash';
-import {Vnode} from 'mithril';
+import type {Vnode} from 'mithril';
 import {sync as render} from 'mithril-node-render';
+
+type Animation = 'backInDown' | 'backInLeft' | 'backInRight' | 'backInUp' | 'backOutDown' | 'backOutLeft' | 'backOutRight' | 'backOutUp' | 'bounce' | 'bounceIn' | 'bounceInDown' | 'bounceInLeft' | 'bounceInRight' | 'bounceInUp' | 'bounceOut' | 'bounceOutDown' | 'bounceOutLeft' | 'bounceOutRight' | 'bounceOutUp' | 'fadeIn' | 'fadeInBottomLeft' | 'fadeInBottomRight' | 'fadeInDown' | 'fadeInDownBig' | 'fadeInLeft' | 'fadeInLeftBig' | 'fadeInRight' | 'fadeInRightBig' | 'fadeInTopLeft' | 'fadeInTopRight' | 'fadeInUp' | 'fadeInUpBig' | 'fadeOut' | 'fadeOutBottomLeft' | 'fadeOutBottomRight' | 'fadeOutDown' | 'fadeOutDownBig' | 'fadeOutLeft' | 'fadeOutLeftBig' | 'fadeOutRight' | 'fadeOutRightBig' | 'fadeOutTopLeft' | 'fadeOutTopRight' | 'fadeOutUp' | 'fadeOutUpBig' | 'flash' | 'flip' | 'flipInX' | 'flipInY' | 'flipOutX' | 'flipOutY' | 'headShake' | 'heartBeat' | 'hinge' | 'jackInTheBox' | 'jello' | 'lightSpeedInLeft' | 'lightSpeedInRight' | 'lightSpeedOutLeft' | 'lightSpeedOutRight' | 'pulse' | 'rollIn' | 'rollOut' | 'rotateIn' | 'rotateInDownLeft' | 'rotateInDownRight' | 'rotateInUpLeft' | 'rotateInUpRight' | 'rotateOut' | 'rotateOutDownLeft' | 'rotateOutDownRight' | 'rotateOutUpLeft' | 'rotateOutUpRight' | 'rubberBand' | 'seekers' | 'shakeX' | 'shakeY' | 'slideInDown' | 'slideInLeft' | 'slideInRight' | 'slideInUp' | 'slideOutDown' | 'slideOutLeft' | 'slideOutRight' | 'slideOutUp' | 'swing' | 'tada' | 'wobble' | 'zoomIn' | 'zoomInDown' | 'zoomInLeft' | 'zoomInRight' | 'zoomInUp' | 'zoomOut' | 'zoomOutDown' | 'zoomOutLeft' | 'zoomOutRight' | 'zoomOutUp';
 
 /**
  * Check if class/object A is the same as or a subclass of class B.
@@ -93,7 +95,7 @@ export function isFormValid(element: Cash | HTMLFontElement): boolean {
  */
 export function __(
   key: string | Vnode,
-  replace: { ... } | boolean = {},
+  replace: { [string]: string | Vnode | any } | boolean = {},
   returnAsString: boolean = false
 ): Vnode {
   let translation = key;
@@ -117,4 +119,35 @@ export function __(
   }
 
   return window.m.trust(translation);
+}
+
+/**
+ * Animate.css helper
+ *
+ * @param element
+ * @param animation
+ * @param prefix
+ * @returns {Promise<unknown>}
+ */
+export default function animateCSS(element: string | Element, animation: Animation, prefix = 'animate__'): Promise {
+  // We create a Promise and return it
+  return new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+
+    let node: Element = element;
+    if (typeof node === 'string') {
+      node = document.querySelector(element);
+    }
+
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+  });
 }

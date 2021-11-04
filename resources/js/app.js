@@ -8,12 +8,13 @@ import $ from 'cash-dom';
 import m from 'mithril';
 import MobileDetect from 'mobile-detect';
 
+import {AppInfoDialog} from './Components/InfoDialogs.jsx';
 import {__} from './utils';
 
-// Fix Mithril JSX durante la compilazione
+// Fix Mithril JSX during building
 m.Fragment = '[';
 
-// Variabili globali
+// Global variables
 window.$ = $;
 window.m = m;
 
@@ -33,3 +34,12 @@ createInertiaApp({
 
 window.__ = __;
 window.md = new MobileDetect(window.navigator.userAgent);
+
+// Global app info dialog
+const appInfoContainer = document.querySelector('#app-info-container');
+if (appInfoContainer) {
+  m.mount(appInfoContainer, AppInfoDialog);
+}
+
+// Fix button links
+$('a').has('mwc-button').css('text-decoration', 'none');

@@ -15,9 +15,9 @@
     </material-drawer>
     <footer class="@if(session('high-contrast')) mdc-high-contrast @endif">
         <div class="left-footer">
-            <span>@lang('Copyright © 2019-%s Maicol07', ['%s' => today()->format('Y')])</span>
+            <span>@lang('Copyright © 2019-:current_year Maicol07', ['current_year' => today()->format('Y')])</span>
             @notmobile
-            <span> - @lang('Sviluppato da Maicol07')</span>
+            <span>&nbsp;- @lang('Sviluppato da Maicol07')</span>
         </div>
         <div class="right-footer">
             <a href="https://docs.maicol07.it/en/legal/privacy-cookie">
@@ -42,11 +42,13 @@
 
 @vite('app')
 @php
+    /** @var string $translations */
+    $translations = Cache::get('translations');
 @endphp
 <script type="module" async="" src="https://embed.launchnotes.io/latest/dist/esm/launchnotes-embed.js"></script>
 <script nomodule="" async="" src="https://embed.launchnotes.io/latest/dist/esm/launchnotes-embed.js"></script>
 <script>
-    window.translations = JSON.parse('{!! Cache::get('translations') !!}')
+    window.translations = JSON.parse('{!! $translations !!}')
 </script>
 </body>
 </html>

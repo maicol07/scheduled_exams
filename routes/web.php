@@ -1,5 +1,6 @@
 <?php /** @noinspection UnusedFunctionResultInspection */
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return redirect(route('oidc.login'));
 });
 
-Route::get('loggedin', function () {
-    return response("You're logged in!");
+Route::middleware('auth')->group(function () {
+    Route::inertia('dashboard', 'Dashboard');
+
+    Route::get('info/libraries', [Controller::class, 'getLibraries'])->name('app.libraries');
 });

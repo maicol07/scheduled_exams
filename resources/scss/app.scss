@@ -85,6 +85,25 @@ mwc-fab#contrast-switcher {
     }
 }
 
+#user-info {
+    text-align: center;
+
+    --mdc-menu-min-width: 25em;
+
+    img {
+        width: 150px;
+        border-radius: 50%;
+    }
+
+    hr {
+        margin: 16px 0 8px;
+    }
+
+    .mdi {
+        vertical-align: text-bottom;
+    }
+}
+
 /* ----------------------------
     Footer
 --------------------------- */
