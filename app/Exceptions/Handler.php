@@ -3,8 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,7 +43,7 @@ class Handler extends ExceptionHandler
     /**
      * Fixes phpstorm:// protocol links Ignition uses, which don't work on Linux or Windows
      */
-    final public function render($request, Throwable $exception): Response|JsonResponse
+    final public function render($request, Throwable $exception): Response
     {
         if ('local' === app()->environment()) {
             $project_path = base_path();
