@@ -21,7 +21,8 @@
         "nette/utils": "^3",
         "parsedown/laravel": "^1",
         "riverskies/laravel-mobile-detect": "^1",
-        "tightenco/ziggy": "^1"
+        "tightenco/ziggy": "^1",
+        "ext-intl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
