@@ -43,7 +43,7 @@
 @vite('app')
 @php
     /** @var string $translations */
-    $translations = Cache::get('translations');
+    $translations = cache('translations_' . app()->getLocale());
 @endphp
 <script type="module" async="" src="https://embed.launchnotes.io/latest/dist/esm/launchnotes-embed.js"></script>
 <script nomodule="" async="" src="https://embed.launchnotes.io/latest/dist/esm/launchnotes-embed.js"></script>

@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Cache::rememberForever(
-            'translations',
+            'translations_' . app()->getLocale(),
             fn () => Json::encode(
                 Json::decode(file_get_contents(resource_path('lang/'.app()->getLocale().'.json')))
             )
