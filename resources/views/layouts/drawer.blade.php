@@ -1,6 +1,6 @@
 <mwc-list activatable>
     @foreach([
-        'tipi-attivita' => [
+        'dashboard' => [
             'icon' => 'view-dashboard',
             'text' => __('Dashboard')
         ]
