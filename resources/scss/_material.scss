@@ -128,10 +128,10 @@ top-app-bar {
 }
 
 /* ---------------------------
-    MDC FABs
+    MWC FABs
 --------------------------- */
 mwc-fab {
-    --mdc-icon-font: inherit;
+    --mdc-icon-font: none;
 
     &.sticky {
         position: fixed;
@@ -174,7 +174,7 @@ top-app-bar mwc-fab.sticky {
     }
 }
 
-.mdc-high-contrast {
+.mdc-theme--black {
     --mdc-theme-primary: #{lighten(variables.$primary, 100%)};
     --mdc-theme-primary2: #{lighten(variables.$primary, 50%)}; // Fix for MWC Drawer styling
     --mdc-theme-secondary: #{variables.$secondary};
@@ -220,5 +220,9 @@ top-app-bar mwc-fab.sticky {
                 color: unset;
             }
         }
+    }
+
+    mwc-fab {
+        --mdc-theme-on-secondary: white;
     }
 }

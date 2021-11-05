@@ -22,4 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::inertia('dashboard', 'Dashboard');
 
     Route::get('info/libraries', [Controller::class, 'getLibraries'])->name('app.libraries');
+    Route::patch('lang', [Controller::class, 'changeLang'])->name('app.lang');
+    Route::patch('theme', [Controller::class, 'changeTheme'])->name('app.theme');
 });

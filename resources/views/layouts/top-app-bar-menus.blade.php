@@ -20,6 +20,33 @@
     unread-text-color="#ffffff"
 ></launchnotes-embed>
 
+<mwc-menu activatable corner="BOTTOM_RIGHT" id="theme-switcher" trigger="change-theme-btn">
+    @foreach([
+            'white' => [
+                'icon' => 'weather-sunny',
+                'text' => __('White')
+            ],
+            'dark' => [
+                'icon' => 'weather-night',
+                'text' => __('Black')
+            ]
+        ] as $theme => $theme_details)
+        <mwc-list-item graphic="icon" @if(session('theme', 'white') === $theme) selected activated @endif value="{{$theme}}">
+            <i class="mdi mdi-{{$theme_details['icon']}}" slot="graphic"></i>
+            <span>{{$theme_details['text']}}</span>
+        </mwc-list-item>
+    @endforeach
+</mwc-menu>
+
+<mwc-menu activatable corner="BOTTOM_RIGHT" id="lang-switcher" trigger="change-language-btn">
+    @foreach(config('app.locales') as $locale)
+        <mwc-list-item graphic="icon" @if(app()->getLocale() === $locale) selected activated @endif value="{{$locale}}">
+            <i class="flag-icon flag-icon-{{$locale === 'en' ? 'gb' : $locale}}" slot="graphic"></i>
+            <span>{{ucfirst(Locale::getDisplayLanguage($locale, app()->getLocale()))}}</span>
+        </mwc-list-item>
+    @endforeach
+</mwc-menu>
+
 <mwc-menu corner="BOTTOM_LEFT" id="user-info" trigger="user-info-btn">
     @if (Auth::hasUser())
         <img class="mdc-elevation--z2" src="{{auth()->user()->picture}}" alt="{{auth()->user()->username}}"

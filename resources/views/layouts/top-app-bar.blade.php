@@ -4,10 +4,16 @@
     <span>@lang('Scheduled Exams')</span>
 </div>
 
-<mwc-icon-button id="navbar-announcements" slot="actionItems" label="@lang('Notifiche')">
+<mwc-icon-button id="navbar-announcements" slot="actionItems" label="@lang('Notifications')">
     <i class="mdi mdi-bell-outline"></i>
 </mwc-icon-button>
-<mwc-icon-button id="user-info-btn" slot="actionItems" label="@lang('Il tuo profilo')">
+<mwc-icon-button id="change-theme-btn" slot="actionItems" label="@lang('Cambia tema')">
+    <i class="mdi mdi-invert-colors"></i>
+</mwc-icon-button>
+<mwc-icon-button id="change-language-btn" slot="actionItems" label="@lang('Cambia lingua')">
+    <i class="mdi mdi-translate"></i>
+</mwc-icon-button>
+<mwc-icon-button id="user-info-btn" slot="actionItems" label="@lang('Your profile')">
     @if (Auth::hasUser())
         <img src="{{auth()->user()->picture}}" alt="{{auth()->user()->username}}" style="border-radius: 50%;">
     @else

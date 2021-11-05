@@ -28,10 +28,10 @@ class Controller extends BaseController
      * @return RedirectResponse
      * @throws Exception
      */
-    final public function changeLang(string $locale = 'en_US'): RedirectResponse
+    final public function changeLang(Request $request): Response
     {
-        app()->setLocale(Locale::getPrimaryLanguage($locale));
-        return back();
+        app()->setLocale(Locale::getPrimaryLanguage($request->input('language', app()->getLocale())));
+        return response()->noContent();
     }
 
     /**
@@ -40,9 +40,10 @@ class Controller extends BaseController
      * @param string $theme
      * @return Response
      */
-    final public function changeTheme(string $theme = 'light'): Response
+    final public function changeTheme(Request $request): Response
     {
-        session(['theme' => $theme]);
+        /** @noinspection UnusedFunctionResultInspection */
+        session(['theme' => $request->input('theme', session('theme'))]);
         return response()->noContent();
     }
 
