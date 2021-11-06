@@ -2,7 +2,7 @@ import Component from './Component.jsx';
 
 export default class Mdi extends Component {
   view(vnode) {
-    this.attrs.addClassNames('mdi', `mdi-${vnode.attrs.icon}`);
+    this.attrs.addClassNames('mdi', `mdi-${this.attrs.pull('icon')}`);
     return <i {...this.attrs.all()} />;
   }
 }
