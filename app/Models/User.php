@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends \Maicol07\OIDCClient\Models\User
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +30,6 @@ class User extends \Maicol07\OIDCClient\Models\User
      * @var array
      */
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -39,4 +41,9 @@ class User extends \Maicol07\OIDCClient\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function classrooms(): BelongsToMany
+    {
+        return $this->belongsToMany(Classroom::class, 'classrooms_students');
+    }
 }
