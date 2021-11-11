@@ -2,7 +2,7 @@ import Component from '../Component.jsx';
 
 /**
  * Attributes:
- * — type: numeric, checkbox
+ * - type: numeric, checkbox
  */
 export default class TableCell extends Component {
   view(vnode) {
