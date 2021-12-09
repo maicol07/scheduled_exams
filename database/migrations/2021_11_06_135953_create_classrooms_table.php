@@ -11,7 +11,7 @@ class CreateClassroomsTable extends Migration
         if (!Schema::hasTable('classrooms')) {
             Schema::create('classrooms', function (Blueprint $table) {
                 $table->id();
-                $table->tinyText('name');
+                $table->char('name');
                 $table->text('description')->nullable();
                 $table->ipAddress('image')->nullable();
                 $table->char('code', 5)->unique();
@@ -21,10 +21,9 @@ class CreateClassroomsTable extends Migration
             Schema::table('classrooms', static function (Blueprint $table) {
                 $table->renameColumn('ID', 'id');
                 $table->id()->change();
-                $table->tinyText('name')->change();
+                $table->char('name')->change();
                 $table->text('description')->nullable()->change();
                 $table->ipAddress('image')->nullable()->change();
-                $table->char('code', 5)->unique();
                 $table->timestamps();
             });
         }

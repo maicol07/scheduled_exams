@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
                 $table->string('name');
-                $table->string('email')->unique();
+                $table->string('email')->unique()->nullable();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->boolean('ads_purchased');
                 $table->rememberToken();
@@ -25,11 +25,12 @@ class CreateUsersTable extends Migration
             });
         } else {
             Schema::table('users', function (Blueprint $table) {
-                $table->string('name')->change();
-                $table->string('email')->unique();
-                $table->timestamp('email_verified_at')->nullable();
-                $table->rememberToken();
+                $table->string('name')->after('id');
+                $table->string('email')->after('name')->unique()->nullable();
+                $table->timestamp('email_verified_at')->after('email')->nullable();
+                $table->rememberToken()->after('ads_purchased');
 
+                $table->removeColumn('username');
                 $table->removeColumn('locale');
 
                 $table->timestamps();
