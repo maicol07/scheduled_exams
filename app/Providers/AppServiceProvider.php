@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use Nette\Utils\Json;
 
@@ -25,11 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Cache::rememberForever(
+        cache()->rememberForever(
             'translations_' . app()->getLocale(),
-            fn () => Json::encode(
-                Json::decode(file_get_contents(resource_path('lang/'.app()->getLocale().'.json')))
-            )
+            fn () => Json::decode(file_get_contents(resource_path('lang/' . app()->getLocale() . '.json')))
         );
     }
 }

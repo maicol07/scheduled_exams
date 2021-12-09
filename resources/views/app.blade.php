@@ -41,14 +41,16 @@
 @client
 
 @vite('app')
+
 @php
     /** @var string $translations */
     $translations = cache('translations_' . app()->getLocale());
 @endphp
+<script>
+    window.translations = @js($translations);
+</script>
+
 <script type="module" async="" src="https://embed.launchnotes.io/latest/dist/esm/launchnotes-embed.js"></script>
 <script nomodule="" async="" src="https://embed.launchnotes.io/latest/dist/esm/launchnotes-embed.js"></script>
-<script>
-    window.translations = JSON.parse('{!! $translations !!}')
-</script>
 </body>
 </html>
