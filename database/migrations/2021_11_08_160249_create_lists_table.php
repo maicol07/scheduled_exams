@@ -27,7 +27,6 @@ class CreateListsTable extends Migration
         } else {
             Schema::table('lists', function (Blueprint $table) {
                 $table->renameColumn('ID', 'id');
-                $table->id()->change();
                 $table->bigInteger('classroom_id')->change();
                 $table->tinyText('name')->change();
                 $table->text('description')->nullable()->change();
@@ -38,6 +37,11 @@ class CreateListsTable extends Migration
                 $table->timestamps();
 
                 $table->foreign('classroom_id')->references('id')->on('classrooms');
+            });
+
+            // Fix ID change
+            Schema::table('lists', function (Blueprint $table) {
+                $table->id()->change();
             });
         }
     }

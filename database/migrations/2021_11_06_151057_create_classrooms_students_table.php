@@ -11,11 +11,11 @@ class CreateClassroomsStudentsTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('classrooms_students', function (Blueprint $table) {
+        Schema::create('classrooms_students', static function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('classroom_id');
-            $table->bigInteger('student_id')->nullable();
-            $table->bigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('classroom_id');
+            $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('is_admin');
             $table->timestamps();
 

@@ -25,7 +25,6 @@ class CreateListRowsTable extends Migration
         } else {
             Schema::table('lists_rows', function (Blueprint $table) {
                 $table->renameColumn('ID', 'id');
-                $table->id()->change();
                 $table->bigInteger('list_id')->change();
                 $table->bigInteger('student_id')->nullable()->change();
                 $table->bigInteger('user_id')->nullable()->change();
@@ -37,6 +36,10 @@ class CreateListRowsTable extends Migration
                 $table->foreign('list_id')->references('id')->on('lists');
                 $table->foreign('student_id')->references('id')->on('students');
                 $table->foreign('user_id')->references('id')->on('user_id');
+            });
+
+            Schema::table('lists_rows', function (Blueprint $table) {
+                $table->id()->change();
             });
         }
     }

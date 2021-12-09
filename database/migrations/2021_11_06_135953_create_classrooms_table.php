@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\DBAL\Types\StringType;
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,13 +20,26 @@ class CreateClassroomsTable extends Migration
                 $table->timestamps();
             });
         } else {
+            if (!Type::hasType('char')) {
+                Type::addType('char', StringType::class);
+            }
+
+            if (Schema::hasTable('lists')) {
+                Schema::table('lists', static function (Blueprint $table) {
+                    $table->dropForeign('FK_lists_classrooms');
+                });
+            }
+
             Schema::table('classrooms', static function (Blueprint $table) {
                 $table->renameColumn('ID', 'id');
-                $table->id()->change();
                 $table->char('name')->change();
                 $table->text('description')->nullable()->change();
-                $table->ipAddress('image')->nullable()->change();
+                $table->string('image')->nullable()->change();
                 $table->timestamps();
+            });
+
+            Schema::table('classrooms', static function (Blueprint $table) {
+                $table->id()->change();
             });
         }
     }
